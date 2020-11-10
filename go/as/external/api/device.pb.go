@@ -6,15 +6,16 @@ package api
 import (
 	context "context"
 	fmt "fmt"
-	common "github.com/ibrahimozekici/chirpstack-api/go/v3/common"
+	math "math"
+
 	proto "github.com/golang/protobuf/proto"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
+	common "github.com/ibrahimozekici/chirpstack-api/go/v3/common"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	math "math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1524,6 +1525,188 @@ func (m *StreamDeviceEventLogsResponse) GetPayloadJson() string {
 	return ""
 }
 
+type TemperatureData struct {
+	// Device EUI (HEX encoded).
+	DevEui string `protobuf:"bytes,1,opt,name=dev_eui,json=devEUI,proto3" json:"dev_eui,omitempty"`
+	// Temp_SHT of the temperature (if left blank, it will be set to the DevEUI).
+	Temp_SHT string `protobuf:"bytes,2,opt,name=temp_SHT,proto3" json:"temp_SHT,omitempty"`
+	// Temp_SHT of the temperature (if left blank, it will be set to the DevEUI).
+	Hum_SHT string `protobuf:"bytes,3,opt,name=hum_SHT,proto3" json:"hum_SHT,omitempty"`
+	// Last seen timestamp.
+	LastSeenAt           *timestamp.Timestamp `protobuf:"bytes,4,opt,name=last_seen_at,json=lastSeenAt,proto3" json:"last_seen_at,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *TemperatureData) Reset()         { *m = TemperatureData{} }
+func (m *TemperatureData) String() string { return proto.CompactTextString(m) }
+func (*TemperatureData) ProtoMessage()    {}
+func (*TemperatureData) Descriptor() ([]byte, []int) {
+	return fileDescriptor_57ec3c2ed36f7cf9, []int{15}
+}
+
+func (m *TemperatureData) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TemperatureData.Unmarshal(m, b)
+}
+func (m *TemperatureData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TemperatureData.Marshal(b, m, deterministic)
+}
+func (m *TemperatureData) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TemperatureData.Merge(m, src)
+}
+func (m *TemperatureData) XXX_Size() int {
+	return xxx_messageInfo_TemperatureData.Size(m)
+}
+func (m *TemperatureData) XXX_DiscardUnknown() {
+	xxx_messageInfo_TemperatureData.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TemperatureData proto.InternalMessageInfo
+
+func (m *TemperatureData) GetDevEui() string {
+	if m != nil {
+		return m.DevEui
+	}
+	return ""
+}
+
+func (m *TemperatureData) GetTemp_SHT() string {
+	if m != nil {
+		return m.Temp_SHT
+	}
+	return ""
+}
+
+func (m *TemperatureData) GetHum_SHT() string {
+	if m != nil {
+		return m.Hum_SHT
+	}
+	return ""
+}
+
+func (m *TemperatureData) GetLastSeenAt() *timestamp.Timestamp {
+	if m != nil {
+		return m.LastSeenAt
+	}
+	return nil
+}
+
+type ListTemperatureDataRequest struct {
+	// Max number of devices to return in the result-set.
+	Limit int64 `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
+	// Device EUI (HEX encoded).
+	DevEui string `protobuf:"bytes,2,opt,name=dev_eui,json=devEUI,proto3" json:"dev_eui,omitempty"`
+	// Start timestamp.
+	StartTime *timestamp.Timestamp `protobuf:"bytes,3,opt,name=startTime,json=lastSeenAt,proto3" json:"startTime,omitempty"`
+	// End timestamp.
+	EndTime              *timestamp.Timestamp `protobuf:"bytes,4,opt,name=endTime,json=lastSeenAt,proto3" json:"endTime,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *ListTemperatureDataRequest) Reset()         { *m = ListTemperatureDataRequest{} }
+func (m *ListTemperatureDataRequest) String() string { return proto.CompactTextString(m) }
+func (*ListTemperatureDataRequest) ProtoMessage()    {}
+func (*ListTemperatureDataRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_57ec3c2ed36f7cf9, []int{6}
+}
+
+func (m *ListTemperatureDataRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListTemperatureDataRequest.Unmarshal(m, b)
+}
+func (m *ListTemperatureDataRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListTemperatureDataRequest.Marshal(b, m, deterministic)
+}
+func (m *ListTemperatureDataRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListTemperatureDataRequest.Merge(m, src)
+}
+func (m *ListTemperatureDataRequest) XXX_Size() int {
+	return xxx_messageInfo_ListTemperatureDataRequest.Size(m)
+}
+func (m *ListTemperatureDataRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListTemperatureDataRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListTemperatureDataRequest proto.InternalMessageInfo
+
+func (m *ListTemperatureDataRequest) GetLimit() int64 {
+	if m != nil {
+		return m.Limit
+	}
+	return 0
+}
+
+func (m *ListTemperatureDataRequest) GetDevEui() string {
+	if m != nil {
+		return m.DevEui
+	}
+	return ""
+}
+
+func (m *ListTemperatureDataRequest) GetStartTime() *timestamp.Timestamp {
+	if m != nil {
+		return m.StartTime
+	}
+	return nil
+}
+
+func (m *ListTemperatureDataRequest) GetEndTime() *timestamp.Timestamp {
+	if m != nil {
+		return m.EndTime
+	}
+	return nil
+}
+
+type ListTemperatureDataResponse struct {
+	// Total number of devices available within the result-set.
+	TotalCount int64 `protobuf:"varint,1,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	// TemperatureData within this result-set.
+	Result               []*TemperatureData `protobuf:"bytes,2,rep,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
+	XXX_unrecognized     []byte             `json:"-"`
+	XXX_sizecache        int32              `json:"-"`
+}
+
+func (m *ListTemperatureDataResponse) Reset()         { *m = ListTemperatureDataResponse{} }
+func (m *ListTemperatureDataResponse) String() string { return proto.CompactTextString(m) }
+func (*ListTemperatureDataResponse) ProtoMessage()    {}
+func (*ListTemperatureDataResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_57ec3c2ed36f7cf9, []int{7}
+}
+
+func (m *ListTemperatureDataResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListTemperatureDataResponse.Unmarshal(m, b)
+}
+func (m *ListTemperatureDataResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListTemperatureDataResponse.Marshal(b, m, deterministic)
+}
+func (m *ListTemperatureDataResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListTemperatureDataResponse.Merge(m, src)
+}
+func (m *ListTemperatureDataResponse) XXX_Size() int {
+	return xxx_messageInfo_ListTemperatureDataResponse.Size(m)
+}
+func (m *ListTemperatureDataResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListTemperatureDataResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListTemperatureDataResponse proto.InternalMessageInfo
+
+func (m *ListTemperatureDataResponse) GetTotalCount() int64 {
+	if m != nil {
+		return m.TotalCount
+	}
+	return 0
+}
+
+func (m *ListTemperatureDataResponse) GetResult() []*TemperatureData {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
 func init() {
 	proto.RegisterType((*Device)(nil), "api.Device")
 	proto.RegisterMapType((map[string]string)(nil), "api.Device.TagsEntry")
@@ -1554,6 +1737,8 @@ func init() {
 	proto.RegisterType((*StreamDeviceFrameLogsResponse)(nil), "api.StreamDeviceFrameLogsResponse")
 	proto.RegisterType((*StreamDeviceEventLogsRequest)(nil), "api.StreamDeviceEventLogsRequest")
 	proto.RegisterType((*StreamDeviceEventLogsResponse)(nil), "api.StreamDeviceEventLogsResponse")
+	proto.RegisterType((*TemperatureData)(nil), "api.TemperatureData")
+
 }
 
 func init() {
@@ -1722,6 +1907,8 @@ type DeviceServiceClient interface {
 	//   * This endpoint is intended for debugging only.
 	//   * This endpoint does not work from a web-browser.
 	StreamEventLogs(ctx context.Context, in *StreamDeviceEventLogsRequest, opts ...grpc.CallOption) (DeviceService_StreamEventLogsClient, error)
+	// ListTemperatureData returns the available devices.
+	ListTemperatureData(ctx context.Context, in *ListTemperatureDataRequest, opts ...grpc.CallOption) (*ListTemperatureDataResponse, error)
 }
 
 type deviceServiceClient struct {
@@ -1863,6 +2050,14 @@ func (c *deviceServiceClient) StreamFrameLogs(ctx context.Context, in *StreamDev
 	}
 	return x, nil
 }
+func (c *deviceServiceClient) ListTemperatureData(ctx context.Context, in *ListTemperatureDataRequest, opts ...grpc.CallOption) (*ListTemperatureDataResponse, error) {
+	out := new(ListTemperatureDataResponse)
+	err := c.cc.Invoke(ctx, "/api.DeviceService/ListTemperatureData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
 
 type DeviceService_StreamFrameLogsClient interface {
 	Recv() (*StreamDeviceFrameLogsResponse, error)
@@ -1949,6 +2144,8 @@ type DeviceServiceServer interface {
 	//   * This endpoint is intended for debugging only.
 	//   * This endpoint does not work from a web-browser.
 	StreamEventLogs(*StreamDeviceEventLogsRequest, DeviceService_StreamEventLogsServer) error
+	// List returns the Temperature Data.
+	ListTemperatureData(context.Context, *ListTemperatureDataRequest) (*ListTemperatureDataResponse, error)
 }
 
 // UnimplementedDeviceServiceServer can be embedded to have forward compatible implementations.
@@ -1999,6 +2196,9 @@ func (*UnimplementedDeviceServiceServer) StreamFrameLogs(req *StreamDeviceFrameL
 }
 func (*UnimplementedDeviceServiceServer) StreamEventLogs(req *StreamDeviceEventLogsRequest, srv DeviceService_StreamEventLogsServer) error {
 	return status.Errorf(codes.Unimplemented, "method StreamEventLogs not implemented")
+}
+func (*UnimplementedDeviceServiceServer) ListTemperatureData(ctx context.Context, req *ListTemperatureDataRequest) (*ListTemperatureDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
 
 func RegisterDeviceServiceServer(s *grpc.Server, srv DeviceServiceServer) {
@@ -2247,6 +2447,24 @@ func _DeviceService_StreamFrameLogs_Handler(srv interface{}, stream grpc.ServerS
 	return srv.(DeviceServiceServer).StreamFrameLogs(m, &deviceServiceStreamFrameLogsServer{stream})
 }
 
+func _DeviceService_ListTemperatureData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTemperatureDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceServiceServer).ListTemperatureData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.DeviceService/ListTemperatureData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceServiceServer).ListTemperatureData(ctx, req.(*ListTemperatureDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 type DeviceService_StreamFrameLogsServer interface {
 	Send(*StreamDeviceFrameLogsResponse) error
 	grpc.ServerStream
@@ -2336,6 +2554,10 @@ var _DeviceService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetRandomDevAddr",
 			Handler:    _DeviceService_GetRandomDevAddr_Handler,
+		},
+		{
+			MethodName: "ListTemperatureData",
+			Handler:    _DeviceService_ListTemperatureData_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
