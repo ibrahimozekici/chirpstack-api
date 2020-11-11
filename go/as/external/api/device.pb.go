@@ -1739,6 +1739,8 @@ func init() {
 	proto.RegisterType((*StreamDeviceEventLogsRequest)(nil), "api.StreamDeviceEventLogsRequest")
 	proto.RegisterType((*StreamDeviceEventLogsResponse)(nil), "api.StreamDeviceEventLogsResponse")
 	proto.RegisterType((*TemperatureData)(nil), "api.TemperatureData")
+	proto.RegisterType((*ListTemperatureDataRequest)(nil), "api.ListTemperatureDataRequest")
+	proto.RegisterType((*ListTemperatureDataResponse)(nil), "api.ListTemperatureDataResponse")
 
 }
 
