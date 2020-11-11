@@ -1544,7 +1544,7 @@ func (m *TemperatureData) Reset()         { *m = TemperatureData{} }
 func (m *TemperatureData) String() string { return proto.CompactTextString(m) }
 func (*TemperatureData) ProtoMessage()    {}
 func (*TemperatureData) Descriptor() ([]byte, []int) {
-	return fileDescriptor_57ec3c2ed36f7cf9, []int{15}
+	return fileDescriptor_57ec3c2ed36f7cf9, []int{26}
 }
 
 func (m *TemperatureData) XXX_Unmarshal(b []byte) error {
@@ -1611,7 +1611,7 @@ func (m *ListTemperatureDataRequest) Reset()         { *m = ListTemperatureDataR
 func (m *ListTemperatureDataRequest) String() string { return proto.CompactTextString(m) }
 func (*ListTemperatureDataRequest) ProtoMessage()    {}
 func (*ListTemperatureDataRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_57ec3c2ed36f7cf9, []int{6}
+	return fileDescriptor_57ec3c2ed36f7cf9, []int{27}
 }
 
 func (m *ListTemperatureDataRequest) XXX_Unmarshal(b []byte) error {
@@ -1674,7 +1674,7 @@ func (m *ListTemperatureDataResponse) Reset()         { *m = ListTemperatureData
 func (m *ListTemperatureDataResponse) String() string { return proto.CompactTextString(m) }
 func (*ListTemperatureDataResponse) ProtoMessage()    {}
 func (*ListTemperatureDataResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_57ec3c2ed36f7cf9, []int{7}
+	return fileDescriptor_57ec3c2ed36f7cf9, []int{28}
 }
 
 func (m *ListTemperatureDataResponse) XXX_Unmarshal(b []byte) error {
