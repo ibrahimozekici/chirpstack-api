@@ -127,6 +127,13 @@ service DeviceService {
             get: "/api/devices/{dev_eui}/events"
         };
     }
+
+    // ListTemperatureData returns the temperature devices.
+    rpc ListTemperatureData(ListTemperatureDataRequest) returns (ListTemperatureDataResponse) {
+        option (google.api.http) = {
+            get: "/api/devices/{dev_eui}/temperature"
+        };
+    }
 }
 
 message Device {
@@ -233,6 +240,21 @@ message DeviceKeys {
     // This is an optional key that only must be set for LORaWAN 1.0.x devices
     // that implement the remote multicast setup specification.
     string gen_app_key = 4;
+}
+
+message TemperatureData {
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"]; 
+    
+    // temp_SHT of the device.
+    string temp_SHT = 2 [json_name = "Temp_SHT"];
+
+    // hum_SHT.
+    string hum_SHT = 3 [json_name = "Hum_SHT"];
+
+    // The last time the application-server received any data from the device,
+    // or an empty string when the device never sent any data.
+    google.protobuf.Timestamp last_seen_at = 4 [json_name = "lastSeenAt"];
 }
 
 message CreateDeviceRequest {
@@ -425,4 +447,20 @@ message StreamDeviceEventLogsResponse {
 
     // The event payload in JSON encoding.
     string payload_json = 2 [json_name = "payloadJSON"];
+}
+
+message ListTemperatureDataRequest {
+    // Max number of devices to return in the result-set.
+    int64 limit = 1;
+
+    // Search on name or DevEUI.
+    string search = 2;
+}
+
+message ListTemperatureDataResponse {
+    // Total number of devices available within the result-set.
+    int64 total_count = 1;
+
+    // Devices within this result-set.
+    repeated TemperatureData result = 2;
 }
