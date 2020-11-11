@@ -8,6 +8,9 @@ package api
 
 import (
 	context "context"
+	reflect "reflect"
+	sync "sync"
+
 	empty "github.com/golang/protobuf/ptypes/empty"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	common "github.com/ibrahimozekici/chirpstack-api/go/v3/common"
@@ -17,8 +20,6 @@ import (
 	status "google.golang.org/grpc/status"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	reflect "reflect"
-	sync "sync"
 )
 
 const (
@@ -2413,7 +2414,6 @@ func file_device_proto_init() {
 	if File_device_proto != nil {
 		return
 	}
-	file_as_external_api_frameLog_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_device_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Device); i {
