@@ -454,7 +454,7 @@ message ListTemperatureDataRequest {
     int64 limit = 1;
 
     // Search on name or DevEUI.
-    string search = 2;
+    string dev_eui = 2 [json_name = "devEUI"];
 }
 
 message ListTemperatureDataResponse {
