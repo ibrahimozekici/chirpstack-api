@@ -14,7 +14,7 @@ import "as/external/api/frameLog.proto";
 
 // DeviceService is the service managing the devices.
 service DeviceService {
-    // Create creates the given device.
+    // Create creates the given device vesiyon 2.
     rpc Create(CreateDeviceRequest) returns (google.protobuf.Empty) {
         option(google.api.http) = {
             post: "/api/devices"
