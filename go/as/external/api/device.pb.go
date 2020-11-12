@@ -8,9 +8,6 @@ package api
 
 import (
 	context "context"
-	reflect "reflect"
-	sync "sync"
-
 	empty "github.com/golang/protobuf/ptypes/empty"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	common "github.com/ibrahimozekici/chirpstack-api/go/v3/common"
@@ -20,6 +17,8 @@ import (
 	status "google.golang.org/grpc/status"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	reflect "reflect"
+	sync "sync"
 )
 
 const (
@@ -2414,6 +2413,7 @@ func file_device_proto_init() {
 	if File_device_proto != nil {
 		return
 	}
+	file_as_external_api_frameLog_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_device_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Device); i {
@@ -2800,7 +2800,7 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type DeviceServiceClient interface {
-	// Create creates the given device.
+	// Create creates the given device vesiyon 2.
 	Create(ctx context.Context, in *CreateDeviceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Get returns the device matching the given DevEUI.
 	Get(ctx context.Context, in *GetDeviceRequest, opts ...grpc.CallOption) (*GetDeviceResponse, error)
@@ -3038,7 +3038,7 @@ func (c *deviceServiceClient) ListTemperatureData(ctx context.Context, in *ListT
 
 // DeviceServiceServer is the server API for DeviceService service.
 type DeviceServiceServer interface {
-	// Create creates the given device.
+	// Create creates the given device vesiyon 2.
 	Create(context.Context, *CreateDeviceRequest) (*empty.Empty, error)
 	// Get returns the device matching the given DevEUI.
 	Get(context.Context, *GetDeviceRequest) (*GetDeviceResponse, error)
