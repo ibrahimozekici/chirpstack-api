@@ -89,6 +89,10 @@ message SoilData {
 
     // conduct_SOIL of the device.
     string conduct_SOIL = 5 [json_name = "conduct_SOIL"];
+
+    // The last time the application-server received any data from the device,
+    // or an empty string when the device never sent any data.
+    google.protobuf.Timestamp submission_date = 6 [json_name = "submission_date"];
 }
 
 message ListSoilDataRequest {
@@ -116,6 +120,10 @@ message DistanceData {
 
     // distance of the device.
     float distance = 2 [json_name = "distance"];
+
+    // The last time the application-server received any data from the device,
+    // or an empty string when the device never sent any data.
+    google.protobuf.Timestamp submission_date = 3 [json_name = "submission_date"];
 }
 
 message ListDistanceDataRequest {
@@ -149,6 +157,10 @@ message TrackingData {
 
     // ALARM value of device.
     string ALARM = 4 [json_name = "ALARM"];
+
+    // The last time the application-server received any data from the device,
+    // or an empty string when the device never sent any data.
+    google.protobuf.Timestamp submission_date = 5 [json_name = "submission_date"];
 }
 
 message ListTrackingDataRequest {
