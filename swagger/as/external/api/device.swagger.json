@@ -332,40 +332,6 @@
         ]
       }
     },
-    "/api/devices/{dev_eui}/temperature": {
-      "get": {
-        "summary": "ListTemperatureData returns the temperature devices.",
-        "operationId": "ListTemperatureData",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiListTemperatureDataResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "dev_eui",
-            "description": "Search on name or DevEUI.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "limit",
-            "description": "Max number of devices to return in the result-set.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "DeviceService"
-        ]
-      }
-    },
     "/api/devices/{device.dev_eui}": {
       "put": {
         "summary": "Update updates the device matching the given DevEUI.",
@@ -797,23 +763,6 @@
         }
       }
     },
-    "apiListTemperatureDataResponse": {
-      "type": "object",
-      "properties": {
-        "totalCount": {
-          "type": "string",
-          "format": "int64",
-          "description": "Total number of devices available within the result-set."
-        },
-        "result": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiTemperatureData"
-          },
-          "description": "Devices within this result-set."
-        }
-      }
-    },
     "apiStreamDeviceEventLogsResponse": {
       "type": "object",
       "properties": {
@@ -837,28 +786,6 @@
         "downlinkFrame": {
           "$ref": "#/definitions/apiDownlinkFrameLog",
           "description": "Contains a downlink frame."
-        }
-      }
-    },
-    "apiTemperatureData": {
-      "type": "object",
-      "properties": {
-        "devEUI": {
-          "type": "string",
-          "description": "Device EUI (HEX encoded)."
-        },
-        "Temp_SHT": {
-          "type": "string",
-          "description": "temp_SHT of the device."
-        },
-        "Hum_SHT": {
-          "type": "string",
-          "description": "hum_SHT."
-        },
-        "lastSeenAt": {
-          "type": "string",
-          "format": "date-time",
-          "description": "The last time the application-server received any data from the device,\nor an empty string when the device never sent any data."
         }
       }
     },
