@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package geo;
 
-option go_package = "github.com/ibrahimozekici/chirpstack-api/go/v3/geo";
+option go_package = "github.com/ibrahimozekici/chirpstack-api/go/v4/geo";
 option java_package = "io.chirpstack.api.geo";
 
 import "gw/gw.proto";

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package as;
 
-option go_package = "github.com/ibrahimozekici/chirpstack-api/go/v3/as";
+option go_package = "github.com/ibrahimozekici/chirpstack-api/go/v4/as";
 option java_package = "io.chirpstack.api.as";
 
 import "google/protobuf/empty.proto";

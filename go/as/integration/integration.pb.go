@@ -8,8 +8,8 @@ package integration
 
 import (
 	proto "github.com/golang/protobuf/proto"
-	common "github.com/ibrahimozekici/chirpstack-api/go/v3/common"
-	gw "github.com/ibrahimozekici/chirpstack-api/go/v3/gw"
+	common "github.com/ibrahimozekici/chirpstack-api/go/v4/common"
+	gw "github.com/ibrahimozekici/chirpstack-api/go/v4/gw"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
