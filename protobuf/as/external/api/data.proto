@@ -42,7 +42,7 @@ service DataService {
 
 message TemperatureData {
     // Device EUI (HEX encoded).
-    string devEUI = 1 [json_name = "devEUI"]; 
+    string dev_eui = 1 [json_name = "devEUI"]; 
     
     // temp_SHT of the device.
     string Temp_SHT = 2 [json_name = "Temp_SHT"];
