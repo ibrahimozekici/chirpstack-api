@@ -18,10 +18,24 @@ service DataService {
         };
     }
 
+    // GetTemperatureNodeData return list of temperature results
+    rpc GetTemperatureNodeData (ListTemperatureNodeDataRequest) returns (ListTemperatureDataResponse) {
+        option (google.api.http) = {
+            get: "/api/data/node-temperature"
+        };
+    }
+
     // GetSoilData return list of soil results
     rpc GetSoilData (ListSoilDataRequest) returns (ListSoilDataResponse) {
         option (google.api.http) = {
             get: "/api/data/soil"
+        };
+    }
+
+    // GetSoilNodeData return list of soil results
+    rpc GetSoilNodeData (ListSoilNodeDataRequest) returns (ListSoilDataResponse) {
+        option (google.api.http) = {
+            get: "/api/data/node-soil"
         };
     }
 
@@ -32,10 +46,24 @@ service DataService {
         };
     }
 
+    // GetDistanceNodeData return list of distance results 
+    rpc GetDistanceNodeData (ListDistanceNodeDataRequest) returns (ListDistanceDataResponse) {
+        option (google.api.http) = {
+            get: "/api/data/node-distance"
+        };
+    }
+
     // GetTrackingData return list of tracking results 
     rpc GetTrackingData (ListTrackingDataRequest) returns (ListTrackingDataResponse) {
         option (google.api.http) = {
             get: "/api/data/tracking"
+        };
+    }
+
+    // GetTrackingNodeData return list of tracking results 
+    rpc GetTrackingNodeData (ListTrackingNodeDataRequest) returns (ListTrackingDataResponse) {
+        option (google.api.http) = {
+            get: "/api/data/node-tracking"
         };
     }
 }
@@ -56,14 +84,19 @@ message TemperatureData {
 }
 
 message ListTemperatureDataRequest {
+    // Service-profile ID to filter on (string formatted UUID).
+    string service_profile_id = 1 [json_name = "serviceProfileID"];
+
+    // Max number of devices to return in the result-set.
+    int64 limit = 2;
+}
+
+message ListTemperatureNodeDataRequest {
     // Search on name or DevEUI.
     string dev_eui = 1 [json_name = "devEUI"];
 
     // Max number of devices to return in the result-set.
     int64 limit = 2;
-
-    // Service-profile ID to filter on (string formatted UUID).
-    string service_profile_id = 3 [json_name = "serviceProfileID"];
 }
 
 message ListTemperatureDataResponse {
@@ -95,15 +128,20 @@ message SoilData {
     google.protobuf.Timestamp submission_date = 6 [json_name = "submission_date"];
 }
 
-message ListSoilDataRequest {
+message ListSoilNodeDataRequest {
     // Max number of devices to return in the result-set.
     int64 limit = 1;
 
     // Search on name or DevEUI.
     string dev_eui = 2 [json_name = "devEUI"];
+}
+
+message ListSoilDataRequest {
+    // Max number of devices to return in the result-set.
+    int64 limit = 1;
 
     // Service-profile ID to filter on (string formatted UUID).
-    string service_profile_id = 3 [json_name = "serviceProfileID"];
+    string service_profile_id = 2 [json_name = "serviceProfileID"];
 }
 
 message ListSoilDataResponse {
@@ -126,15 +164,20 @@ message DistanceData {
     google.protobuf.Timestamp submission_date = 3 [json_name = "submission_date"];
 }
 
-message ListDistanceDataRequest {
+message ListDistanceNodeDataRequest {
     // Max number of devices to return in the result-set.
     int64 limit = 1;
 
     // Search on name or DevEUI.
     string dev_eui = 2 [json_name = "devEUI"];
+}
+
+message ListDistanceDataRequest {
+    // Max number of devices to return in the result-set.
+    int64 limit = 1;
 
     // Service-profile ID to filter on (string formatted UUID).
-    string service_profile_id = 3 [json_name = "serviceProfileID"];
+    string service_profile_id = 2 [json_name = "serviceProfileID"];
 }
 
 message ListDistanceDataResponse {
@@ -163,15 +206,20 @@ message TrackingData {
     google.protobuf.Timestamp submission_date = 5 [json_name = "submission_date"];
 }
 
-message ListTrackingDataRequest {
+message ListTrackingNodeDataRequest {
     // Max number of devices to return in the result-set.
     int64 limit = 1;
 
     // Search on name or DevEUI.
     string dev_eui = 2 [json_name = "devEUI"];
+}
+
+message ListTrackingDataRequest {
+    // Max number of devices to return in the result-set.
+    int64 limit = 1;
 
     // Service-profile ID to filter on (string formatted UUID).
-    string service_profile_id = 3 [json_name = "serviceProfileID"];
+    string service_profile_id = 2 [json_name = "serviceProfileID"];
 }
 
 message ListTrackingDataResponse {
