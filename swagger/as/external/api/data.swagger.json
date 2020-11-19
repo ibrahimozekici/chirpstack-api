@@ -15,7 +15,7 @@
     "application/json"
   ],
   "paths": {
-    "/api/data/distance/{dev_eui}": {
+    "/api/data/distance": {
       "get": {
         "summary": "GetDistanceData return list of distance results",
         "operationId": "GetDistanceData",
@@ -29,19 +29,19 @@
         },
         "parameters": [
           {
-            "name": "dev_eui",
-            "description": "Search on name or DevEUI.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
             "name": "limit",
             "description": "Max number of devices to return in the result-set.",
             "in": "query",
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "devEUI",
+            "description": "Search on name or DevEUI.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           },
           {
             "name": "serviceProfileID",
@@ -56,7 +56,7 @@
         ]
       }
     },
-    "/api/data/soil/{dev_eui}": {
+    "/api/data/soil": {
       "get": {
         "summary": "GetSoilData return list of soil results",
         "operationId": "GetSoilData",
@@ -70,19 +70,19 @@
         },
         "parameters": [
           {
-            "name": "dev_eui",
-            "description": "Search on name or DevEUI.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
             "name": "limit",
             "description": "Max number of devices to return in the result-set.",
             "in": "query",
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "devEUI",
+            "description": "Search on name or DevEUI.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           },
           {
             "name": "serviceProfileID",
@@ -97,7 +97,7 @@
         ]
       }
     },
-    "/api/data/temperature/{dev_eui}": {
+    "/api/data/temperature": {
       "get": {
         "summary": "GetTemperatureData return list of temperature results",
         "operationId": "GetTemperatureData",
@@ -111,10 +111,10 @@
         },
         "parameters": [
           {
-            "name": "dev_eui",
+            "name": "devEUI",
             "description": "Search on name or DevEUI.",
-            "in": "path",
-            "required": true,
+            "in": "query",
+            "required": false,
             "type": "string"
           },
           {
@@ -138,7 +138,7 @@
         ]
       }
     },
-    "/api/data/tracking/{dev_eui}": {
+    "/api/data/tracking": {
       "get": {
         "summary": "GetTrackingData return list of tracking results",
         "operationId": "GetTrackingData",
@@ -152,19 +152,19 @@
         },
         "parameters": [
           {
-            "name": "dev_eui",
-            "description": "Search on name or DevEUI.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
             "name": "limit",
             "description": "Max number of devices to return in the result-set.",
             "in": "query",
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "devEUI",
+            "description": "Search on name or DevEUI.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           },
           {
             "name": "serviceProfileID",
