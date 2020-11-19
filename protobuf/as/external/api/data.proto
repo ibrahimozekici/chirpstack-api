@@ -14,7 +14,7 @@ service DataService {
     // GetTemperatureData return list of temperature results
     rpc GetTemperatureData (ListTemperatureDataRequest) returns (ListTemperatureDataResponse) {
         option (google.api.http) = {
-            get: "/api/data/temperature"
+            get: "/api/data/temperature/{dev_eui}"
         };
     }
 
@@ -42,13 +42,13 @@ service DataService {
 
 message TemperatureData {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"]; 
+    string devEUI = 1 [json_name = "devEUI"]; 
     
     // temp_SHT of the device.
-    string temp_SHT = 2 [json_name = "Temp_SHT"];
+    string Temp_SHT = 2 [json_name = "Temp_SHT"];
 
     // hum_SHT.
-    string hum_SHT = 3 [json_name = "Hum_SHT"];
+    string Hum_SHT = 3 [json_name = "Hum_SHT"];
 
     // The last time the application-server received any data from the device,
     // or an empty string when the device never sent any data.
@@ -56,14 +56,14 @@ message TemperatureData {
 }
 
 message ListTemperatureDataRequest {
-    // Max number of devices to return in the result-set.
-    int64 limit = 1;
-
     // Search on name or DevEUI.
-    string dev_eui = 2 [json_name = "devEUI"];
+    string dev_eui = 1 [json_name = "devEUI"];
+
+    // Max number of devices to return in the result-set.
+    int64 limit = 2;
 
     // Service-profile ID to filter on (string formatted UUID).
-    string service_profile_id = 3 [json_name = "serviceProfileID"];
+    // string service_profile_id = 3 [json_name = "serviceProfileID"];
 }
 
 message ListTemperatureDataResponse {

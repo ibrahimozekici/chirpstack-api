@@ -97,7 +97,7 @@
         ]
       }
     },
-    "/api/data/temperature": {
+    "/api/data/temperature/{dev_eui}": {
       "get": {
         "summary": "GetTemperatureData return list of temperature results",
         "operationId": "GetTemperatureData",
@@ -111,26 +111,19 @@
         },
         "parameters": [
           {
+            "name": "dev_eui",
+            "description": "Search on name or DevEUI.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "limit",
             "description": "Max number of devices to return in the result-set.",
             "in": "query",
             "required": false,
             "type": "string",
             "format": "int64"
-          },
-          {
-            "name": "devEUI",
-            "description": "Search on name or DevEUI.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "serviceProfileID",
-            "description": "Service-profile ID to filter on (string formatted UUID).",
-            "in": "query",
-            "required": false,
-            "type": "string"
           }
         ],
         "tags": [
