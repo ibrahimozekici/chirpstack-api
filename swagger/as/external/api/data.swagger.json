@@ -1,0 +1,94 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "as/external/api/data.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/data/temperature/{dev_eui}": {
+      "get": {
+        "summary": "GetTemperatureData return list of temperature results",
+        "operationId": "GetTemperatureData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListTemperatureDataResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dev_eui",
+            "description": "Search on name or DevEUI.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "description": "Max number of devices to return in the result-set.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "DataService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apiListTemperatureDataResponse": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "type": "string",
+          "format": "int64",
+          "description": "Total number of devices available within the result-set."
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiTemperatureData"
+          },
+          "description": "Devices within this result-set."
+        }
+      }
+    },
+    "apiTemperatureData": {
+      "type": "object",
+      "properties": {
+        "devEUI": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "Temp_SHT": {
+          "type": "string",
+          "description": "temp_SHT of the device."
+        },
+        "Hum_SHT": {
+          "type": "string",
+          "description": "hum_SHT."
+        },
+        "submission_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last time the application-server received any data from the device,\nor an empty string when the device never sent any data."
+        }
+      }
+    }
+  }
+}

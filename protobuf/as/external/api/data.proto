@@ -1,0 +1,183 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/ibrahimozekici/chirpstack-api/go/v3/as/external/api";
+option java_package = "io.chirpstack.api.as.external.api";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+// DataService is the service managing the data
+service DataService {
+    // GetTemperatureData return list of temperature results
+    rpc GetTemperatureData (ListTemperatureDataRequest) returns (ListTemperatureDataResponse) {
+        option (google.api.http) = {
+            get: "/api/data/temperature/{dev_eui}"
+        };
+    }
+
+    // // GetSoilData return list of soil results
+    // rpc GetSoilData (ListSoilDataRequest) returns (ListSoilDataResponse) {
+    //     option (google.api.http) = {
+    //         get: "/api/data/soil"
+    //     };
+    // }
+
+    // // GetDistanceData return list of distance results 
+    // rpc GetDistanceData (ListDistanceDataRequest) returns (ListDistanceDataResponse) {
+    //     option (google.api.http) = {
+    //         get: "/api/data/distance"
+    //     };
+    // }
+
+    // // GetTrackingData return list of tracking results 
+    // rpc GetTrackingData (ListTrackingDataRequest) returns (ListTrackingDataResponse) {
+    //     option (google.api.http) = {
+    //         get: "/api/data/tracking"
+    //     };
+    // }
+}
+
+message TemperatureData {
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"]; 
+    
+    // temp_SHT of the device.
+    string Temp_SHT = 2 [json_name = "Temp_SHT"];
+
+    // hum_SHT.
+    string Hum_SHT = 3 [json_name = "Hum_SHT"];
+
+    // The last time the application-server received any data from the device,
+    // or an empty string when the device never sent any data.
+    google.protobuf.Timestamp submission_date = 4 [json_name = "submission_date"];
+}
+
+message ListTemperatureDataRequest {
+    // Search on name or DevEUI.
+    string dev_eui = 1 [json_name = "devEUI"];
+
+    // Max number of devices to return in the result-set.
+    int64 limit = 2;
+
+    // Service-profile ID to filter on (string formatted UUID).
+    // string service_profile_id = 3 [json_name = "serviceProfileID"];
+}
+
+message ListTemperatureDataResponse {
+    // Total number of devices available within the result-set.
+    int64 total_count = 1;
+
+    // Devices within this result-set.
+    repeated TemperatureData result = 2;
+}
+
+// message SoilData {
+//     // Device EUI (HEX encoded).
+//     string dev_eui = 1 [json_name = "devEUI"];
+
+//     // TempC_DS18B20 of the device.
+//     float TempC_DS18B20 = 2 [json_name = "TempC_DS18B20"];
+
+//     // water_SOIL of the device.
+//     float water_SOIL = 3 [json_name = "water_SOIL"];
+
+//     // temp_SOIL of the device.
+//     float temp_SOIL = 4 [json_name = "temp_SOIL"];
+
+//     // conduct_SOIL of the device.
+//     string conduct_SOIL = 5 [json_name = "conduct_SOIL"];
+
+//     // The last time the application-server received any data from the device,
+//     // or an empty string when the device never sent any data.
+//     google.protobuf.Timestamp submission_date = 6 [json_name = "submission_date"];
+// }
+
+// message ListSoilDataRequest {
+//     // Max number of devices to return in the result-set.
+//     int64 limit = 1;
+
+//     // Search on name or DevEUI.
+//     string dev_eui = 2 [json_name = "devEUI"];
+
+//     // Service-profile ID to filter on (string formatted UUID).
+//     string service_profile_id = 3 [json_name = "serviceProfileID"];
+// }
+
+// message ListSoilDataResponse {
+//     // Total number of devices available within the result-set.
+//     int64 total_count = 1;
+
+//     // Devices within this result-set.
+//     repeated SoilData result = 2;
+// }
+
+// message DistanceData {
+//     // Device EUI (HEX encoded).
+//     string dev_eui = 1 [json_name = "devEUI"];
+
+//     // distance of the device.
+//     float distance = 2 [json_name = "distance"];
+
+//     // The last time the application-server received any data from the device,
+//     // or an empty string when the device never sent any data.
+//     google.protobuf.Timestamp submission_date = 3 [json_name = "submission_date"];
+// }
+
+// message ListDistanceDataRequest {
+//     // Max number of devices to return in the result-set.
+//     int64 limit = 1;
+
+//     // Search on name or DevEUI.
+//     string dev_eui = 2 [json_name = "devEUI"];
+
+//     // Service-profile ID to filter on (string formatted UUID).
+//     string service_profile_id = 3 [json_name = "serviceProfileID"];
+// }
+
+// message ListDistanceDataResponse {
+//     // Total number of devices available within the result-set.
+//     int64 total_count = 1;
+
+//     // Devices within this result-set.
+//     repeated DistanceData result = 2;
+// }
+
+// message TrackingData {
+//     // Device EUI (HEX encoded).
+//     string dev_eui = 1 [json_name = "devEUI"];
+
+//     // ADDR value of device.
+//     string ADDR = 2 [json_name = "ADDR"];
+
+//     // STEP value of device.
+//     int64  STEP = 3 [json_name = "STEP"];
+
+//     // ALARM value of device.
+//     string ALARM = 4 [json_name = "ALARM"];
+
+//     // The last time the application-server received any data from the device,
+//     // or an empty string when the device never sent any data.
+//     google.protobuf.Timestamp submission_date = 5 [json_name = "submission_date"];
+// }
+
+// message ListTrackingDataRequest {
+//     // Max number of devices to return in the result-set.
+//     int64 limit = 1;
+
+//     // Search on name or DevEUI.
+//     string dev_eui = 2 [json_name = "devEUI"];
+
+//     // Service-profile ID to filter on (string formatted UUID).
+//     string service_profile_id = 3 [json_name = "serviceProfileID"];
+// }
+
+// message ListTrackingDataResponse {
+//     // Total number of devices available within the result-set.
+//     int64 total_count = 1;
+
+//     // Devices within this result-set.
+//     repeated TrackingData result = 2;
+// }
