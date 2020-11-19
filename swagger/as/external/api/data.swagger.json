@@ -15,6 +15,88 @@
     "application/json"
   ],
   "paths": {
+    "/api/data/distance/{dev_eui}": {
+      "get": {
+        "summary": "GetDistanceData return list of distance results",
+        "operationId": "GetDistanceData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListDistanceDataResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dev_eui",
+            "description": "Search on name or DevEUI.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "description": "Max number of devices to return in the result-set.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "serviceProfileID",
+            "description": "Service-profile ID to filter on (string formatted UUID).",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DataService"
+        ]
+      }
+    },
+    "/api/data/soil/{dev_eui}": {
+      "get": {
+        "summary": "GetSoilData return list of soil results",
+        "operationId": "GetSoilData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListSoilDataResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dev_eui",
+            "description": "Search on name or DevEUI.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "description": "Max number of devices to return in the result-set.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "serviceProfileID",
+            "description": "Service-profile ID to filter on (string formatted UUID).",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DataService"
+        ]
+      }
+    },
     "/api/data/temperature/{dev_eui}": {
       "get": {
         "summary": "GetTemperatureData return list of temperature results",
@@ -42,6 +124,54 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "serviceProfileID",
+            "description": "Service-profile ID to filter on (string formatted UUID).",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DataService"
+        ]
+      }
+    },
+    "/api/data/tracking/{dev_eui}": {
+      "get": {
+        "summary": "GetTrackingData return list of tracking results",
+        "operationId": "GetTrackingData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListTrackingDataResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dev_eui",
+            "description": "Search on name or DevEUI.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "description": "Max number of devices to return in the result-set.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "serviceProfileID",
+            "description": "Service-profile ID to filter on (string formatted UUID).",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -51,6 +181,59 @@
     }
   },
   "definitions": {
+    "apiDistanceData": {
+      "type": "object",
+      "properties": {
+        "devEUI": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "distance": {
+          "type": "number",
+          "format": "float",
+          "description": "distance of the device."
+        },
+        "submission_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last time the application-server received any data from the device,\nor an empty string when the device never sent any data."
+        }
+      }
+    },
+    "apiListDistanceDataResponse": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "type": "string",
+          "format": "int64",
+          "description": "Total number of devices available within the result-set."
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiDistanceData"
+          },
+          "description": "Devices within this result-set."
+        }
+      }
+    },
+    "apiListSoilDataResponse": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "type": "string",
+          "format": "int64",
+          "description": "Total number of devices available within the result-set."
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiSoilData"
+          },
+          "description": "Devices within this result-set."
+        }
+      }
+    },
     "apiListTemperatureDataResponse": {
       "type": "object",
       "properties": {
@@ -68,6 +251,56 @@
         }
       }
     },
+    "apiListTrackingDataResponse": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "type": "string",
+          "format": "int64",
+          "description": "Total number of devices available within the result-set."
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiTrackingData"
+          },
+          "description": "Devices within this result-set."
+        }
+      }
+    },
+    "apiSoilData": {
+      "type": "object",
+      "properties": {
+        "devEUI": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "TempC_DS18B20": {
+          "type": "number",
+          "format": "float",
+          "description": "TempC_DS18B20 of the device."
+        },
+        "water_SOIL": {
+          "type": "number",
+          "format": "float",
+          "description": "water_SOIL of the device."
+        },
+        "temp_SOIL": {
+          "type": "number",
+          "format": "float",
+          "description": "temp_SOIL of the device."
+        },
+        "conduct_SOIL": {
+          "type": "string",
+          "description": "conduct_SOIL of the device."
+        },
+        "submission_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last time the application-server received any data from the device,\nor an empty string when the device never sent any data."
+        }
+      }
+    },
     "apiTemperatureData": {
       "type": "object",
       "properties": {
@@ -82,6 +315,33 @@
         "Hum_SHT": {
           "type": "string",
           "description": "hum_SHT."
+        },
+        "submission_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last time the application-server received any data from the device,\nor an empty string when the device never sent any data."
+        }
+      }
+    },
+    "apiTrackingData": {
+      "type": "object",
+      "properties": {
+        "devEUI": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "ADDR": {
+          "type": "string",
+          "description": "ADDR value of device."
+        },
+        "STEP": {
+          "type": "string",
+          "format": "int64",
+          "description": "STEP value of device."
+        },
+        "ALARM": {
+          "type": "string",
+          "description": "ALARM value of device."
         },
         "submission_date": {
           "type": "string",
