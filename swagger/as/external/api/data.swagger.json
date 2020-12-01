@@ -29,12 +29,11 @@
         },
         "parameters": [
           {
-            "name": "limit",
-            "description": "Max number of devices to return in the result-set.",
+            "name": "devEUI",
+            "description": "Search on name or DevEUI.",
             "in": "query",
             "required": false,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "serviceProfileID",
@@ -42,100 +41,6 @@
             "in": "query",
             "required": false,
             "type": "string"
-          }
-        ],
-        "tags": [
-          "DataService"
-        ]
-      }
-    },
-    "/api/data/node-distance": {
-      "get": {
-        "summary": "GetDistanceNodeData return list of distance results",
-        "operationId": "GetDistanceNodeData",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiListDistanceDataResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "limit",
-            "description": "Max number of devices to return in the result-set.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "devEUI",
-            "description": "Search on name or DevEUI.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "DataService"
-        ]
-      }
-    },
-    "/api/data/node-soil": {
-      "get": {
-        "summary": "GetSoilNodeData return list of soil results",
-        "operationId": "GetSoilNodeData",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiListSoilDataResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "limit",
-            "description": "Max number of devices to return in the result-set.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "devEUI",
-            "description": "Search on name or DevEUI.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "DataService"
-        ]
-      }
-    },
-    "/api/data/node-temperature": {
-      "get": {
-        "summary": "GetTemperatureNodeData return list of temperature results",
-        "operationId": "GetTemperatureNodeData",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiListTemperatureDataResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "devEUI",
-            "description": "Search on name or DevEUI.",
-            "in": "query",
-            "required": false,
-            "type": "string"
           },
           {
             "name": "limit",
@@ -144,40 +49,6 @@
             "required": false,
             "type": "string",
             "format": "int64"
-          }
-        ],
-        "tags": [
-          "DataService"
-        ]
-      }
-    },
-    "/api/data/node-tracking": {
-      "get": {
-        "summary": "GetTrackingNodeData return list of tracking results",
-        "operationId": "GetTrackingNodeData",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiListTrackingDataResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "limit",
-            "description": "Max number of devices to return in the result-set.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "devEUI",
-            "description": "Search on name or DevEUI.",
-            "in": "query",
-            "required": false,
-            "type": "string"
           }
         ],
         "tags": [
@@ -199,12 +70,11 @@
         },
         "parameters": [
           {
-            "name": "limit",
-            "description": "Max number of devices to return in the result-set.",
+            "name": "devEUI",
+            "description": "Search on name or DevEUI.",
             "in": "query",
             "required": false,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "serviceProfileID",
@@ -212,6 +82,14 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "limit",
+            "description": "Max number of devices to return in the result-set.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -235,6 +113,13 @@
           {
             "name": "serviceProfileID",
             "description": "Service-profile ID to filter on (string formatted UUID).",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "devEUI",
+            "description": "Search on name or DevEUI.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -267,12 +152,11 @@
         },
         "parameters": [
           {
-            "name": "limit",
-            "description": "Max number of devices to return in the result-set.",
+            "name": "devEUI",
+            "description": "Search on name or DevEUI.",
             "in": "query",
             "required": false,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "serviceProfileID",
@@ -280,6 +164,14 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "limit",
+            "description": "Max number of devices to return in the result-set.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
