@@ -46,10 +46,10 @@ message TemperatureData {
     string dev_eui = 1 [json_name = "devEUI"]; 
     
     // temp_SHT of the device.
-    string Temp_SHT = 2 [json_name = "Temp_SHT"];
+    float Temp_SHT = 2 [json_name = "Temp_SHT"];
 
     // hum_SHT.
-    string Hum_SHT = 3 [json_name = "Hum_SHT"];
+    float Hum_SHT = 3 [json_name = "Hum_SHT"];
 
     // The last time the application-server received any data from the device,
     // or an empty string when the device never sent any data.
