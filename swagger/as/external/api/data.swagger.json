@@ -309,13 +309,11 @@
           "description": "Device EUI (HEX encoded)."
         },
         "Temp_SHT": {
-          "type": "number",
-          "format": "float",
+          "type": "string",
           "description": "temp_SHT of the device."
         },
         "Hum_SHT": {
-          "type": "number",
-          "format": "float",
+          "type": "string",
           "description": "hum_SHT."
         },
         "submission_date": {
