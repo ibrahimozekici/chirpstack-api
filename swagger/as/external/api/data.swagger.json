@@ -36,7 +36,7 @@
             "type": "string"
           },
           {
-            "name": "serviceProfileID",
+            "name": "organizationId",
             "description": "Service-profile ID to filter on (string formatted UUID).",
             "in": "query",
             "required": false,
@@ -77,7 +77,7 @@
             "type": "string"
           },
           {
-            "name": "serviceProfileID",
+            "name": "organizationId",
             "description": "Service-profile ID to filter on (string formatted UUID).",
             "in": "query",
             "required": false,
@@ -111,7 +111,7 @@
         },
         "parameters": [
           {
-            "name": "serviceProfileID",
+            "name": "organizationId",
             "description": "Service-profile ID to filter on (string formatted UUID).",
             "in": "query",
             "required": false,
@@ -119,6 +119,13 @@
           },
           {
             "name": "devEUI",
+            "description": "Search on name or DevEUI.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "name",
             "description": "Search on name or DevEUI.",
             "in": "query",
             "required": false,
@@ -159,7 +166,7 @@
             "type": "string"
           },
           {
-            "name": "serviceProfileID",
+            "name": "organizationId",
             "description": "Service-profile ID to filter on (string formatted UUID).",
             "in": "query",
             "required": false,
@@ -308,12 +315,19 @@
           "type": "string",
           "description": "Device EUI (HEX encoded)."
         },
+        "name": {
+          "type": "number",
+          "format": "float",
+          "title": "name"
+        },
         "Temp_SHT": {
-          "type": "string",
+          "type": "number",
+          "format": "float",
           "description": "temp_SHT of the device."
         },
         "Hum_SHT": {
-          "type": "string",
+          "type": "number",
+          "format": "float",
           "description": "hum_SHT."
         },
         "submission_date": {

@@ -44,27 +44,33 @@ service DataService {
 message TemperatureData {
     // Device EUI (HEX encoded).
     string dev_eui = 1 [json_name = "devEUI"]; 
+
+    // name
+    float name = 2 [json_name = "name"];
     
     // temp_SHT of the device.
-    string Temp_SHT = 2 [json_name = "Temp_SHT"];
+    float Temp_SHT = 3 [json_name = "Temp_SHT"];
 
     // hum_SHT.
-    string Hum_SHT = 3 [json_name = "Hum_SHT"];
+    float Hum_SHT = 4 [json_name = "Hum_SHT"];
 
     // The last time the application-server received any data from the device,
     // or an empty string when the device never sent any data.
-    google.protobuf.Timestamp submission_date = 4 [json_name = "submission_date"];
+    google.protobuf.Timestamp submission_date = 5 [json_name = "submission_date"];
 }
 
 message ListTemperatureDataRequest {
     // Service-profile ID to filter on (string formatted UUID).
-    string service_profile_id = 1 [json_name = "serviceProfileID"];
+    string organization_id = 1 [json_name = "organizationId"];
 
     // Search on name or DevEUI.
     string dev_eui = 2 [json_name = "devEUI"];
 
+    // Search on name or DevEUI.
+    string name = 3 [json_name = "name"];
+
     // Max number of devices to return in the result-set.
-    int64 limit = 3;
+    int64 limit = 4;
 }
 
 message ListTemperatureDataResponse {
@@ -101,7 +107,7 @@ message ListSoilDataRequest {
     string dev_eui = 1 [json_name = "devEUI"];
 
     // Service-profile ID to filter on (string formatted UUID).
-    string service_profile_id = 2 [json_name = "serviceProfileID"];
+    string organization_id = 2 [json_name = "organizationId"];
 
     // Max number of devices to return in the result-set.
     int64 limit = 3;
@@ -132,7 +138,7 @@ message ListDistanceDataRequest {
     string dev_eui = 1 [json_name = "devEUI"];
 
     // Service-profile ID to filter on (string formatted UUID).
-    string service_profile_id = 2 [json_name = "serviceProfileID"];
+    string organization_id = 2 [json_name = "organizationId"];
 
     // Max number of devices to return in the result-set.
     int64 limit = 3;
@@ -169,7 +175,7 @@ message ListTrackingDataRequest {
     string dev_eui = 1 [json_name = "devEUI"];
 
     // Service-profile ID to filter on (string formatted UUID).
-    string service_profile_id = 2 [json_name = "serviceProfileID"];
+    string organization_id = 2 [json_name = "organizationId"];
 
     // Max number of devices to return in the result-set.
     int64 limit = 3;
