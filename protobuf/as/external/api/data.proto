@@ -46,7 +46,7 @@ message TemperatureData {
     string dev_eui = 1 [json_name = "devEUI"]; 
 
     // name
-    float name = 2 [json_name = "name"];
+    string name = 2 [json_name = "name"];
     
     // temp_SHT of the device.
     float Temp_SHT = 3 [json_name = "Temp_SHT"];

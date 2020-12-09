@@ -316,8 +316,7 @@
           "description": "Device EUI (HEX encoded)."
         },
         "name": {
-          "type": "number",
-          "format": "float",
+          "type": "string",
           "title": "name"
         },
         "Temp_SHT": {
