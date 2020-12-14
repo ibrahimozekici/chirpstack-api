@@ -675,6 +675,11 @@
           "type": "string",
           "format": "date-time",
           "description": "The last time the application-server received any data from the device,\nor an empty string when the device never sent any data."
+        },
+        "dataTime": {
+          "type": "string",
+          "format": "int64",
+          "title": "data time"
         }
       }
     },
