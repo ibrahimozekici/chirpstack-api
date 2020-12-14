@@ -62,6 +62,7 @@ message DeviceQueueItem {
 message EnqueueDeviceQueueItemRequest {
     // Queue-item object to enqueue.
     DeviceQueueItem device_queue_item = 1;
+    string data = 2;
 }
 
 message EnqueueDeviceQueueItemResponse {
