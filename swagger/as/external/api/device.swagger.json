@@ -546,6 +546,10 @@
           "type": "boolean",
           "format": "boolean",
           "description": "Device is disabled."
+        },
+        "dataTime": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

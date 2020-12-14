@@ -170,6 +170,8 @@ message Device {
 
     // Device is disabled.
     bool is_disabled = 10;
+
+    int64 data_time = 11 [json_name = "dataTime"];
 }
 
 message DeviceListItem {
