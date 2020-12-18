@@ -95,7 +95,7 @@ message SoilData {
     float temp_SOIL = 4 [json_name = "temp_SOIL"];
 
     // conduct_SOIL of the device.
-    string conduct_SOIL = 5 [json_name = "conduct_SOIL"];
+    float conduct_SOIL = 5 [json_name = "conduct_SOIL"];
 
     // The last time the application-server received any data from the device,
     // or an empty string when the device never sent any data.

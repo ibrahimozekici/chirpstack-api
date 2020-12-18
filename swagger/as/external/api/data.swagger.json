@@ -298,7 +298,8 @@
           "description": "temp_SOIL of the device."
         },
         "conduct_SOIL": {
-          "type": "string",
+          "type": "number",
+          "format": "float",
           "description": "conduct_SOIL of the device."
         },
         "submission_date": {
