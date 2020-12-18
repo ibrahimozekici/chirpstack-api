@@ -70,6 +70,13 @@
         },
         "parameters": [
           {
+            "name": "organizationId",
+            "description": "Service-profile ID to filter on (string formatted UUID).",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "devEUI",
             "description": "Search on name or DevEUI.",
             "in": "query",
@@ -77,8 +84,8 @@
             "type": "string"
           },
           {
-            "name": "organizationId",
-            "description": "Service-profile ID to filter on (string formatted UUID).",
+            "name": "name",
+            "description": "Search on name or DevEUI.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -281,6 +288,10 @@
         "devEUI": {
           "type": "string",
           "description": "Device EUI (HEX encoded)."
+        },
+        "name": {
+          "type": "string",
+          "title": "name"
         },
         "TempC_DS18B20": {
           "type": "number",

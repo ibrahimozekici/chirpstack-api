@@ -85,32 +85,38 @@ message SoilData {
     // Device EUI (HEX encoded).
     string dev_eui = 1 [json_name = "devEUI"];
 
+    // name
+    string name = 2 [json_name = "name"];
+
     // TempC_DS18B20 of the device.
-    float TempC_DS18B20 = 2 [json_name = "TempC_DS18B20"];
+    float TempC_DS18B20 = 3 [json_name = "TempC_DS18B20"];
 
     // water_SOIL of the device.
-    float water_SOIL = 3 [json_name = "water_SOIL"];
+    float water_SOIL = 4 [json_name = "water_SOIL"];
 
     // temp_SOIL of the device.
-    float temp_SOIL = 4 [json_name = "temp_SOIL"];
+    float temp_SOIL = 5 [json_name = "temp_SOIL"];
 
     // conduct_SOIL of the device.
-    float conduct_SOIL = 5 [json_name = "conduct_SOIL"];
+    float conduct_SOIL = 6 [json_name = "conduct_SOIL"];
 
     // The last time the application-server received any data from the device,
     // or an empty string when the device never sent any data.
-    google.protobuf.Timestamp submission_date = 6 [json_name = "submission_date"];
+    google.protobuf.Timestamp submission_date = 7 [json_name = "submission_date"];
 }
 
 message ListSoilDataRequest {
-    // Search on name or DevEUI.
-    string dev_eui = 1 [json_name = "devEUI"];
-
     // Service-profile ID to filter on (string formatted UUID).
-    string organization_id = 2 [json_name = "organizationId"];
+    string organization_id = 1 [json_name = "organizationId"];
+
+    // Search on name or DevEUI.
+    string dev_eui = 2 [json_name = "devEUI"];
+
+    // Search on name or DevEUI.
+    string name = 3 [json_name = "name"];
 
     // Max number of devices to return in the result-set.
-    int64 limit = 3;
+    int64 limit = 4;
 }
 
 message ListSoilDataResponse {
