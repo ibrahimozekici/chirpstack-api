@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/ibrahimozekici/chirpstack-api/go/v4/as/external/api";
+option java_package = "io.chirpstack.api.as.external.api";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service AlarmService {
+    // Create creates the alarm
+    rpc Create(CreateAlarmRequest) returns (google.protobuf.Empty) {
+        option(google.api.http) = {
+            post: "/api/alarm"
+            body: "*"
+        };
+    }
+    // Get return the alarm
+    rpc Get(GetAlarmRequest) returns (GetAlarmResponse) {
+        option (google.api.http) = {
+            get: "/api/alarm/{dev_eui}"
+        };
+    }
+    // Update updates the alarm matching the given alarm_id.
+    rpc Update(UpdateAlarmRequest) returns (GetAlarmResponse) {
+        option (google.api.http) = {
+            put: "/api/alarm/{alarm_id}"
+            body: "*"
+        };
+    }
+
+    // Delete deletes the alarm matching the given alarm_id.
+    rpc Delete(DeleteAlarmRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/devices/{alarm_id}"
+        };
+    }
+
+}
+
+message Alarm {
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"]; 
+
+    // Condition of alarm
+    float min_treshold = 2 [json_name = "minTreshold"];
+
+    // Value of alarm
+    float max_treshold = 3 [json_name = "maxTreshold"];
+
+    // Action of alarm
+    string action = 4 [json_name = "action"];
+
+    // Target of alarm
+    string target = 5 [json_name = "target"];
+}
+
+message CreateAlarmRequest {
+    Alarm create_alarm = 1;
+}
+
+message GetAlarmRequest {
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"];
+}
+
+message GetAlarmResponse {
+    // Alarm object
+    Alarm alarm = 1;
+}
+
+message DeleteAlarmRequest {
+    // Alarm Id (HEX encoded).
+    string alarm_id = 1 [json_name = "alarmID"];
+}
+
+message UpdateAlarmRequest {
+    // Alarm object to update.
+    Alarm alarm = 1;
+
+    string alarm_id = 2 [json_name = "alarmID"]; 
+}

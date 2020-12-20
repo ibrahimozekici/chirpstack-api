@@ -1,0 +1,189 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "as/external/api/alarm.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/alarm": {
+      "post": {
+        "summary": "Create creates the alarm",
+        "operationId": "Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateAlarmRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
+    "/api/alarm/{alarm_id}": {
+      "put": {
+        "summary": "Update updates the alarm matching the given alarm_id.",
+        "operationId": "Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetAlarmResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "alarm_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiUpdateAlarmRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
+    "/api/alarm/{dev_eui}": {
+      "get": {
+        "summary": "Get return the alarm",
+        "operationId": "Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetAlarmResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dev_eui",
+            "description": "Device EUI (HEX encoded).",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
+    "/api/devices/{alarm_id}": {
+      "delete": {
+        "summary": "Delete deletes the alarm matching the given alarm_id.",
+        "operationId": "Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "alarm_id",
+            "description": "Alarm Id (HEX encoded).",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apiAlarm": {
+      "type": "object",
+      "properties": {
+        "devEUI": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "minTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Condition of alarm"
+        },
+        "maxTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Value of alarm"
+        },
+        "action": {
+          "type": "string",
+          "title": "Action of alarm"
+        },
+        "target": {
+          "type": "string",
+          "title": "Target of alarm"
+        }
+      }
+    },
+    "apiCreateAlarmRequest": {
+      "type": "object",
+      "properties": {
+        "createAlarm": {
+          "$ref": "#/definitions/apiAlarm"
+        }
+      }
+    },
+    "apiGetAlarmResponse": {
+      "type": "object",
+      "properties": {
+        "alarm": {
+          "$ref": "#/definitions/apiAlarm",
+          "title": "Alarm object"
+        }
+      }
+    },
+    "apiUpdateAlarmRequest": {
+      "type": "object",
+      "properties": {
+        "alarm": {
+          "$ref": "#/definitions/apiAlarm",
+          "description": "Alarm object to update."
+        },
+        "alarmID": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
