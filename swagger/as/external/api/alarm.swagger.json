@@ -43,6 +43,30 @@
       }
     },
     "/api/alarm/{alarm_id}": {
+      "get": {
+        "summary": "Get return the alarm",
+        "operationId": "Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetAlarmResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "alarm_id",
+            "description": "Device EUI (HEX encoded).",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      },
       "put": {
         "summary": "Update updates the alarm matching the given alarm_id.",
         "operationId": "Update",
@@ -77,13 +101,12 @@
     },
     "/api/alarm/{dev_eui}": {
       "get": {
-        "summary": "Get return the alarm",
-        "operationId": "Get",
+        "operationId": "List",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiGetAlarmResponse"
+              "$ref": "#/definitions/apiListAlarmResponse"
             }
           }
         },
@@ -94,6 +117,22 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "limit",
+            "description": "Max number of devices to return in the result-set.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "description": "Offset in the result-set (for pagination).",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -170,6 +209,23 @@
         "alarm": {
           "$ref": "#/definitions/apiAlarm",
           "title": "Alarm object"
+        }
+      }
+    },
+    "apiListAlarmResponse": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "type": "string",
+          "format": "int64",
+          "description": "Total number of devices available within the result-set."
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAlarm"
+          },
+          "description": "Devices within this result-set."
         }
       }
     },
