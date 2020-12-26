@@ -69,7 +69,7 @@ message CreateAlarmRequest {
 
 message GetAlarmRequest {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
+    string alarm_id = 1 [json_name = "alarmID"];
 }
 
 message GetAlarmResponse {
