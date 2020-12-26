@@ -120,30 +120,12 @@ func local_request_AlarmService_Get_0(ctx context.Context, marshaler runtime.Mar
 }
 
 var (
-	filter_AlarmService_List_0 = &utilities.DoubleArray{Encoding: map[string]int{"dev_eui": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_AlarmService_List_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
 func request_AlarmService_List_0(ctx context.Context, marshaler runtime.Marshaler, client AlarmServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListAlarmRequest
 	var metadata runtime.ServerMetadata
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["dev_eui"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "dev_eui")
-	}
-
-	protoReq.DevEui, err = runtime.String(val)
-
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "dev_eui", err)
-	}
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
@@ -160,24 +142,6 @@ func request_AlarmService_List_0(ctx context.Context, marshaler runtime.Marshale
 func local_request_AlarmService_List_0(ctx context.Context, marshaler runtime.Marshaler, server AlarmServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListAlarmRequest
 	var metadata runtime.ServerMetadata
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["dev_eui"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "dev_eui")
-	}
-
-	protoReq.DevEui, err = runtime.String(val)
-
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "dev_eui", err)
-	}
 
 	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_AlarmService_List_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
@@ -566,7 +530,7 @@ var (
 
 	pattern_AlarmService_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "alarm", "alarm_id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_AlarmService_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "alarm", "dev_eui"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_AlarmService_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "alarm"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_AlarmService_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "alarm", "alarm_id"}, "", runtime.AssumeColonVerbOpt(true)))
 

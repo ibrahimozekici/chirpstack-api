@@ -26,7 +26,7 @@ service AlarmService {
 
     rpc List(ListAlarmRequest) returns (ListAlarmResponse) {
         option (google.api.http) = {
-            get: "/api/alarm/{dev_eui}"
+            get: "/api/alarm"
         }; 
     }
     // Update updates the alarm matching the given alarm_id.

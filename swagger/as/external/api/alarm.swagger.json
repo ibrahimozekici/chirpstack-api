@@ -16,6 +16,45 @@
   ],
   "paths": {
     "/api/alarm": {
+      "get": {
+        "operationId": "List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListAlarmResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "Max number of devices to return in the result-set.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "description": "Offset in the result-set (for pagination).",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "devEUI",
+            "description": "Device EUI (HEX encoded).",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      },
       "post": {
         "summary": "Create creates the alarm",
         "operationId": "Create",
@@ -92,47 +131,6 @@
             "schema": {
               "$ref": "#/definitions/apiUpdateAlarmRequest"
             }
-          }
-        ],
-        "tags": [
-          "AlarmService"
-        ]
-      }
-    },
-    "/api/alarm/{dev_eui}": {
-      "get": {
-        "operationId": "List",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiListAlarmResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "dev_eui",
-            "description": "Device EUI (HEX encoded).",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "limit",
-            "description": "Max number of devices to return in the result-set.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "offset",
-            "description": "Offset in the result-set (for pagination).",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
           }
         ],
         "tags": [
