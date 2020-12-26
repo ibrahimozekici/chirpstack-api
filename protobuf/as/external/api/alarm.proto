@@ -20,8 +20,14 @@ service AlarmService {
     // Get return the alarm
     rpc Get(GetAlarmRequest) returns (GetAlarmResponse) {
         option (google.api.http) = {
-            get: "/api/alarm/{dev_eui}"
+            get: "/api/alarm/{alarm_id}"
         };
+    }
+
+    rpc List(ListAlarmRequest) returns (ListAlarmResponse) {
+        option (google.api.http) = {
+            get: "/api/alarm/{dev_eui}"
+        }; 
     }
     // Update updates the alarm matching the given alarm_id.
     rpc Update(UpdateAlarmRequest) returns (GetAlarmResponse) {
@@ -81,4 +87,23 @@ message UpdateAlarmRequest {
     Alarm alarm = 1;
 
     string alarm_id = 2 [json_name = "alarmID"]; 
+}
+
+message ListAlarmRequest {
+    // Max number of devices to return in the result-set.
+    int64 limit = 1;
+
+    // Offset in the result-set (for pagination).
+    int64 offset = 2;
+
+    // Device EUI (HEX encoded).
+    string dev_eui = 3 [json_name = "devEUI"];
+}
+
+message ListAlarmResponse {
+    // Total number of devices available within the result-set.
+    int64 total_count = 1;
+
+    // Devices within this result-set.
+    repeated Alarm result = 2;
 }
