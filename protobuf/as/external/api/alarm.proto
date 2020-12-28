@@ -61,6 +61,9 @@ message Alarm {
 
     // Target of alarm
     string target = 5 [json_name = "target"];
+
+    // Target of alarm
+    string section = 6 [json_name = "section"];
 }
 
 message CreateAlarmRequest {

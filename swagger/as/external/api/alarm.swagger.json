@@ -190,6 +190,10 @@
         "target": {
           "type": "string",
           "title": "Target of alarm"
+        },
+        "section": {
+          "type": "string",
+          "title": "Target of alarm"
         }
       }
     },
