@@ -169,6 +169,10 @@
     "apiAlarm": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "string",
+          "description": "Alarm id."
+        },
         "devEUI": {
           "type": "string",
           "description": "Device EUI (HEX encoded)."
