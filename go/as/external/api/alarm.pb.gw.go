@@ -534,7 +534,7 @@ var (
 
 	pattern_AlarmService_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "alarm", "alarm_id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_AlarmService_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "devices", "alarm_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_AlarmService_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "alarm", "alarm_id"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (

@@ -40,7 +40,7 @@ service AlarmService {
     // Delete deletes the alarm matching the given alarm_id.
     rpc Delete(DeleteAlarmRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            delete: "/api/devices/{alarm_id}"
+            delete: "/api/alarm/{alarm_id}"
         };
     }
 

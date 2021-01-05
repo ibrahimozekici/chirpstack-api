@@ -106,6 +106,30 @@
           "AlarmService"
         ]
       },
+      "delete": {
+        "summary": "Delete deletes the alarm matching the given alarm_id.",
+        "operationId": "Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "alarm_id",
+            "description": "Alarm Id (HEX encoded).",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      },
       "put": {
         "summary": "Update updates the alarm matching the given alarm_id.",
         "operationId": "Update",
@@ -131,32 +155,6 @@
             "schema": {
               "$ref": "#/definitions/apiUpdateAlarmRequest"
             }
-          }
-        ],
-        "tags": [
-          "AlarmService"
-        ]
-      }
-    },
-    "/api/devices/{alarm_id}": {
-      "delete": {
-        "summary": "Delete deletes the alarm matching the given alarm_id.",
-        "operationId": "Delete",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "alarm_id",
-            "description": "Alarm Id (HEX encoded).",
-            "in": "path",
-            "required": true,
-            "type": "string"
           }
         ],
         "tags": [
