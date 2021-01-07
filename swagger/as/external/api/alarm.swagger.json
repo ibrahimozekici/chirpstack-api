@@ -196,11 +196,6 @@
         "section": {
           "type": "string",
           "title": "Target of alarm"
-        },
-        "organizationID": {
-          "type": "string",
-          "format": "int64",
-          "description": "Organization ID to which the gateway belongs.\nThis can't be changed after creating the gateway."
         }
       }
     },

@@ -51,7 +51,7 @@ message DeviceQueueItem {
 
     // Base64 encoded data.
     // Or use the json_object field when an application codec has been configured.
-    bytes data = 4;
+    string data = 4;
 
     // JSON object (string).
     // Only use this when an application codec has been configured that can convert

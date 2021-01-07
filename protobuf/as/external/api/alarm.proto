@@ -68,10 +68,6 @@ message Alarm {
 
     // Target of alarm
     string section = 7 [json_name = "section"];
-
-    // Organization ID to which the gateway belongs.
-	// This can't be changed after creating the gateway.
-	int64 organization_id = 8 [json_name = "organizationID"];
 }
 
 message CreateAlarmRequest {
