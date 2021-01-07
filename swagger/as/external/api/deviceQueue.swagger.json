@@ -133,6 +133,7 @@
         },
         "data": {
           "type": "string",
+          "format": "byte",
           "description": "Base64 encoded data.\nOr use the json_object field when an application codec has been configured."
         },
         "jsonObject": {
