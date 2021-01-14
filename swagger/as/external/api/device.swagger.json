@@ -550,6 +550,16 @@
         "dataTime": {
           "type": "string",
           "format": "int64"
+        },
+        "lat": {
+          "type": "string",
+          "format": "int64",
+          "title": "Device lat value"
+        },
+        "lng": {
+          "type": "string",
+          "format": "int64",
+          "title": "Device lng value"
         }
       }
     },
@@ -680,6 +690,16 @@
           "type": "string",
           "format": "int64",
           "title": "data time"
+        },
+        "lat": {
+          "type": "string",
+          "format": "int64",
+          "title": "device lat value"
+        },
+        "lng": {
+          "type": "string",
+          "format": "int64",
+          "title": "device lng value"
         }
       }
     },

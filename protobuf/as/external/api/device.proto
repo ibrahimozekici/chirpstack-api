@@ -172,6 +172,12 @@ message Device {
     bool is_disabled = 10;
 
     int64 data_time = 11 [json_name = "dataTime"];
+
+    // Device lat value
+    int64 lat = 12;
+
+    // Device lng value
+    int64 lng = 13;
 }
 
 message DeviceListItem {
@@ -220,6 +226,12 @@ message DeviceListItem {
 
     // data time
     int64 data_time = 13 [json_name = "dataTime"];
+
+    // device lat value
+    int64 lat = 14;
+
+    // device lng value
+    int64 lng = 15;
 }
 
 message DeviceKeys {
