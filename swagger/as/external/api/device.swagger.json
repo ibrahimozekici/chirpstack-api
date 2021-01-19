@@ -552,13 +552,13 @@
           "format": "int64"
         },
         "lat": {
-          "type": "string",
-          "format": "int64",
+          "type": "number",
+          "format": "float",
           "title": "Device lat value"
         },
         "lng": {
-          "type": "string",
-          "format": "int64",
+          "type": "number",
+          "format": "float",
           "title": "Device lng value"
         }
       }

@@ -2144,7 +2144,7 @@ type GatewayServiceClient interface {
 	// GetLastPing returns the last emitted ping and gateways receiving this ping.
 	GetLastPing(ctx context.Context, in *GetLastPingRequest, opts ...grpc.CallOption) (*GetLastPingResponse, error)
 	// GenerateGatewayClientCertificate returns TLS certificate gateway authentication / authorization.
-	// This endpoint can ony be used when ChirpStack Network Server is configured with a gateway
+	// This endpoint can ony be used when Network Server is configured with a gateway
 	// CA certificate and key, which is used for signing the TLS certificate. The returned TLS
 	// certificate will have the Gateway ID as Common Name.
 	GenerateGatewayClientCertificate(ctx context.Context, in *GenerateGatewayClientCertificateRequest, opts ...grpc.CallOption) (*GenerateGatewayClientCertificateResponse, error)
@@ -2284,7 +2284,7 @@ type GatewayServiceServer interface {
 	// GetLastPing returns the last emitted ping and gateways receiving this ping.
 	GetLastPing(context.Context, *GetLastPingRequest) (*GetLastPingResponse, error)
 	// GenerateGatewayClientCertificate returns TLS certificate gateway authentication / authorization.
-	// This endpoint can ony be used when ChirpStack Network Server is configured with a gateway
+	// This endpoint can ony be used when Network Server is configured with a gateway
 	// CA certificate and key, which is used for signing the TLS certificate. The returned TLS
 	// certificate will have the Gateway ID as Common Name.
 	GenerateGatewayClientCertificate(context.Context, *GenerateGatewayClientCertificateRequest) (*GenerateGatewayClientCertificateResponse, error)
