@@ -553,12 +553,12 @@
         },
         "lat": {
           "type": "number",
-          "format": "float",
+          "format": "double",
           "title": "Device lat value"
         },
         "lng": {
           "type": "number",
-          "format": "float",
+          "format": "double",
           "title": "Device lng value"
         }
       }

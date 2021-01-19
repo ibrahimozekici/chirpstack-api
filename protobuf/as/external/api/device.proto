@@ -174,10 +174,10 @@ message Device {
     int64 data_time = 11 [json_name = "dataTime"];
 
     // Device lat value
-    float lat = 12;
+    double lat = 12;
 
     // Device lng value
-    float lng = 13;
+    double lng = 13;
 }
 
 message DeviceListItem {
