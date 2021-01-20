@@ -228,10 +228,10 @@ message DeviceListItem {
     int64 data_time = 13 [json_name = "dataTime"];
 
     // device lat value
-    int64 lat = 14;
+    double lat = 14;
 
     // device lng value
-    int64 lng = 15;
+    double lng = 15;
 }
 
 message DeviceKeys {

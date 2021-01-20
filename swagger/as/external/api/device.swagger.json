@@ -692,13 +692,13 @@
           "title": "data time"
         },
         "lat": {
-          "type": "string",
-          "format": "int64",
+          "type": "number",
+          "format": "double",
           "title": "device lat value"
         },
         "lng": {
-          "type": "string",
-          "format": "int64",
+          "type": "number",
+          "format": "double",
           "title": "device lng value"
         }
       }
