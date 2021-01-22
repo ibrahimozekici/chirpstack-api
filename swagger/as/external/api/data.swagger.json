@@ -74,17 +74,11 @@
             "description": "Service-profile ID to filter on (string formatted UUID).",
             "in": "query",
             "required": false,
-            "type": "string"
+            "type": "string",
+            "format": "int64"
           },
           {
             "name": "devEUI",
-            "description": "Search on name or DevEUI.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "name",
             "description": "Search on name or DevEUI.",
             "in": "query",
             "required": false,
@@ -122,17 +116,11 @@
             "description": "Service-profile ID to filter on (string formatted UUID).",
             "in": "query",
             "required": false,
-            "type": "string"
+            "type": "string",
+            "format": "int64"
           },
           {
             "name": "devEUI",
-            "description": "Search on name or DevEUI.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "name",
             "description": "Search on name or DevEUI.",
             "in": "query",
             "required": false,

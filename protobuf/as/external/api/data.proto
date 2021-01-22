@@ -61,16 +61,13 @@ message TemperatureData {
 
 message ListTemperatureDataRequest {
     // Service-profile ID to filter on (string formatted UUID).
-    string organization_id = 1 [json_name = "organizationId"];
+    int64 organization_id = 1 [json_name = "organizationId"];
 
     // Search on name or DevEUI.
     string dev_eui = 2 [json_name = "devEUI"];
 
-    // Search on name or DevEUI.
-    string name = 3 [json_name = "name"];
-
     // Max number of devices to return in the result-set.
-    int64 limit = 4;
+    int64 limit = 3;
 }
 
 message ListTemperatureDataResponse {
@@ -107,16 +104,13 @@ message SoilData {
 
 message ListSoilDataRequest {
     // Service-profile ID to filter on (string formatted UUID).
-    string organization_id = 1 [json_name = "organizationId"];
+    int64 organization_id = 1 [json_name = "organizationId"];
 
     // Search on name or DevEUI.
     string dev_eui = 2 [json_name = "devEUI"];
 
-    // Search on name or DevEUI.
-    string name = 3 [json_name = "name"];
-
     // Max number of devices to return in the result-set.
-    int64 limit = 4;
+    int64 limit = 3;
 }
 
 message ListSoilDataResponse {
