@@ -1,0 +1,95 @@
+syntax = "proto3";
+package api;
+
+
+option go_package = "github.com/ibrahimozekici/chirpstack-api/go/v4/as/external/api";
+option java_package = "io.chirpstack.api.as.external.api";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+
+// Landing service provides necessery data for landing page
+service LandingService {
+    // Get returns the landing data
+    rpc GetLanding(google.protobuf.Empty) returns (GetLandingResponse) {
+        option (google.api.http) ={
+            get: "/api/landing"
+        };
+    }
+}
+
+// message GetLandingRequest {
+//      // Max number of devices to return in the result-set.
+//      int64 limit = 1;
+// }
+
+message GetLandingResponse {
+    // User ID.
+	// Will be set automatically on create.
+	int64 id = 1;
+    
+    // E-mail of the user.
+    string email = 2;
+    
+    //  Organization List
+    repeated LandingOrganization organizations = 3 [json_name = "organizations"];
+}
+
+message LandingOrganization {
+    // Organization ID.
+	int64 id = 1;
+	
+	// Organization name.
+	string name = 2;
+
+	// Organization display name.
+    string display_name = 3;
+    
+    // Organization Applications
+    repeated LandingApplication apps = 4 [json_name = "applications"];
+}
+
+message LandingApplication {
+    // Application ID.
+    int64 id = 1;
+
+    // Name of the application.
+    string name = 2;
+
+    // Description of the application.
+    string description = 3;
+
+    // ID of the organization to which the application belongs.
+    repeated LandingDevice devices = 4 [json_name = "devices"];
+}
+
+message LandingDevice {
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"]; 
+    
+    // Name of the device.
+    string name = 2;
+ 
+    // Application ID.
+    int64 application_id = 3 [json_name = "applicationID"];
+ 
+    // Description of the device.
+    string description = 4;
+
+    // Device-profile ID attached to the device.
+    string device_profile_id = 5 [json_name = "deviceProfileID"];
+
+    // Device-profile name.
+    string device_profile_name = 6;
+
+    // data time
+    int64 data_time = 7 [json_name = "dataTime"];
+
+    // device lat value
+    double lat = 8;
+
+    // device lng value
+    double lng = 9;
+}

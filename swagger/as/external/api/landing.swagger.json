@@ -1,0 +1,154 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "as/external/api/landing.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/landing": {
+      "get": {
+        "summary": "Get returns the landing data",
+        "operationId": "GetLanding",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetLandingResponse"
+            }
+          }
+        },
+        "tags": [
+          "LandingService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apiGetLandingResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "User ID.\nWill be set automatically on create."
+        },
+        "email": {
+          "type": "string",
+          "description": "E-mail of the user."
+        },
+        "organizations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiLandingOrganization"
+          },
+          "title": "Organization List"
+        }
+      }
+    },
+    "apiLandingApplication": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Application ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the application."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the application."
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiLandingDevice"
+          },
+          "description": "ID of the organization to which the application belongs."
+        }
+      }
+    },
+    "apiLandingDevice": {
+      "type": "object",
+      "properties": {
+        "devEUI": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the device."
+        },
+        "applicationID": {
+          "type": "string",
+          "format": "int64",
+          "description": "Application ID."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the device."
+        },
+        "deviceProfileID": {
+          "type": "string",
+          "description": "Device-profile ID attached to the device."
+        },
+        "deviceProfileName": {
+          "type": "string",
+          "description": "Device-profile name."
+        },
+        "dataTime": {
+          "type": "string",
+          "format": "int64",
+          "title": "data time"
+        },
+        "lat": {
+          "type": "number",
+          "format": "double",
+          "title": "device lat value"
+        },
+        "lng": {
+          "type": "number",
+          "format": "double",
+          "title": "device lng value"
+        }
+      }
+    },
+    "apiLandingOrganization": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Organization ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "Organization name."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Organization display name."
+        },
+        "applications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiLandingApplication"
+          },
+          "title": "Organization Applications"
+        }
+      }
+    }
+  }
+}
