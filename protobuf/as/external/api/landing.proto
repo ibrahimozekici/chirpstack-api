@@ -13,13 +13,15 @@ import "google/protobuf/empty.proto";
 // Landing service provides necessery data for landing page
 service LandingService {
     // Get returns the landing data
-    rpc GetLanding(google.protobuf.Empty) returns (GetLandingResponse) {
+    rpc GetLanding(WhoAreYouParams) returns (GetLandingResponse) {
         option (google.api.http) ={
             get: "/api/landing"
         };
     }
 }
 
+
+message WhoAreYouParams {}
 // message GetLandingRequest {
 //      // Max number of devices to return in the result-set.
 //      int64 limit = 1;
