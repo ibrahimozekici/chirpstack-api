@@ -46,7 +46,7 @@
           "type": "string",
           "description": "E-mail of the user."
         },
-        "": {
+        "organizationList": {
           "$ref": "#/definitions/apiLandingOrganizationList",
           "title": "Organization List\nrepeated LandingOrganization organizations = 3 [json_name = \"organizations\"];"
         }
