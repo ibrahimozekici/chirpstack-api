@@ -36,13 +36,13 @@ message GetLandingResponse {
     string email = 2;
     
     //  Organization List
-    repeated LandingOrganization organizations = 3 [json_name = "organizations"];
-    // LandingOrganizationList organizationList = 3;
+    // repeated LandingOrganization organizations = 3 [json_name = "organizations"];
+    LandingOrganizationList organizationList = 3 [json_name = ""];
 }
 
-// message LandingOrganizationList {
-//     repeated LandingOrganization organizations = 3 [json_name = "organizations"];
-// }
+message LandingOrganizationList {
+    repeated LandingOrganization organizations = 3 [json_name = "organizations"];
+}
 
 message LandingOrganization {
     // Organization ID.

@@ -46,12 +46,9 @@
           "type": "string",
           "description": "E-mail of the user."
         },
-        "organizations": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiLandingOrganization"
-          },
-          "title": "Organization List"
+        "": {
+          "$ref": "#/definitions/apiLandingOrganizationList",
+          "title": "Organization List\nrepeated LandingOrganization organizations = 3 [json_name = \"organizations\"];"
         }
       }
     },
@@ -157,6 +154,17 @@
             "$ref": "#/definitions/apiLandingApplication"
           },
           "title": "Organization Applications"
+        }
+      }
+    },
+    "apiLandingOrganizationList": {
+      "type": "object",
+      "properties": {
+        "organizations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiLandingOrganization"
+          }
         }
       }
     }
