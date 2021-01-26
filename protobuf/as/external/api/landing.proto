@@ -80,10 +80,10 @@ message LandingDevice {
     string device_dev_eui = 1 [json_name = "device_dev_eui"]; 
     
     // device_created_at
-    google.protobuf.Timestamp device_created_at = 2 [json_name = "device_created_at"];
+    string device_created_at = 2 [json_name = "device_created_at"];
 
     // device_updated_at
-    google.protobuf.Timestamp device_updated_at = 3 [json_name = "device_updated_at"];
+    string device_updated_at = 3 [json_name = "device_updated_at"];
 
     // Device-profile ID attached to the device.
     string device_profile_id = 4 [json_name = "device_profile_id"];
@@ -95,7 +95,7 @@ message LandingDevice {
     string device_description = 6 [json_name = "device_description"];
 
     // device_last_seen_at
-    google.protobuf.Timestamp device_last_seen_at = 7 [json_name = "device_last_seen_at"];
+    string device_last_seen_at = 7 [json_name = "device_last_seen_at"];
 
     // data time
     int64 device_data_time = 8 [json_name = "device_data_time"];

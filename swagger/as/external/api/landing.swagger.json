@@ -90,12 +90,10 @@
         },
         "device_created_at": {
           "type": "string",
-          "format": "date-time",
           "title": "device_created_at"
         },
         "device_updated_at": {
           "type": "string",
-          "format": "date-time",
           "title": "device_updated_at"
         },
         "device_profile_id": {
@@ -112,7 +110,6 @@
         },
         "device_last_seen_at": {
           "type": "string",
-          "format": "date-time",
           "title": "device_last_seen_at"
         },
         "device_data_time": {
