@@ -36,18 +36,22 @@ message GetLandingResponse {
     string email = 2;
     
     //  Organization List
+    LandingOrganizationList organizationList = 3;
+}
+
+message LandingOrganizationList {
     repeated LandingOrganization organizations = 3 [json_name = "organizations"];
 }
 
 message LandingOrganization {
     // Organization ID.
-	int64 id = 1;
+	int64 id = 1 [json_name = "organization_id"];
 	
 	// Organization name.
-	string name = 2;
+	string name = 2 [json_name = "organization_name"];
 
 	// Organization display name.
-    string display_name = 3;
+    string display_name = 3 [json_name = "organization_display_name"];
     
     // Organization Applications
     repeated LandingApplication apps = 4 [json_name = "applications"];
@@ -55,43 +59,49 @@ message LandingOrganization {
 
 message LandingApplication {
     // Application ID.
-    int64 id = 1;
+    int64 id = 1 [json_name = "application_id"];
 
     // Name of the application.
-    string name = 2;
+    string name = 2 [json_name = "application_name"];
 
     // Description of the application.
-    string description = 3;
+    string description = 3 [json_name = "application_description"];
+
+    // service_profile_id
+    string service_profile_id = 4 [json_name = "service_profile_id"];
 
     // ID of the organization to which the application belongs.
-    repeated LandingDevice devices = 4 [json_name = "devices"];
+    repeated LandingDevice devices = 5 [json_name = "devices"];
 }
 
 message LandingDevice {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"]; 
+    string dev_eui = 1 [json_name = "device_dev_eui"]; 
     
-    // Name of the device.
-    string name = 2;
- 
-    // Application ID.
-    int64 application_id = 3 [json_name = "applicationID"];
- 
-    // Description of the device.
-    string description = 4;
+    // device_created_at
+    google.protobuf.Timestamp device_created_at = 2 [json_name = "device_created_at"];
+
+    // device_updated_at
+    google.protobuf.Timestamp device_updated_at = 3 [json_name = "device_updated_at"];
 
     // Device-profile ID attached to the device.
-    string device_profile_id = 5 [json_name = "deviceProfileID"];
+    string device_profile_id = 4 [json_name = "device_profile_id"];
 
-    // Device-profile name.
-    string device_profile_name = 6;
+    // Name of the device.
+    string name = 5 [json_name = "device_name"];
+ 
+    // Description of the device.
+    string device_description = 6 [json_name = "device_description"];
+
+    // device_last_seen_at
+    google.protobuf.Timestamp device_last_seen_at = 7 [json_name = "device_last_seen_at"];
 
     // data time
-    int64 data_time = 7 [json_name = "dataTime"];
+    int64 device_data_time = 8 [json_name = "device_data_time"];
 
     // device lat value
-    double lat = 8;
+    double device_lat = 9 [json_name = "device_lat"];
 
     // device lng value
-    double lng = 9;
+    double device_lng = 10 [json_name = "device_lng"];
 }

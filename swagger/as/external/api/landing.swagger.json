@@ -46,11 +46,8 @@
           "type": "string",
           "description": "E-mail of the user."
         },
-        "organizations": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiLandingOrganization"
-          },
+        "organizationList": {
+          "$ref": "#/definitions/apiLandingOrganizationList",
           "title": "Organization List"
         }
       }
@@ -58,18 +55,22 @@
     "apiLandingApplication": {
       "type": "object",
       "properties": {
-        "id": {
+        "application_id": {
           "type": "string",
           "format": "int64",
           "description": "Application ID."
         },
-        "name": {
+        "application_name": {
           "type": "string",
           "description": "Name of the application."
         },
-        "description": {
+        "application_description": {
           "type": "string",
           "description": "Description of the application."
+        },
+        "service_profile_id": {
+          "type": "string",
+          "title": "service_profile_id"
         },
         "devices": {
           "type": "array",
@@ -83,42 +84,48 @@
     "apiLandingDevice": {
       "type": "object",
       "properties": {
-        "devEUI": {
+        "device_dev_eui": {
           "type": "string",
           "description": "Device EUI (HEX encoded)."
         },
-        "name": {
+        "device_created_at": {
           "type": "string",
-          "description": "Name of the device."
+          "format": "date-time",
+          "title": "device_created_at"
         },
-        "applicationID": {
+        "device_updated_at": {
           "type": "string",
-          "format": "int64",
-          "description": "Application ID."
+          "format": "date-time",
+          "title": "device_updated_at"
         },
-        "description": {
-          "type": "string",
-          "description": "Description of the device."
-        },
-        "deviceProfileID": {
+        "device_profile_id": {
           "type": "string",
           "description": "Device-profile ID attached to the device."
         },
-        "deviceProfileName": {
+        "device_name": {
           "type": "string",
-          "description": "Device-profile name."
+          "description": "Name of the device."
         },
-        "dataTime": {
+        "device_description": {
+          "type": "string",
+          "description": "Description of the device."
+        },
+        "device_last_seen_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "device_last_seen_at"
+        },
+        "device_data_time": {
           "type": "string",
           "format": "int64",
           "title": "data time"
         },
-        "lat": {
+        "device_lat": {
           "type": "number",
           "format": "double",
           "title": "device lat value"
         },
-        "lng": {
+        "device_lng": {
           "type": "number",
           "format": "double",
           "title": "device lng value"
@@ -128,16 +135,16 @@
     "apiLandingOrganization": {
       "type": "object",
       "properties": {
-        "id": {
+        "organization_id": {
           "type": "string",
           "format": "int64",
           "description": "Organization ID."
         },
-        "name": {
+        "organization_name": {
           "type": "string",
           "description": "Organization name."
         },
-        "displayName": {
+        "organization_display_name": {
           "type": "string",
           "description": "Organization display name."
         },
@@ -147,6 +154,17 @@
             "$ref": "#/definitions/apiLandingApplication"
           },
           "title": "Organization Applications"
+        }
+      }
+    },
+    "apiLandingOrganizationList": {
+      "type": "object",
+      "properties": {
+        "organizations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiLandingOrganization"
+          }
         }
       }
     }
