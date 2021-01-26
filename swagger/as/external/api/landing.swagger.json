@@ -46,8 +46,11 @@
           "type": "string",
           "description": "E-mail of the user."
         },
-        "organizationList": {
-          "$ref": "#/definitions/apiLandingOrganizationList",
+        "organizations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiLandingOrganization"
+          },
           "title": "Organization List"
         }
       }
@@ -154,17 +157,6 @@
             "$ref": "#/definitions/apiLandingApplication"
           },
           "title": "Organization Applications"
-        }
-      }
-    },
-    "apiLandingOrganizationList": {
-      "type": "object",
-      "properties": {
-        "organizations": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiLandingOrganization"
-          }
         }
       }
     }
