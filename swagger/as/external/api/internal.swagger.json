@@ -428,6 +428,24 @@
         }
       }
     },
+    "apiGetLandingResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "User ID.\nWill be set automatically on create."
+        },
+        "email": {
+          "type": "string",
+          "description": "E-mail of the user."
+        },
+        "organizationList": {
+          "$ref": "#/definitions/apiLandingOrganizationList",
+          "title": "Organization List\nrepeated LandingOrganization organizations = 3 [json_name = \"organizations\"];"
+        }
+      }
+    },
     "apiGlobalSearchResponse": {
       "type": "object",
       "properties": {
@@ -487,6 +505,119 @@
         }
       }
     },
+    "apiLandingApplication": {
+      "type": "object",
+      "properties": {
+        "application_id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Application ID."
+        },
+        "application_name": {
+          "type": "string",
+          "description": "Name of the application."
+        },
+        "application_description": {
+          "type": "string",
+          "description": "Description of the application."
+        },
+        "service_profile_id": {
+          "type": "string",
+          "title": "service_profile_id"
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiLandingDevice"
+          },
+          "description": "ID of the organization to which the application belongs."
+        }
+      }
+    },
+    "apiLandingDevice": {
+      "type": "object",
+      "properties": {
+        "device_dev_eui": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "device_created_at": {
+          "type": "string",
+          "title": "device_created_at"
+        },
+        "device_updated_at": {
+          "type": "string",
+          "title": "device_updated_at"
+        },
+        "device_profile_id": {
+          "type": "string",
+          "description": "Device-profile ID attached to the device."
+        },
+        "device_name": {
+          "type": "string",
+          "description": "Name of the device."
+        },
+        "device_description": {
+          "type": "string",
+          "description": "Description of the device."
+        },
+        "device_last_seen_at": {
+          "type": "string",
+          "title": "device_last_seen_at"
+        },
+        "device_data_time": {
+          "type": "string",
+          "format": "int64",
+          "title": "data time"
+        },
+        "device_lat": {
+          "type": "number",
+          "format": "double",
+          "title": "device lat value"
+        },
+        "device_lng": {
+          "type": "number",
+          "format": "double",
+          "title": "device lng value"
+        }
+      }
+    },
+    "apiLandingOrganization": {
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Organization ID."
+        },
+        "organization_name": {
+          "type": "string",
+          "description": "Organization name."
+        },
+        "organization_display_name": {
+          "type": "string",
+          "description": "Organization display name."
+        },
+        "applications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiLandingApplication"
+          },
+          "title": "Organization Applications"
+        }
+      }
+    },
+    "apiLandingOrganizationList": {
+      "type": "object",
+      "properties": {
+        "organizations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiLandingOrganization"
+          }
+        }
+      }
+    },
     "apiListAPIKeysResponse": {
       "type": "object",
       "properties": {
@@ -522,6 +653,9 @@
         "jwt": {
           "type": "string",
           "description": "The JWT tag to be used to access chirpstack-application-server interfaces."
+        },
+        "user": {
+          "$ref": "#/definitions/apiGetLandingResponse"
         }
       }
     },
