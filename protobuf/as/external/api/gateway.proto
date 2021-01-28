@@ -66,7 +66,7 @@ service GatewayService {
 	}
 
     // GenerateGatewayClientCertificate returns TLS certificate gateway authentication / authorization.
-    // This endpoint can ony be used when Network Server is configured with a gateway
+    // This endpoint can ony be used when ChirpStack Network Server is configured with a gateway
     // CA certificate and key, which is used for signing the TLS certificate. The returned TLS
     // certificate will have the Gateway ID as Common Name.
     rpc GenerateGatewayClientCertificate(GenerateGatewayClientCertificateRequest) returns (GenerateGatewayClientCertificateResponse) {
@@ -123,6 +123,9 @@ message Gateway {
 
     // Metadata (provided by the gateway).
     map<string, string> metadata = 11;
+
+    // Service-profile ID (UUID string, optional).
+    string service_profile_id = 12 [json_name = "serviceProfileID"];
 }
 
 message GatewayBoard {

@@ -14,7 +14,7 @@ import "as/external/api/frameLog.proto";
 
 // DeviceService is the service managing the devices.
 service DeviceService {
-    // Create creates the given device vesiyon 2.
+    // Create creates the given device.
     rpc Create(CreateDeviceRequest) returns (google.protobuf.Empty) {
         option(google.api.http) = {
             post: "/api/devices"
@@ -171,12 +171,10 @@ message Device {
     // Device is disabled.
     bool is_disabled = 10;
 
-    int64 data_time = 11 [json_name = "dataTime"];
-
-    // Device lat value
-    double lat = 12;
-
-    // Device lng value
+    int64 data_time = 11 [json_name = "dataTime"];	
+    // Device lat value	
+    double lat = 12;	
+    // Device lng value	
     double lng = 13;
 }
 
@@ -224,13 +222,11 @@ message DeviceListItem {
     // or an empty string when the device never sent any data.
     google.protobuf.Timestamp last_seen_at = 9 [json_name = "lastSeenAt"];
 
-    // data time
-    int64 data_time = 13 [json_name = "dataTime"];
-
-    // device lat value
-    double lat = 14;
-
-    // device lng value
+    // data time	
+    int64 data_time = 13 [json_name = "dataTime"];	
+    // device lat value	
+    double lat = 14;	
+    // device lng value	
     double lng = 15;
 }
 
