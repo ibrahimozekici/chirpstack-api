@@ -2604,7 +2604,7 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type DeviceServiceClient interface {
-	// Create creates the given device vesiyon 2.
+	// Create creates the given device.
 	Create(ctx context.Context, in *CreateDeviceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Get returns the device matching the given DevEUI.
 	Get(ctx context.Context, in *GetDeviceRequest, opts ...grpc.CallOption) (*GetDeviceResponse, error)
@@ -2831,7 +2831,7 @@ func (x *deviceServiceStreamEventLogsClient) Recv() (*StreamDeviceEventLogsRespo
 
 // DeviceServiceServer is the server API for DeviceService service.
 type DeviceServiceServer interface {
-	// Create creates the given device vesiyon 2.
+	// Create creates the given device.
 	Create(context.Context, *CreateDeviceRequest) (*empty.Empty, error)
 	// Get returns the device matching the given DevEUI.
 	Get(context.Context, *GetDeviceRequest) (*GetDeviceResponse, error)

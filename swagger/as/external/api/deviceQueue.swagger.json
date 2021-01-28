@@ -148,9 +148,6 @@
         "deviceQueueItem": {
           "$ref": "#/definitions/apiDeviceQueueItem",
           "description": "Queue-item object to enqueue."
-        },
-        "data": {
-          "type": "string"
         }
       }
     },
