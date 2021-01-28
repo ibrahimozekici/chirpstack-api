@@ -79,7 +79,7 @@
         ]
       },
       "post": {
-        "summary": "Create creates the given device vesiyon 2.",
+        "summary": "Create creates the given device.",
         "operationId": "Create",
         "responses": {
           "200": {
