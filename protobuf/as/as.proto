@@ -155,7 +155,7 @@ message HandleDownlinkACKRequest {
     // Frame was acknowledged?
     bool acknowledged = 3;
 
-    string data = 4;
+    bytes data = 4;
 }
 
 message SetDeviceStatusRequest {
