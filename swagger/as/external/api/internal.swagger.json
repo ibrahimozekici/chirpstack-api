@@ -505,6 +505,41 @@
         }
       }
     },
+    "apiLandingAlarm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Alarm id."
+        },
+        "dev_eui": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "minTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Condition of alarm"
+        },
+        "maxTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Value of alarm"
+        },
+        "action": {
+          "type": "string",
+          "title": "Action of alarm"
+        },
+        "target": {
+          "type": "string",
+          "title": "Target of alarm"
+        },
+        "section": {
+          "type": "string",
+          "title": "Target of alarm"
+        }
+      }
+    },
     "apiLandingApplication": {
       "type": "object",
       "properties": {
@@ -579,6 +614,13 @@
           "type": "number",
           "format": "double",
           "title": "device lng value"
+        },
+        "alerts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiLandingAlarm"
+          },
+          "title": "device landing alarms"
         }
       }
     },

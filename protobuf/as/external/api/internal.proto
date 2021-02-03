@@ -269,6 +269,34 @@ message LandingDevice {
 
     // device lng value
     double device_lng = 10 [json_name = "device_lng"];
+
+    // device landing alarms
+    repeated LandingAlarm alerts = 11 [json_name = "alerts"];
+}
+
+message LandingAlarm {
+
+    // Alarm id.
+    string id = 1 [json_name = "id"];
+
+    // Device EUI (HEX encoded).
+    string dev_eui = 2 [json_name = "dev_eui"]; 
+
+     // Condition of alarm
+     float min_treshold = 3 [json_name = "minTreshold"];
+
+     // Value of alarm
+     float max_treshold = 4 [json_name = "maxTreshold"];
+ 
+     // Action of alarm
+     string action = 5 [json_name = "action"];
+ 
+     // Target of alarm
+     string target = 6 [json_name = "target"];
+ 
+     // Target of alarm
+     string section = 7 [json_name = "section"];
+
 }
 
 message ProfileResponse {
