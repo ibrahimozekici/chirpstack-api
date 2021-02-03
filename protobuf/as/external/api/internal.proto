@@ -277,7 +277,7 @@ message LandingDevice {
 message LandingAlarm {
 
     // Alarm id.
-    string id = 1 [json_name = "id"];
+    int64 id = 1 [json_name = "id"];
 
     // Device EUI (HEX encoded).
     string dev_eui = 2 [json_name = "dev_eui"]; 

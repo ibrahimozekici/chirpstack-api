@@ -169,6 +169,7 @@
       "properties": {
         "id": {
           "type": "string",
+          "format": "int64",
           "description": "Alarm id."
         },
         "devEUI": {
