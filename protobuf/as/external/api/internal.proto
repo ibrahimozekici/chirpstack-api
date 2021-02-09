@@ -21,6 +21,13 @@ service InternalService {
 		};
 	}
 
+    rpc Login2(LoginRequest) returns (LoginResponse) {
+		option(google.api.http) = {
+			post: "/api/internal/login"
+			body: "*"
+		};
+	}
+
 	// Get the current user's profile
 	rpc Profile(google.protobuf.Empty) returns (ProfileResponse) {
 		option(google.api.http) = {

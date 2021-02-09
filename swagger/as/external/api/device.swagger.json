@@ -17,8 +17,7 @@
   "paths": {
     "/api/devices": {
       "get": {
-        "summary": "List returns the available devices.",
-        "operationId": "List",
+        "operationId": "List2",
         "responses": {
           "200": {
             "description": "A successful response.",
