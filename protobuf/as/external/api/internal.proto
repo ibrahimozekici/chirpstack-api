@@ -307,6 +307,8 @@ message LandingAlarm {
      // Target of alarm
      string section = 7 [json_name = "section"];
 
+     int64 device_id = 8 [json_name = "device_id"];
+
 }
 
 message ProfileResponse {
