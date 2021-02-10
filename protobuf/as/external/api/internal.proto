@@ -217,13 +217,13 @@ message LandingOrganizationList {
 
 message LandingOrganization {
     // Organization ID.
-	int64 organization_id = 1 [json_name = "organization_id"];
+	int64 id = 1 [json_name = "id"];
 	
 	// Organization name.
-	string organization_name = 2 [json_name = "organization_name"];
+	string name = 2 [json_name = "name"];
 
 	// Organization display name.
-    string organization_display_name = 3 [json_name = "organization_display_name"];
+    string display_name = 3 [json_name = "display_name"];
     
     // Organization Applications
     repeated LandingApplication applications = 4 [json_name = "applications"];
@@ -231,13 +231,13 @@ message LandingOrganization {
 
 message LandingApplication {
     // Application ID.
-    int64 application_id = 1 [json_name = "application_id"];
+    int64 id = 1 [json_name = "id"];
 
     // Name of the application.
-    string application_name = 2 [json_name = "application_name"];
+    string name = 2 [json_name = "name"];
 
     // Description of the application.
-    string application_description = 3 [json_name = "application_description"];
+    string description = 3 [json_name = "description"];
 
     // service_profile_id
     string service_profile_id = 4 [json_name = "service_profile_id"];
@@ -248,36 +248,36 @@ message LandingApplication {
 
 message LandingDevice {
     // Device EUI (HEX encoded).
-    string device_dev_eui = 1 [json_name = "device_dev_eui"]; 
+    string dev_eui = 1 [json_name = "dev_eui"]; 
     
     // device_created_at
-    string device_created_at = 2 [json_name = "device_created_at"];
+    string created_at = 2 [json_name = "created_at"];
 
     // device_updated_at
-    string device_updated_at = 3 [json_name = "device_updated_at"];
+    string updated_at = 3 [json_name = "updated_at"];
 
     // Device-profile ID attached to the device.
-    string device_profile_id = 4 [json_name = "device_profile_id"];
+    string profile_id = 4 [json_name = "profile_id"];
 
     // Name of the device.
-    string device_name = 5 [json_name = "device_name"];
+    string name = 5 [json_name = "name"];
  
     // Description of the device.
-    string device_description = 6 [json_name = "device_description"];
+    string description = 6 [json_name = "description"];
 
     // device_last_seen_at
-    string device_last_seen_at = 7 [json_name = "device_last_seen_at"];
+    string last_seen_at = 7 [json_name = "last_seen_at"];
 
     // data time
-    int64 device_data_time = 8 [json_name = "device_data_time"];
+    int64 data_time = 8 [json_name = "data_time"];
 
     // device lat value
-    double device_lat = 9 [json_name = "device_lat"];
+    double lat = 9 [json_name = "lat"];
 
     // device lng value
-    double device_lng = 10 [json_name = "device_lng"];
+    double lng = 10 [json_name = "lng"];
 
-    int64 device_id = 11 [json_name = "device_id"];
+    int64 id = 11 [json_name = "id"];
 
     // device landing alarms
     repeated LandingAlarm alerts = 12 [json_name = "alerts"];
