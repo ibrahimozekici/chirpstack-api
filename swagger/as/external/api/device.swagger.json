@@ -559,6 +559,10 @@
           "type": "number",
           "format": "double",
           "title": "Device lng value"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -699,6 +703,10 @@
           "type": "number",
           "format": "double",
           "title": "device lng value"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

@@ -182,6 +182,8 @@ message Device {
     double lat = 12;	
     // Device lng value	
     double lng = 13;
+
+    int64 id = 14;
 }
 
 message DeviceListItem {
@@ -234,6 +236,8 @@ message DeviceListItem {
     double lat = 14;	
     // device lng value	
     double lng = 15;
+
+    int64 id = 16;
 }
 
 message DeviceKeys {
