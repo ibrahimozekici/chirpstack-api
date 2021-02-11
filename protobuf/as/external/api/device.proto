@@ -25,7 +25,7 @@ service DeviceService {
     // Get returns the device matching the given DevEUI.
     rpc Get(GetDeviceRequest) returns (GetDeviceResponse) {
         option (google.api.http) = {
-            get: "/api/devices/{id}"
+            get: "/api/devices/{dev_eui}"
         };
     }
 
@@ -45,14 +45,14 @@ service DeviceService {
     // Delete deletes the device matching the given DevEUI.
     rpc Delete(DeleteDeviceRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            delete: "/api/devices/{id}"
+            delete: "/api/devices/{dev_eui}"
         };
     }
 
     // Update updates the device matching the given DevEUI.
     rpc Update(UpdateDeviceRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            put: "/api/devices/{device.id}"
+            put: "/api/devices/{device.dev_eui}"
             body: "*"
         };
     }
@@ -262,12 +262,14 @@ message CreateDeviceRequest {
     // Device object to create.
     Device device = 1;
 
-    string applicaion_id = 2 [json_name = "applicaitonID"];
+    int64 applicaion_id = 2 [json_name = "applicaitonID"];
+
+    int64 organization_id = 3 [json_name = "organizationID"];
 }
 
 message GetDeviceRequest {
     // Device EUI (HEX encoded).
-    string id = 1 [json_name = "id"];
+    string dev_eui = 1 [json_name = "devEUI"];
 }
 
 message GetDeviceResponse {
@@ -334,7 +336,7 @@ message ListDeviceResponse {
 
 message DeleteDeviceRequest {
     // Device EUI (HEX encoded).
-    string id = 1 [json_name = "id"];
+    string dev_eui = 1 [json_name = "devEUI"];
 }
 
 
