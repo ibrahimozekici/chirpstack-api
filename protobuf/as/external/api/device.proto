@@ -318,6 +318,8 @@ message ListDeviceRequest {
 
     // Tags to filter on.
     map<string, string> tags = 7;
+
+    int64 organization_id = 8 [json_name = "organizationId"];
 }
 
 message ListDeviceResponse {
