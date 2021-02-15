@@ -277,11 +277,8 @@ message LandingDevice {
     // device lng value
     double device_lng = 10 [json_name = "device_lng"];
 
-    int64 device_id = 11 [json_name = "device_id"];
-
     // device landing alarms
-    repeated LandingAlarm alerts = 12 [json_name = "alerts"];
-
+    repeated LandingAlarm alerts = 11 [json_name = "alerts"];
 }
 
 message LandingAlarm {
