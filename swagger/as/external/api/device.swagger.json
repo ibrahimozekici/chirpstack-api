@@ -497,9 +497,6 @@
         "device": {
           "$ref": "#/definitions/apiDevice",
           "description": "Device object to create."
-        },
-        "applicaitonID": {
-          "type": "string"
         }
       }
     },

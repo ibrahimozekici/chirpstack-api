@@ -261,8 +261,6 @@ message DeviceKeys {
 message CreateDeviceRequest {
     // Device object to create.
     Device device = 1;
-
-    string applicaion_id = 2 [json_name = "applicaitonID"];
 }
 
 message GetDeviceRequest {
