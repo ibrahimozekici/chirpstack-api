@@ -537,10 +537,6 @@
         "section": {
           "type": "string",
           "title": "Target of alarm"
-        },
-        "device_id": {
-          "type": "string",
-          "format": "int64"
         }
       }
     },
