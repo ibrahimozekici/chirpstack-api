@@ -96,6 +96,20 @@
         "tags": [
           "DataService"
         ]
+      },
+      "post": {
+        "operationId": "UploadSoilData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "tags": [
+          "DataService"
+        ]
       }
     },
     "/api/data/temperature": {
@@ -135,6 +149,20 @@
             "format": "int64"
           }
         ],
+        "tags": [
+          "DataService"
+        ]
+      },
+      "post": {
+        "operationId": "UploadTemperatureData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
         "tags": [
           "DataService"
         ]

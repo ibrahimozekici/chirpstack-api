@@ -9,7 +9,7 @@ package api
 import (
 	context "context"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/empty"
+	empty "github.com/golang/protobuf/ptypes/empty"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
@@ -864,6 +864,148 @@ func (x *ListTrackingDataResponse) GetResult() []*TrackingData {
 	return nil
 }
 
+type PostTemperatureDataRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DevEui      string  `protobuf:"bytes,1,opt,name=dev_eui,json=devEUI,proto3" json:"dev_eui,omitempty"`
+	Temperature float64 `protobuf:"fixed64,2,opt,name=temperature,proto3" json:"temperature,omitempty"`
+	Humadity    float64 `protobuf:"fixed64,3,opt,name=humadity,proto3" json:"humadity,omitempty"`
+}
+
+func (x *PostTemperatureDataRequest) Reset() {
+	*x = PostTemperatureDataRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_as_external_api_data_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PostTemperatureDataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostTemperatureDataRequest) ProtoMessage() {}
+
+func (x *PostTemperatureDataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_as_external_api_data_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostTemperatureDataRequest.ProtoReflect.Descriptor instead.
+func (*PostTemperatureDataRequest) Descriptor() ([]byte, []int) {
+	return file_as_external_api_data_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *PostTemperatureDataRequest) GetDevEui() string {
+	if x != nil {
+		return x.DevEui
+	}
+	return ""
+}
+
+func (x *PostTemperatureDataRequest) GetTemperature() float64 {
+	if x != nil {
+		return x.Temperature
+	}
+	return 0
+}
+
+func (x *PostTemperatureDataRequest) GetHumadity() float64 {
+	if x != nil {
+		return x.Humadity
+	}
+	return 0
+}
+
+type PostSoilDataRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DevEui      string  `protobuf:"bytes,1,opt,name=dev_eui,json=devEUI,proto3" json:"dev_eui,omitempty"`
+	TempC       float64 `protobuf:"fixed64,2,opt,name=temp_c,proto3" json:"temp_c,omitempty"`
+	WaterSoil   float64 `protobuf:"fixed64,3,opt,name=water_soil,proto3" json:"water_soil,omitempty"`
+	TempSoil    float64 `protobuf:"fixed64,4,opt,name=temp_soil,proto3" json:"temp_soil,omitempty"`
+	ConductSoil float64 `protobuf:"fixed64,5,opt,name=conduct_soil,proto3" json:"conduct_soil,omitempty"`
+}
+
+func (x *PostSoilDataRequest) Reset() {
+	*x = PostSoilDataRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_as_external_api_data_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PostSoilDataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostSoilDataRequest) ProtoMessage() {}
+
+func (x *PostSoilDataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_as_external_api_data_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostSoilDataRequest.ProtoReflect.Descriptor instead.
+func (*PostSoilDataRequest) Descriptor() ([]byte, []int) {
+	return file_as_external_api_data_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *PostSoilDataRequest) GetDevEui() string {
+	if x != nil {
+		return x.DevEui
+	}
+	return ""
+}
+
+func (x *PostSoilDataRequest) GetTempC() float64 {
+	if x != nil {
+		return x.TempC
+	}
+	return 0
+}
+
+func (x *PostSoilDataRequest) GetWaterSoil() float64 {
+	if x != nil {
+		return x.WaterSoil
+	}
+	return 0
+}
+
+func (x *PostSoilDataRequest) GetTempSoil() float64 {
+	if x != nil {
+		return x.TempSoil
+	}
+	return 0
+}
+
+func (x *PostSoilDataRequest) GetConductSoil() float64 {
+	if x != nil {
+		return x.ConductSoil
+	}
+	return 0
+}
+
 var File_as_external_api_data_proto protoreflect.FileDescriptor
 
 var file_as_external_api_data_proto_rawDesc = []byte{
@@ -977,7 +1119,25 @@ var file_as_external_api_data_proto_rawDesc = []byte{
 	0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x29, 0x0a, 0x06, 0x72, 0x65,
 	0x73, 0x75, 0x6c, 0x74, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x61, 0x70, 0x69,
 	0x2e, 0x54, 0x72, 0x61, 0x63, 0x6b, 0x69, 0x6e, 0x67, 0x44, 0x61, 0x74, 0x61, 0x52, 0x06, 0x72,
-	0x65, 0x73, 0x75, 0x6c, 0x74, 0x32, 0xb9, 0x03, 0x0a, 0x0b, 0x44, 0x61, 0x74, 0x61, 0x53, 0x65,
+	0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x73, 0x0a, 0x1a, 0x50, 0x6f, 0x73, 0x74, 0x54, 0x65, 0x6d,
+	0x70, 0x65, 0x72, 0x61, 0x74, 0x75, 0x72, 0x65, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x64, 0x65, 0x76, 0x5f, 0x65, 0x75, 0x69, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x64, 0x65, 0x76, 0x45, 0x55, 0x49, 0x12, 0x20, 0x0a, 0x0b,
+	0x74, 0x65, 0x6d, 0x70, 0x65, 0x72, 0x61, 0x74, 0x75, 0x72, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x01, 0x52, 0x0b, 0x74, 0x65, 0x6d, 0x70, 0x65, 0x72, 0x61, 0x74, 0x75, 0x72, 0x65, 0x12, 0x1a,
+	0x0a, 0x08, 0x68, 0x75, 0x6d, 0x61, 0x64, 0x69, 0x74, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x01,
+	0x52, 0x08, 0x68, 0x75, 0x6d, 0x61, 0x64, 0x69, 0x74, 0x79, 0x22, 0xa8, 0x01, 0x0a, 0x13, 0x50,
+	0x6f, 0x73, 0x74, 0x53, 0x6f, 0x69, 0x6c, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x64, 0x65, 0x76, 0x5f, 0x65, 0x75, 0x69, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x06, 0x64, 0x65, 0x76, 0x45, 0x55, 0x49, 0x12, 0x16, 0x0a, 0x06, 0x74,
+	0x65, 0x6d, 0x70, 0x5f, 0x63, 0x18, 0x02, 0x20, 0x01, 0x28, 0x01, 0x52, 0x06, 0x74, 0x65, 0x6d,
+	0x70, 0x5f, 0x63, 0x12, 0x1e, 0x0a, 0x0a, 0x77, 0x61, 0x74, 0x65, 0x72, 0x5f, 0x73, 0x6f, 0x69,
+	0x6c, 0x18, 0x03, 0x20, 0x01, 0x28, 0x01, 0x52, 0x0a, 0x77, 0x61, 0x74, 0x65, 0x72, 0x5f, 0x73,
+	0x6f, 0x69, 0x6c, 0x12, 0x1c, 0x0a, 0x09, 0x74, 0x65, 0x6d, 0x70, 0x5f, 0x73, 0x6f, 0x69, 0x6c,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x01, 0x52, 0x09, 0x74, 0x65, 0x6d, 0x70, 0x5f, 0x73, 0x6f, 0x69,
+	0x6c, 0x12, 0x22, 0x0a, 0x0c, 0x63, 0x6f, 0x6e, 0x64, 0x75, 0x63, 0x74, 0x5f, 0x73, 0x6f, 0x69,
+	0x6c, 0x18, 0x05, 0x20, 0x01, 0x28, 0x01, 0x52, 0x0c, 0x63, 0x6f, 0x6e, 0x64, 0x75, 0x63, 0x74,
+	0x5f, 0x73, 0x6f, 0x69, 0x6c, 0x32, 0x86, 0x05, 0x0a, 0x0b, 0x44, 0x61, 0x74, 0x61, 0x53, 0x65,
 	0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x76, 0x0a, 0x12, 0x47, 0x65, 0x74, 0x54, 0x65, 0x6d, 0x70,
 	0x65, 0x72, 0x61, 0x74, 0x75, 0x72, 0x65, 0x44, 0x61, 0x74, 0x61, 0x12, 0x1f, 0x2e, 0x61, 0x70,
 	0x69, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x54, 0x65, 0x6d, 0x70, 0x65, 0x72, 0x61, 0x74, 0x75, 0x72,
@@ -1005,13 +1165,26 @@ var file_as_external_api_data_proto_rawDesc = []byte{
 	0x74, 0x54, 0x72, 0x61, 0x63, 0x6b, 0x69, 0x6e, 0x67, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73,
 	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1a, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x14, 0x12, 0x12, 0x2f,
 	0x61, 0x70, 0x69, 0x2f, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x74, 0x72, 0x61, 0x63, 0x6b, 0x69, 0x6e,
-	0x67, 0x42, 0x63, 0x0a, 0x21, 0x69, 0x6f, 0x2e, 0x63, 0x68, 0x69, 0x72, 0x70, 0x73, 0x74, 0x61,
-	0x63, 0x6b, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x61, 0x73, 0x2e, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e,
-	0x61, 0x6c, 0x2e, 0x61, 0x70, 0x69, 0x5a, 0x3e, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63,
-	0x6f, 0x6d, 0x2f, 0x69, 0x62, 0x72, 0x61, 0x68, 0x69, 0x6d, 0x6f, 0x7a, 0x65, 0x6b, 0x69, 0x63,
-	0x69, 0x2f, 0x63, 0x68, 0x69, 0x72, 0x70, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2d, 0x61, 0x70, 0x69,
-	0x2f, 0x67, 0x6f, 0x2f, 0x76, 0x34, 0x2f, 0x61, 0x73, 0x2f, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e,
-	0x61, 0x6c, 0x2f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x67, 0x12, 0x6f, 0x0a, 0x15, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x54, 0x65, 0x6d, 0x70, 0x65,
+	0x72, 0x61, 0x74, 0x75, 0x72, 0x65, 0x44, 0x61, 0x74, 0x61, 0x12, 0x1f, 0x2e, 0x61, 0x70, 0x69,
+	0x2e, 0x50, 0x6f, 0x73, 0x74, 0x54, 0x65, 0x6d, 0x70, 0x65, 0x72, 0x61, 0x74, 0x75, 0x72, 0x65,
+	0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x67, 0x6f,
+	0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d,
+	0x70, 0x74, 0x79, 0x22, 0x1d, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x17, 0x22, 0x15, 0x2f, 0x61, 0x70,
+	0x69, 0x2f, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x74, 0x65, 0x6d, 0x70, 0x65, 0x72, 0x61, 0x74, 0x75,
+	0x72, 0x65, 0x12, 0x5a, 0x0a, 0x0e, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x6f, 0x69, 0x6c,
+	0x44, 0x61, 0x74, 0x61, 0x12, 0x18, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x50, 0x6f, 0x73, 0x74, 0x53,
+	0x6f, 0x69, 0x6c, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16,
+	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
+	0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x16, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x10, 0x22, 0x0e,
+	0x2f, 0x61, 0x70, 0x69, 0x2f, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x73, 0x6f, 0x69, 0x6c, 0x42, 0x63,
+	0x0a, 0x21, 0x69, 0x6f, 0x2e, 0x63, 0x68, 0x69, 0x72, 0x70, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2e,
+	0x61, 0x70, 0x69, 0x2e, 0x61, 0x73, 0x2e, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2e,
+	0x61, 0x70, 0x69, 0x5a, 0x3e, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f,
+	0x69, 0x62, 0x72, 0x61, 0x68, 0x69, 0x6d, 0x6f, 0x7a, 0x65, 0x6b, 0x69, 0x63, 0x69, 0x2f, 0x63,
+	0x68, 0x69, 0x72, 0x70, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2d, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6f,
+	0x2f, 0x76, 0x34, 0x2f, 0x61, 0x73, 0x2f, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2f,
+	0x61, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1026,7 +1199,7 @@ func file_as_external_api_data_proto_rawDescGZIP() []byte {
 	return file_as_external_api_data_proto_rawDescData
 }
 
-var file_as_external_api_data_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_as_external_api_data_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_as_external_api_data_proto_goTypes = []interface{}{
 	(*TemperatureData)(nil),             // 0: api.TemperatureData
 	(*ListTemperatureDataRequest)(nil),  // 1: api.ListTemperatureDataRequest
@@ -1040,27 +1213,34 @@ var file_as_external_api_data_proto_goTypes = []interface{}{
 	(*TrackingData)(nil),                // 9: api.TrackingData
 	(*ListTrackingDataRequest)(nil),     // 10: api.ListTrackingDataRequest
 	(*ListTrackingDataResponse)(nil),    // 11: api.ListTrackingDataResponse
-	(*timestamp.Timestamp)(nil),         // 12: google.protobuf.Timestamp
+	(*PostTemperatureDataRequest)(nil),  // 12: api.PostTemperatureDataRequest
+	(*PostSoilDataRequest)(nil),         // 13: api.PostSoilDataRequest
+	(*timestamp.Timestamp)(nil),         // 14: google.protobuf.Timestamp
+	(*empty.Empty)(nil),                 // 15: google.protobuf.Empty
 }
 var file_as_external_api_data_proto_depIdxs = []int32{
-	12, // 0: api.TemperatureData.submission_date:type_name -> google.protobuf.Timestamp
+	14, // 0: api.TemperatureData.submission_date:type_name -> google.protobuf.Timestamp
 	0,  // 1: api.ListTemperatureDataResponse.result:type_name -> api.TemperatureData
-	12, // 2: api.SoilData.submission_date:type_name -> google.protobuf.Timestamp
+	14, // 2: api.SoilData.submission_date:type_name -> google.protobuf.Timestamp
 	3,  // 3: api.ListSoilDataResponse.result:type_name -> api.SoilData
-	12, // 4: api.DistanceData.submission_date:type_name -> google.protobuf.Timestamp
+	14, // 4: api.DistanceData.submission_date:type_name -> google.protobuf.Timestamp
 	6,  // 5: api.ListDistanceDataResponse.result:type_name -> api.DistanceData
-	12, // 6: api.TrackingData.submission_date:type_name -> google.protobuf.Timestamp
+	14, // 6: api.TrackingData.submission_date:type_name -> google.protobuf.Timestamp
 	9,  // 7: api.ListTrackingDataResponse.result:type_name -> api.TrackingData
 	1,  // 8: api.DataService.GetTemperatureData:input_type -> api.ListTemperatureDataRequest
 	4,  // 9: api.DataService.GetSoilData:input_type -> api.ListSoilDataRequest
 	7,  // 10: api.DataService.GetDistanceData:input_type -> api.ListDistanceDataRequest
 	10, // 11: api.DataService.GetTrackingData:input_type -> api.ListTrackingDataRequest
-	2,  // 12: api.DataService.GetTemperatureData:output_type -> api.ListTemperatureDataResponse
-	5,  // 13: api.DataService.GetSoilData:output_type -> api.ListSoilDataResponse
-	8,  // 14: api.DataService.GetDistanceData:output_type -> api.ListDistanceDataResponse
-	11, // 15: api.DataService.GetTrackingData:output_type -> api.ListTrackingDataResponse
-	12, // [12:16] is the sub-list for method output_type
-	8,  // [8:12] is the sub-list for method input_type
+	12, // 12: api.DataService.UploadTemperatureData:input_type -> api.PostTemperatureDataRequest
+	13, // 13: api.DataService.UploadSoilData:input_type -> api.PostSoilDataRequest
+	2,  // 14: api.DataService.GetTemperatureData:output_type -> api.ListTemperatureDataResponse
+	5,  // 15: api.DataService.GetSoilData:output_type -> api.ListSoilDataResponse
+	8,  // 16: api.DataService.GetDistanceData:output_type -> api.ListDistanceDataResponse
+	11, // 17: api.DataService.GetTrackingData:output_type -> api.ListTrackingDataResponse
+	15, // 18: api.DataService.UploadTemperatureData:output_type -> google.protobuf.Empty
+	15, // 19: api.DataService.UploadSoilData:output_type -> google.protobuf.Empty
+	14, // [14:20] is the sub-list for method output_type
+	8,  // [8:14] is the sub-list for method input_type
 	8,  // [8:8] is the sub-list for extension type_name
 	8,  // [8:8] is the sub-list for extension extendee
 	0,  // [0:8] is the sub-list for field type_name
@@ -1216,6 +1396,30 @@ func file_as_external_api_data_proto_init() {
 				return nil
 			}
 		}
+		file_as_external_api_data_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PostTemperatureDataRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_as_external_api_data_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PostSoilDataRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -1223,7 +1427,7 @@ func file_as_external_api_data_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_as_external_api_data_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -1257,6 +1461,8 @@ type DataServiceClient interface {
 	GetDistanceData(ctx context.Context, in *ListDistanceDataRequest, opts ...grpc.CallOption) (*ListDistanceDataResponse, error)
 	// GetTrackingData return list of tracking results
 	GetTrackingData(ctx context.Context, in *ListTrackingDataRequest, opts ...grpc.CallOption) (*ListTrackingDataResponse, error)
+	UploadTemperatureData(ctx context.Context, in *PostTemperatureDataRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	UploadSoilData(ctx context.Context, in *PostSoilDataRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 }
 
 type dataServiceClient struct {
@@ -1303,6 +1509,24 @@ func (c *dataServiceClient) GetTrackingData(ctx context.Context, in *ListTrackin
 	return out, nil
 }
 
+func (c *dataServiceClient) UploadTemperatureData(ctx context.Context, in *PostTemperatureDataRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/api.DataService/UploadTemperatureData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) UploadSoilData(ctx context.Context, in *PostSoilDataRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/api.DataService/UploadSoilData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataServiceServer is the server API for DataService service.
 type DataServiceServer interface {
 	// GetTemperatureData return list of temperature results
@@ -1313,6 +1537,8 @@ type DataServiceServer interface {
 	GetDistanceData(context.Context, *ListDistanceDataRequest) (*ListDistanceDataResponse, error)
 	// GetTrackingData return list of tracking results
 	GetTrackingData(context.Context, *ListTrackingDataRequest) (*ListTrackingDataResponse, error)
+	UploadTemperatureData(context.Context, *PostTemperatureDataRequest) (*empty.Empty, error)
+	UploadSoilData(context.Context, *PostSoilDataRequest) (*empty.Empty, error)
 }
 
 // UnimplementedDataServiceServer can be embedded to have forward compatible implementations.
@@ -1330,6 +1556,12 @@ func (*UnimplementedDataServiceServer) GetDistanceData(context.Context, *ListDis
 }
 func (*UnimplementedDataServiceServer) GetTrackingData(context.Context, *ListTrackingDataRequest) (*ListTrackingDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTrackingData not implemented")
+}
+func (*UnimplementedDataServiceServer) UploadTemperatureData(context.Context, *PostTemperatureDataRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadTemperatureData not implemented")
+}
+func (*UnimplementedDataServiceServer) UploadSoilData(context.Context, *PostSoilDataRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadSoilData not implemented")
 }
 
 func RegisterDataServiceServer(s *grpc.Server, srv DataServiceServer) {
@@ -1408,6 +1640,42 @@ func _DataService_GetTrackingData_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataService_UploadTemperatureData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostTemperatureDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).UploadTemperatureData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.DataService/UploadTemperatureData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).UploadTemperatureData(ctx, req.(*PostTemperatureDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_UploadSoilData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostSoilDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).UploadSoilData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.DataService/UploadSoilData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).UploadSoilData(ctx, req.(*PostSoilDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _DataService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "api.DataService",
 	HandlerType: (*DataServiceServer)(nil),
@@ -1427,6 +1695,14 @@ var _DataService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTrackingData",
 			Handler:    _DataService_GetTrackingData_Handler,
+		},
+		{
+			MethodName: "UploadTemperatureData",
+			Handler:    _DataService_UploadTemperatureData_Handler,
+		},
+		{
+			MethodName: "UploadSoilData",
+			Handler:    _DataService_UploadSoilData_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
