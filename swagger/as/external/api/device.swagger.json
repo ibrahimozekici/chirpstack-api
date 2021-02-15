@@ -110,6 +110,56 @@
         ]
       }
     },
+    "/api/devices/{dev_eui}": {
+      "get": {
+        "summary": "Get returns the device matching the given DevEUI.",
+        "operationId": "Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetDeviceResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dev_eui",
+            "description": "Device EUI (HEX encoded).",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DeviceService"
+        ]
+      },
+      "delete": {
+        "summary": "Delete deletes the device matching the given DevEUI.",
+        "operationId": "Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dev_eui",
+            "description": "Device EUI (HEX encoded).",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DeviceService"
+        ]
+      }
+    },
     "/api/devices/{dev_eui}/activation": {
       "get": {
         "summary": "GetActivation returns the current activation details of the device (OTAA and ABP).",
@@ -288,7 +338,7 @@
         ]
       }
     },
-    "/api/devices/{device.id}": {
+    "/api/devices/{device.dev_eui}": {
       "put": {
         "summary": "Update updates the device matching the given DevEUI.",
         "operationId": "Update",
@@ -302,11 +352,11 @@
         },
         "parameters": [
           {
-            "name": "device.id",
+            "name": "device.dev_eui",
+            "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -415,56 +465,6 @@
             "schema": {
               "$ref": "#/definitions/apiUpdateDeviceKeysRequest"
             }
-          }
-        ],
-        "tags": [
-          "DeviceService"
-        ]
-      }
-    },
-    "/api/devices/{id}": {
-      "get": {
-        "summary": "Get returns the device matching the given DevEUI.",
-        "operationId": "Get",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiGetDeviceResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "description": "Device EUI (HEX encoded).",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "DeviceService"
-        ]
-      },
-      "delete": {
-        "summary": "Delete deletes the device matching the given DevEUI.",
-        "operationId": "Delete",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "description": "Device EUI (HEX encoded).",
-            "in": "path",
-            "required": true,
-            "type": "string"
           }
         ],
         "tags": [

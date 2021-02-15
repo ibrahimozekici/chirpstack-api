@@ -76,15 +76,15 @@ func request_DeviceService_Get_0(ctx context.Context, marshaler runtime.Marshale
 		_   = err
 	)
 
-	val, ok = pathParams["id"]
+	val, ok = pathParams["dev_eui"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "dev_eui")
 	}
 
-	protoReq.Id, err = runtime.String(val)
+	protoReq.DevEui, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "dev_eui", err)
 	}
 
 	msg, err := client.Get(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -103,15 +103,15 @@ func local_request_DeviceService_Get_0(ctx context.Context, marshaler runtime.Ma
 		_   = err
 	)
 
-	val, ok = pathParams["id"]
+	val, ok = pathParams["dev_eui"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "dev_eui")
 	}
 
-	protoReq.Id, err = runtime.String(val)
+	protoReq.DevEui, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "dev_eui", err)
 	}
 
 	msg, err := server.Get(ctx, &protoReq)
@@ -196,15 +196,15 @@ func request_DeviceService_Delete_0(ctx context.Context, marshaler runtime.Marsh
 		_   = err
 	)
 
-	val, ok = pathParams["id"]
+	val, ok = pathParams["dev_eui"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "dev_eui")
 	}
 
-	protoReq.Id, err = runtime.String(val)
+	protoReq.DevEui, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "dev_eui", err)
 	}
 
 	msg, err := client.Delete(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -223,15 +223,15 @@ func local_request_DeviceService_Delete_0(ctx context.Context, marshaler runtime
 		_   = err
 	)
 
-	val, ok = pathParams["id"]
+	val, ok = pathParams["dev_eui"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "dev_eui")
 	}
 
-	protoReq.Id, err = runtime.String(val)
+	protoReq.DevEui, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "dev_eui", err)
 	}
 
 	msg, err := server.Delete(ctx, &protoReq)
@@ -258,15 +258,15 @@ func request_DeviceService_Update_0(ctx context.Context, marshaler runtime.Marsh
 		_   = err
 	)
 
-	val, ok = pathParams["device.id"]
+	val, ok = pathParams["device.dev_eui"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "device.id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "device.dev_eui")
 	}
 
-	err = runtime.PopulateFieldFromPath(&protoReq, "device.id", val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "device.dev_eui", val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "device.id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "device.dev_eui", err)
 	}
 
 	msg, err := client.Update(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -293,15 +293,15 @@ func local_request_DeviceService_Update_0(ctx context.Context, marshaler runtime
 		_   = err
 	)
 
-	val, ok = pathParams["device.id"]
+	val, ok = pathParams["device.dev_eui"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "device.id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "device.dev_eui")
 	}
 
-	err = runtime.PopulateFieldFromPath(&protoReq, "device.id", val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "device.dev_eui", val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "device.id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "device.dev_eui", err)
 	}
 
 	msg, err := server.Update(ctx, &protoReq)
@@ -1525,15 +1525,15 @@ func RegisterDeviceServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 var (
 	pattern_DeviceService_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "devices"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_DeviceService_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "devices", "id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_DeviceService_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "devices", "dev_eui"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_DeviceService_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "devices"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_DeviceService_List2_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "devices"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_DeviceService_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "devices", "id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_DeviceService_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "devices", "dev_eui"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_DeviceService_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "devices", "device.id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_DeviceService_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "devices", "device.dev_eui"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_DeviceService_CreateKeys_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "devices", "device_keys.dev_eui", "keys"}, "", runtime.AssumeColonVerbOpt(true)))
 
