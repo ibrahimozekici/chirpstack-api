@@ -2030,7 +2030,7 @@ var file_as_external_api_device_proto_rawDesc = []byte{
 	0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x21, 0x0a,
 	0x0c, 0x70, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x5f, 0x6a, 0x73, 0x6f, 0x6e, 0x18, 0x02, 0x20,
 	0x01, 0x28, 0x09, 0x52, 0x0b, 0x70, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x4a, 0x53, 0x4f, 0x4e,
-	0x32, 0xd2, 0x0d, 0x0a, 0x0d, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69,
+	0x32, 0x82, 0x0d, 0x0a, 0x0d, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69,
 	0x63, 0x65, 0x12, 0x53, 0x0a, 0x06, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x12, 0x18, 0x2e, 0x61,
 	0x70, 0x69, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x52,
 	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
@@ -2043,11 +2043,6 @@ var file_as_external_api_device_proto_rawDesc = []byte{
 	0xd3, 0xe4, 0x93, 0x02, 0x18, 0x12, 0x16, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x64, 0x65, 0x76, 0x69,
 	0x63, 0x65, 0x73, 0x2f, 0x7b, 0x64, 0x65, 0x76, 0x5f, 0x65, 0x75, 0x69, 0x7d, 0x12, 0x4d, 0x0a,
 	0x04, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x16, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x4c, 0x69, 0x73, 0x74,
-	0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x17, 0x2e,
-	0x61, 0x70, 0x69, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x14, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x0e, 0x12, 0x0c,
-	0x2f, 0x61, 0x70, 0x69, 0x2f, 0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x73, 0x12, 0x4e, 0x0a, 0x05,
-	0x4c, 0x69, 0x73, 0x74, 0x32, 0x12, 0x16, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x4c, 0x69, 0x73, 0x74,
 	0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x17, 0x2e,
 	0x61, 0x70, 0x69, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65,
 	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x14, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x0e, 0x12, 0x0c,
@@ -2219,37 +2214,35 @@ var file_as_external_api_device_proto_depIdxs = []int32{
 	3,  // 17: api.DeviceService.Create:input_type -> api.CreateDeviceRequest
 	4,  // 18: api.DeviceService.Get:input_type -> api.GetDeviceRequest
 	6,  // 19: api.DeviceService.List:input_type -> api.ListDeviceRequest
-	6,  // 20: api.DeviceService.List2:input_type -> api.ListDeviceRequest
-	8,  // 21: api.DeviceService.Delete:input_type -> api.DeleteDeviceRequest
-	9,  // 22: api.DeviceService.Update:input_type -> api.UpdateDeviceRequest
-	10, // 23: api.DeviceService.CreateKeys:input_type -> api.CreateDeviceKeysRequest
-	11, // 24: api.DeviceService.GetKeys:input_type -> api.GetDeviceKeysRequest
-	13, // 25: api.DeviceService.UpdateKeys:input_type -> api.UpdateDeviceKeysRequest
-	14, // 26: api.DeviceService.DeleteKeys:input_type -> api.DeleteDeviceKeysRequest
-	16, // 27: api.DeviceService.Activate:input_type -> api.ActivateDeviceRequest
-	17, // 28: api.DeviceService.Deactivate:input_type -> api.DeactivateDeviceRequest
-	18, // 29: api.DeviceService.GetActivation:input_type -> api.GetDeviceActivationRequest
-	20, // 30: api.DeviceService.GetRandomDevAddr:input_type -> api.GetRandomDevAddrRequest
-	22, // 31: api.DeviceService.StreamFrameLogs:input_type -> api.StreamDeviceFrameLogsRequest
-	24, // 32: api.DeviceService.StreamEventLogs:input_type -> api.StreamDeviceEventLogsRequest
-	33, // 33: api.DeviceService.Create:output_type -> google.protobuf.Empty
-	5,  // 34: api.DeviceService.Get:output_type -> api.GetDeviceResponse
-	7,  // 35: api.DeviceService.List:output_type -> api.ListDeviceResponse
-	7,  // 36: api.DeviceService.List2:output_type -> api.ListDeviceResponse
-	33, // 37: api.DeviceService.Delete:output_type -> google.protobuf.Empty
-	33, // 38: api.DeviceService.Update:output_type -> google.protobuf.Empty
-	33, // 39: api.DeviceService.CreateKeys:output_type -> google.protobuf.Empty
-	12, // 40: api.DeviceService.GetKeys:output_type -> api.GetDeviceKeysResponse
-	33, // 41: api.DeviceService.UpdateKeys:output_type -> google.protobuf.Empty
-	33, // 42: api.DeviceService.DeleteKeys:output_type -> google.protobuf.Empty
-	33, // 43: api.DeviceService.Activate:output_type -> google.protobuf.Empty
-	33, // 44: api.DeviceService.Deactivate:output_type -> google.protobuf.Empty
-	19, // 45: api.DeviceService.GetActivation:output_type -> api.GetDeviceActivationResponse
-	21, // 46: api.DeviceService.GetRandomDevAddr:output_type -> api.GetRandomDevAddrResponse
-	23, // 47: api.DeviceService.StreamFrameLogs:output_type -> api.StreamDeviceFrameLogsResponse
-	25, // 48: api.DeviceService.StreamEventLogs:output_type -> api.StreamDeviceEventLogsResponse
-	33, // [33:49] is the sub-list for method output_type
-	17, // [17:33] is the sub-list for method input_type
+	8,  // 20: api.DeviceService.Delete:input_type -> api.DeleteDeviceRequest
+	9,  // 21: api.DeviceService.Update:input_type -> api.UpdateDeviceRequest
+	10, // 22: api.DeviceService.CreateKeys:input_type -> api.CreateDeviceKeysRequest
+	11, // 23: api.DeviceService.GetKeys:input_type -> api.GetDeviceKeysRequest
+	13, // 24: api.DeviceService.UpdateKeys:input_type -> api.UpdateDeviceKeysRequest
+	14, // 25: api.DeviceService.DeleteKeys:input_type -> api.DeleteDeviceKeysRequest
+	16, // 26: api.DeviceService.Activate:input_type -> api.ActivateDeviceRequest
+	17, // 27: api.DeviceService.Deactivate:input_type -> api.DeactivateDeviceRequest
+	18, // 28: api.DeviceService.GetActivation:input_type -> api.GetDeviceActivationRequest
+	20, // 29: api.DeviceService.GetRandomDevAddr:input_type -> api.GetRandomDevAddrRequest
+	22, // 30: api.DeviceService.StreamFrameLogs:input_type -> api.StreamDeviceFrameLogsRequest
+	24, // 31: api.DeviceService.StreamEventLogs:input_type -> api.StreamDeviceEventLogsRequest
+	33, // 32: api.DeviceService.Create:output_type -> google.protobuf.Empty
+	5,  // 33: api.DeviceService.Get:output_type -> api.GetDeviceResponse
+	7,  // 34: api.DeviceService.List:output_type -> api.ListDeviceResponse
+	33, // 35: api.DeviceService.Delete:output_type -> google.protobuf.Empty
+	33, // 36: api.DeviceService.Update:output_type -> google.protobuf.Empty
+	33, // 37: api.DeviceService.CreateKeys:output_type -> google.protobuf.Empty
+	12, // 38: api.DeviceService.GetKeys:output_type -> api.GetDeviceKeysResponse
+	33, // 39: api.DeviceService.UpdateKeys:output_type -> google.protobuf.Empty
+	33, // 40: api.DeviceService.DeleteKeys:output_type -> google.protobuf.Empty
+	33, // 41: api.DeviceService.Activate:output_type -> google.protobuf.Empty
+	33, // 42: api.DeviceService.Deactivate:output_type -> google.protobuf.Empty
+	19, // 43: api.DeviceService.GetActivation:output_type -> api.GetDeviceActivationResponse
+	21, // 44: api.DeviceService.GetRandomDevAddr:output_type -> api.GetRandomDevAddrResponse
+	23, // 45: api.DeviceService.StreamFrameLogs:output_type -> api.StreamDeviceFrameLogsResponse
+	25, // 46: api.DeviceService.StreamEventLogs:output_type -> api.StreamDeviceEventLogsResponse
+	32, // [32:47] is the sub-list for method output_type
+	17, // [17:32] is the sub-list for method input_type
 	17, // [17:17] is the sub-list for extension type_name
 	17, // [17:17] is the sub-list for extension extendee
 	0,  // [0:17] is the sub-list for field type_name
@@ -2617,7 +2610,6 @@ type DeviceServiceClient interface {
 	Get(ctx context.Context, in *GetDeviceRequest, opts ...grpc.CallOption) (*GetDeviceResponse, error)
 	// List returns the available devices.
 	List(ctx context.Context, in *ListDeviceRequest, opts ...grpc.CallOption) (*ListDeviceResponse, error)
-	List2(ctx context.Context, in *ListDeviceRequest, opts ...grpc.CallOption) (*ListDeviceResponse, error)
 	// Delete deletes the device matching the given DevEUI.
 	Delete(ctx context.Context, in *DeleteDeviceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Update updates the device matching the given DevEUI.
@@ -2677,15 +2669,6 @@ func (c *deviceServiceClient) Get(ctx context.Context, in *GetDeviceRequest, opt
 func (c *deviceServiceClient) List(ctx context.Context, in *ListDeviceRequest, opts ...grpc.CallOption) (*ListDeviceResponse, error) {
 	out := new(ListDeviceResponse)
 	err := c.cc.Invoke(ctx, "/api.DeviceService/List", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *deviceServiceClient) List2(ctx context.Context, in *ListDeviceRequest, opts ...grpc.CallOption) (*ListDeviceResponse, error) {
-	out := new(ListDeviceResponse)
-	err := c.cc.Invoke(ctx, "/api.DeviceService/List2", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2854,7 +2837,6 @@ type DeviceServiceServer interface {
 	Get(context.Context, *GetDeviceRequest) (*GetDeviceResponse, error)
 	// List returns the available devices.
 	List(context.Context, *ListDeviceRequest) (*ListDeviceResponse, error)
-	List2(context.Context, *ListDeviceRequest) (*ListDeviceResponse, error)
 	// Delete deletes the device matching the given DevEUI.
 	Delete(context.Context, *DeleteDeviceRequest) (*empty.Empty, error)
 	// Update updates the device matching the given DevEUI.
@@ -2897,9 +2879,6 @@ func (*UnimplementedDeviceServiceServer) Get(context.Context, *GetDeviceRequest)
 }
 func (*UnimplementedDeviceServiceServer) List(context.Context, *ListDeviceRequest) (*ListDeviceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
-func (*UnimplementedDeviceServiceServer) List2(context.Context, *ListDeviceRequest) (*ListDeviceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List2 not implemented")
 }
 func (*UnimplementedDeviceServiceServer) Delete(context.Context, *DeleteDeviceRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -2992,24 +2971,6 @@ func _DeviceService_List_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DeviceServiceServer).List(ctx, req.(*ListDeviceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DeviceService_List2_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListDeviceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DeviceServiceServer).List2(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.DeviceService/List2",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceServiceServer).List2(ctx, req.(*ListDeviceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3251,10 +3212,6 @@ var _DeviceService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "List",
 			Handler:    _DeviceService_List_Handler,
-		},
-		{
-			MethodName: "List2",
-			Handler:    _DeviceService_List2_Handler,
 		},
 		{
 			MethodName: "Delete",

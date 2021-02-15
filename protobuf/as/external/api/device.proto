@@ -36,12 +36,6 @@ service DeviceService {
         };
     }
 
-    rpc List2(ListDeviceRequest) returns (ListDeviceResponse) {
-        option (google.api.http) = {
-            get: "/api/devices"
-        };
-    }
-
     // Delete deletes the device matching the given DevEUI.
     rpc Delete(DeleteDeviceRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {

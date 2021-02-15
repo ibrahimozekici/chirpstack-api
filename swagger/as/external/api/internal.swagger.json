@@ -181,7 +181,8 @@
     },
     "/api/internal/login": {
       "post": {
-        "operationId": "Login2",
+        "summary": "Log in a user",
+        "operationId": "Login",
         "responses": {
           "200": {
             "description": "A successful response.",
