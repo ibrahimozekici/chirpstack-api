@@ -543,16 +543,16 @@
     "apiLandingApplication": {
       "type": "object",
       "properties": {
-        "id": {
+        "application_id": {
           "type": "string",
           "format": "int64",
           "description": "Application ID."
         },
-        "name": {
+        "application_name": {
           "type": "string",
           "description": "Name of the application."
         },
-        "description": {
+        "application_description": {
           "type": "string",
           "description": "Description of the application."
         },
@@ -572,50 +572,50 @@
     "apiLandingDevice": {
       "type": "object",
       "properties": {
-        "dev_eui": {
+        "device_dev_eui": {
           "type": "string",
           "description": "Device EUI (HEX encoded)."
         },
-        "created_at": {
+        "device_created_at": {
           "type": "string",
           "title": "device_created_at"
         },
-        "updated_at": {
+        "device_updated_at": {
           "type": "string",
           "title": "device_updated_at"
         },
-        "profile_id": {
+        "device_profile_id": {
           "type": "string",
           "description": "Device-profile ID attached to the device."
         },
-        "name": {
+        "device_name": {
           "type": "string",
           "description": "Name of the device."
         },
-        "description": {
+        "device_description": {
           "type": "string",
           "description": "Description of the device."
         },
-        "last_seen_at": {
+        "device_last_seen_at": {
           "type": "string",
           "title": "device_last_seen_at"
         },
-        "data_time": {
+        "device_data_time": {
           "type": "string",
           "format": "int64",
           "title": "data time"
         },
-        "lat": {
+        "device_lat": {
           "type": "number",
           "format": "double",
           "title": "device lat value"
         },
-        "lng": {
+        "device_lng": {
           "type": "number",
           "format": "double",
           "title": "device lng value"
         },
-        "id": {
+        "device_id": {
           "type": "string",
           "format": "int64"
         },
@@ -631,16 +631,16 @@
     "apiLandingOrganization": {
       "type": "object",
       "properties": {
-        "id": {
+        "organization_id": {
           "type": "string",
           "format": "int64",
           "description": "Organization ID."
         },
-        "name": {
+        "organization_name": {
           "type": "string",
           "description": "Organization name."
         },
-        "display_name": {
+        "organization_display_name": {
           "type": "string",
           "description": "Organization display name."
         },
