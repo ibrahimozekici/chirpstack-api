@@ -78,6 +78,12 @@ message User {
 
 	// Optional note to store with the user.
 	string note = 7;
+
+	string web_key = 8 [json_name = "web_key"];
+
+	string ios_key = 9 [json_name = "ios_key"];
+
+	string android_key = 10 [json_name = "android_key"];
 }
 
 message UserListItem {
@@ -102,6 +108,12 @@ message UserListItem {
 
 	// Last update timestamp.
 	google.protobuf.Timestamp updated_at = 9;
+
+	string web_key = 10 [json_name = "web_key"];
+
+	string ios_key = 11 [json_name = "ios_key"];
+
+	string android_key = 12 [json_name = "android_key"];
 }
 
 message UserOrganization {

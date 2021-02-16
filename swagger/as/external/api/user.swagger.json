@@ -318,6 +318,15 @@
         "note": {
           "type": "string",
           "description": "Optional note to store with the user."
+        },
+        "web_key": {
+          "type": "string"
+        },
+        "ios_key": {
+          "type": "string"
+        },
+        "android_key": {
+          "type": "string"
         }
       }
     },
@@ -357,6 +366,15 @@
           "type": "string",
           "format": "date-time",
           "description": "Last update timestamp."
+        },
+        "web_key": {
+          "type": "string"
+        },
+        "ios_key": {
+          "type": "string"
+        },
+        "android_key": {
+          "type": "string"
         }
       }
     },
