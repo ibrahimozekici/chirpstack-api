@@ -869,9 +869,12 @@ type PostTemperatureDataRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	DevEui      string  `protobuf:"bytes,1,opt,name=dev_eui,json=devEUI,proto3" json:"dev_eui,omitempty"`
+	// Search on name or DevEUI.
+	DevEui string `protobuf:"bytes,1,opt,name=dev_eui,json=devEUI,proto3" json:"dev_eui,omitempty"`
+	// temperature temperature
 	Temperature float64 `protobuf:"fixed64,2,opt,name=temperature,proto3" json:"temperature,omitempty"`
-	Humadity    float64 `protobuf:"fixed64,3,opt,name=humadity,proto3" json:"humadity,omitempty"`
+	// humadity humadity
+	Humadity float64 `protobuf:"fixed64,3,opt,name=humadity,proto3" json:"humadity,omitempty"`
 }
 
 func (x *PostTemperatureDataRequest) Reset() {
@@ -932,10 +935,15 @@ type PostSoilDataRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	DevEui      string  `protobuf:"bytes,1,opt,name=dev_eui,json=devEUI,proto3" json:"dev_eui,omitempty"`
-	TempC       float64 `protobuf:"fixed64,2,opt,name=temp_c,proto3" json:"temp_c,omitempty"`
-	WaterSoil   float64 `protobuf:"fixed64,3,opt,name=water_soil,proto3" json:"water_soil,omitempty"`
-	TempSoil    float64 `protobuf:"fixed64,4,opt,name=temp_soil,proto3" json:"temp_soil,omitempty"`
+	// Search on name or DevEUI.
+	DevEui string `protobuf:"bytes,1,opt,name=dev_eui,json=devEUI,proto3" json:"dev_eui,omitempty"`
+	// temp_c temp_c
+	TempC float64 `protobuf:"fixed64,2,opt,name=temp_c,proto3" json:"temp_c,omitempty"`
+	// water_soil water_soil
+	WaterSoil float64 `protobuf:"fixed64,3,opt,name=water_soil,proto3" json:"water_soil,omitempty"`
+	// temp_soil temp_soil
+	TempSoil float64 `protobuf:"fixed64,4,opt,name=temp_soil,proto3" json:"temp_soil,omitempty"`
+	// conduct_soil conduct_soil
 	ConductSoil float64 `protobuf:"fixed64,5,opt,name=conduct_soil,proto3" json:"conduct_soil,omitempty"`
 }
 
@@ -1461,7 +1469,9 @@ type DataServiceClient interface {
 	GetDistanceData(ctx context.Context, in *ListDistanceDataRequest, opts ...grpc.CallOption) (*ListDistanceDataResponse, error)
 	// GetTrackingData return list of tracking results
 	GetTrackingData(ctx context.Context, in *ListTrackingDataRequest, opts ...grpc.CallOption) (*ListTrackingDataResponse, error)
+	// UploadTemperatureData post temperature data
 	UploadTemperatureData(ctx context.Context, in *PostTemperatureDataRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	// UploadSoilData post soil data
 	UploadSoilData(ctx context.Context, in *PostSoilDataRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 }
 
@@ -1537,7 +1547,9 @@ type DataServiceServer interface {
 	GetDistanceData(context.Context, *ListDistanceDataRequest) (*ListDistanceDataResponse, error)
 	// GetTrackingData return list of tracking results
 	GetTrackingData(context.Context, *ListTrackingDataRequest) (*ListTrackingDataResponse, error)
+	// UploadTemperatureData post temperature data
 	UploadTemperatureData(context.Context, *PostTemperatureDataRequest) (*empty.Empty, error)
+	// UploadSoilData post soil data
 	UploadSoilData(context.Context, *PostSoilDataRequest) (*empty.Empty, error)
 }
 

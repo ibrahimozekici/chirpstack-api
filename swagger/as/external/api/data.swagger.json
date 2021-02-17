@@ -98,6 +98,7 @@
         ]
       },
       "post": {
+        "summary": "UploadSoilData post soil data",
         "operationId": "UploadSoilData",
         "responses": {
           "200": {
@@ -154,6 +155,7 @@
         ]
       },
       "post": {
+        "summary": "UploadTemperatureData post temperature data",
         "operationId": "UploadTemperatureData",
         "responses": {
           "200": {

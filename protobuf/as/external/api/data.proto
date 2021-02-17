@@ -39,12 +39,14 @@ service DataService {
         };
     }
 
+    // UploadTemperatureData post temperature data
     rpc UploadTemperatureData (PostTemperatureDataRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/api/data/temperature"
         };
     }
 
+    // UploadSoilData post soil data
     rpc UploadSoilData (PostSoilDataRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/api/data/soil"
@@ -204,18 +206,29 @@ message ListTrackingDataResponse {
 }
 
 message PostTemperatureDataRequest {
+    // Search on name or DevEUI.
     string dev_eui = 1 [json_name = "devEUI"];
 
+    // temperature temperature 
     double temperature = 2 [json_name = "temperature"];
 
+    // humadity humadity
     double humadity = 3 [json_name = "humadity"];
 }
 
 message PostSoilDataRequest {
+    // Search on name or DevEUI.
     string dev_eui = 1 [json_name = "devEUI"];
 
+    // temp_c temp_c
     double temp_c = 2 [json_name = "temp_c"];
+
+    // water_soil water_soil
     double water_soil = 3 [json_name = "water_soil"];
+
+    // temp_soil temp_soil
     double temp_soil = 4 [json_name = "temp_soil"];
+
+    // conduct_soil conduct_soil
     double conduct_soil = 5 [json_name = "conduct_soil"];
 }
