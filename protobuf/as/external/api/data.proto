@@ -43,6 +43,7 @@ service DataService {
     rpc UploadTemperatureData (PostTemperatureDataRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/api/data/temperature"
+            body: "*"
         };
     }
 
@@ -50,6 +51,7 @@ service DataService {
     rpc UploadSoilData (PostSoilDataRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/api/data/soil"
+            body: "*"
         };
     }
 

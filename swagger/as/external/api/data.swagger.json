@@ -108,6 +108,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiPostSoilDataRequest"
+            }
+          }
+        ],
         "tags": [
           "DataService"
         ]
@@ -165,6 +175,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiPostTemperatureDataRequest"
+            }
+          }
+        ],
         "tags": [
           "DataService"
         ]
@@ -297,6 +317,54 @@
             "$ref": "#/definitions/apiTrackingData"
           },
           "description": "Devices within this result-set."
+        }
+      }
+    },
+    "apiPostSoilDataRequest": {
+      "type": "object",
+      "properties": {
+        "devEUI": {
+          "type": "string",
+          "description": "Search on name or DevEUI."
+        },
+        "temp_c": {
+          "type": "number",
+          "format": "double",
+          "title": "temp_c temp_c"
+        },
+        "water_soil": {
+          "type": "number",
+          "format": "double",
+          "title": "water_soil water_soil"
+        },
+        "temp_soil": {
+          "type": "number",
+          "format": "double",
+          "title": "temp_soil temp_soil"
+        },
+        "conduct_soil": {
+          "type": "number",
+          "format": "double",
+          "title": "conduct_soil conduct_soil"
+        }
+      }
+    },
+    "apiPostTemperatureDataRequest": {
+      "type": "object",
+      "properties": {
+        "devEUI": {
+          "type": "string",
+          "description": "Search on name or DevEUI."
+        },
+        "temperature": {
+          "type": "number",
+          "format": "double",
+          "title": "temperature temperature"
+        },
+        "humadity": {
+          "type": "number",
+          "format": "double",
+          "title": "humadity humadity"
         }
       }
     },
