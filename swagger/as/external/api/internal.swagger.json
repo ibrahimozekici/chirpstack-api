@@ -625,6 +625,33 @@
         }
       }
     },
+    "apiLandingGateway": {
+      "type": "object",
+      "properties": {
+        "gateway_id": {
+          "type": "string",
+          "description": "Gateway ID (HEX encoded)."
+        },
+        "gateway_name": {
+          "type": "string",
+          "description": "Gateway name."
+        },
+        "gateway_description": {
+          "type": "string",
+          "description": "Gateway description."
+        },
+        "gateway_lat": {
+          "type": "number",
+          "format": "double",
+          "description": "Gateway location."
+        },
+        "gateway_lng": {
+          "type": "number",
+          "format": "double",
+          "description": "Gateway location."
+        }
+      }
+    },
     "apiLandingOrganization": {
       "type": "object",
       "properties": {
@@ -647,6 +674,13 @@
             "$ref": "#/definitions/apiLandingApplication"
           },
           "title": "Organization Applications"
+        },
+        "gateways": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiLandingGateway"
+          },
+          "title": "gateways gateways"
         }
       }
     },
