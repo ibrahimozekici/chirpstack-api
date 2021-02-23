@@ -11,7 +11,7 @@ import "google/protobuf/empty.proto";
 
 service AlarmService {
     // Create creates the alarm
-    rpc Create(CreateAlarmRequest) returns (google.protobuf.Empty) {
+    rpc Create(CreateAlarmRequest) returns (GetAlarmResponse) {
         option(google.api.http) = {
             post: "/api/alarm"
             body: "*"

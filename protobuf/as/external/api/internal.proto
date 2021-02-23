@@ -220,26 +220,6 @@ message LandingOrganization {
     
     // Organization Applications
     repeated LandingApplication applications = 4 [json_name = "applications"];
-
-    // gateways gateways
-    repeated LandingGateway gateways = 5 [json_name = "gateways"];
-}
-
-message LandingGateway {
-    // Gateway ID (HEX encoded).
-	string gateway_id = 1 [json_name = "gateway_id"];
-
-	// Gateway name.
-	string gateway_name = 2 [json_name = "gateway_name"];
-	
-	// Gateway description.
-	string gateway_description = 3 [json_name = "gateway_description"];
-
-	// Gateway location.
-	double gateway_lat = 4 [json_name = "gateway_lat"];
-
-    // Gateway location.
-	double gateway_lng = 5 [json_name = "gateway_lng"];
 }
 message LandingApplication {
     // Application ID.
