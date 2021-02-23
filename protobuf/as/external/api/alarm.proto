@@ -69,8 +69,6 @@ message Alarm {
     // Target of alarm
     string section = 7 [json_name = "section"];
 
-    bool active = 9 [json_name = "active"];
-
     google.protobuf.Timestamp submission_date = 10 [json_name = "submission_date"];
 }
 

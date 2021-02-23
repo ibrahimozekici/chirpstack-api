@@ -198,10 +198,6 @@
           "type": "string",
           "title": "Target of alarm"
         },
-        "active": {
-          "type": "boolean",
-          "format": "boolean"
-        },
         "submission_date": {
           "type": "string",
           "format": "date-time"
