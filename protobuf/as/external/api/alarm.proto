@@ -11,7 +11,7 @@ import "google/protobuf/empty.proto";
 
 service AlarmService {
     // Create creates the alarm
-    rpc Create(CreateAlarmRequest) returns (GetAlarmResponse) {
+    rpc Create(CreateAlarmRequest) returns (CreateAlarmResponse) {
         option(google.api.http) = {
             post: "/api/alarm"
             body: "*"
@@ -72,6 +72,9 @@ message Alarm {
     google.protobuf.Timestamp submission_date = 10 [json_name = "submission_date"];
 }
 
+message CreateAlarmResponse {
+    repeated Alarm alarm = 1;
+}
 message CreateAlarmRequest {
     repeated Alarm create_alarm = 1;
 }

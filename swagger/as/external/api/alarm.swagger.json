@@ -62,7 +62,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiGetAlarmResponse"
+              "$ref": "#/definitions/apiCreateAlarmResponse"
             }
           }
         },
@@ -208,6 +208,17 @@
       "type": "object",
       "properties": {
         "createAlarm": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAlarm"
+          }
+        }
+      }
+    },
+    "apiCreateAlarmResponse": {
+      "type": "object",
+      "properties": {
+        "alarm": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/apiAlarm"
