@@ -2033,8 +2033,8 @@ var file_as_external_api_device_proto_rawDesc = []byte{
 	0x32, 0x82, 0x0d, 0x0a, 0x0d, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69,
 	0x63, 0x65, 0x12, 0x53, 0x0a, 0x06, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x12, 0x18, 0x2e, 0x61,
 	0x70, 0x69, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x17,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x47, 0x65, 0x74,
+	0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x17,
 	0x82, 0xd3, 0xe4, 0x93, 0x02, 0x11, 0x22, 0x0c, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x64, 0x65, 0x76,
 	0x69, 0x63, 0x65, 0x73, 0x3a, 0x01, 0x2a, 0x12, 0x54, 0x0a, 0x03, 0x47, 0x65, 0x74, 0x12, 0x15,
 	0x2e, 0x61, 0x70, 0x69, 0x2e, 0x47, 0x65, 0x74, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65,
@@ -2226,7 +2226,7 @@ var file_as_external_api_device_proto_depIdxs = []int32{
 	20, // 29: api.DeviceService.GetRandomDevAddr:input_type -> api.GetRandomDevAddrRequest
 	22, // 30: api.DeviceService.StreamFrameLogs:input_type -> api.StreamDeviceFrameLogsRequest
 	24, // 31: api.DeviceService.StreamEventLogs:input_type -> api.StreamDeviceEventLogsRequest
-	33, // 32: api.DeviceService.Create:output_type -> google.protobuf.Empty
+	5,  // 32: api.DeviceService.Create:output_type -> api.GetDeviceResponse
 	5,  // 33: api.DeviceService.Get:output_type -> api.GetDeviceResponse
 	7,  // 34: api.DeviceService.List:output_type -> api.ListDeviceResponse
 	33, // 35: api.DeviceService.Delete:output_type -> google.protobuf.Empty
@@ -2605,7 +2605,7 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type DeviceServiceClient interface {
 	// Create creates the given device.
-	Create(ctx context.Context, in *CreateDeviceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	Create(ctx context.Context, in *CreateDeviceRequest, opts ...grpc.CallOption) (*GetDeviceResponse, error)
 	// Get returns the device matching the given DevEUI.
 	Get(ctx context.Context, in *GetDeviceRequest, opts ...grpc.CallOption) (*GetDeviceResponse, error)
 	// List returns the available devices.
@@ -2648,8 +2648,8 @@ func NewDeviceServiceClient(cc grpc.ClientConnInterface) DeviceServiceClient {
 	return &deviceServiceClient{cc}
 }
 
-func (c *deviceServiceClient) Create(ctx context.Context, in *CreateDeviceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
+func (c *deviceServiceClient) Create(ctx context.Context, in *CreateDeviceRequest, opts ...grpc.CallOption) (*GetDeviceResponse, error) {
+	out := new(GetDeviceResponse)
 	err := c.cc.Invoke(ctx, "/api.DeviceService/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2832,7 +2832,7 @@ func (x *deviceServiceStreamEventLogsClient) Recv() (*StreamDeviceEventLogsRespo
 // DeviceServiceServer is the server API for DeviceService service.
 type DeviceServiceServer interface {
 	// Create creates the given device.
-	Create(context.Context, *CreateDeviceRequest) (*empty.Empty, error)
+	Create(context.Context, *CreateDeviceRequest) (*GetDeviceResponse, error)
 	// Get returns the device matching the given DevEUI.
 	Get(context.Context, *GetDeviceRequest) (*GetDeviceResponse, error)
 	// List returns the available devices.
@@ -2871,7 +2871,7 @@ type DeviceServiceServer interface {
 type UnimplementedDeviceServiceServer struct {
 }
 
-func (*UnimplementedDeviceServiceServer) Create(context.Context, *CreateDeviceRequest) (*empty.Empty, error) {
+func (*UnimplementedDeviceServiceServer) Create(context.Context, *CreateDeviceRequest) (*GetDeviceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
 func (*UnimplementedDeviceServiceServer) Get(context.Context, *GetDeviceRequest) (*GetDeviceResponse, error) {
