@@ -198,14 +198,26 @@ message GetLandingResponse {
     
     // E-mail of the user.
     string email = 2;
+
+    // User web key
+	string web_key = 3 [json_name = "web_key"];
+
+	// User ios key
+	string ios_key = 4 [json_name = "ios_key"];
+
+	// User android key
+	string android_key = 5 [json_name = "android_key"];
+
+	// Phone number of User
+	string phone_number = 6 [json_name = "phone_number"];
     
     //  Organization List
     // repeated LandingOrganization organizations = 3 [json_name = "organizations"];
-    LandingOrganizationList organizationList = 3;
+    LandingOrganizationList organizationList = 7;
 }
 
 message LandingOrganizationList {
-    repeated LandingOrganization organizations = 3 [json_name = "organizations"];
+    repeated LandingOrganization organizations = 1 [json_name = "organizations"];
 }
 
 message LandingOrganization {

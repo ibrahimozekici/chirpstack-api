@@ -440,6 +440,22 @@
           "type": "string",
           "description": "E-mail of the user."
         },
+        "web_key": {
+          "type": "string",
+          "title": "User web key"
+        },
+        "ios_key": {
+          "type": "string",
+          "title": "User ios key"
+        },
+        "android_key": {
+          "type": "string",
+          "title": "User android key"
+        },
+        "phone_number": {
+          "type": "string",
+          "title": "Phone number of User"
+        },
         "organizationList": {
           "$ref": "#/definitions/apiLandingOrganizationList",
           "title": "Organization List\nrepeated LandingOrganization organizations = 3 [json_name = \"organizations\"];"
