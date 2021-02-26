@@ -199,19 +199,19 @@ message GetLandingResponse {
     // E-mail of the user.
     string email = 2;
 
-    bool is_active = 3;
+    bool is_active = 3 [json_name = "is_active"];
 
     // User web key
-	string web_key = 4;
+	string web_key = 4 [json_name = "web_key"];
 
 	// User ios key
-	string ios_key = 5;
+	string ios_key = 5 [json_name = "ios_key"];
 
 	// User android key
-	string android_key = 6;
+	string android_key = 6 [json_name = "android_key"];
 
 	// Phone number of User
-	string phone_number = 7;
+	string phone_number = 7 [json_name = "phone_number"];
     
     LandingOrganizationList organizationList = 8;
 }

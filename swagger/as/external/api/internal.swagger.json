@@ -440,23 +440,23 @@
           "type": "string",
           "description": "E-mail of the user."
         },
-        "isActive": {
+        "is_active": {
           "type": "boolean",
           "format": "boolean"
         },
-        "webKey": {
+        "web_key": {
           "type": "string",
           "title": "User web key"
         },
-        "iosKey": {
+        "ios_key": {
           "type": "string",
           "title": "User ios key"
         },
-        "androidKey": {
+        "android_key": {
           "type": "string",
           "title": "User android key"
         },
-        "phoneNumber": {
+        "phone_number": {
           "type": "string",
           "title": "Phone number of User"
         },
