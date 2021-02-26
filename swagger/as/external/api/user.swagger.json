@@ -320,13 +320,20 @@
           "description": "Optional note to store with the user."
         },
         "web_key": {
-          "type": "string"
+          "type": "string",
+          "title": "User web key"
         },
         "ios_key": {
-          "type": "string"
+          "type": "string",
+          "title": "User ios key"
         },
         "android_key": {
-          "type": "string"
+          "type": "string",
+          "title": "User android key"
+        },
+        "phone_number": {
+          "type": "string",
+          "title": "Phone number of User"
         }
       }
     },
@@ -368,13 +375,20 @@
           "description": "Last update timestamp."
         },
         "web_key": {
-          "type": "string"
+          "type": "string",
+          "title": "User web key"
         },
         "ios_key": {
-          "type": "string"
+          "type": "string",
+          "title": "User ios key"
         },
         "android_key": {
-          "type": "string"
+          "type": "string",
+          "title": "User android key"
+        },
+        "phone_number": {
+          "type": "string",
+          "title": "Phone number of User"
         }
       }
     },
