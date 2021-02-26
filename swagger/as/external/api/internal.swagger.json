@@ -440,25 +440,28 @@
           "type": "string",
           "description": "E-mail of the user."
         },
-        "web_key": {
+        "isActive": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "webKey": {
           "type": "string",
           "title": "User web key"
         },
-        "ios_key": {
+        "iosKey": {
           "type": "string",
           "title": "User ios key"
         },
-        "android_key": {
+        "androidKey": {
           "type": "string",
           "title": "User android key"
         },
-        "phone_number": {
+        "phoneNumber": {
           "type": "string",
           "title": "Phone number of User"
         },
         "organizationList": {
-          "$ref": "#/definitions/apiLandingOrganizationList",
-          "title": "Organization List\nrepeated LandingOrganization organizations = 3 [json_name = \"organizations\"];"
+          "$ref": "#/definitions/apiLandingOrganizationList"
         }
       }
     },
