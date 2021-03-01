@@ -238,7 +238,7 @@ func request_AlarmService_Delete_0(ctx context.Context, marshaler runtime.Marsha
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "alarm_id")
 	}
 
-	protoReq.AlarmId, err = runtime.String(val)
+	protoReq.AlarmId, err = runtime.StringSlice(val, ",")
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "alarm_id", err)
@@ -265,7 +265,7 @@ func local_request_AlarmService_Delete_0(ctx context.Context, marshaler runtime.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "alarm_id")
 	}
 
-	protoReq.AlarmId, err = runtime.String(val)
+	protoReq.AlarmId, err = runtime.StringSlice(val, ",")
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "alarm_id", err)

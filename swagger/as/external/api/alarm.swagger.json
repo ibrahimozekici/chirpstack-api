@@ -123,7 +123,12 @@
             "description": "Alarm Id (HEX encoded).",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "minItems": 1
           }
         ],
         "tags": [

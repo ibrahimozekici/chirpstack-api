@@ -91,7 +91,7 @@ message GetAlarmResponse {
 
 message DeleteAlarmRequest {
     // Alarm Id (HEX encoded).
-    string alarm_id = 1 [json_name = "alarmID"];
+    repeated string alarm_id = 1 [json_name = "alarmID"];
 }
 
 message UpdateAlarmRequest {
