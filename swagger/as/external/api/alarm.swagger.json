@@ -56,13 +56,13 @@
         ]
       },
       "post": {
-        "summary": "Create creates the alarm",
-        "operationId": "Create",
+        "summary": "Delete deletes the alarm matching the given alarm_id.",
+        "operationId": "Delete",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiCreateAlarmResponse"
+              "properties": {}
             }
           }
         },
@@ -72,7 +72,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiCreateAlarmRequest"
+              "$ref": "#/definitions/apiDeleteAlarmRequest"
             }
           }
         ],
@@ -100,35 +100,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          }
-        ],
-        "tags": [
-          "AlarmService"
-        ]
-      },
-      "delete": {
-        "summary": "Delete deletes the alarm matching the given alarm_id.",
-        "operationId": "Delete",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "alarm_id",
-            "description": "Alarm Id (HEX encoded).",
-            "in": "path",
-            "required": true,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv",
-            "minItems": 1
           }
         ],
         "tags": [
@@ -228,6 +199,18 @@
           "items": {
             "$ref": "#/definitions/apiAlarm"
           }
+        }
+      }
+    },
+    "apiDeleteAlarmRequest": {
+      "type": "object",
+      "properties": {
+        "alarmID": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Alarm Id (HEX encoded)."
         }
       }
     },
