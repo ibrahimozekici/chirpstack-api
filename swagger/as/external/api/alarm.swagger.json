@@ -56,6 +56,33 @@
         ]
       },
       "post": {
+        "summary": "Create creates the alarm",
+        "operationId": "Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiCreateAlarmResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateAlarmRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
+    "/api/alarm/delete": {
+      "post": {
         "summary": "Delete deletes the alarm matching the given alarm_id.",
         "operationId": "Delete",
         "responses": {
