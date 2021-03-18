@@ -214,6 +214,22 @@ message GetLandingResponse {
 	string phone_number = 7 [json_name = "phone_number"];
     
     LandingOrganizationList organizationList = 8;
+    
+}
+
+message LandingZoneList {
+    repeated LandingZone zones = 1 [json_name = "zones"];
+}
+
+message LandingZone {
+    int64 zone_id = 1 [json_name = "zone_id"];
+
+    string zone_name = 2 [json_name = "zone_name"];
+
+    int64 organization_id = 3 [json_name = "organization_id"];
+
+    repeated LandingDevice devices = 4 [json_name = "devices"];
+
 }
 
 message LandingOrganizationList {

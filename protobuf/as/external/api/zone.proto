@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package api;
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+service ZoneService {
+    // Create creates the given zone
+    rpc Create(CreateZoneRequest) returns (GetZoneResponse) {
+        option(google.api.http) = {
+            post: "/api/zones"
+            body: "*"
+        };
+    }
+
+    // Get returns the zone matching the given zone id
+    rpc Get(GetZoneRequest) returns (GetZoneResponse) {
+        option (google.api.http) = {
+            get: "/api/zones/{zone_id}"
+        };
+    }
+
+    // List returns the available zones.
+    rpc List(ListZoneRequest) returns (listZoneResponse) {
+        option (google.api.http) = {
+            get: "/api/zones"
+        };
+    }
+
+    // Delete deletes the zones matching the given id.
+    rpc Delete(DeleteZoneRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/zones/{zone_id}"
+        };
+    }
+
+    // Update updates the zone matching the given id.
+    rpc Update(UpdateZoneRequest) returns (GetZoneResponse) {
+        option (google.api.http) = {
+            put: "/api/zones/{zone_id}"
+            body: "*"
+        };
+    }
+}
+
+message Zone {
+    // Zone ID 
+    int64 zone_id = 1;
+
+    // Name of Zone
+    string zone_name = 2 [json_name = "zoneName"];
+
+    // Organization ID
+    int64 organization_id = 3 [json_name = "organizationID"];
+
+    // Devices
+    repeated string devices = 4 [json_name = "devices"];
+}
+
+message CreateZoneRequest {
+    // Zone object to create
+    Zone zone = 1;
+}
+
+message GetZoneResponse {
+    Zone zone = 1;
+}
+
+message GetZoneRequest {
+    int64 zone_id = 1 [json_name = "zoneID"];
+}
+
+message ListZoneRequest {
+    // Max number of devices to return in the result-set.
+    int64 limit = 1;
+
+    // Offset in the result-set (for pagination).
+    int64 offset = 2;
+}
+
+message listZoneResponse {
+    repeated Zone zones = 1;
+}
+
+message DeleteZoneRequest {
+    int64 zone_id = 1 [json_name = "zoneID"];
+}
+
+message UpdateZoneRequest {
+    Zone zone = 1;
+    int64 zone_id = 2 [json_name = "zoneID"];
+}

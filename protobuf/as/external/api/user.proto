@@ -90,6 +90,9 @@ message User {
 
 	// Phone number of User
 	string phone_number = 13 [json_name = "phone_number"];
+
+	// Zones of User
+	repeated int64 zones = 14 [json_name = "zones"];
 }
 
 message UserListItem {
@@ -127,6 +130,8 @@ message UserListItem {
 	// Phone number of User
 	string phone_number = 13 [json_name = "phone_number"];
 
+	// Zones of User
+	repeated int64 zones = 14 [json_name = "zones"];
 }
 
 message UserOrganization {

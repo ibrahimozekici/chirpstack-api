@@ -1,0 +1,229 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "as/external/api/zone.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/zones": {
+      "get": {
+        "summary": "List returns the available zones.",
+        "operationId": "List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apilistZoneResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "Max number of devices to return in the result-set.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "description": "Offset in the result-set (for pagination).",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ZoneService"
+        ]
+      },
+      "post": {
+        "summary": "Create creates the given zone",
+        "operationId": "Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetZoneResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateZoneRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ZoneService"
+        ]
+      }
+    },
+    "/api/zones/{zone_id}": {
+      "get": {
+        "summary": "Get returns the zone matching the given zone id",
+        "operationId": "Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetZoneResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "zone_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ZoneService"
+        ]
+      },
+      "delete": {
+        "summary": "Delete deletes the zones matching the given id.",
+        "operationId": "Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "zone_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ZoneService"
+        ]
+      },
+      "put": {
+        "summary": "Update updates the zone matching the given id.",
+        "operationId": "Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetZoneResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "zone_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiUpdateZoneRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ZoneService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apiCreateZoneRequest": {
+      "type": "object",
+      "properties": {
+        "zone": {
+          "$ref": "#/definitions/apiZone",
+          "title": "Zone object to create"
+        }
+      }
+    },
+    "apiGetZoneResponse": {
+      "type": "object",
+      "properties": {
+        "zone": {
+          "$ref": "#/definitions/apiZone"
+        }
+      }
+    },
+    "apiUpdateZoneRequest": {
+      "type": "object",
+      "properties": {
+        "zone": {
+          "$ref": "#/definitions/apiZone"
+        },
+        "zoneID": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiZone": {
+      "type": "object",
+      "properties": {
+        "zoneId": {
+          "type": "string",
+          "format": "int64",
+          "title": "Zone ID"
+        },
+        "zoneName": {
+          "type": "string",
+          "title": "Name of Zone"
+        },
+        "organizationID": {
+          "type": "string",
+          "format": "int64",
+          "title": "Organization ID"
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Devices"
+        }
+      }
+    },
+    "apilistZoneResponse": {
+      "type": "object",
+      "properties": {
+        "zones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiZone"
+          }
+        }
+      }
+    }
+  }
+}
