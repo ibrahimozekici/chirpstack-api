@@ -208,8 +208,7 @@
         "devices": {
           "type": "array",
           "items": {
-            "type": "string",
-            "format": "byte"
+            "type": "string"
           },
           "title": "Devices"
         }
