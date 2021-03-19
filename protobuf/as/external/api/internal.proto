@@ -226,7 +226,7 @@ message LandingZone {
 
     string zone_name = 2 [json_name = "zone_name"];
 
-    int64 organization_id = 3 [json_name = "organization_id"];
+    int64 org_id = 3 [json_name = "org_id"];
 
     repeated LandingDevice devices = 4 [json_name = "devices"];
 

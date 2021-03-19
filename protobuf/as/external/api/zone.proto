@@ -51,10 +51,10 @@ message Zone {
     string zone_name = 2 [json_name = "zoneName"];
 
     // Organization ID
-    int64 organization_id = 3 [json_name = "organizationID"];
+    int64 org_id = 3 [json_name = "orgID"];
 
     // Devices
-    repeated string devices = 4 [json_name = "devices"];
+    repeated bytes devices = 4 [json_name = "devices"];
 }
 
 message CreateZoneRequest {

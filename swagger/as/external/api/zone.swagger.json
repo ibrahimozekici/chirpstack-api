@@ -200,7 +200,7 @@
           "type": "string",
           "title": "Name of Zone"
         },
-        "organizationID": {
+        "orgID": {
           "type": "string",
           "format": "int64",
           "title": "Organization ID"
@@ -208,7 +208,8 @@
         "devices": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "format": "byte"
           },
           "title": "Devices"
         }

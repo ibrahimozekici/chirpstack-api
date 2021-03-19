@@ -398,7 +398,7 @@
           "type": "string",
           "title": "Phone number of User"
         },
-        "zones": {
+        "zoneIdList": {
           "type": "array",
           "items": {
             "type": "string",
