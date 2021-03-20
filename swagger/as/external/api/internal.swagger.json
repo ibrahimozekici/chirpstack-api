@@ -462,6 +462,9 @@
         },
         "organizationList": {
           "$ref": "#/definitions/apiLandingOrganizationList"
+        },
+        "zoneList": {
+          "$ref": "#/definitions/apiLandingZoneList"
         }
       }
     },
@@ -676,6 +679,39 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/apiLandingOrganization"
+          }
+        }
+      }
+    },
+    "apiLandingZone": {
+      "type": "object",
+      "properties": {
+        "zone_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "zone_name": {
+          "type": "string"
+        },
+        "org_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiLandingDevice"
+          }
+        }
+      }
+    },
+    "apiLandingZoneList": {
+      "type": "object",
+      "properties": {
+        "zones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiLandingZone"
           }
         }
       }

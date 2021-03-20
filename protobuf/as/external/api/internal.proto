@@ -215,6 +215,7 @@ message GetLandingResponse {
     
     LandingOrganizationList organizationList = 8;
     
+    LandingZoneList zoneList = 9;
 }
 
 message LandingZoneList {
