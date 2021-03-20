@@ -70,7 +70,7 @@
         },
         "parameters": [
           {
-            "name": "organizationId",
+            "name": "zoneID",
             "description": "Service-profile ID to filter on (string formatted UUID).",
             "in": "query",
             "required": false,
@@ -137,7 +137,7 @@
         },
         "parameters": [
           {
-            "name": "organizationId",
+            "name": "zoneID",
             "description": "Service-profile ID to filter on (string formatted UUID).",
             "in": "query",
             "required": false,

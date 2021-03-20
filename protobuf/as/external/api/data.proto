@@ -77,7 +77,7 @@ message TemperatureData {
 
 message ListTemperatureDataRequest {
     // Service-profile ID to filter on (string formatted UUID).
-    int64 organization_id = 1 [json_name = "organizationId"];
+    int64 zone_id = 1 [json_name = "zoneID"];
 
     // Search on name or DevEUI.
     string dev_eui = 2 [json_name = "devEUI"];
@@ -120,7 +120,7 @@ message SoilData {
 
 message ListSoilDataRequest {
     // Service-profile ID to filter on (string formatted UUID).
-    int64 organization_id = 1 [json_name = "organizationId"];
+    int64 zone_id = 1 [json_name = "zoneID"];
 
     // Search on name or DevEUI.
     string dev_eui = 2 [json_name = "devEUI"];
