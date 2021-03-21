@@ -92,7 +92,7 @@ message User {
 	string phone_number = 13 [json_name = "phone_number"];
 
 	// Zones of User
-	repeated int64 zones = 14 [json_name = "zones"];
+	repeated uint32 zones = 14 [json_name = "zones"];
 }
 
 message UserListItem {
