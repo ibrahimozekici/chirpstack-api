@@ -45,7 +45,7 @@ service ZoneService {
 
 message Zone {
     // Zone ID 
-    int64 zone_id = 1;
+    uint32 zone_id = 1;
 
     // Name of Zone
     string zone_name = 2 [json_name = "zoneName"];

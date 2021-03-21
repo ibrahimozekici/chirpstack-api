@@ -131,7 +131,7 @@ message UserListItem {
 	string phone_number = 13 [json_name = "phone_number"];
 
 	// Zones of User
-	repeated int64 zone_id_list = 14 [json_name = "zoneIdList"];
+	repeated uint32 zone_id_list = 14 [json_name = "zoneIdList"];
 }
 
 message UserOrganization {

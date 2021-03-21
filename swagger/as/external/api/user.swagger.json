@@ -401,7 +401,7 @@
         "zoneIdList": {
           "type": "array",
           "items": {
-            "type": "string",
+            "type": "integer",
             "format": "int64"
           },
           "title": "Zones of User"
