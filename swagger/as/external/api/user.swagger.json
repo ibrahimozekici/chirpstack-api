@@ -338,7 +338,7 @@
         "zones": {
           "type": "array",
           "items": {
-            "type": "integer",
+            "type": "string",
             "format": "int64"
           },
           "title": "Zones of User"
@@ -401,7 +401,7 @@
         "zoneIdList": {
           "type": "array",
           "items": {
-            "type": "integer",
+            "type": "string",
             "format": "int64"
           },
           "title": "Zones of User"
