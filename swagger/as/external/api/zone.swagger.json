@@ -192,7 +192,7 @@
       "type": "object",
       "properties": {
         "zoneId": {
-          "type": "integer",
+          "type": "string",
           "format": "int64",
           "title": "Zone ID"
         },
