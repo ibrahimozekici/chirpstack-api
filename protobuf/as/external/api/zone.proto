@@ -54,7 +54,7 @@ message Zone {
     int64 org_id = 3 [json_name = "orgID"];
 
     // Devices
-    repeated bytes devices = 4 [json_name = "devices"];
+    repeated string devices = 4 [json_name = "devices"];
 }
 
 message CreateZoneRequest {
