@@ -55,8 +55,31 @@ service DataService {
         };
     }
 
+    rpc GetData (ListDataRequest) returns (ListDataResponse) {
+        option (google.api.http) = {
+            get: "/api/data"
+        };
+    }
+
+    rpc TransferTempData (TransData) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/data/transfer"
+            body: "*"
+        };
+    }
+
+    rpc TransferSoilData (TransData) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/data/transfer"
+            body: "*"
+        };
+    }
 }
 
+message TransData {
+     // name
+     string name = 2 [json_name = "name"];
+}
 message TemperatureData {
     // Device EUI (HEX encoded).
     string dev_eui = 1 [json_name = "devEUI"]; 
@@ -75,6 +98,51 @@ message TemperatureData {
     google.protobuf.Timestamp submission_date = 5 [json_name = "submission_date"];
 }
 
+message ListDataRequest {
+    // Service-profile ID to filter on (string formatted UUID).
+    int64 zone_id = 1 [json_name = "zoneID"];
+
+    // Search on name or DevEUI.
+    string dev_eui = 2 [json_name = "devEUI"];
+
+    // Max number of devices to return in the result-set.
+    int64 limit = 3;
+}
+
+message ListDataResponse {
+    // Total number of devices available within the result-set.
+    int64 total_count = 1;
+
+    repeated DataResponse result = 2;
+}
+
+message DataResponse {
+
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"]; 
+
+    // name
+    string name = 2 [json_name = "name"];
+    
+    // temp_SHT of the device.
+    float air_temperature = 3 [json_name = "Air_Temperature"];
+
+    // hum_SHT.
+    float air_humadity = 4 [json_name = "Air_Humadity"];
+
+    // water_SOIL of the device.
+    float sol_water = 5 [json_name = "Sol_Water"];
+
+    // temp_SOIL of the device.
+    float sol_temperature = 6 [json_name = "Sol_Temperature"];
+
+    // conduct_SOIL of the device.
+    float sol_conduct_soil = 7 [json_name = "Sol_conduct_soil"];
+
+    // The last time the application-server received any data from the device,
+    // or an empty string when the device never sent any data.
+    google.protobuf.Timestamp submission_date = 8 [json_name = "submission_date"];
+}
 message ListTemperatureDataRequest {
     // Service-profile ID to filter on (string formatted UUID).
     int64 zone_id = 1 [json_name = "zoneID"];

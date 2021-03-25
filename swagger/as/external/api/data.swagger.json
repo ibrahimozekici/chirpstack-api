@@ -15,6 +15,47 @@
     "application/json"
   ],
   "paths": {
+    "/api/data": {
+      "get": {
+        "operationId": "GetData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListDataResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "zoneID",
+            "description": "Service-profile ID to filter on (string formatted UUID).",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "devEUI",
+            "description": "Search on name or DevEUI.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "description": "Max number of devices to return in the result-set.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "DataService"
+        ]
+      }
+    },
     "/api/data/distance": {
       "get": {
         "summary": "GetDistanceData return list of distance results",
@@ -230,9 +271,78 @@
           "DataService"
         ]
       }
+    },
+    "/api/data/transfer": {
+      "post": {
+        "operationId": "TransferSoilData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiTransData"
+            }
+          }
+        ],
+        "tags": [
+          "DataService"
+        ]
+      }
     }
   },
   "definitions": {
+    "apiDataResponse": {
+      "type": "object",
+      "properties": {
+        "devEUI": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "name": {
+          "type": "string",
+          "title": "name"
+        },
+        "Air_Temperature": {
+          "type": "number",
+          "format": "float",
+          "description": "temp_SHT of the device."
+        },
+        "Air_Humadity": {
+          "type": "number",
+          "format": "float",
+          "description": "hum_SHT."
+        },
+        "Sol_Water": {
+          "type": "number",
+          "format": "float",
+          "description": "water_SOIL of the device."
+        },
+        "Sol_Temperature": {
+          "type": "number",
+          "format": "float",
+          "description": "temp_SOIL of the device."
+        },
+        "Sol_conduct_soil": {
+          "type": "number",
+          "format": "float",
+          "description": "conduct_SOIL of the device."
+        },
+        "submission_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last time the application-server received any data from the device,\nor an empty string when the device never sent any data."
+        }
+      }
+    },
     "apiDistanceData": {
       "type": "object",
       "properties": {
@@ -249,6 +359,22 @@
           "type": "string",
           "format": "date-time",
           "description": "The last time the application-server received any data from the device,\nor an empty string when the device never sent any data."
+        }
+      }
+    },
+    "apiListDataResponse": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "type": "string",
+          "format": "int64",
+          "description": "Total number of devices available within the result-set."
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiDataResponse"
+          }
         }
       }
     },
@@ -458,6 +584,15 @@
           "type": "string",
           "format": "date-time",
           "description": "The last time the application-server received any data from the device,\nor an empty string when the device never sent any data."
+        }
+      }
+    },
+    "apiTransData": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "name"
         }
       }
     }
