@@ -60,20 +60,6 @@ service DataService {
             get: "/api/data"
         };
     }
-
-    rpc TransferTempData (TransData) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/api/data/transfer"
-            body: "*"
-        };
-    }
-
-    rpc TransferSoilData (TransData) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/api/data/transfer"
-            body: "*"
-        };
-    }
 }
 
 message TransData {

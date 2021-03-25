@@ -271,32 +271,6 @@
           "DataService"
         ]
       }
-    },
-    "/api/data/transfer": {
-      "post": {
-        "operationId": "TransferSoilData",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/apiTransData"
-            }
-          }
-        ],
-        "tags": [
-          "DataService"
-        ]
-      }
     }
   },
   "definitions": {
@@ -584,15 +558,6 @@
           "type": "string",
           "format": "date-time",
           "description": "The last time the application-server received any data from the device,\nor an empty string when the device never sent any data."
-        }
-      }
-    },
-    "apiTransData": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "title": "name"
         }
       }
     }
