@@ -92,7 +92,7 @@ message ListDataRequest {
     string dev_eui = 2 [json_name = "devEUI"];
 
     // device_type_id device type id filter
-    int64 device_type_id = 3 [json_name = "devEUI"];
+    int64 device_type_id = 3 [json_name = "DeviceTypeID"];
 
     // Max number of devices to return in the result-set.
     int64 limit = 4;

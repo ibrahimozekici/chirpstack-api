@@ -43,7 +43,7 @@
             "type": "string"
           },
           {
-            "name": "devEUI",
+            "name": "DeviceTypeID",
             "description": "device_type_id device type id filter.",
             "in": "query",
             "required": false,
