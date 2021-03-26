@@ -43,6 +43,14 @@
             "type": "string"
           },
           {
+            "name": "devEUI",
+            "description": "device_type_id device type id filter.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
             "name": "limit",
             "description": "Max number of devices to return in the result-set.",
             "in": "query",

@@ -91,8 +91,11 @@ message ListDataRequest {
     // Search on name or DevEUI.
     string dev_eui = 2 [json_name = "devEUI"];
 
+    // device_type_id device type id filter
+    int64 device_type_id = 3 [json_name = "devEUI"];
+
     // Max number of devices to return in the result-set.
-    int64 limit = 3;
+    int64 limit = 4;
 }
 
 message ListDataResponse {
