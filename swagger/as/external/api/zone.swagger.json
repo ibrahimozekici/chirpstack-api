@@ -83,6 +83,39 @@
         ]
       }
     },
+    "/api/zones/{user_id}": {
+      "put": {
+        "operationId": "AddUserToZone",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiAddUserToZoneResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiAddUserToZoneRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ZoneService"
+        ]
+      }
+    },
     "/api/zones/{zone_id}": {
       "get": {
         "summary": "Get returns the zone matching the given zone id",
@@ -167,6 +200,34 @@
     }
   },
   "definitions": {
+    "apiAddUserToZoneRequest": {
+      "type": "object",
+      "properties": {
+        "zoneID": {
+          "type": "string",
+          "format": "int64"
+        },
+        "userID": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiAddUserToZoneResponse": {
+      "type": "object",
+      "properties": {
+        "userName": {
+          "type": "string"
+        },
+        "zoneList": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        }
+      }
+    },
     "apiCreateZoneRequest": {
       "type": "object",
       "properties": {

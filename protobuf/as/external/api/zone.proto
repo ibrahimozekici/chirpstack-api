@@ -41,6 +41,12 @@ service ZoneService {
             body: "*"
         };
     }
+    rpc AddUserToZone (AddUserToZoneRequest) returns (AddUserToZoneResponse) {
+        option (google.api.http) = {
+            put: "/api/zones/{user_id}"
+            body: "*"
+        };
+    }
 }
 
 message Zone {
@@ -92,4 +98,14 @@ message DeleteZoneRequest {
 message UpdateZoneRequest {
     Zone zone = 1;
     int64 zone_id = 2 [json_name = "zoneID"];
+}
+
+message AddUserToZoneRequest {
+    int64 zone_id = 1 [json_name = "zoneID"];
+    int64 user_id = 2 [json_name = "userID"];
+}
+
+message AddUserToZoneResponse {
+    string user_name = 1;
+    repeated int64 zone_list = 2;
 }
