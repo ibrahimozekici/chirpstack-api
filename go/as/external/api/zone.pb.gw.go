@@ -646,7 +646,7 @@ var (
 
 	pattern_ZoneService_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "zones", "zone_id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_ZoneService_AddUserToZone_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "zones", "user_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_ZoneService_AddUserToZone_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "zones", "addUser", "user_id"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (

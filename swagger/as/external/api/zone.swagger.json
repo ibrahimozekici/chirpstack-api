@@ -83,7 +83,7 @@
         ]
       }
     },
-    "/api/zones/{user_id}": {
+    "/api/zones/addUser/{user_id}": {
       "put": {
         "operationId": "AddUserToZone",
         "responses": {

@@ -43,7 +43,7 @@ service ZoneService {
     }
     rpc AddUserToZone (AddUserToZoneRequest) returns (AddUserToZoneResponse) {
         option (google.api.http) = {
-            put: "/api/zones/{user_id}"
+            put: "/api/zones/addUser/{user_id}"
             body: "*"
         };
     }
