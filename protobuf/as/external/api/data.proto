@@ -141,6 +141,10 @@ message ListTemperatureDataRequest {
 
     // Max number of devices to return in the result-set.
     int64 limit = 3;
+
+    string start_time = 4 [json_name = "startTime"];
+
+    string end_time = 5 [json_name = "endTime"];
 }
 
 message ListTemperatureDataResponse {
@@ -184,6 +188,10 @@ message ListSoilDataRequest {
 
     // Max number of devices to return in the result-set.
     int64 limit = 3;
+
+    string start_time = 4 [json_name = "startTime"];
+
+    string end_time = 5 [json_name = "endTime"];
 }
 
 message ListSoilDataResponse {
