@@ -93,6 +93,12 @@ message User {
 
 	// Zones of User
 	repeated int64 zones = 14 [json_name = "zones"];
+
+	// Name of the user
+	string name = 15 [json_name = "name"];
+
+	// Username of the user
+	string user_name = 16 [json_name = "userName"];
 }
 
 message UserListItem {
@@ -132,6 +138,12 @@ message UserListItem {
 
 	// Zones of User
 	repeated int64 zone_id_list = 14 [json_name = "zoneIdList"];
+
+	// Name of the user
+	string name = 15 [json_name = "name"];
+
+	// Username of the user
+	string user_name = 16 [json_name = "userName"];
 }
 
 message UserOrganization {

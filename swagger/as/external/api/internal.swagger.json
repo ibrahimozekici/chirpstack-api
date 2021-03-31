@@ -911,6 +911,14 @@
             "format": "int64"
           },
           "title": "Zones of User"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name of the user"
+        },
+        "userName": {
+          "type": "string",
+          "title": "Username of the user"
         }
       }
     }
