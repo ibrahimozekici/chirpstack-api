@@ -460,6 +460,15 @@
           "type": "string",
           "title": "Phone number of User"
         },
+        "name": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
         "organizationList": {
           "$ref": "#/definitions/apiLandingOrganizationList"
         },

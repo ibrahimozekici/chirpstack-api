@@ -212,10 +212,16 @@ message GetLandingResponse {
 
 	// Phone number of User
 	string phone_number = 7 [json_name = "phone_number"];
+
+    string name = 8 [json_name = "name"];
     
-    LandingOrganizationList organizationList = 8;
+    string note = 9 [json_name = "note"];
+
+    string username = 10 [json_name = "username"];
     
-    LandingZoneList zoneList = 9;
+    LandingOrganizationList organizationList = 11;
+    
+    LandingZoneList zoneList = 12;
 }
 
 message LandingZoneList {
