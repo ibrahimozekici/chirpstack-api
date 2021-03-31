@@ -744,7 +744,7 @@
     "apiLoginRequest": {
       "type": "object",
       "properties": {
-        "email": {
+        "username": {
           "type": "string",
           "description": "Email of the user."
         },
