@@ -82,6 +82,8 @@ message TemperatureData {
     // The last time the application-server received any data from the device,
     // or an empty string when the device never sent any data.
     google.protobuf.Timestamp submission_date = 5 [json_name = "submission_date"];
+
+    string description = 6 [json_name = "Description"];
 }
 
 message ListDataRequest {
@@ -131,6 +133,9 @@ message DataResponse {
     // The last time the application-server received any data from the device,
     // or an empty string when the device never sent any data.
     google.protobuf.Timestamp submission_date = 8 [json_name = "submission_date"];
+
+    string description = 9 [json_name = "Description"];
+
 }
 message ListTemperatureDataRequest {
     // Service-profile ID to filter on (string formatted UUID).
@@ -177,6 +182,8 @@ message SoilData {
     // The last time the application-server received any data from the device,
     // or an empty string when the device never sent any data.
     google.protobuf.Timestamp submission_date = 7 [json_name = "submission_date"];
+
+    string description = 8 [json_name = "Description"];
 }
 
 message ListSoilDataRequest {
