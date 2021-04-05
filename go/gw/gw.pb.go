@@ -10,7 +10,7 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	duration "github.com/golang/protobuf/ptypes/duration"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
-	common "github.com/ibrahimozekici/chirpstack-api/go/v4/common"
+	common "github.com/ibrahimozekici/chirpstack-api/go/v5/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"

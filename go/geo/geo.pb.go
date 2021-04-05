@@ -9,8 +9,8 @@ package geo
 import (
 	context "context"
 	proto "github.com/golang/protobuf/proto"
-	common "github.com/ibrahimozekici/chirpstack-api/go/v4/common"
-	gw "github.com/ibrahimozekici/chirpstack-api/go/v4/gw"
+	common "github.com/ibrahimozekici/chirpstack-api/go/v5/common"
+	gw "github.com/ibrahimozekici/chirpstack-api/go/v5/gw"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"

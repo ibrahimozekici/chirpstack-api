@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package common;
 
-option go_package = "github.com/ibrahimozekici/chirpstack-api/go/v4/common";
+option go_package = "github.com/ibrahimozekici/chirpstack-api/go/v5/common";
 option java_package = "io.chirpstack.api.common";
 
 enum Modulation {
