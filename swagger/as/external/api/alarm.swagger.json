@@ -189,13 +189,20 @@
           "format": "float",
           "title": "Value of alarm"
         },
-        "action": {
+        "email": {
           "type": "string",
-          "title": "Action of alarm"
+          "format": "int64",
+          "title": "Email if eMail active"
         },
-        "target": {
+        "sms": {
           "type": "string",
-          "title": "Target of alarm"
+          "format": "int64",
+          "title": "Sms if SMS active"
+        },
+        "dashboard": {
+          "type": "string",
+          "format": "int64",
+          "title": "Dashboard if dashboard active"
         },
         "section": {
           "type": "string",

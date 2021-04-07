@@ -61,16 +61,19 @@ message Alarm {
     // Value of alarm
     float max_treshold = 4 [json_name = "maxTreshold"];
 
-    // Action of alarm
-    string action = 5 [json_name = "action"];
+    // Email if eMail active
+    int64 e_mail = 5 [json_name = "email"];
+
+    // Sms if SMS active
+    int64 sms = 6 [json_name = "sms"];
+
+    // Dashboard if dashboard active
+    int64 dashboard = 7 [json_name = "dashboard"];
 
     // Target of alarm
-    string target = 6 [json_name = "target"];
+    string section = 8 [json_name = "section"];
 
-    // Target of alarm
-    string section = 7 [json_name = "section"];
-
-    google.protobuf.Timestamp submission_date = 10 [json_name = "submission_date"];
+    google.protobuf.Timestamp submission_date = 9 [json_name = "submission_date"];
 }
 
 message CreateAlarmResponse {
