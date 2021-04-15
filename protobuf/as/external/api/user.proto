@@ -237,4 +237,6 @@ message UpdateUserPasswordRequest {
 
 message ForgetPasswordRequest {
 
+	string username = 1 [json_name = "userName"];
+
 }

@@ -256,7 +256,12 @@
       }
     },
     "apiForgetPasswordRequest": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "userName": {
+          "type": "string"
+        }
+      }
     },
     "apiGetUserResponse": {
       "type": "object",
