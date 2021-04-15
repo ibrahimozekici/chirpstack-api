@@ -116,6 +116,32 @@
         ]
       }
     },
+    "/api/zones/order": {
+      "put": {
+        "operationId": "OrderZones",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiZonesOrderResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiZonesOrderRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ZoneService"
+        ]
+      }
+    },
     "/api/zones/{zone_id}": {
       "get": {
         "summary": "Get returns the zone matching the given zone id",
@@ -274,12 +300,52 @@
           "format": "int64",
           "title": "Organization ID"
         },
+        "order": {
+          "type": "string",
+          "format": "int64",
+          "title": "Order index of zone"
+        },
         "devices": {
           "type": "array",
           "items": {
             "type": "string"
           },
           "title": "Devices"
+        }
+      }
+    },
+    "apiZoneOrder": {
+      "type": "object",
+      "properties": {
+        "zoneID": {
+          "type": "string",
+          "format": "int64"
+        },
+        "zoneOrder": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiZonesOrderRequest": {
+      "type": "object",
+      "properties": {
+        "zonesOrder": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiZoneOrder"
+          }
+        }
+      }
+    },
+    "apiZonesOrderResponse": {
+      "type": "object",
+      "properties": {
+        "zonesOrder": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiZoneOrder"
+          }
         }
       }
     },

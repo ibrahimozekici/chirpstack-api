@@ -47,6 +47,13 @@ service ZoneService {
             body: "*"
         };
     }
+
+    rpc OrderZones(ZonesOrderRequest) returns (ZonesOrderResponse) {
+        option (google.api.http) = {
+            put: "/api/zones/order"
+            body: "*"
+        };
+    }
 }
 
 message Zone {
@@ -59,8 +66,11 @@ message Zone {
     // Organization ID
     int64 org_id = 3 [json_name = "orgID"];
 
+    // Order index of zone
+    int64 order = 4 [json_name = "order"];
+
     // Devices
-    repeated string devices = 4 [json_name = "devices"];
+    repeated string devices = 5 [json_name = "devices"];
 }
 
 message CreateZoneRequest {
@@ -108,4 +118,19 @@ message AddUserToZoneRequest {
 message AddUserToZoneResponse {
     string user_name = 1;
     repeated int64 zone_list = 2;
+}
+
+message ZonesOrderRequest {
+    repeated ZoneOrder zoneOrder = 1 [json_name = "zonesOrder"];
+}
+
+message ZoneOrder {
+    int64 zone_id = 1 [json_name = "zoneID"];
+
+    int64 zone_order = 2 [json_name = "zoneOrder"];
+}
+
+message ZonesOrderResponse {
+    repeated ZoneOrder zoneOrder = 1 [json_name = "zonesOrder"];
+
 }
