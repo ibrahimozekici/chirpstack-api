@@ -75,6 +75,32 @@
         ]
       }
     },
+    "/api/users/ForgetPassword": {
+      "post": {
+        "operationId": "ForgetPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiForgetPasswordRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
     "/api/users/{id}": {
       "get": {
         "summary": "Get data for a particular user.",
@@ -228,6 +254,9 @@
           "description": "User ID."
         }
       }
+    },
+    "apiForgetPasswordRequest": {
+      "type": "object"
     },
     "apiGetUserResponse": {
       "type": "object",

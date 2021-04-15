@@ -57,6 +57,13 @@ service UserService {
 		};
 	}
 
+	rpc ForgetPassword(ForgetPasswordRequest) returns (google.protobuf.Empty) {
+		option(google.api.http) = {
+			post: "/api/users/ForgetPassword"
+			body: "*"
+		};
+	}
+
 }
 
 message User {
@@ -226,4 +233,8 @@ message UpdateUserPasswordRequest {
 
 	// New pasword.
 	string password = 2;
+}
+
+message ForgetPasswordRequest {
+
 }
