@@ -222,8 +222,8 @@ message GetLandingResponse {
     LandingOrganizationList organizationList = 11;
     
     LandingZoneList zoneList = 12;
-    
-    repeated int64 organization_id_list = 13 [json_name = "useorganization_id_listrname"];
+
+    repeated int64 organization_id_list = 13 [json_name = "organization_id_list"];
 }
 
 message LandingZoneList {

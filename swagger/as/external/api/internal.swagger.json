@@ -475,7 +475,7 @@
         "zoneList": {
           "$ref": "#/definitions/apiLandingZoneList"
         },
-        "useorganization_id_listrname": {
+        "organization_id_list": {
           "type": "array",
           "items": {
             "type": "string",
