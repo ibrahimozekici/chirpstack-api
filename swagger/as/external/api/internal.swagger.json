@@ -474,6 +474,13 @@
         },
         "zoneList": {
           "$ref": "#/definitions/apiLandingZoneList"
+        },
+        "useorganization_id_listrname": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
         }
       }
     },
