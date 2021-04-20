@@ -237,7 +237,9 @@ message LandingZone {
 
     int64 org_id = 3 [json_name = "org_id"];
 
-    repeated LandingDevice devices = 4 [json_name = "devices"];
+    int64 order = 4 [json_name = "order"];
+
+    repeated LandingDevice devices = 5 [json_name = "devices"];
 
 }
 

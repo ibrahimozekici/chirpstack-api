@@ -713,6 +713,10 @@
           "type": "string",
           "format": "int64"
         },
+        "order": {
+          "type": "string",
+          "format": "int64"
+        },
         "devices": {
           "type": "array",
           "items": {
