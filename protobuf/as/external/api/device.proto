@@ -306,8 +306,11 @@ message ListDeviceRequest {
     // Service-profile ID to filter on (string formatted UUID).
     string service_profile_id = 6 [json_name = "serviceProfileID"];
 
+    // device_profile_id ID to filter on (string formatted UUID).
+    string device_profile_id = 7 [json_name = "deviceProfileID"];
+
     // Tags to filter on.
-    map<string, string> tags = 7;
+    map<string, string> tags = 8;
 }
 
 message ListDeviceResponse {
