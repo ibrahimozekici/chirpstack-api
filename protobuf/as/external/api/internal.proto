@@ -310,8 +310,13 @@ message LandingDevice {
 
     // device landing alarms
     repeated LandingAlarm alerts = 11 [json_name = "alerts"];
+
+    repeated LandingDeviceProfile device_profile_name = 12 [json_name= "device_profile_name"];
 }
 
+message LandingDeviceProfile {
+    string name = 1 [json_name = "name"];
+}
 message LandingAlarm {
 
     // Alarm id.

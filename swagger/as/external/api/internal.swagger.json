@@ -660,6 +660,20 @@
             "$ref": "#/definitions/apiLandingAlarm"
           },
           "title": "device landing alarms"
+        },
+        "device_profile_name": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiLandingDeviceProfile"
+          }
+        }
+      }
+    },
+    "apiLandingDeviceProfile": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
         }
       }
     },
