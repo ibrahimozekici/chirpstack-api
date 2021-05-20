@@ -79,6 +79,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "zoneID",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -567,6 +574,10 @@
           "type": "number",
           "format": "double",
           "title": "Device lng value"
+        },
+        "deviceProfileName": {
+          "type": "string",
+          "title": "Device Profile Name"
         }
       }
     },

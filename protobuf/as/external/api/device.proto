@@ -176,6 +176,9 @@ message Device {
     double lat = 12;	
     // Device lng value	
     double lng = 13;
+
+    // Device Profile Name
+    string device_profile_name = 14 [json_name = "deviceProfileName"];
 }
 
 message DeviceListItem {
@@ -195,7 +198,7 @@ message DeviceListItem {
     string device_profile_id = 5 [json_name = "deviceProfileID"];
 
     // Device-profile name.
-    string device_profile_name = 6;
+    string device_profile_name = 6 [json_name = "deviceProfileName"];
 
     // The device battery status (deprecated, use device_status_battery_level).
     // 0:      The end-device is connected to an external power source
@@ -311,6 +314,8 @@ message ListDeviceRequest {
 
     // Tags to filter on.
     map<string, string> tags = 8;
+
+    int64 zone_id = 9 [json_name = "zoneID"];
 }
 
 message ListDeviceResponse {
