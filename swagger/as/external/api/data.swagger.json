@@ -349,6 +349,30 @@
         },
         "Description": {
           "type": "string"
+        },
+        "WaterStatus": {
+          "type": "string",
+          "format": "int64"
+        },
+        "WaterLeekTimes": {
+          "type": "string",
+          "format": "int64"
+        },
+        "WaterLeekDuration": {
+          "type": "string",
+          "format": "int64"
+        },
+        "DoorStatus": {
+          "type": "string",
+          "format": "int64"
+        },
+        "DoorOpenTimes": {
+          "type": "string",
+          "format": "int64"
+        },
+        "DoorOpenDuration": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

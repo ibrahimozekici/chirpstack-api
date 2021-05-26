@@ -136,6 +136,14 @@ message DataResponse {
 
     string description = 9 [json_name = "Description"];
 
+    int64 water_status = 10 [json_name = "WaterStatus"];
+
+    int64 water_leek_times = 11 [json_name = "WaterLeekTimes"];
+    int64 water_leek_duration = 12 [json_name = "WaterLeekDuration"];
+    int64 door_status = 13 [json_name = "DoorStatus"];
+    int64 door_open_times = 14 [json_name = "DoorOpenTimes"];
+    int64 door_open_duration = 15 [json_name = "DoorOpenDuration"];
+
 }
 message ListTemperatureDataRequest {
     // Service-profile ID to filter on (string formatted UUID).
