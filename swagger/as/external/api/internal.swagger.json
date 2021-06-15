@@ -579,35 +579,6 @@
         }
       }
     },
-    "apiLandingApplication": {
-      "type": "object",
-      "properties": {
-        "application_id": {
-          "type": "string",
-          "format": "int64",
-          "description": "Application ID."
-        },
-        "application_name": {
-          "type": "string",
-          "description": "Name of the application."
-        },
-        "application_description": {
-          "type": "string",
-          "description": "Description of the application."
-        },
-        "service_profile_id": {
-          "type": "string",
-          "title": "service_profile_id"
-        },
-        "devices": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiLandingDevice"
-          },
-          "description": "ID of the organization to which the application belongs."
-        }
-      }
-    },
     "apiLandingDevice": {
       "type": "object",
       "properties": {
@@ -692,13 +663,6 @@
         "organization_display_name": {
           "type": "string",
           "description": "Organization display name."
-        },
-        "applications": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiLandingApplication"
-          },
-          "title": "Organization Applications"
         }
       }
     },

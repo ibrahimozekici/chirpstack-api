@@ -258,7 +258,7 @@ message LandingOrganization {
     string organization_display_name = 3 [json_name = "organization_display_name"];
     
     // Organization Applications
-    repeated LandingApplication applications = 4 [json_name = "applications"];
+    // repeated LandingApplication applications = 4 [json_name = "applications"];
 }
 message LandingApplication {
     // Application ID.
