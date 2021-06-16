@@ -85,6 +85,13 @@ service OrganizationService {
 			delete: "/api/organizations/{organization_id}/users/{user_id}"
 		};
 	}
+
+	rpc OrganizationExist(OrganizationExistRequest) returns (OrganizationExistResponse) {
+		option(google.api.http) = {
+			post: "/api/organizations/organizationExist"
+			body: "*"
+		};
+	}
 }
 
 message Organization {
@@ -287,4 +294,11 @@ message GetOrganizationUserResponse {
 
 	// Last update timestamp.
 	google.protobuf.Timestamp updated_at = 3;
+}
+
+message OrganizationExistRequest {
+	string organizationName = 1 [json_name = "organizationName"];
+}
+message OrganizationExistResponse {
+	int64 result = 1;
 }

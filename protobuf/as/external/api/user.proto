@@ -64,6 +64,13 @@ service UserService {
 		};
 	}
 
+	rpc UserExist(UserExistRequest) returns (UserExistResponse) {
+		option(google.api.http) = {
+			post: "/api/users/userExist"
+			body: "*"
+		};
+	}
+
 }
 
 message User {
@@ -239,4 +246,12 @@ message ForgetPasswordRequest {
 
 	string username = 1 [json_name = "userName"];
 
+}
+
+message UserExistRequest {
+	string username = 1 [json_name = "userName"]; 
+}
+
+message UserExistResponse {
+	int64 result = 1;
 }

@@ -101,6 +101,32 @@
         ]
       }
     },
+    "/api/users/userExist": {
+      "post": {
+        "operationId": "UserExist",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiUserExistResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiUserExistRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
     "/api/users/{id}": {
       "get": {
         "summary": "Get data for a particular user.",
@@ -384,6 +410,23 @@
         "userName": {
           "type": "string",
           "title": "Username of the user"
+        }
+      }
+    },
+    "apiUserExistRequest": {
+      "type": "object",
+      "properties": {
+        "userName": {
+          "type": "string"
+        }
+      }
+    },
+    "apiUserExistResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

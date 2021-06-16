@@ -82,6 +82,32 @@
         ]
       }
     },
+    "/api/organizations/organizationExist": {
+      "post": {
+        "operationId": "OrganizationExist",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiOrganizationExistResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiOrganizationExistRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OrganizationService"
+        ]
+      }
+    },
     "/api/organizations/{id}": {
       "get": {
         "summary": "Get data for a particular organization.",
@@ -489,6 +515,23 @@
           "type": "integer",
           "format": "int64",
           "description": "Max. device count for organization.\r\nWhen set to 0, the organization can have unlimited devices."
+        }
+      }
+    },
+    "apiOrganizationExistRequest": {
+      "type": "object",
+      "properties": {
+        "organizationName": {
+          "type": "string"
+        }
+      }
+    },
+    "apiOrganizationExistResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
