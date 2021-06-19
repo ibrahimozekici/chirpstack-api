@@ -101,6 +101,32 @@
         ]
       }
     },
+    "/api/users/emailExist": {
+      "post": {
+        "operationId": "EmailExist",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiEmailExistResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiEmailExistRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
     "/api/users/userExist": {
       "post": {
         "operationId": "UserExist",
@@ -278,6 +304,23 @@
           "type": "string",
           "format": "int64",
           "description": "User ID."
+        }
+      }
+    },
+    "apiEmailExistRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "apiEmailExistResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

@@ -70,6 +70,12 @@ service UserService {
 			body: "*"
 		};
 	}
+	rpc EmailExist(EmailExistRequest) returns (EmailExistResponse) {
+		option(google.api.http) = {
+			post: "/api/users/emailExist"
+			body: "*"
+		};
+	}
 
 }
 
@@ -253,5 +259,13 @@ message UserExistRequest {
 }
 
 message UserExistResponse {
+	int64 result = 1;
+}
+
+message EmailExistRequest {
+	string email = 1 [json_name = "email"]; 
+}
+
+message EmailExistResponse {
 	int64 result = 1;
 }
