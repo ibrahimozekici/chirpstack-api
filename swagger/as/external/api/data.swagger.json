@@ -57,6 +57,18 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "startTime",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endTime",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [

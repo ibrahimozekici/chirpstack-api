@@ -98,6 +98,10 @@ message ListDataRequest {
 
     // Max number of devices to return in the result-set.
     int64 limit = 4;
+
+    string start_time = 5 [json_name = "startTime"];
+
+    string end_time = 6 [json_name = "endTime"];
 }
 
 message ListDataResponse {
