@@ -625,6 +625,10 @@
           "format": "double",
           "title": "device lng value"
         },
+        "device_application_id": {
+          "type": "string",
+          "format": "int64"
+        },
         "alerts": {
           "type": "array",
           "items": {

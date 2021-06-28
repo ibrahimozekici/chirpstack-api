@@ -308,10 +308,12 @@ message LandingDevice {
     // device lng value
     double device_lng = 10 [json_name = "device_lng"];
 
-    // device landing alarms
-    repeated LandingAlarm alerts = 11 [json_name = "alerts"];
+    int64 device_application_id = 11 [json_name = "device_application_id"];
 
-    repeated LandingDeviceProfile device_profile_name = 12 [json_name= "device_profile_name"];
+    // device landing alarms
+    repeated LandingAlarm alerts = 12 [json_name = "alerts"];
+
+    repeated LandingDeviceProfile device_profile_name = 13 [json_name= "device_profile_name"];
 }
 
 message LandingDeviceProfile {
