@@ -385,6 +385,14 @@
         "DoorOpenDuration": {
           "type": "string",
           "format": "int64"
+        },
+        "ro1_status": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ro2_status": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

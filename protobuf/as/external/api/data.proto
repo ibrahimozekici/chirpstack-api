@@ -148,6 +148,9 @@ message DataResponse {
     int64 door_open_times = 14 [json_name = "DoorOpenTimes"];
     int64 door_open_duration = 15 [json_name = "DoorOpenDuration"];
 
+    int64 ro1_status = 16 [json_name = "ro1_status"];
+    int64 ro2_status = 17 [json_name = "ro2_status"];
+
 }
 message ListTemperatureDataRequest {
     // Service-profile ID to filter on (string formatted UUID).
