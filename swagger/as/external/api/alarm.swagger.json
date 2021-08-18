@@ -189,17 +189,33 @@
           "format": "float",
           "title": "Value of alarm"
         },
-        "action": {
-          "type": "string",
-          "title": "Action of alarm"
+        "sms": {
+          "type": "boolean",
+          "format": "boolean"
         },
-        "target": {
-          "type": "string",
-          "title": "Target of alarm"
+        "email": {
+          "type": "boolean",
+          "format": "boolean"
         },
-        "section": {
-          "type": "string",
-          "title": "Target of alarm"
+        "temperature": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "humadity": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "ec": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "door": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "w_leak": {
+          "type": "boolean",
+          "format": "boolean"
         },
         "submission_date": {
           "type": "string",

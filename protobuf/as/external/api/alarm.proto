@@ -61,16 +61,15 @@ message Alarm {
     // Value of alarm
     float max_treshold = 4 [json_name = "maxTreshold"];
 
-    // Action of alarm
-    string action = 5 [json_name = "action"];
+   bool sms = 5 [json_name = "sms"];
+   bool email = 6 [json_name = "email"];
+   bool temperature = 7 [json_name = "temperature"];
+   bool humadity = 8 [json_name = "humadity"];
+   bool ec = 9 [json_name = "ec"];
+   bool door = 10 [json_name = "door"];
+   bool w_leak = 11 [json_name = "w_leak"];
 
-    // Target of alarm
-    string target = 6 [json_name = "target"];
-
-    // Target of alarm
-    string section = 7 [json_name = "section"];
-
-    google.protobuf.Timestamp submission_date = 10 [json_name = "submission_date"];
+    google.protobuf.Timestamp submission_date = 12 [json_name = "submission_date"];
 }
 
 message CreateAlarmResponse {
