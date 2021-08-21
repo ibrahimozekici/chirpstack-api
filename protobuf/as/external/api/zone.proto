@@ -55,7 +55,39 @@ service ZoneService {
         };
     }
 }
+message ZoneDevice {
+    // Device EUI (HEX encoded).
+    string device_dev_eui = 1 [json_name = "device_dev_eui"]; 
+    
+    // device_created_at
+    string device_created_at = 2 [json_name = "device_created_at"];
 
+    // device_updated_at
+    string device_updated_at = 3 [json_name = "device_updated_at"];
+
+    // Device-profile ID attached to the device.
+    string device_profile_id = 4 [json_name = "device_profile_id"];
+
+    // Name of the device.
+    string device_name = 5 [json_name = "device_name"];
+ 
+    // Description of the device.
+    string device_description = 6 [json_name = "device_description"];
+
+    // device_last_seen_at
+    string device_last_seen_at = 7 [json_name = "device_last_seen_at"];
+
+    // data time
+    int64 device_data_time = 8 [json_name = "device_data_time"];
+
+    // device lat value
+    double device_lat = 9 [json_name = "device_lat"];
+
+    // device lng value
+    double device_lng = 10 [json_name = "device_lng"];
+
+    int64 device_application_id = 11 [json_name = "device_application_id"];
+}
 message Zone {
     // Zone ID 
     int64 zone_id = 1;
@@ -70,7 +102,7 @@ message Zone {
     int64 order = 4 [json_name = "order"];
 
     // Devices
-    repeated string devices = 5 [json_name = "devices"];
+    repeated ZoneDevice devices = 5 [json_name = "devices"];
 }
 
 message CreateZoneRequest {
@@ -92,9 +124,6 @@ message ListZoneRequest {
 
     // Offset in the result-set (for pagination).
     int64 offset = 2;
-
-    // Organization ID filter
-    int64 organization_id = 3[json_name = "organizationID"];
 }
 
 message listZoneResponse {

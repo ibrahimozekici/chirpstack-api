@@ -43,14 +43,6 @@
             "required": false,
             "type": "string",
             "format": "int64"
-          },
-          {
-            "name": "organizationID",
-            "description": "Organization ID filter.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
           }
         ],
         "tags": [
@@ -308,9 +300,61 @@
         "devices": {
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/apiZoneDevice"
           },
           "title": "Devices"
+        }
+      }
+    },
+    "apiZoneDevice": {
+      "type": "object",
+      "properties": {
+        "device_dev_eui": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "device_created_at": {
+          "type": "string",
+          "title": "device_created_at"
+        },
+        "device_updated_at": {
+          "type": "string",
+          "title": "device_updated_at"
+        },
+        "device_profile_id": {
+          "type": "string",
+          "description": "Device-profile ID attached to the device."
+        },
+        "device_name": {
+          "type": "string",
+          "description": "Name of the device."
+        },
+        "device_description": {
+          "type": "string",
+          "description": "Description of the device."
+        },
+        "device_last_seen_at": {
+          "type": "string",
+          "title": "device_last_seen_at"
+        },
+        "device_data_time": {
+          "type": "string",
+          "format": "int64",
+          "title": "data time"
+        },
+        "device_lat": {
+          "type": "number",
+          "format": "double",
+          "title": "device lat value"
+        },
+        "device_lng": {
+          "type": "number",
+          "format": "double",
+          "title": "device lng value"
+        },
+        "device_application_id": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
