@@ -263,6 +263,37 @@
         }
       }
     },
+    "apiGetZonesItem": {
+      "type": "object",
+      "properties": {
+        "zoneId": {
+          "type": "string",
+          "format": "int64",
+          "title": "Zone ID"
+        },
+        "zoneName": {
+          "type": "string",
+          "title": "Name of Zone"
+        },
+        "orgID": {
+          "type": "string",
+          "format": "int64",
+          "title": "Organization ID"
+        },
+        "order": {
+          "type": "string",
+          "format": "int64",
+          "title": "Order index of zone"
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiZoneDevice"
+          },
+          "title": "Devices"
+        }
+      }
+    },
     "apiUpdateZoneRequest": {
       "type": "object",
       "properties": {
@@ -300,7 +331,7 @@
         "devices": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/apiZoneDevice"
+            "type": "string"
           },
           "title": "Devices"
         }
@@ -399,7 +430,7 @@
         "zones": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/apiZone"
+            "$ref": "#/definitions/apiGetZonesItem"
           }
         }
       }
