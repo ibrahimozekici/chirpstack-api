@@ -21,7 +21,7 @@ service ZoneService {
     }
 
     // List returns the available zones.
-    rpc List(ListZoneRequest) returns (listZoneResponse) {
+    rpc List(ListZoneRequest) returns (ListZoneResponse) {
         option (google.api.http) = {
             get: "/api/zones"
         };
@@ -142,7 +142,7 @@ message ListZoneRequest {
     int64 offset = 2;
 }
 
-message listZoneResponse {
+message ListZoneResponse {
     repeated GetZonesItem zones = 1;
 }
 

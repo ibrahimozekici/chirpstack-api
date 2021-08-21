@@ -23,7 +23,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apilistZoneResponse"
+              "$ref": "#/definitions/apiListZoneResponse"
             }
           }
         },
@@ -294,6 +294,17 @@
         }
       }
     },
+    "apiListZoneResponse": {
+      "type": "object",
+      "properties": {
+        "zones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiGetZonesItem"
+          }
+        }
+      }
+    },
     "apiUpdateZoneRequest": {
       "type": "object",
       "properties": {
@@ -420,17 +431,6 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/apiZoneOrder"
-          }
-        }
-      }
-    },
-    "apilistZoneResponse": {
-      "type": "object",
-      "properties": {
-        "zones": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiGetZonesItem"
           }
         }
       }
