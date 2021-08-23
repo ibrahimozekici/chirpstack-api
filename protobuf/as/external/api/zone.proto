@@ -87,6 +87,35 @@ message ZoneDevice {
     double device_lng = 10 [json_name = "device_lng"];
 
     int64 device_application_id = 11 [json_name = "device_application_id"];
+
+     // device landing alarms
+     repeated ZoneAlarm alerts = 12 [json_name = "alerts"];
+
+     repeated LandingDeviceProfile device_profile_name = 13 [json_name= "device_profile_name"];
+}
+message LandingDeviceProfile {
+    string name = 1 [json_name = "name"];
+}
+message ZoneAlarm {
+        // Alarm id.
+        int64 id = 1 [json_name = "id"];
+
+        // Device EUI (HEX encoded).
+        string dev_eui = 2 [json_name = "dev_eui"]; 
+    
+         // Condition of alarm
+         float min_treshold = 3 [json_name = "minTreshold"];
+    
+         // Value of alarm
+         float max_treshold = 4 [json_name = "maxTreshold"];
+     
+         bool sms = 5 [json_name = "sms"];
+         bool email = 6 [json_name = "email"];
+         bool temperature = 7 [json_name = "temperature"];
+         bool humadity = 8 [json_name = "humadity"];
+         bool ec = 9 [json_name = "ec"];
+         bool door = 10 [json_name = "door"];
+         bool w_leak = 11 [json_name = "w_leak"];
 }
 message Zone {
     // Zone ID 

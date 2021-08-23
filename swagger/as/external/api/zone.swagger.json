@@ -294,6 +294,14 @@
         }
       }
     },
+    "apiLandingDeviceProfile": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "apiListZoneResponse": {
       "type": "object",
       "properties": {
@@ -348,6 +356,58 @@
         }
       }
     },
+    "apiZoneAlarm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Alarm id."
+        },
+        "dev_eui": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "minTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Condition of alarm"
+        },
+        "maxTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Value of alarm"
+        },
+        "sms": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "email": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "temperature": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "humadity": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "ec": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "door": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "w_leak": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
     "apiZoneDevice": {
       "type": "object",
       "properties": {
@@ -397,6 +457,19 @@
         "device_application_id": {
           "type": "string",
           "format": "int64"
+        },
+        "alerts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiZoneAlarm"
+          },
+          "title": "device landing alarms"
+        },
+        "device_profile_name": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiLandingDeviceProfile"
+          }
         }
       }
     },
