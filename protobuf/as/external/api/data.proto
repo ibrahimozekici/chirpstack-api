@@ -60,6 +60,12 @@ service DataService {
             get: "/api/data"
         };
     }
+
+    rpc GetDataList (DataListRequest) returns (ListDataResponse) {
+        option (google.api.http) = {
+            get: "/api/data"
+        };
+    }
 }
 
 message TransData {
@@ -102,6 +108,14 @@ message ListDataRequest {
     string start_time = 5 [json_name = "startTime"];
 
     string end_time = 6 [json_name = "endTime"];
+}
+
+message DataListRequest {
+    // Search on name or DevEUI.
+    repeated string dev_eui = 1 [json_name = "devEUI"];
+    int64 zone_id = 2 [json_name = "zoneID"];
+
+    int64 limit = 3;
 }
 
 message ListDataResponse {
