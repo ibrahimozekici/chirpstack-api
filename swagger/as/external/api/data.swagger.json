@@ -375,6 +375,21 @@
         "ro2_status": {
           "type": "string",
           "format": "int64"
+        },
+        "Tvoc_ppb": {
+          "type": "number",
+          "format": "float",
+          "description": "temp_SOIL of the device."
+        },
+        "Co2_ppm": {
+          "type": "number",
+          "format": "float",
+          "description": "conduct_SOIL of the device."
+        },
+        "Ph_soil": {
+          "type": "number",
+          "format": "float",
+          "description": "temp_SOIL of the device."
         }
       }
     },

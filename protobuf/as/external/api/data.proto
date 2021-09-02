@@ -165,6 +165,15 @@ message DataResponse {
     int64 ro1_status = 16 [json_name = "ro1_status"];
     int64 ro2_status = 17 [json_name = "ro2_status"];
 
+     // temp_SOIL of the device.
+     float tvoc_ppb = 18 [json_name = "Tvoc_ppb"];
+
+     // conduct_SOIL of the device.
+     float co2_ppm = 19 [json_name = "Co2_ppm"];
+      // temp_SOIL of the device.
+      float ph_soil = 20 [json_name = "Ph_soil"];
+
+     
 }
 message ListTemperatureDataRequest {
     // Service-profile ID to filter on (string formatted UUID).
