@@ -599,20 +599,6 @@
         "email": {
           "type": "string",
           "description": "Email (only used on get)."
-        },
-        "username": {
-          "type": "string",
-          "title": "Username of user"
-        },
-        "name": {
-          "type": "string",
-          "title": "Name of the user"
-        },
-        "zones": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiZone"
-          }
         }
       }
     },
@@ -652,6 +638,20 @@
           "type": "string",
           "format": "date-time",
           "description": "Last update timestamp."
+        },
+        "username": {
+          "type": "string",
+          "title": "Username of user"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name of the user"
+        },
+        "zones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiZone"
+          }
         }
       }
     },
