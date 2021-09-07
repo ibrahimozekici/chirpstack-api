@@ -599,6 +599,20 @@
         "email": {
           "type": "string",
           "description": "Email (only used on get)."
+        },
+        "username": {
+          "type": "string",
+          "title": "Username of user"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name of the user"
+        },
+        "zones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiZone"
+          }
         }
       }
     },
@@ -656,6 +670,20 @@
         "organizationUser": {
           "$ref": "#/definitions/apiOrganizationUser",
           "description": "Organization-user object to update."
+        }
+      }
+    },
+    "apiZone": {
+      "type": "object",
+      "properties": {
+        "zoneId": {
+          "type": "string",
+          "format": "int64",
+          "title": "Zone ID"
+        },
+        "zoneName": {
+          "type": "string",
+          "title": "Name of Zone"
         }
       }
     }

@@ -210,9 +210,25 @@ message OrganizationUser {
     bool is_gateway_admin = 6;
 
 	// Email (only used on get).
-	string email = 4;
+	string email = 7;
+
+	// Username of user
+	string username = 8;
+
+	// Name of the user
+	string name = 9;
+
+	repeated Zone zones = 10;
 }
 
+message Zone {
+
+	// Zone ID 
+	int64 zone_id = 1;
+
+	// Name of Zone
+	string zone_name = 2 [json_name = "zoneName"];
+}
 message OrganizationUserListItem {
 	// User ID.
     // This is not used on create, you must set the user email address
