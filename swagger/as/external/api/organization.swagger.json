@@ -648,10 +648,7 @@
           "title": "Name of the user"
         },
         "zones": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiOrganizationUserZone"
-          }
+          "$ref": "#/definitions/apiTempZone"
         }
       }
     },
@@ -666,6 +663,17 @@
         "zoneName": {
           "type": "string",
           "title": "Name of Zone"
+        }
+      }
+    },
+    "apiTempZone": {
+      "type": "object",
+      "properties": {
+        "zones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiOrganizationUserZone"
+          }
         }
       }
     },
