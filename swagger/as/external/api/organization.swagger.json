@@ -650,8 +650,22 @@
         "zones": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/apiZone"
+            "$ref": "#/definitions/apiOrganizationUserZone"
           }
+        }
+      }
+    },
+    "apiOrganizationUserZone": {
+      "type": "object",
+      "properties": {
+        "zoneId": {
+          "type": "string",
+          "format": "int64",
+          "title": "Zone ID"
+        },
+        "zoneName": {
+          "type": "string",
+          "title": "Name of Zone"
         }
       }
     },
@@ -670,20 +684,6 @@
         "organizationUser": {
           "$ref": "#/definitions/apiOrganizationUser",
           "description": "Organization-user object to update."
-        }
-      }
-    },
-    "apiZone": {
-      "type": "object",
-      "properties": {
-        "zoneId": {
-          "type": "string",
-          "format": "int64",
-          "title": "Zone ID"
-        },
-        "zoneName": {
-          "type": "string",
-          "title": "Name of Zone"
         }
       }
     }

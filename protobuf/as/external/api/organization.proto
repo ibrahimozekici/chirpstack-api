@@ -213,7 +213,7 @@ message OrganizationUser {
 	string email = 4;
 }
 
-message Zone {
+message OrganizationUserZone {
 	// Zone ID 
 	int64 zone_id = 1;
 
@@ -252,7 +252,7 @@ message OrganizationUserListItem {
 		// Name of the user
 		string name = 9;
 	
-		repeated Zone zones = 10;
+		repeated OrganizationUserZone zones = 10;
 }
 
 message AddOrganizationUserRequest {
