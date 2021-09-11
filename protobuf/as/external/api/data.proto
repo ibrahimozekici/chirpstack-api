@@ -173,7 +173,7 @@ message DataResponse {
       // temp_SOIL of the device.
       float ph_soil = 20 [json_name = "Ph_soil"];
 
-     
+     float bat_v = 21 [json_name = "Batv"];
 }
 message ListTemperatureDataRequest {
     // Service-profile ID to filter on (string formatted UUID).

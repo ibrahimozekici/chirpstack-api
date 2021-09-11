@@ -390,6 +390,10 @@
           "type": "number",
           "format": "float",
           "description": "temp_SOIL of the device."
+        },
+        "Batv": {
+          "type": "number",
+          "format": "float"
         }
       }
     },
