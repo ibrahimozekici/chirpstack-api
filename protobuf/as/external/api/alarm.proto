@@ -110,6 +110,9 @@ message ListAlarmRequest {
 
     // Device EUI (HEX encoded).
     string dev_eui = 3 [json_name = "devEUI"];
+
+    // Offset in the result-set (for pagination).
+    int64 userId = 4;
 }
 
 message ListAlarmResponse {

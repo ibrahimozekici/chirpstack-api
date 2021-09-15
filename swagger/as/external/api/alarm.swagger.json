@@ -49,6 +49,14 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "userId",
+            "description": "Offset in the result-set (for pagination).",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
