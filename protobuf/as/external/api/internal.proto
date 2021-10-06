@@ -92,6 +92,13 @@ service InternalService {
             body: "*"
         };
     }
+
+    // GetLicenceOrder Get licence order.
+    rpc GetLicenceOrder(CreateLicenceOrderRequest) returns (CreateLicenceOrderResponse) {
+        option(google.api.http) = {
+            get: "/api/internal/order"
+        };
+    }
 }
 
 message APIKey {
@@ -537,4 +544,58 @@ message CreateLicenceOrderRequest {
 
 message CreateLicenceOrderResponse {
     uint32 order_id = 1;
+}
+
+message GetLicenceOrderRequest {
+    uint32 order_id = 1;
+}
+
+message GetLicenceOrderResponse {
+    // User ID
+    uint32 user_id = 1;
+
+    // User Name
+    string user_name = 2;
+
+    // User Surname
+    string user_surname = 3;
+
+    // User Phone number
+    string user_phone = 4;
+
+    // User Email
+    string user_mail = 5;
+
+    // User Identity Number
+    string user_identity = 6;
+
+    // User Vat
+    string user_vat = 7;
+
+    // User Address
+    string user_address = 8;
+
+    // User City
+    string user_city = 9;
+
+    // User Country
+    string user_country = 10;
+
+    // User Zipcode
+    string user_zipcode = 11;
+
+    // User City
+    string order_detail = 12;
+
+
+    // User City
+    string order_price = 14;
+
+    // User City
+    string order_time = 15;
+
+    string last_login_date = 16;
+
+    string registration_date = 17;
+
 }

@@ -240,6 +240,137 @@
       }
     },
     "/api/internal/order": {
+      "get": {
+        "summary": "GetLicenceOrder Get licence order.",
+        "operationId": "GetLicenceOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiCreateLicenceOrderResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "description": "User ID.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "userName",
+            "description": "User Name.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userSurname",
+            "description": "User Surname.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userPhone",
+            "description": "User Phone number.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userMail",
+            "description": "User Email.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userIdentity",
+            "description": "User Identity Number.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userVat",
+            "description": "User Vat.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userAddress",
+            "description": "User Address.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userCity",
+            "description": "User City.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userCountry",
+            "description": "User Country.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userZipcode",
+            "description": "User Zipcode.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "orderDetail",
+            "description": "User City.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "orderQuantity",
+            "description": "User City.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "orderPrice",
+            "description": "User City.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "orderTime",
+            "description": "User City.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "orgenizationId",
+            "description": "Organization ID.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "InternalService"
+        ]
+      },
       "post": {
         "summary": "CreateLicenceOrder Create licence order.",
         "operationId": "CreateLicenceOrder",
