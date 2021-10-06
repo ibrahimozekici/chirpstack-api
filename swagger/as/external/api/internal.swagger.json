@@ -240,30 +240,6 @@
       }
     },
     "/api/internal/order": {
-      "get": {
-        "summary": "GetLicenceOrder Get licence order.",
-        "operationId": "GetLicenceOrder",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiGetLicenceOrderResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "orderId",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "InternalService"
-        ]
-      },
       "post": {
         "summary": "CreateLicenceOrder Create licence order.",
         "operationId": "CreateLicenceOrder",
@@ -283,6 +259,32 @@
             "schema": {
               "$ref": "#/definitions/apiCreateLicenceOrderRequest"
             }
+          }
+        ],
+        "tags": [
+          "InternalService"
+        ]
+      }
+    },
+    "/api/internal/order/{order_id}": {
+      "get": {
+        "summary": "GetLicenceOrder Get licence order.",
+        "operationId": "GetLicenceOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetLicenceOrderResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "tags": [
