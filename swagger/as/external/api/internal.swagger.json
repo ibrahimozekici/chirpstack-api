@@ -239,6 +239,33 @@
         ]
       }
     },
+    "/api/internal/order": {
+      "post": {
+        "summary": "CreateLicenceOrder Create licence order.",
+        "operationId": "CreateLicenceOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiCreateLicenceOrderResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateLicenceOrderRequest"
+            }
+          }
+        ],
+        "tags": [
+          "InternalService"
+        ]
+      }
+    },
     "/api/internal/profile": {
       "get": {
         "summary": "Get the current user's profile",
@@ -377,6 +404,81 @@
         "jwtToken": {
           "type": "string",
           "description": "JWT token for this API Key."
+        }
+      }
+    },
+    "apiCreateLicenceOrderRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "integer",
+          "format": "int64",
+          "title": "User ID"
+        },
+        "userName": {
+          "type": "string",
+          "title": "User Name"
+        },
+        "userSurname": {
+          "type": "string",
+          "title": "User Surname"
+        },
+        "userPhone": {
+          "type": "string",
+          "title": "User Phone number"
+        },
+        "userMail": {
+          "type": "string",
+          "title": "User Email"
+        },
+        "userIdentity": {
+          "type": "string",
+          "title": "User Identity Number"
+        },
+        "userVat": {
+          "type": "string",
+          "title": "User Vat"
+        },
+        "userAddress": {
+          "type": "string",
+          "title": "User Address"
+        },
+        "userCity": {
+          "type": "string",
+          "title": "User City"
+        },
+        "userCountry": {
+          "type": "string",
+          "title": "User Country"
+        },
+        "userZipcode": {
+          "type": "string",
+          "title": "User Zipcode"
+        },
+        "orderDetail": {
+          "type": "string",
+          "title": "User City"
+        },
+        "orderQuantity": {
+          "type": "string",
+          "title": "User City"
+        },
+        "orderPrice": {
+          "type": "string",
+          "title": "User City"
+        },
+        "orderTime": {
+          "type": "string",
+          "title": "User City"
+        }
+      }
+    },
+    "apiCreateLicenceOrderResponse": {
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "type": "integer",
+          "format": "int64"
         }
       }
     },
