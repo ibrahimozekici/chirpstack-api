@@ -470,6 +470,11 @@
         "orderTime": {
           "type": "string",
           "title": "User City"
+        },
+        "orgenizationId": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Organization ID"
         }
       }
     },

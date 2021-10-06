@@ -530,6 +530,9 @@ message CreateLicenceOrderRequest {
 
     // User City
     string order_time = 15;
+
+    // Organization ID
+    uint32 orgenization_id = 16;
 }
 
 message CreateLicenceOrderResponse {
