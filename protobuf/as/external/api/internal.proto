@@ -94,7 +94,7 @@ service InternalService {
     }
 
     // GetLicenceOrder Get licence order.
-    rpc GetLicenceOrder(CreateLicenceOrderRequest) returns (CreateLicenceOrderResponse) {
+    rpc GetLicenceOrder(GetLicenceOrderRequest) returns (GetLicenceOrderResponse) {
         option(google.api.http) = {
             get: "/api/internal/order"
         };

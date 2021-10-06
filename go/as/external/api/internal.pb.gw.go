@@ -394,7 +394,7 @@ var (
 )
 
 func request_InternalService_GetLicenceOrder_0(ctx context.Context, marshaler runtime.Marshaler, client InternalServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateLicenceOrderRequest
+	var protoReq GetLicenceOrderRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -410,7 +410,7 @@ func request_InternalService_GetLicenceOrder_0(ctx context.Context, marshaler ru
 }
 
 func local_request_InternalService_GetLicenceOrder_0(ctx context.Context, marshaler runtime.Marshaler, server InternalServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateLicenceOrderRequest
+	var protoReq GetLicenceOrderRequest
 	var metadata runtime.ServerMetadata
 
 	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_InternalService_GetLicenceOrder_0); err != nil {
