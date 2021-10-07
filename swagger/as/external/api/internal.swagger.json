@@ -699,6 +699,10 @@
         },
         "registrationDate": {
           "type": "string"
+        },
+        "orgenizationId": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

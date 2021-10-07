@@ -605,6 +605,7 @@ message GetLicenceOrderResponse {
 
     string registration_date = 17;
 
+    int64 orgenization_id = 18;
 }
 
 message GetLicencePriceRequest {
