@@ -405,7 +405,7 @@ func request_InternalService_GetLicenceOrder_0(ctx context.Context, marshaler ru
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "order_id")
 	}
 
-	protoReq.OrderId, err = runtime.Uint32(val)
+	protoReq.OrderId, err = runtime.Int64(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "order_id", err)
@@ -432,13 +432,31 @@ func local_request_InternalService_GetLicenceOrder_0(ctx context.Context, marsha
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "order_id")
 	}
 
-	protoReq.OrderId, err = runtime.Uint32(val)
+	protoReq.OrderId, err = runtime.Int64(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "order_id", err)
 	}
 
 	msg, err := server.GetLicenceOrder(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_InternalService_GetLicencePrice_0(ctx context.Context, marshaler runtime.Marshaler, client InternalServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetLicencePriceRequest
+	var metadata runtime.ServerMetadata
+
+	msg, err := client.GetLicencePrice(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_InternalService_GetLicencePrice_0(ctx context.Context, marshaler runtime.Marshaler, server InternalServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetLicencePriceRequest
+	var metadata runtime.ServerMetadata
+
+	msg, err := server.GetLicencePrice(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -685,6 +703,26 @@ func RegisterInternalServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		}
 
 		forward_InternalService_GetLicenceOrder_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_InternalService_GetLicencePrice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_InternalService_GetLicencePrice_0(rctx, inboundMarshaler, server, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_InternalService_GetLicencePrice_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -969,6 +1007,26 @@ func RegisterInternalServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 
 	})
 
+	mux.Handle("GET", pattern_InternalService_GetLicencePrice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_InternalService_GetLicencePrice_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_InternalService_GetLicencePrice_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	return nil
 }
 
@@ -996,6 +1054,8 @@ var (
 	pattern_InternalService_CreateLicenceOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "internal", "order"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_InternalService_GetLicenceOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "internal", "order", "order_id"}, "", runtime.AssumeColonVerbOpt(true)))
+
+	pattern_InternalService_GetLicencePrice_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "internal", "licencePrice"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (
@@ -1022,4 +1082,6 @@ var (
 	forward_InternalService_CreateLicenceOrder_0 = runtime.ForwardResponseMessage
 
 	forward_InternalService_GetLicenceOrder_0 = runtime.ForwardResponseMessage
+
+	forward_InternalService_GetLicencePrice_0 = runtime.ForwardResponseMessage
 )

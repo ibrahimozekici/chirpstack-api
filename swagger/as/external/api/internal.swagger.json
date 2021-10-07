@@ -179,6 +179,23 @@
         ]
       }
     },
+    "/api/internal/licencePrice": {
+      "get": {
+        "summary": "GetLicencePrice Get licence order.",
+        "operationId": "GetLicencePrice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetLicencePriceResponse"
+            }
+          }
+        },
+        "tags": [
+          "InternalService"
+        ]
+      }
+    },
     "/api/internal/login": {
       "post": {
         "summary": "Log in a user",
@@ -283,7 +300,7 @@
             "name": "order_id",
             "in": "path",
             "required": true,
-            "type": "integer",
+            "type": "string",
             "format": "int64"
           }
         ],
@@ -682,6 +699,23 @@
         },
         "registrationDate": {
           "type": "string"
+        }
+      }
+    },
+    "apiGetLicencePriceResponse": {
+      "type": "object",
+      "properties": {
+        "option1": {
+          "type": "string",
+          "title": "Licence Option 1"
+        },
+        "option2": {
+          "type": "string",
+          "title": "Licence Option 2"
+        },
+        "option3": {
+          "type": "string",
+          "title": "Licence Option 3"
         }
       }
     },

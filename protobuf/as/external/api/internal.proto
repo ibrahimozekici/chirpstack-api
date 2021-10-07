@@ -99,6 +99,13 @@ service InternalService {
             get: "/api/internal/order/{order_id}"
         };
     }
+
+    // GetLicencePrice Get licence order.
+    rpc GetLicencePrice(GetLicencePriceRequest) returns (GetLicencePriceResponse) {
+        option(google.api.http) = {
+            get: "/api/internal/licencePrice"
+        };
+    }
 }
 
 message APIKey {
@@ -547,7 +554,7 @@ message CreateLicenceOrderResponse {
 }
 
 message GetLicenceOrderRequest {
-    uint32 order_id = 1;
+    int64 order_id = 1;
 }
 
 message GetLicenceOrderResponse {
@@ -598,4 +605,18 @@ message GetLicenceOrderResponse {
 
     string registration_date = 17;
 
+}
+
+message GetLicencePriceRequest {
+}
+
+message GetLicencePriceResponse {
+    // Licence Option 1
+    string option_1 = 1;
+
+    // Licence Option 2
+    string option_2 = 2;
+
+    // Licence Option 3
+    string option_3 = 3;
 }
