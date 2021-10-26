@@ -631,6 +631,10 @@
             "type": "string",
             "format": "int64"
           }
+        },
+        "traing": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
