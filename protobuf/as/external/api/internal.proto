@@ -246,8 +246,8 @@ message GetLandingResponse {
     LandingZoneList zoneList = 12;
 
     repeated int64 organization_id_list = 13 [json_name = "organization_id_list"];
-    
-    bool training =  14 [json_name = "traing"];
+
+    bool training =  14 [json_name = "training"];
 }
 
 message LandingZoneList {

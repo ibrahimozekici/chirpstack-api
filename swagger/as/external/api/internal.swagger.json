@@ -632,7 +632,7 @@
             "format": "int64"
           }
         },
-        "traing": {
+        "training": {
           "type": "boolean",
           "format": "boolean"
         }
