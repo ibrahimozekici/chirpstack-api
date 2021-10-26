@@ -119,6 +119,8 @@ message User {
 
 	// Username of the user
 	string user_name = 16 [json_name = "userName"];
+
+	bool training = 17 [json_name = "training"];
 }
 
 message UserListItem {

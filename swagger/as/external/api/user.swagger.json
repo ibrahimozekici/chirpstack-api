@@ -453,6 +453,10 @@
         "userName": {
           "type": "string",
           "title": "Username of the user"
+        },
+        "training": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
