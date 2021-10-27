@@ -11,86 +11,14 @@ import "google/protobuf/empty.proto";
 
 // DataService is the service managing the data
 service DataService {
-    // GetTemperatureData return list of temperature results
-    rpc GetTemperatureData (ListTemperatureDataRequest) returns (ListTemperatureDataResponse) {
-        option (google.api.http) = {
-            get: "/api/data/temperature"
-        };
-    }
-
-    // GetSoilData return list of soil results
-    rpc GetSoilData (ListSoilDataRequest) returns (ListSoilDataResponse) {
-        option (google.api.http) = {
-            get: "/api/data/soil"
-        };
-    }
-
-    // GetDistanceData return list of distance results 
-    rpc GetDistanceData (ListDistanceDataRequest) returns (ListDistanceDataResponse) {
-        option (google.api.http) = {
-            get: "/api/data/distance"
-        };
-    }
-
-    // GetTrackingData return list of tracking results 
-    rpc GetTrackingData (ListTrackingDataRequest) returns (ListTrackingDataResponse) {
-        option (google.api.http) = {
-            get: "/api/data/tracking"
-        };
-    }
-
-    // UploadTemperatureData post temperature data
-    rpc UploadTemperatureData (PostTemperatureDataRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/api/data/temperature"
-            body: "*"
-        };
-    }
-
-    // UploadSoilData post soil data
-    rpc UploadSoilData (PostSoilDataRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/api/data/soil"
-            body: "*"
-        };
-    }
-
+    // GetData api method to get data 
     rpc GetData (ListDataRequest) returns (ListDataResponse) {
         option (google.api.http) = {
             get: "/api/data"
         };
     }
-
-    rpc GetDataList (DataListRequest) returns (ListDataResponse) {
-        option (google.api.http) = {
-            get: "/api/data"
-        };
-    }
 }
 
-message TransData {
-     // name
-     string name = 2 [json_name = "name"];
-}
-message TemperatureData {
-    // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"]; 
-
-    // name
-    string name = 2 [json_name = "name"];
-    
-    // temp_SHT of the device.
-    float Temp_SHT = 3 [json_name = "Temp_SHT"];
-
-    // hum_SHT.
-    float Hum_SHT = 4 [json_name = "Hum_SHT"];
-
-    // The last time the application-server received any data from the device,
-    // or an empty string when the device never sent any data.
-    google.protobuf.Timestamp submission_date = 5 [json_name = "submission_date"];
-
-    string description = 6 [json_name = "Description"];
-}
 
 message ListDataRequest {
     // Service-profile ID to filter on (string formatted UUID).
@@ -108,14 +36,6 @@ message ListDataRequest {
     string start_time = 5 [json_name = "startTime"];
 
     string end_time = 6 [json_name = "endTime"];
-}
-
-message DataListRequest {
-    // Search on name or DevEUI.
-    repeated string dev_eui = 1 [json_name = "devEUI"];
-    int64 zone_id = 2 [json_name = "zoneID"];
-
-    int64 limit = 3;
 }
 
 message ListDataResponse {
@@ -175,172 +95,5 @@ message DataResponse {
 
      float bat_v = 21 [json_name = "Batv"];
 }
-message ListTemperatureDataRequest {
-    // Service-profile ID to filter on (string formatted UUID).
-    int64 zone_id = 1 [json_name = "zoneID"];
 
-    // Search on name or DevEUI.
-    string dev_eui = 2 [json_name = "devEUI"];
 
-    // Max number of devices to return in the result-set.
-    int64 limit = 3;
-
-    string start_time = 4 [json_name = "startTime"];
-
-    string end_time = 5 [json_name = "endTime"];
-}
-
-message ListTemperatureDataResponse {
-    // Total number of devices available within the result-set.
-    int64 total_count = 1;
-
-    // Devices within this result-set.
-    repeated TemperatureData result = 2;
-}
-
-message SoilData {
-    // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
-
-    // name
-    string name = 2 [json_name = "name"];
-
-    // TempC_DS18B20 of the device.
-    float TempC_DS18B20 = 3 [json_name = "TempC_DS18B20"];
-
-    // water_SOIL of the device.
-    float water_SOIL = 4 [json_name = "water_SOIL"];
-
-    // temp_SOIL of the device.
-    float temp_SOIL = 5 [json_name = "temp_SOIL"];
-
-    // conduct_SOIL of the device.
-    float conduct_SOIL = 6 [json_name = "conduct_SOIL"];
-
-    // The last time the application-server received any data from the device,
-    // or an empty string when the device never sent any data.
-    google.protobuf.Timestamp submission_date = 7 [json_name = "submission_date"];
-
-    string description = 8 [json_name = "Description"];
-}
-
-message ListSoilDataRequest {
-    // Service-profile ID to filter on (string formatted UUID).
-    int64 zone_id = 1 [json_name = "zoneID"];
-
-    // Search on name or DevEUI.
-    string dev_eui = 2 [json_name = "devEUI"];
-
-    // Max number of devices to return in the result-set.
-    int64 limit = 3;
-
-    string start_time = 4 [json_name = "startTime"];
-
-    string end_time = 5 [json_name = "endTime"];
-}
-
-message ListSoilDataResponse {
-    // Total number of devices available within the result-set.
-    int64 total_count = 1;
-
-    // Devices within this result-set.
-    repeated SoilData result = 2;
-}
-
-message DistanceData {
-    // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
-
-    // distance of the device.
-    float distance = 2 [json_name = "distance"];
-
-    // The last time the application-server received any data from the device,
-    // or an empty string when the device never sent any data.
-    google.protobuf.Timestamp submission_date = 3 [json_name = "submission_date"];
-}
-
-message ListDistanceDataRequest {
-    // Search on name or DevEUI.
-    string dev_eui = 1 [json_name = "devEUI"];
-
-    // Service-profile ID to filter on (string formatted UUID).
-    string organization_id = 2 [json_name = "organizationId"];
-
-    // Max number of devices to return in the result-set.
-    int64 limit = 3;
-}
-
-message ListDistanceDataResponse {
-    // Total number of devices available within the result-set.
-    int64 total_count = 1;
-
-    // Devices within this result-set.
-    repeated DistanceData result = 2;
-}
-
-message TrackingData {
-    // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
-
-    // ADDR value of device.
-    string ADDR = 2 [json_name = "ADDR"];
-
-    // STEP value of device.
-    int64  STEP = 3 [json_name = "STEP"];
-
-    // ALARM value of device.
-    string ALARM = 4 [json_name = "ALARM"];
-
-    // The last time the application-server received any data from the device,
-    // or an empty string when the device never sent any data.
-    google.protobuf.Timestamp submission_date = 5 [json_name = "submission_date"];
-}
-
-message ListTrackingDataRequest {
-    // Search on name or DevEUI.
-    string dev_eui = 1 [json_name = "devEUI"];
-
-    // Service-profile ID to filter on (string formatted UUID).
-    string organization_id = 2 [json_name = "organizationId"];
-
-    // Max number of devices to return in the result-set.
-    int64 limit = 3;
-
-    
-}
-
-message ListTrackingDataResponse {
-    // Total number of devices available within the result-set.
-    int64 total_count = 1;
-
-    // Devices within this result-set.
-    repeated TrackingData result = 2;
-}
-
-message PostTemperatureDataRequest {
-    // Search on name or DevEUI.
-    string dev_eui = 1 [json_name = "devEUI"];
-
-    // temperature temperature 
-    double temperature = 2 [json_name = "temperature"];
-
-    // humadity humadity
-    double humadity = 3 [json_name = "humadity"];
-}
-
-message PostSoilDataRequest {
-    // Search on name or DevEUI.
-    string dev_eui = 1 [json_name = "devEUI"];
-
-    // temp_c temp_c
-    double temp_c = 2 [json_name = "temp_c"];
-
-    // water_soil water_soil
-    double water_soil = 3 [json_name = "water_soil"];
-
-    // temp_soil temp_soil
-    double temp_soil = 4 [json_name = "temp_soil"];
-
-    // conduct_soil conduct_soil
-    double conduct_soil = 5 [json_name = "conduct_soil"];
-}
