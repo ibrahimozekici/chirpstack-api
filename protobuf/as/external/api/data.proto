@@ -17,9 +17,17 @@ service DataService {
             get: "/api/data"
         };
     }
+
+    rpc GetDataList (GetDataListRequest) returns (ListDataResponse) {
+        option (google.api.http) = {
+            get: "/api/dataList"
+        };
+    }
 }
 
-
+message GetDataListRequest {
+    repeated string id_list = 1 [json_name = "idList"];
+}
 message ListDataRequest {
     // Service-profile ID to filter on (string formatted UUID).
     int64 zone_id = 1 [json_name = "zoneID"];

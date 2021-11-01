@@ -76,6 +76,34 @@
           "DataService"
         ]
       }
+    },
+    "/api/dataList": {
+      "get": {
+        "operationId": "GetDataList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListDataResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "idList",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "DataService"
+        ]
+      }
     }
   },
   "definitions": {
