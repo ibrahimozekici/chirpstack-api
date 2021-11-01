@@ -26,7 +26,7 @@ service DataService {
 }
 
 message GetDataListRequest {
-    repeated string id_list = 1 [json_name = "idList"];
+    string id_list = 1 [json_name = "idList"];
 }
 message ListDataRequest {
     // Service-profile ID to filter on (string formatted UUID).
