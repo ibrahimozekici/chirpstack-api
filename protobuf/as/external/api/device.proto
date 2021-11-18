@@ -179,6 +179,9 @@ message Device {
 
     // Device Profile Name
     string device_profile_name = 14 [json_name = "deviceProfileName"];
+
+    int64 device_type = 15 [json_name = "deviceType"];
+
 }
 
 message DeviceListItem {
@@ -231,6 +234,8 @@ message DeviceListItem {
     double lat = 14;	
     // device lng value	
     double lng = 15;
+
+    int64 device_type = 16 [json_name = "deviceType"];
 }
 
 message DeviceKeys {

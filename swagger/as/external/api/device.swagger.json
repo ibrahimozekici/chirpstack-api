@@ -578,6 +578,10 @@
         "deviceProfileName": {
           "type": "string",
           "title": "Device Profile Name"
+        },
+        "deviceType": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -718,6 +722,10 @@
           "type": "number",
           "format": "double",
           "title": "device lng value"
+        },
+        "deviceType": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
