@@ -197,6 +197,10 @@
         "Batv": {
           "type": "number",
           "format": "float"
+        },
+        "SensecapLight": {
+          "type": "number",
+          "format": "float"
         }
       }
     },

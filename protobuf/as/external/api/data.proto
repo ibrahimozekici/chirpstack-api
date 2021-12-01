@@ -102,6 +102,8 @@ message DataResponse {
       float ph_soil = 20 [json_name = "Ph_soil"];
 
      float bat_v = 21 [json_name = "Batv"];
+
+     float sensecap_light = 22 [json_name = "SensecapLight"];
 }
 
 
