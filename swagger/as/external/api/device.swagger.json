@@ -582,6 +582,10 @@
         "deviceType": {
           "type": "string",
           "format": "int64"
+        },
+        "organizationId": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -724,6 +728,10 @@
           "title": "device lng value"
         },
         "deviceType": {
+          "type": "string",
+          "format": "int64"
+        },
+        "organizationId": {
           "type": "string",
           "format": "int64"
         }
