@@ -298,6 +298,10 @@
             "$ref": "#/definitions/apiZoneDevice"
           },
           "title": "Devices"
+        },
+        "contentType": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -352,6 +356,10 @@
             "type": "string"
           },
           "title": "Devices"
+        },
+        "contentType": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
