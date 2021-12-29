@@ -68,8 +68,8 @@ message Alarm {
    bool ec = 9 [json_name = "ec"];
    bool door = 10 [json_name = "door"];
    bool w_leak = 11 [json_name = "w_leak"];
-
-    google.protobuf.Timestamp submission_date = 12 [json_name = "submission_date"];
+   google.protobuf.Timestamp submission_date = 12 [json_name = "submission_date"];
+   string ip_address = 13 [json_name = "ip_address"];
 }
 
 message CreateAlarmResponse {
@@ -121,4 +121,20 @@ message ListAlarmResponse {
 
     // Devices within this result-set.
     repeated Alarm result = 2;
+
+    repeated AlarmLogs logs = 3;
+}
+message AlarmLogs {
+    string dev_eui = 1 [json_name = "devEUI"];
+     // Condition of alarm
+     float min_treshold = 2 [json_name = "minTreshold"];
+
+     // Value of alarm
+     float max_treshold = 3 [json_name = "maxTreshold"];
+
+     int64 user_id = 4;
+
+    string ip_address = 5;
+
+    bool is_deleted = 6;
 }
