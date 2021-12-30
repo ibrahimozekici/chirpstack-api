@@ -258,8 +258,8 @@
           "type": "string"
         },
         "isDeleted": {
-          "type": "boolean",
-          "format": "boolean"
+          "type": "string",
+          "format": "int64"
         }
       }
     },
