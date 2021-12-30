@@ -260,6 +260,10 @@
         "isDeleted": {
           "type": "string",
           "format": "int64"
+        },
+        "submissionDate": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },

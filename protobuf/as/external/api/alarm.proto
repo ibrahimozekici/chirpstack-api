@@ -137,4 +137,6 @@ message AlarmLogs {
     string ip_address = 5;
 
     int64 is_deleted = 6;
+    
+    google.protobuf.Timestamp submission_date = 7;
 }
