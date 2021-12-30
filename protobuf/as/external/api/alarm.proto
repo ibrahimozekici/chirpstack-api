@@ -92,6 +92,7 @@ message GetAlarmResponse {
 message DeleteAlarmRequest {
     // Alarm Id (HEX encoded).
     repeated string alarm_id = 1 [json_name = "alarmID"];
+    string ip_address = 2;
 }
 
 message UpdateAlarmRequest {
@@ -137,6 +138,6 @@ message AlarmLogs {
     string ip_address = 5;
 
     int64 is_deleted = 6;
-    
+
     google.protobuf.Timestamp submission_date = 7;
 }
