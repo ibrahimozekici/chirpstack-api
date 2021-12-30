@@ -261,6 +261,30 @@
           "type": "string",
           "format": "int64"
         },
+        "temperature": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "humadity": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "ec": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "door": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "w_leak": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "sms": {
+          "type": "boolean",
+          "format": "boolean"
+        },
         "submissionDate": {
           "type": "string",
           "format": "date-time"

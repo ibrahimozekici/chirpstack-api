@@ -138,6 +138,12 @@ message AlarmLogs {
     string ip_address = 5;
 
     int64 is_deleted = 6;
+    bool temperature = 7 [json_name = "temperature"];
+    bool humadity = 8 [json_name = "humadity"];
+    bool ec = 9 [json_name = "ec"];
+    bool door = 10 [json_name = "door"];
+    bool w_leak = 11 [json_name = "w_leak"];
+    bool sms = 12 [json_name = "sms"];
 
-    google.protobuf.Timestamp submission_date = 7;
+    google.protobuf.Timestamp submission_date = 13;
 }
