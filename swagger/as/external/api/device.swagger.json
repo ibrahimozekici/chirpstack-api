@@ -633,6 +633,122 @@
         }
       }
     },
+    "apiDeviceAlarm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Alarm id."
+        },
+        "devEUI": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "minTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Condition of alarm"
+        },
+        "maxTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Value of alarm"
+        },
+        "sms": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "email": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "temperature": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "humadity": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "ec": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "door": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "w_leak": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "submission_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ip_address": {
+          "type": "string"
+        }
+      }
+    },
+    "apiDeviceAlarmLogs": {
+      "type": "object",
+      "properties": {
+        "devEUI": {
+          "type": "string"
+        },
+        "minTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Condition of alarm"
+        },
+        "maxTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Value of alarm"
+        },
+        "userId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ipAddress": {
+          "type": "string"
+        },
+        "isDeleted": {
+          "type": "string",
+          "format": "int64"
+        },
+        "temperature": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "humadity": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "ec": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "door": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "w_leak": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "sms": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "submissionDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
     "apiDeviceKeys": {
       "type": "object",
       "properties": {
@@ -797,6 +913,18 @@
         "location": {
           "$ref": "#/definitions/commonLocation",
           "description": "Device location.\r\nThis will set when the network-server was able to resolve the location\r\nusing the geolocation-server."
+        },
+        "alarms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiDeviceAlarm"
+          }
+        },
+        "logs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiDeviceAlarmLogs"
+          }
         }
       }
     },

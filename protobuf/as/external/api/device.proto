@@ -259,7 +259,52 @@ message DeviceKeys {
     // that implement the remote multicast setup specification.
     string gen_app_key = 4;
 }
+message DeviceAlarm {
 
+    // Alarm id.
+    int64 id = 1;
+     
+    // Device EUI (HEX encoded).
+    string dev_eui = 2 [json_name = "devEUI"]; 
+
+    // Condition of alarm
+    float min_treshold = 3 [json_name = "minTreshold"];
+
+    // Value of alarm
+    float max_treshold = 4 [json_name = "maxTreshold"];
+
+   bool sms = 5 [json_name = "sms"];
+   bool email = 6 [json_name = "email"];
+   bool temperature = 7 [json_name = "temperature"];
+   bool humadity = 8 [json_name = "humadity"];
+   bool ec = 9 [json_name = "ec"];
+   bool door = 10 [json_name = "door"];
+   bool w_leak = 11 [json_name = "w_leak"];
+   google.protobuf.Timestamp submission_date = 12 [json_name = "submission_date"];
+   string ip_address = 13 [json_name = "ip_address"];
+}
+message DeviceAlarmLogs {
+    string dev_eui = 1 [json_name = "devEUI"];
+     // Condition of alarm
+     float min_treshold = 2 [json_name = "minTreshold"];
+
+     // Value of alarm
+     float max_treshold = 3 [json_name = "maxTreshold"];
+
+     int64 user_id = 4;
+
+    string ip_address = 5;
+
+    int64 is_deleted = 6;
+    bool temperature = 7 [json_name = "temperature"];
+    bool humadity = 8 [json_name = "humadity"];
+    bool ec = 9 [json_name = "ec"];
+    bool door = 10 [json_name = "door"];
+    bool w_leak = 11 [json_name = "w_leak"];
+    bool sms = 12 [json_name = "sms"];
+
+    google.protobuf.Timestamp submission_date = 13;
+}
 message CreateDeviceRequest {
     // Device object to create.
     Device device = 1;
@@ -279,24 +324,29 @@ message GetDeviceResponse {
     // First seen at 4
 
     // Last seen timestamp.
-    google.protobuf.Timestamp last_seen_at = 5 [json_name = "lastSeenAt"];
+    google.protobuf.Timestamp last_seen_at = 2 [json_name = "lastSeenAt"];
 
     // The device battery status
     // 0:      The end-device is connected to an external power source
     // 1..254: The battery level, 1 being at minimum and 254 being at maximum
     // 255:    The end-device was not able to measure the battery level
     // 256:    The device-status is not available.
-    uint32 device_status_battery = 6;
+    uint32 device_status_battery = 3;
 
     // The device margin status
     // -32..32: The demodulation SNR ration in dB
     // 256:     The device-status is not available.
-    int32  device_status_margin = 20;
+    int32  device_status_margin = 4;
 
     // Device location.
     // This will set when the network-server was able to resolve the location
     // using the geolocation-server.
-    common.Location location = 21;
+    common.Location location = 5;
+
+    repeated DeviceAlarm alarms = 6;
+
+    repeated DeviceAlarmLogs logs = 7;
+    
 }
 
 message ListDeviceRequest {
