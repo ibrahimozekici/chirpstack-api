@@ -202,6 +202,9 @@ message OrganizationUser {
     // There is no need to set the is_device_admin and is_gateway_admin flags.
 	bool is_admin = 3;
 
+	// Email (only used on get).
+	string email = 4;
+
     // User is able to modify device related resources (applications,
     // device-profiles, devices, multicast-groups).
     bool is_device_admin = 5;
@@ -209,8 +212,9 @@ message OrganizationUser {
     // User is able to modify gateways.
     bool is_gateway_admin = 6;
 
-	// Email (only used on get).
-	string email = 4;
+	
+
+	repeated int64 zones= 7 [json_name = "zones"];
 }
 
 message OrganizationUserZone {
@@ -253,6 +257,8 @@ message OrganizationUserListItem {
 		string name = 9;
 	
 		TempZone zones = 10;
+
+		string phone_number= 11;
 }
 message TempZone {
 	repeated OrganizationUserZone zones = 1;

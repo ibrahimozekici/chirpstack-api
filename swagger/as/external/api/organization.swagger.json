@@ -586,6 +586,10 @@
           "format": "boolean",
           "description": "User is admin within the context of the organization.\r\nThere is no need to set the is_device_admin and is_gateway_admin flags."
         },
+        "email": {
+          "type": "string",
+          "description": "Email (only used on get)."
+        },
         "isDeviceAdmin": {
           "type": "boolean",
           "format": "boolean",
@@ -596,9 +600,12 @@
           "format": "boolean",
           "description": "User is able to modify gateways."
         },
-        "email": {
-          "type": "string",
-          "description": "Email (only used on get)."
+        "zones": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
         }
       }
     },
@@ -649,6 +656,9 @@
         },
         "zones": {
           "$ref": "#/definitions/apiTempZone"
+        },
+        "phoneNumber": {
+          "type": "string"
         }
       }
     },
