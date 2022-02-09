@@ -184,6 +184,8 @@ message Device {
 
     int64 organization_id = 16 [json_name = "organizationId"];
 
+    int64 zone_id = 17 [json_name = "zoneId"];
+
 }
 
 message DeviceListItem {
