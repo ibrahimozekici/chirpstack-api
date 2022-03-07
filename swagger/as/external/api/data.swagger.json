@@ -201,6 +201,10 @@
         "SensecapLight": {
           "type": "number",
           "format": "float"
+        },
+        "BarometricPressure": {
+          "type": "number",
+          "format": "float"
         }
       }
     },

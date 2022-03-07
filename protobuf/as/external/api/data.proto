@@ -104,6 +104,7 @@ message DataResponse {
      float bat_v = 21 [json_name = "Batv"];
 
      float sensecap_light = 22 [json_name = "SensecapLight"];
+     float barometric_pressure = 23 [json_name = "BarometricPressure"];
 }
 
 
