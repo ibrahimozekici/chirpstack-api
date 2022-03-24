@@ -70,6 +70,9 @@ message Alarm {
    bool w_leak = 11 [json_name = "w_leak"];
    google.protobuf.Timestamp submission_date = 12 [json_name = "submission_date"];
    string ip_address = 13 [json_name = "ip_address"];
+   bool is_time_scheduled = 14 [json_name = "is_time_scheduled"];
+   float start_time = 15 [json_name = "start_time"];
+   float end_time = 16 [json_name = "end_time"];
 }
 
 message CreateAlarmResponse {

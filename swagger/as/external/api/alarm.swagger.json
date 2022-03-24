@@ -231,6 +231,18 @@
         },
         "ip_address": {
           "type": "string"
+        },
+        "is_time_scheduled": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "start_time": {
+          "type": "number",
+          "format": "float"
+        },
+        "end_time": {
+          "type": "number",
+          "format": "float"
         }
       }
     },
