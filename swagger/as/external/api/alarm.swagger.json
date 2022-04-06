@@ -243,6 +243,18 @@
         "end_time": {
           "type": "number",
           "format": "float"
+        },
+        "zone_category": {
+          "type": "string",
+          "format": "int64"
+        },
+        "cold_room_time": {
+          "type": "string",
+          "format": "int64"
+        },
+        "cold_room_frecuancy": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
