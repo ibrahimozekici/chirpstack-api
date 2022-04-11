@@ -958,6 +958,10 @@
           "type": "string",
           "format": "int64"
         },
+        "content_type": {
+          "type": "string",
+          "format": "int64"
+        },
         "devices": {
           "type": "array",
           "items": {

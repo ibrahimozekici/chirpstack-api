@@ -152,7 +152,7 @@ message GetZonesItem {
     // Devices
     repeated ZoneDevice devices = 5 [json_name = "devices"];
 
-    int64 content_type = 6 [json_name = "contentType"];
+    int64 content_type = 6 [json_name = "content_type"];
 }
 message CreateZoneRequest {
     // Zone object to create
