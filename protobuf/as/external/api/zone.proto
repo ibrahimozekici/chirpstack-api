@@ -133,7 +133,7 @@ message Zone {
     // Devices
     repeated string devices = 5 [json_name = "devices"];
 
-    int64 content_type = 6 [json_name = "contentType"];
+    int64 contentType = 6 [json_name = "contentType"];
 }
 
 message GetZonesItem {

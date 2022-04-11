@@ -263,7 +263,7 @@ message LandingZone {
 
     int64 order = 4 [json_name = "order"];
 
-    int64 content_type = 5 [json_name = "content_type"];
+    int64 contentType = 5 [json_name = "contentType"];
 
     repeated LandingDevice devices = 6 [json_name = "devices"];
 
