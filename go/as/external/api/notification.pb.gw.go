@@ -97,24 +97,6 @@ func request_NotificationService_Update_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["notification.id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "notification.id")
-	}
-
-	err = runtime.PopulateFieldFromPath(&protoReq, "notification.id", val)
-
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "notification.id", err)
-	}
-
 	msg, err := client.Update(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
@@ -130,24 +112,6 @@ func local_request_NotificationService_Update_0(ctx context.Context, marshaler r
 	}
 	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["notification.id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "notification.id")
-	}
-
-	err = runtime.PopulateFieldFromPath(&protoReq, "notification.id", val)
-
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "notification.id", err)
 	}
 
 	msg, err := server.Update(ctx, &protoReq)
@@ -397,7 +361,7 @@ func RegisterNotificationServiceHandlerClient(ctx context.Context, mux *runtime.
 var (
 	pattern_NotificationService_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "notifications", "userId"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_NotificationService_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "notifications", "notification.id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_NotificationService_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "notifications"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_NotificationService_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "notifications", "delete", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 )

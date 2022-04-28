@@ -20,7 +20,7 @@ service NotificationService {
     // Update updates the alarm matching the given alarm_id.
     rpc Update(UpdateNotficationRequest) returns (UpdateNotficationResponse) {
         option (google.api.http) = {
-            put: "/api/notifications/{notification.id}"
+            put: "/api/notifications"
             body: "*"
         };
     }
@@ -76,7 +76,7 @@ message ListNotificationsResponse {
 }
 
 message UpdateNotficationRequest {
-    Notification notification = 1; 
+    repeated int64 notifications = 1; 
 }
 
 message UpdateNotficationResponse {

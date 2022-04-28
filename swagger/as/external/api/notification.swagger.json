@@ -15,6 +15,33 @@
     "application/json"
   ],
   "paths": {
+    "/api/notifications": {
+      "put": {
+        "summary": "Update updates the alarm matching the given alarm_id.",
+        "operationId": "Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiUpdateNotficationResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiUpdateNotficationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NotificationService"
+        ]
+      }
+    },
     "/api/notifications/delete/{id}": {
       "post": {
         "summary": "Delete deletes the alarm matching the given alarm_id.",
@@ -41,41 +68,6 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/apiDeleteNotficationRequest"
-            }
-          }
-        ],
-        "tags": [
-          "NotificationService"
-        ]
-      }
-    },
-    "/api/notifications/{notification.id}": {
-      "put": {
-        "summary": "Update updates the alarm matching the given alarm_id.",
-        "operationId": "Update",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiUpdateNotficationResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "notification.id",
-            "description": "Notification Id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/apiUpdateNotficationRequest"
             }
           }
         ],
@@ -189,8 +181,12 @@
     "apiUpdateNotficationRequest": {
       "type": "object",
       "properties": {
-        "notification": {
-          "$ref": "#/definitions/apiNotification"
+        "notifications": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
         }
       }
     },
