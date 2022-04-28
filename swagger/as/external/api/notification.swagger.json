@@ -175,6 +175,12 @@
         "deleteTime": {
           "type": "string",
           "format": "date-time"
+        },
+        "devEui": {
+          "type": "string"
+        },
+        "deviceName": {
+          "type": "string"
         }
       }
     },

@@ -62,7 +62,11 @@ message Notification {
 
     bool is_deleted = 11;
 
-    google.protobuf.Timestamp delete_time = 12;   
+    google.protobuf.Timestamp delete_time = 12;
+
+    string dev_eui = 13;
+
+    string device_name = 14;
 
 }
 
