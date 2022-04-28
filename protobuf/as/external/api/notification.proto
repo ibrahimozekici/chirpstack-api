@@ -18,7 +18,7 @@ service NotificationService {
         }; 
     }
     // Update updates the alarm matching the given alarm_id.
-    rpc Update(UpdateNotficationRequest) returns (UpdateNotficationResponse) {
+    rpc Update(UpdateNotficationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             put: "/api/notifications"
             body: "*"

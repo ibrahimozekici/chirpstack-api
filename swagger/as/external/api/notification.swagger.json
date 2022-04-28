@@ -23,7 +23,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiUpdateNotficationResponse"
+              "properties": {}
             }
           }
         },
@@ -187,14 +187,6 @@
             "type": "string",
             "format": "int64"
           }
-        }
-      }
-    },
-    "apiUpdateNotficationResponse": {
-      "type": "object",
-      "properties": {
-        "notification": {
-          "$ref": "#/definitions/apiNotification"
         }
       }
     }
