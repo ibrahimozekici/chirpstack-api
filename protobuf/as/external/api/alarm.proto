@@ -62,7 +62,9 @@ message Alarm {
     float max_treshold = 4 [json_name = "maxTreshold"];
 
    bool sms = 5 [json_name = "sms"];
+
    bool email = 6 [json_name = "email"];
+   
    bool temperature = 7 [json_name = "temperature"];
    bool humadity = 8 [json_name = "humadity"];
    bool ec = 9 [json_name = "ec"];
@@ -77,6 +79,21 @@ message Alarm {
    int64 cold_room_time = 18  [json_name = "cold_room_time"];
    int64 cold_room_frecuancy = 19  [json_name = "cold_room_frecuancy"];
 
+   bool notification = 20 [json_name = "notification"];
+
+    repeated AlarmDateTime alarm_date_time = 21  [json_name = "alarm_date_time"];
+}
+
+message AlarmDateTime {
+    int64 id = 1 [json_name = "id"];
+
+    int64 alarm_id = 2 [json_name = "alarm_id"];
+
+    int64 alarm_day = 3 [json_name = "alarm_day"];
+
+    float alarm_start_time = 4[json_name = "alarm_start_time"];
+
+    float alarm_end_time = 5[json_name = "alarm_end_time"];
 }
 
 message CreateAlarmResponse {

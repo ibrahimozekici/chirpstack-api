@@ -255,6 +255,41 @@
         "cold_room_frecuancy": {
           "type": "string",
           "format": "int64"
+        },
+        "notification": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "alarm_date_time": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAlarmDateTime"
+          }
+        }
+      }
+    },
+    "apiAlarmDateTime": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "alarm_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "alarm_day": {
+          "type": "string",
+          "format": "int64"
+        },
+        "alarm_start_time": {
+          "type": "number",
+          "format": "float"
+        },
+        "alarm_end_time": {
+          "type": "number",
+          "format": "float"
         }
       }
     },
