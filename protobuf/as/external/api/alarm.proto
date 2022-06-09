@@ -46,7 +46,7 @@ service AlarmService {
     }
 
      // Create creates the alarm
-     rpc CreateMultiple(CreateMultipleAlarmRequest) returns (CreateAlarmMultipleResponse) {
+     rpc CreateMultiple(CreateMultipleAlarmRequest) returns (google.protobuf.Empty) {
         option(google.api.http) = {
             post: "/api/alarm/createMultiple"
             body: "*"
