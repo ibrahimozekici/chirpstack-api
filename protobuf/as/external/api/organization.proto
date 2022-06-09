@@ -212,9 +212,10 @@ message OrganizationUser {
     // User is able to modify gateways.
     bool is_gateway_admin = 6;
 
-	
-
 	repeated int64 zones= 7 [json_name = "zones"];
+
+	string name = 8;
+	string phone_number = 9;
 }
 
 message OrganizationUserZone {
