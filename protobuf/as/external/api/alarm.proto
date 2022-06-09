@@ -53,6 +53,14 @@ service AlarmService {
         };
     }
 
+    // Delete deletes the alarm matching the given alarm_id.
+    rpc DeleteMultiple(DeleteMultipleAlarmRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/alarm/deleteMultiple"
+            body: "*"
+        };
+    }
+
 }
 
 message Alarm {
@@ -126,6 +134,7 @@ message GetAlarmRequest {
     string alarm_id = 1 [json_name = "alarmID"];
 }
 
+
 message GetAlarmResponse {
     // Alarm object
     Alarm alarm = 1;
@@ -135,6 +144,11 @@ message DeleteAlarmRequest {
     // Alarm Id (HEX encoded).
     repeated string alarm_id = 1 [json_name = "alarmID"];
     string ip_address = 2;
+}
+
+message DeleteMultipleAlarmRequest {
+    // Alarm Id (HEX encoded).
+    repeated int64 user_id = 1 [json_name = "userIDs"];
 }
 
 message UpdateAlarmRequest {

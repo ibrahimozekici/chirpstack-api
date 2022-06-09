@@ -143,6 +143,33 @@
         ]
       }
     },
+    "/api/alarm/deleteMultiple": {
+      "post": {
+        "summary": "Delete deletes the alarm matching the given alarm_id.",
+        "operationId": "DeleteMultiple",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiDeleteMultipleAlarmRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
     "/api/alarm/{alarm_id}": {
       "get": {
         "summary": "Get return the alarm",
@@ -429,6 +456,19 @@
         },
         "ipAddress": {
           "type": "string"
+        }
+      }
+    },
+    "apiDeleteMultipleAlarmRequest": {
+      "type": "object",
+      "properties": {
+        "userIDs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          },
+          "description": "Alarm Id (HEX encoded)."
         }
       }
     },
