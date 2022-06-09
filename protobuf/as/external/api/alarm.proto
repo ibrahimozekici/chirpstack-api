@@ -45,6 +45,14 @@ service AlarmService {
         };
     }
 
+     // Create creates the alarm
+     rpc CreateMultiple(CreateMultipleAlarmRequest) returns (CreateAlarmMultipleResponse) {
+        option(google.api.http) = {
+            post: "/api/alarm/createMultiple"
+            body: "*"
+        };
+    }
+
 }
 
 message Alarm {
@@ -99,10 +107,20 @@ message AlarmDateTime {
 message CreateAlarmResponse {
     repeated Alarm alarm = 1;
 }
+
 message CreateAlarmRequest {
     repeated Alarm create_alarm = 1;
 }
 
+message CreateMultipleAlarmRequest {
+    repeated Alarm create_alarm = 1;
+    repeated int64 userIds = 2;
+}
+message CreateAlarmMultipleResponse {
+    repeated Alarm alarm = 1;
+    repeated int64 userIds = 2;
+
+}
 message GetAlarmRequest {
     // Device EUI (HEX encoded).
     string alarm_id = 1 [json_name = "alarmID"];

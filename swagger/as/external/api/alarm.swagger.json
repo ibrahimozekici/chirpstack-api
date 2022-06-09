@@ -89,6 +89,33 @@
         ]
       }
     },
+    "/api/alarm/createMultiple": {
+      "post": {
+        "summary": "Create creates the alarm",
+        "operationId": "CreateMultiple",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiCreateAlarmMultipleResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateMultipleAlarmRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
     "/api/alarm/delete": {
       "post": {
         "summary": "Delete deletes the alarm matching the given alarm_id.",
@@ -350,6 +377,24 @@
         }
       }
     },
+    "apiCreateAlarmMultipleResponse": {
+      "type": "object",
+      "properties": {
+        "alarm": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAlarm"
+          }
+        },
+        "userIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        }
+      }
+    },
     "apiCreateAlarmRequest": {
       "type": "object",
       "properties": {
@@ -368,6 +413,24 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/apiAlarm"
+          }
+        }
+      }
+    },
+    "apiCreateMultipleAlarmRequest": {
+      "type": "object",
+      "properties": {
+        "createAlarm": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAlarm"
+          }
+        },
+        "userIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
           }
         }
       }
