@@ -61,6 +61,12 @@ service AlarmService {
         };
     }
 
+    // Delete deletes the alarm matching the given alarm_id.
+    rpc GetMultiple(ListMultipleAlarmRequest) returns (ListMultipleAlarmResponse) {
+        option (google.api.http) = {
+            get: "/api/alarm/listMultiple"
+        };
+    }
 }
 
 message Alarm {
@@ -146,11 +152,51 @@ message DeleteAlarmRequest {
     string ip_address = 2;
 }
 
+message ListMultipleAlarmRequest {
+    // Alarm Id (HEX encoded).
+    int64 organization_id = 1 [json_name = "organizationId"];
+}
+
 message DeleteMultipleAlarmRequest {
     // Alarm Id (HEX encoded).
     repeated int64 user_id = 1 [json_name = "userIDs"];
 }
 
+message ListOrganizationAlarmResponse {
+     // Alarm id.
+     int64 id = 1;
+     
+     // Device EUI (HEX encoded).
+     string dev_eui = 2 [json_name = "devEUI"]; 
+ 
+     // Device EUI (HEX encoded).
+     string device_name = 3 [json_name = "deviceName"]; 
+
+     // Device EUI (HEX encoded).
+     string zone_name = 4 [json_name = "zoneName"]; 
+
+     // Condition of alarm
+     float min_treshold = 5 [json_name = "minTreshold"];
+ 
+     // Value of alarm
+     float max_treshold = 6 [json_name = "maxTreshold"];
+ 
+    bool sms = 7 [json_name = "sms"];
+ 
+    bool email = 8 [json_name = "email"];
+    
+    bool temperature = 9 [json_name = "temperature"];
+    bool humadity = 10 [json_name = "humadity"];
+    bool ec = 11 [json_name = "ec"];
+    bool door = 12 [json_name = "door"];
+    bool w_leak = 13 [json_name = "w_leak"];
+    google.protobuf.Timestamp submission_date = 14 [json_name = "submission_date"];
+    bool is_time_scheduled = 15 [json_name = "is_time_scheduled"];
+ 
+    bool notification = 16 [json_name = "notification"];
+ 
+     repeated AlarmDateTime alarm_date_time = 17  [json_name = "alarm_date_time"];
+}
 message UpdateAlarmRequest {
     // Alarm object to update.
     Alarm alarm = 1;
@@ -180,6 +226,14 @@ message ListAlarmResponse {
     repeated Alarm result = 2;
 
     repeated AlarmLogs logs = 3;
+}
+
+message ListMultipleAlarmResponse {
+    // Total number of devices available within the result-set.
+    int64 total_count = 1;
+
+    // Devices within this result-set.
+    repeated ListOrganizationAlarmResponse result = 2;
 }
 message AlarmLogs {
     string dev_eui = 1 [json_name = "devEUI"];
