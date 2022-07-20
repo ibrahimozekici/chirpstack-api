@@ -154,7 +154,7 @@ message DeleteAlarmRequest {
 
 message ListMultipleAlarmRequest {
     // Alarm Id (HEX encoded).
-    int64 organization_id = 1 [json_name = "organizationId"];
+    string organization_id = 1 [json_name = "organizationId"];
 }
 
 message DeleteMultipleAlarmRequest {
