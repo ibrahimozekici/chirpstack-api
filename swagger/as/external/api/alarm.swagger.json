@@ -184,8 +184,8 @@
         },
         "parameters": [
           {
-            "name": "organizationId",
-            "description": "Alarm Id (HEX encoded).",
+            "name": "organizationID",
+            "description": "ID of the organization for which to filter on, when left blank the\r\nresponse will return all gateways to which the user has access to.",
             "in": "query",
             "required": false,
             "type": "string",
