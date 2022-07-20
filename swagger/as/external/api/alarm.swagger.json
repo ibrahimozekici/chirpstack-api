@@ -172,7 +172,7 @@
     },
     "/api/alarm/listMultiple": {
       "get": {
-        "summary": "Delete deletes the alarm matching the given alarm_id.",
+        "summary": "GetMultiple GetMultiple the alarm matching the given alarm_id.",
         "operationId": "GetMultiple",
         "responses": {
           "200": {
