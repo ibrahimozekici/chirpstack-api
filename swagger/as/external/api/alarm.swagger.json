@@ -604,6 +604,10 @@
           "items": {
             "$ref": "#/definitions/apiAlarmDateTime"
           }
+        },
+        "username": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
         }
       }
     },

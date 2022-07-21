@@ -196,6 +196,9 @@ message ListOrganizationAlarmResponse {
     bool notification = 16 [json_name = "notification"];
  
      repeated AlarmDateTime alarm_date_time = 17  [json_name = "alarm_date_time"];
+
+     // Device EUI (HEX encoded).
+     string username = 18 [json_name = "username"]; 
 }
 message UpdateAlarmRequest {
     // Alarm object to update.
