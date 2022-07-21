@@ -61,8 +61,8 @@ service AlarmService {
         };
     }
 
-    // GetMultiple GetMultiple the alarm matching the given alarm_id.
-    rpc GetOrganizationAlarms(ListMultipleAlarmRequest) returns (ListMultipleAlarmResponse) {
+    // ListOrganizationAlarms ListOrganizationAlarms the alarm matching the given alarm_id.
+    rpc ListOrganizationAlarms(ListOrganizationAlarmRequest) returns (ListORganizationAlarmResponse) {
         option (google.api.http) = {
             get: "/api/alarm/organizationAlarms"
         };
@@ -152,10 +152,17 @@ message DeleteAlarmRequest {
     string ip_address = 2;
 }
 
-message ListMultipleAlarmRequest {
-    // ID of the organization for which to filter on, when left blank the
-	// response will return all gateways to which the user has access to.
-	int64 organization_id = 1 [json_name = "organizationID"];
+message ListOrganizationAlarmRequest {
+       // Max number of devices to return in the result-set.
+       int64 limit = 1;
+
+       // Offset in the result-set (for pagination).
+       int64 offset = 2;
+   
+       // Device EUI (HEX encoded).
+       string dev_eui = 3 [json_name = "devEUI"];
+
+	int64 organization_id = 4 [json_name = "organizationID"];
 }
 
 message DeleteMultipleAlarmRequest {
@@ -229,12 +236,12 @@ message ListAlarmResponse {
     repeated AlarmLogs logs = 3;
 }
 
-message ListMultipleAlarmResponse {
+message ListORganizationAlarmResponse {
     // Total number of devices available within the result-set.
     int64 total_count = 1;
 
-    // Devices within this result-set.
-    repeated ListOrganizationAlarmResponse result = 2;
+    // // Devices within this result-set.
+    // repeated ListOrganizationAlarmResponse result = 2;
 }
 message AlarmLogs {
     string dev_eui = 1 [json_name = "devEUI"];

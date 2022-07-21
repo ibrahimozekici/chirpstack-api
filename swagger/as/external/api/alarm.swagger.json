@@ -172,20 +172,42 @@
     },
     "/api/alarm/organizationAlarms": {
       "get": {
-        "summary": "GetMultiple GetMultiple the alarm matching the given alarm_id.",
-        "operationId": "GetOrganizationAlarms",
+        "summary": "ListOrganizationAlarms ListOrganizationAlarms the alarm matching the given alarm_id.",
+        "operationId": "ListOrganizationAlarms",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiListMultipleAlarmResponse"
+              "$ref": "#/definitions/apiListORganizationAlarmResponse"
             }
           }
         },
         "parameters": [
           {
+            "name": "limit",
+            "description": "Max number of devices to return in the result-set.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "description": "Offset in the result-set (for pagination).",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "devEUI",
+            "description": "Device EUI (HEX encoded).",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "organizationID",
-            "description": "ID of the organization for which to filter on, when left blank the\r\nresponse will return all gateways to which the user has access to.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -531,98 +553,13 @@
         }
       }
     },
-    "apiListMultipleAlarmResponse": {
+    "apiListORganizationAlarmResponse": {
       "type": "object",
       "properties": {
         "totalCount": {
           "type": "string",
           "format": "int64",
           "description": "Total number of devices available within the result-set."
-        },
-        "result": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiListOrganizationAlarmResponse"
-          },
-          "description": "Devices within this result-set."
-        }
-      }
-    },
-    "apiListOrganizationAlarmResponse": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64",
-          "description": "Alarm id."
-        },
-        "devEUI": {
-          "type": "string",
-          "description": "Device EUI (HEX encoded)."
-        },
-        "deviceName": {
-          "type": "string",
-          "description": "Device EUI (HEX encoded)."
-        },
-        "zoneName": {
-          "type": "string",
-          "description": "Device EUI (HEX encoded)."
-        },
-        "minTreshold": {
-          "type": "number",
-          "format": "float",
-          "title": "Condition of alarm"
-        },
-        "maxTreshold": {
-          "type": "number",
-          "format": "float",
-          "title": "Value of alarm"
-        },
-        "sms": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "email": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "temperature": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "humadity": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "ec": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "door": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "w_leak": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "submission_date": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "is_time_scheduled": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "notification": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "alarm_date_time": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiAlarmDateTime"
-          }
         }
       }
     },
