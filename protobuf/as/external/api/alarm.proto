@@ -46,12 +46,6 @@ service AlarmService {
         };
     }
 
-    rpc List2(ListAlarmRequest) returns (ListAlarmResponse) {
-        option (google.api.http) = {
-            get: "/api/alarm"
-        }; 
-    }
-
 
     rpc ListAllOrganizationAlarms(ListOrganizationAlarmRequest2) returns (ListOrganizationAlarmResponse2) {
         option (google.api.http) = {
@@ -160,7 +154,8 @@ message DeleteAlarmRequest {
 
 message ListOrganizationAlarmRequest2 {
 
-	int64 organization_id = 4 [json_name = "organizationID"];
+	int64 organization_id = 1 [json_name = "organizationID"];
+    repeated ListOrganizationAlarmResponse result = 2;
 }
 
 message DeleteMultipleAlarmRequest {
