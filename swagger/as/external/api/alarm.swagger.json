@@ -17,7 +17,7 @@
   "paths": {
     "/api/alarm": {
       "get": {
-        "operationId": "List",
+        "operationId": "List2",
         "responses": {
           "200": {
             "description": "A successful response.",
