@@ -62,9 +62,9 @@ service AlarmService {
     }
 
     // GetMultiple GetMultiple the alarm matching the given alarm_id.
-    rpc GetMultiple(ListMultipleAlarmRequest) returns (ListMultipleAlarmResponse) {
+    rpc GetOrganizationAlarms(ListMultipleAlarmRequest) returns (ListMultipleAlarmResponse) {
         option (google.api.http) = {
-            get: "/api/alarm/listMultiple"
+            get: "/api/alarm/organizationAlarms"
         };
     }
 }

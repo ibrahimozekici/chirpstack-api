@@ -7,7 +7,6 @@ option java_package = "io.chirpstack.api.as.external.api";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/empty.proto";
 
 // DataService is the service managing the data
 service DataService {

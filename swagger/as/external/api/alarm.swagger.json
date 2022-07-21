@@ -170,10 +170,10 @@
         ]
       }
     },
-    "/api/alarm/listMultiple": {
+    "/api/alarm/organizationAlarms": {
       "get": {
         "summary": "GetMultiple GetMultiple the alarm matching the given alarm_id.",
-        "operationId": "GetMultiple",
+        "operationId": "GetOrganizationAlarms",
         "responses": {
           "200": {
             "description": "A successful response.",
