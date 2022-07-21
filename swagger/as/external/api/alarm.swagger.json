@@ -170,7 +170,7 @@
         ]
       }
     },
-    "/api/alarm/listOrganizationAlarms": {
+    "/api/alarm/listOrganizationAlarms/{organization_id}": {
       "get": {
         "operationId": "ListAllOrganizationAlarms",
         "responses": {
@@ -183,59 +183,9 @@
         },
         "parameters": [
           {
-            "name": "limit",
-            "description": "Max number of devices to return in the result-set.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "offset",
-            "description": "Offset in the result-set (for pagination).",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "devEUI",
-            "description": "Device EUI (HEX encoded).",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "organizationID",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "AlarmService"
-        ]
-      }
-    },
-    "/api/alarm/organizationAlarms": {
-      "get": {
-        "summary": "ListOrganizationAlarms ListOrganizationAlarms the alarm matching the given alarm_id.",
-        "operationId": "ListOrganizationAlarms",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiListORganizationAlarmResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "organizationID",
-            "description": "Max number of devices to return in the result-set.",
-            "in": "query",
-            "required": false,
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
             "type": "string",
             "format": "int64"
           }
@@ -576,16 +526,6 @@
           "items": {
             "$ref": "#/definitions/apiAlarmLogs"
           }
-        }
-      }
-    },
-    "apiListORganizationAlarmResponse": {
-      "type": "object",
-      "properties": {
-        "totalCount": {
-          "type": "string",
-          "format": "int64",
-          "description": "Total number of devices available within the result-set."
         }
       }
     },

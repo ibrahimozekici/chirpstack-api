@@ -29,11 +29,7 @@ service AlarmService {
             get: "/api/alarm"
         }; 
     }
-    rpc ListAllOrganizationAlarms(ListOrganizationAlarmRequest2) returns (ListOrganizationAlarmResponse2) {
-        option (google.api.http) = {
-            get: "/api/alarm/listOrganizationAlarms"
-        }; 
-    }
+ 
     // Update updates the alarm matching the given alarm_id.
     rpc Update(UpdateAlarmRequest) returns (GetAlarmResponse) {
         option (google.api.http) = {
@@ -49,7 +45,11 @@ service AlarmService {
             body: "*"
         };
     }
-
+    rpc ListAllOrganizationAlarms(ListOrganizationAlarmRequest2) returns (ListOrganizationAlarmResponse2) {
+        option (google.api.http) = {
+            get: "/api/alarm/listOrganizationAlarms/{organization_id}"
+        }; 
+    }
      // Create creates the alarm
      rpc CreateMultiple(CreateMultipleAlarmRequest) returns (google.protobuf.Empty) {
         option(google.api.http) = {
@@ -63,13 +63,6 @@ service AlarmService {
         option (google.api.http) = {
             post: "/api/alarm/deleteMultiple"
             body: "*"
-        };
-    }
-
-    // ListOrganizationAlarms ListOrganizationAlarms the alarm matching the given alarm_id.
-    rpc ListOrganizationAlarms(ListOrganizationAlarmRequest) returns (ListORganizationAlarmResponse) {
-        option (google.api.http) = {
-            get: "/api/alarm/organizationAlarms"
         };
     }
 }
@@ -158,14 +151,6 @@ message DeleteAlarmRequest {
 }
 
 message ListOrganizationAlarmRequest2 {
-       // Max number of devices to return in the result-set.
-       int64 limit = 1;
-
-       // Offset in the result-set (for pagination).
-       int64 offset = 2;
-   
-       // Device EUI (HEX encoded).
-       string dev_eui = 3 [json_name = "devEUI"];
 
 	int64 organization_id = 4 [json_name = "organizationID"];
 }
