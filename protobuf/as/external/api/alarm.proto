@@ -29,6 +29,11 @@ service AlarmService {
             get: "/api/alarm"
         }; 
     }
+    rpc ListAllOrganizationAlarms(ListOrganizationAlarmRequest2) returns (ListOrganizationAlarmResponse2) {
+        option (google.api.http) = {
+            get: "/api/alarm/listOrganizationAlarms"
+        }; 
+    }
     // Update updates the alarm matching the given alarm_id.
     rpc Update(UpdateAlarmRequest) returns (GetAlarmResponse) {
         option (google.api.http) = {
@@ -152,7 +157,7 @@ message DeleteAlarmRequest {
     string ip_address = 2;
 }
 
-message ListOrganizationAlarmRequest {
+message ListOrganizationAlarmRequest2 {
        // Max number of devices to return in the result-set.
        int64 limit = 1;
 
@@ -226,6 +231,11 @@ message ListAlarmRequest {
     int64 userId = 4;
 }
 
+message ListOrganizationAlarmRequest {
+    // Max number of devices to return in the result-set.
+    int64 organization_id = 1 [json_name = "organizationID"];
+}
+
 message ListAlarmResponse {
     // Total number of devices available within the result-set.
     int64 total_count = 1;
@@ -236,6 +246,10 @@ message ListAlarmResponse {
     repeated AlarmLogs logs = 3;
 }
 
+message ListOrganizationAlarmResponse2 {
+    // Total number of devices available within the result-set.
+    int64 total_count = 1;
+}
 message ListORganizationAlarmResponse {
     // Total number of devices available within the result-set.
     int64 total_count = 1;

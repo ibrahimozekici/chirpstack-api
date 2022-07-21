@@ -170,15 +170,14 @@
         ]
       }
     },
-    "/api/alarm/organizationAlarms": {
+    "/api/alarm/listOrganizationAlarms": {
       "get": {
-        "summary": "ListOrganizationAlarms ListOrganizationAlarms the alarm matching the given alarm_id.",
-        "operationId": "ListOrganizationAlarms",
+        "operationId": "ListAllOrganizationAlarms",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiListORganizationAlarmResponse"
+              "$ref": "#/definitions/apiListOrganizationAlarmResponse2"
             }
           }
         },
@@ -208,6 +207,33 @@
           },
           {
             "name": "organizationID",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
+    "/api/alarm/organizationAlarms": {
+      "get": {
+        "summary": "ListOrganizationAlarms ListOrganizationAlarms the alarm matching the given alarm_id.",
+        "operationId": "ListOrganizationAlarms",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListORganizationAlarmResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationID",
+            "description": "Max number of devices to return in the result-set.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -554,6 +580,16 @@
       }
     },
     "apiListORganizationAlarmResponse": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "type": "string",
+          "format": "int64",
+          "description": "Total number of devices available within the result-set."
+        }
+      }
+    },
+    "apiListOrganizationAlarmResponse2": {
       "type": "object",
       "properties": {
         "totalCount": {
