@@ -155,7 +155,6 @@ message DeleteAlarmRequest {
 message ListOrganizationAlarmRequest2 {
 
 	int64 organization_id = 1 [json_name = "organizationID"];
-    repeated ListOrganizationAlarmResponse result = 2;
 }
 
 message DeleteMultipleAlarmRequest {
@@ -237,6 +236,8 @@ message ListAlarmResponse {
 message ListOrganizationAlarmResponse2 {
     // Total number of devices available within the result-set.
     int64 total_count = 1;
+    repeated ListOrganizationAlarmResponse result = 2;
+
 }
 message ListORganizationAlarmResponse {
     // Total number of devices available within the result-set.
