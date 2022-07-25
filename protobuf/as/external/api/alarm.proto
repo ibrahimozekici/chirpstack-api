@@ -67,6 +67,22 @@ service AlarmService {
             body: "*"
         };
     }
+
+    // Delete deletes the alarm matching the given alarm_id.
+    rpc DeleteSensorAlarms(DeleteMultipleDevAlarmRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/alarm/deleteSensorAlarms"
+            body: "*"
+        };
+    }
+
+    // Delete deletes the alarm matching the given alarm_id.
+    rpc DeleteZoneAlarms(DeleteMultipleZoneAlarmRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/alarm/deleteZoneAlarms"
+            body: "*"
+        };
+    }
 }
 
 message Alarm {
@@ -161,7 +177,15 @@ message DeleteMultipleAlarmRequest {
     // Alarm Id (HEX encoded).
     repeated int64 user_id = 1 [json_name = "userIDs"];
 }
+message DeleteMultipleZoneAlarmRequest {
+    // Alarm Id (HEX encoded).
+    repeated int64 zone_id = 1 [json_name = "zoneIds"];
+}
 
+message DeleteMultipleDevAlarmRequest {
+    // Alarm Id (HEX encoded).
+    repeated string dev_euis = 1 [json_name = "devEui"];
+}
 message ListOrganizationAlarmResponse {
      // Alarm id.
      int64 id = 1;

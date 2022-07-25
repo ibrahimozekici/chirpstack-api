@@ -170,6 +170,60 @@
         ]
       }
     },
+    "/api/alarm/deleteSensorAlarms": {
+      "post": {
+        "summary": "Delete deletes the alarm matching the given alarm_id.",
+        "operationId": "DeleteSensorAlarms",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiDeleteMultipleDevAlarmRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
+    "/api/alarm/deleteZoneAlarms": {
+      "post": {
+        "summary": "Delete deletes the alarm matching the given alarm_id.",
+        "operationId": "DeleteZoneAlarms",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiDeleteMultipleZoneAlarmRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
     "/api/alarm/listOrganizationAlarms/{organization_id}": {
       "get": {
         "operationId": "ListAllOrganizationAlarms",
@@ -488,6 +542,31 @@
       "type": "object",
       "properties": {
         "userIDs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          },
+          "description": "Alarm Id (HEX encoded)."
+        }
+      }
+    },
+    "apiDeleteMultipleDevAlarmRequest": {
+      "type": "object",
+      "properties": {
+        "devEui": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Alarm Id (HEX encoded)."
+        }
+      }
+    },
+    "apiDeleteMultipleZoneAlarmRequest": {
+      "type": "object",
+      "properties": {
+        "zoneIds": {
           "type": "array",
           "items": {
             "type": "string",
