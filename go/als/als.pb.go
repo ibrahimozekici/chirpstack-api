@@ -6,11 +6,11 @@ package als
 import (
 	context "context"
 	fmt "fmt"
-	_ "github.com/brocaar/chirpstack-api/go/v3/common"
 	proto "github.com/golang/protobuf/proto"
 	_ "github.com/golang/protobuf/ptypes/duration"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
+	_ "github.com/ibrahimozekici/chirpstack-api/go/v3/common"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"

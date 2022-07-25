@@ -1,11 +1,11 @@
 [package]
-authors = ["Orne Brocaar <info@brocaar.com>"]
+authors = ["Orne ibrahimozekici <info@ibrahimozekici.com>"]
 description = "ChirpStack Protobuf / gRPC API definitions."
 edition = "2018"
 homepage = "https://www.chirpstack.io"
 license = "MIT"
 name = "chirpstack_api"
-repository = "https://github.com/brocaar/chirpstack-api"
+repository = "https://github.com/ibrahimozekici/chirpstack-api"
 version = "3.12.4"
 
 [features]

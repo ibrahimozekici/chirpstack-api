@@ -19,9 +19,9 @@ CLASSIFIERS = [
 setup(
     name='chirpstack-api',
     version = "3.12.4",
-    url='https://github.com/brocaar/chirpstack-api',
-    author='Orne Brocaar',
-    author_email='info@brocaar.com',
+    url='https://github.com/ibrahimozekici/chirpstack-api',
+    author='Orne ibrahimozekici',
+    author_email='info@ibrahimozekici.com',
     license='MIT',
     description='Chirpstack Python API',
     long_description=open('README.md').read(),
