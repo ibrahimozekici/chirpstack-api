@@ -1,4 +1,4 @@
-.PHONY: requirements common gw geo nc ns as as-integration as-external-api publish fuota
+.PHONY: requirements common gw geo nc als ns as as-integration as-external-api publish fuota
 
 GOOGLEAPIS_PATH := "/googleapis"
 
@@ -7,7 +7,7 @@ PROTOC_GEN_TS_PATH := ./node_modules/.bin/protoc-gen-ts
 PROTOC_GEN_GRPC_PATH := ./node_modules/.bin/grpc_tools_node_protoc_plugin
 PROTOC_ARGS := --plugin=protoc-gen-ts=$(PROTOC_GEN_TS_PATH) --plugin=protoc-gen-grpc=$(PROTOC_GEN_GRPC_PATH) --js_out=import_style=commonjs,binary:. --ts_out=service=grpc-node,mode=grpc-js:. --grpc_out=grpc_js:.
 
-all: requirements version common gw geo nc ns fuota as as-integration as-external-api google-api
+all: requirements version common gw geo nc als ns fuota as as-integration as-external-api google-api
 
 requirements:
 	yarn install
@@ -26,6 +26,9 @@ geo:
 
 nc:
 	protoc -I=../protobuf -I=../protobuf/nc $(PROTOC_ARGS) ../protobuf/nc/nc.proto
+
+als:
+	protoc -I=../protobuf -I=../protobuf/als $(PROTOC_ARGS) ../protobuf/als/als.proto
 
 ns:
 	protoc -I=../protobuf -I=../protobuf/ns $(PROTOC_ARGS) ../protobuf/ns/profiles.proto
