@@ -8,8 +8,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	_ "github.com/golang/protobuf/ptypes/duration"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
-	_ "github.com/ibrahimozekici/chirpstack-api/go/v3/common"
-	gw "github.com/ibrahimozekici/chirpstack-api/go/v3/gw"
+	_ "github.com/ibrahimozekici/chirpstack-api/go/v5/common"
+	gw "github.com/ibrahimozekici/chirpstack-api/go/v5/gw"
 	math "math"
 )
 

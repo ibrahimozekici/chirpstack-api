@@ -9,7 +9,7 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
-	common "github.com/ibrahimozekici/chirpstack-api/go/v3/common"
+	common "github.com/ibrahimozekici/chirpstack-api/go/v5/common"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"

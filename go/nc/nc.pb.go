@@ -8,7 +8,7 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	empty "github.com/golang/protobuf/ptypes/empty"
-	gw "github.com/ibrahimozekici/chirpstack-api/go/v3/gw"
+	gw "github.com/ibrahimozekici/chirpstack-api/go/v5/gw"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"

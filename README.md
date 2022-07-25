@@ -28,7 +28,7 @@ protobuf             - Protobuf and gRPC source files
 Documentation: https://godoc.org/github.com/ibrahimozekici/chirpstack-api/go
 
 ```bash
-go get github.com/ibrahimozekici/chirpstack-api/go/v3
+go get github.com/ibrahimozekici/chirpstack-api/go/v5
 ```
 
 ### JavaScript / Typescript
