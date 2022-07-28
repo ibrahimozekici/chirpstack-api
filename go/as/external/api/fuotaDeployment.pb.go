@@ -6,9 +6,9 @@ package api
 import (
 	context "context"
 	fmt "fmt"
-	proto "google.golang.org/protobuf/proto"
-	duration "google.golang.org/protobuf/ptypes/duration"
-	timestamp "google.golang.org/protobuf/ptypes/timestamp"
+	proto "github.com/golang/protobuf/proto"
+	duration "github.com/golang/protobuf/ptypes/duration"
+	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"

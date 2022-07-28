@@ -13,9 +13,9 @@ import (
 	"io"
 	"net/http"
 
-	"google.golang.org/protobuf/descriptor"
-	"google.golang.org/protobuf/proto"
-	"google.golang.org/protobuf/ptypes/empty"
+	"github.com/golang/protobuf/descriptor"
+	"github.com/golang/protobuf/proto"
+	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/utilities"
 	"google.golang.org/grpc"
