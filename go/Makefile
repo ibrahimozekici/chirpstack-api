@@ -8,7 +8,7 @@ all: requirements common gw geo nc als ns fuota as as-integration as-external-ap
 requirements:
 	@go mod download
 	@go install github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
-	@go install github.com/golang/protobuf/protoc-gen-go
+	@go install google.golang.org/protobuf/protoc-gen-go
 
 common:
 	protoc -I=../protobuf -I=../protobuf/common --go_out=plugins=grpc,paths=source_relative:. common/common.proto

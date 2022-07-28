@@ -5,9 +5,9 @@ package als;
 option go_package = "github.com/ibrahimozekici/chirpstack-api/als";
 option java_package = "io.chirpstack.api.als";
 
-import "google/protobuf/timestamp.proto";
-import "google/protobuf/empty.proto";
-import "google/protobuf/duration.proto";
+import "google/protobuf/types/known/timestamppb";
+import "google/protobuf/types/known/emptypb";
+import "google/protobuf/types/known/durationpb";
 import "common/common.proto";
 
 service AlarmService {
@@ -25,15 +25,15 @@ service AlarmService {
     }
 
     // Delete deletes the alarm matching the given alarm_id.
-    rpc Delete(DeleteAlarmRequest) returns (google.protobuf.Empty) {
+    rpc Delete(DeleteAlarmRequest) returns (google.protobuf.types.known.emptypb.Empty) {
     }
 
      // Create creates the alarm
-     rpc CreateMultiple(CreateMultipleAlarmRequest) returns (google.protobuf.Empty) {
+     rpc CreateMultiple(CreateMultipleAlarmRequest) returns (google.protobuf.types.known.emptypb.Empty) {
     }
 
     // Delete deletes the alarm matching the given alarm_id.
-    rpc DeleteMultiple(DeleteMultipleAlarmRequest) returns (google.protobuf.Empty) {
+    rpc DeleteMultiple(DeleteMultipleAlarmRequest) returns (google.protobuf.types.known.emptypb.Empty) {
     }
 
     // ListOrganizationAlarms ListOrganizationAlarms the alarm matching the given alarm_id.
@@ -64,7 +64,7 @@ message Alarm {
    bool ec = 9 [json_name = "ec"];
    bool door = 10 [json_name = "door"];
    bool w_leak = 11 [json_name = "w_leak"];
-   google.protobuf.Timestamp submission_date = 12 [json_name = "submission_date"];
+   google.protobuf.types.known.timestamppb.Timestamp submission_date = 12 [json_name = "submission_date"];
    string ip_address = 13 [json_name = "ip_address"];
    bool is_time_scheduled = 14 [json_name = "is_time_scheduled"];
    float start_time = 15 [json_name = "start_time"];
@@ -170,7 +170,7 @@ message ListOrganizationAlarmResponse {
     bool ec = 11 [json_name = "ec"];
     bool door = 12 [json_name = "door"];
     bool w_leak = 13 [json_name = "w_leak"];
-    google.protobuf.Timestamp submission_date = 14 [json_name = "submission_date"];
+    google.protobuf.types.known.timestamppb.Timestamp submission_date = 14 [json_name = "submission_date"];
     bool is_time_scheduled = 15 [json_name = "is_time_scheduled"];
  
     bool notification = 16 [json_name = "notification"];
@@ -235,5 +235,5 @@ message AlarmLogs {
     bool w_leak = 11 [json_name = "w_leak"];
     bool sms = 12 [json_name = "sms"];
 
-    google.protobuf.Timestamp submission_date = 13;
+    google.protobuf.types.known.timestamppb.Timestamp submission_date = 13;
 }

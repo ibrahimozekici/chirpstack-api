@@ -6,9 +6,9 @@ package api
 import (
 	context "context"
 	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	empty "github.com/golang/protobuf/ptypes/empty"
-	timestamp "github.com/golang/protobuf/ptypes/timestamp"
+	proto "google.golang.org/protobuf/proto"
+	empty "google.golang.org/protobuf/ptypes/empty"
+	timestamp "google.golang.org/protobuf/ptypes/timestamp"
 	common "github.com/ibrahimozekici/chirpstack-api/go/v5/common"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"

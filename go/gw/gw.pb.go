@@ -5,9 +5,9 @@ package gw
 
 import (
 	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	duration "github.com/golang/protobuf/ptypes/duration"
-	timestamp "github.com/golang/protobuf/ptypes/timestamp"
+	proto "google.golang.org/protobuf/proto"
+	duration "google.golang.org/protobuf/ptypes/duration"
+	timestamp "google.golang.org/protobuf/ptypes/timestamp"
 	common "github.com/ibrahimozekici/chirpstack-api/go/v5/common"
 	math "math"
 )

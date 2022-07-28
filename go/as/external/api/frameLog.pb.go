@@ -5,9 +5,9 @@ package api
 
 import (
 	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/duration"
-	timestamp "github.com/golang/protobuf/ptypes/timestamp"
+	proto "google.golang.org/protobuf/proto"
+	_ "google.golang.org/protobuf/ptypes/duration"
+	timestamp "google.golang.org/protobuf/ptypes/timestamp"
 	_ "github.com/ibrahimozekici/chirpstack-api/go/v5/common"
 	gw "github.com/ibrahimozekici/chirpstack-api/go/v5/gw"
 	math "math"

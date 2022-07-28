@@ -6,8 +6,8 @@ package api
 import (
 	context "context"
 	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	empty "github.com/golang/protobuf/ptypes/empty"
+	proto "google.golang.org/protobuf/proto"
+	empty "google.golang.org/protobuf/ptypes/empty"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"

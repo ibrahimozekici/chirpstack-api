@@ -5,8 +5,8 @@ package api
 
 import (
 	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	duration "github.com/golang/protobuf/ptypes/duration"
+	proto "google.golang.org/protobuf/proto"
+	duration "google.golang.org/protobuf/ptypes/duration"
 	math "math"
 )
 

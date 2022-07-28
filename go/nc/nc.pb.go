@@ -6,8 +6,8 @@ package nc
 import (
 	context "context"
 	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	empty "github.com/golang/protobuf/ptypes/empty"
+	proto "google.golang.org/protobuf/proto"
+	empty "google.golang.org/protobuf/ptypes/empty"
 	gw "github.com/ibrahimozekici/chirpstack-api/go/v5/gw"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"

@@ -5,8 +5,8 @@ package integration
 
 import (
 	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	timestamp "github.com/golang/protobuf/ptypes/timestamp"
+	proto "google.golang.org/protobuf/proto"
+	timestamp "google.golang.org/protobuf/ptypes/timestamp"
 	common "github.com/ibrahimozekici/chirpstack-api/go/v5/common"
 	gw "github.com/ibrahimozekici/chirpstack-api/go/v5/gw"
 	math "math"
