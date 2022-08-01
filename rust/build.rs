@@ -68,10 +68,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 "as/external/api/internal.proto",
                 "as/external/api/multicastGroup.proto",
                 "as/external/api/networkServer.proto",
+                "as/external/api/notification.proto",
                 "as/external/api/organization.proto",
                 "as/external/api/profiles.proto",
                 "as/external/api/serviceProfile.proto",
                 "as/external/api/user.proto",
+                "as/external/api/zone.proto",
                 "as/integration/integration.proto",
             ],
             &[

@@ -65,7 +65,9 @@ as-external-api:
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/internal.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/multicastGroup.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/networkServer.proto
+	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/notification.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/organization.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/profiles.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/serviceProfile.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/user.proto
+	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/zone.proto
