@@ -602,66 +602,39 @@ func (m *DeleteAlarmRequest) GetIpAddress() string {
 	return ""
 }
 
-type ListOrganizationAlarmRequest struct {
-	// Max number of devices to return in the result-set.
-	Limit int64 `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
-	// Offset in the result-set (for pagination).
-	Offset int64 `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
-	// Device EUI (HEX encoded).
-	DevEui               string   `protobuf:"bytes,3,opt,name=dev_eui,json=devEUI,proto3" json:"dev_eui,omitempty"`
-	OrganizationId       int64    `protobuf:"varint,4,opt,name=organization_id,json=organizationID,proto3" json:"organization_id,omitempty"`
+type ListOrganizationAlarmRequest2 struct {
+	OrganizationId       int64    `protobuf:"varint,1,opt,name=organization_id,json=organizationID,proto3" json:"organization_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ListOrganizationAlarmRequest) Reset()         { *m = ListOrganizationAlarmRequest{} }
-func (m *ListOrganizationAlarmRequest) String() string { return proto.CompactTextString(m) }
-func (*ListOrganizationAlarmRequest) ProtoMessage()    {}
-func (*ListOrganizationAlarmRequest) Descriptor() ([]byte, []int) {
+func (m *ListOrganizationAlarmRequest2) Reset()         { *m = ListOrganizationAlarmRequest2{} }
+func (m *ListOrganizationAlarmRequest2) String() string { return proto.CompactTextString(m) }
+func (*ListOrganizationAlarmRequest2) ProtoMessage()    {}
+func (*ListOrganizationAlarmRequest2) Descriptor() ([]byte, []int) {
 	return fileDescriptor_810c2ee2c60e0ebe, []int{9}
 }
 
-func (m *ListOrganizationAlarmRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListOrganizationAlarmRequest.Unmarshal(m, b)
+func (m *ListOrganizationAlarmRequest2) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListOrganizationAlarmRequest2.Unmarshal(m, b)
 }
-func (m *ListOrganizationAlarmRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListOrganizationAlarmRequest.Marshal(b, m, deterministic)
+func (m *ListOrganizationAlarmRequest2) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListOrganizationAlarmRequest2.Marshal(b, m, deterministic)
 }
-func (m *ListOrganizationAlarmRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListOrganizationAlarmRequest.Merge(m, src)
+func (m *ListOrganizationAlarmRequest2) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListOrganizationAlarmRequest2.Merge(m, src)
 }
-func (m *ListOrganizationAlarmRequest) XXX_Size() int {
-	return xxx_messageInfo_ListOrganizationAlarmRequest.Size(m)
+func (m *ListOrganizationAlarmRequest2) XXX_Size() int {
+	return xxx_messageInfo_ListOrganizationAlarmRequest2.Size(m)
 }
-func (m *ListOrganizationAlarmRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListOrganizationAlarmRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ListOrganizationAlarmRequest proto.InternalMessageInfo
-
-func (m *ListOrganizationAlarmRequest) GetLimit() int64 {
-	if m != nil {
-		return m.Limit
-	}
-	return 0
+func (m *ListOrganizationAlarmRequest2) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListOrganizationAlarmRequest2.DiscardUnknown(m)
 }
 
-func (m *ListOrganizationAlarmRequest) GetOffset() int64 {
-	if m != nil {
-		return m.Offset
-	}
-	return 0
-}
+var xxx_messageInfo_ListOrganizationAlarmRequest2 proto.InternalMessageInfo
 
-func (m *ListOrganizationAlarmRequest) GetDevEui() string {
-	if m != nil {
-		return m.DevEui
-	}
-	return ""
-}
-
-func (m *ListOrganizationAlarmRequest) GetOrganizationId() int64 {
+func (m *ListOrganizationAlarmRequest2) GetOrganizationId() int64 {
 	if m != nil {
 		return m.OrganizationId
 	}
@@ -708,6 +681,86 @@ func (m *DeleteMultipleAlarmRequest) GetUserId() []int64 {
 	return nil
 }
 
+type DeleteMultipleZoneAlarmRequest struct {
+	// Alarm Id (HEX encoded).
+	ZoneId               []int64  `protobuf:"varint,1,rep,packed,name=zone_id,json=zoneIds,proto3" json:"zone_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DeleteMultipleZoneAlarmRequest) Reset()         { *m = DeleteMultipleZoneAlarmRequest{} }
+func (m *DeleteMultipleZoneAlarmRequest) String() string { return proto.CompactTextString(m) }
+func (*DeleteMultipleZoneAlarmRequest) ProtoMessage()    {}
+func (*DeleteMultipleZoneAlarmRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_810c2ee2c60e0ebe, []int{11}
+}
+
+func (m *DeleteMultipleZoneAlarmRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteMultipleZoneAlarmRequest.Unmarshal(m, b)
+}
+func (m *DeleteMultipleZoneAlarmRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteMultipleZoneAlarmRequest.Marshal(b, m, deterministic)
+}
+func (m *DeleteMultipleZoneAlarmRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteMultipleZoneAlarmRequest.Merge(m, src)
+}
+func (m *DeleteMultipleZoneAlarmRequest) XXX_Size() int {
+	return xxx_messageInfo_DeleteMultipleZoneAlarmRequest.Size(m)
+}
+func (m *DeleteMultipleZoneAlarmRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteMultipleZoneAlarmRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteMultipleZoneAlarmRequest proto.InternalMessageInfo
+
+func (m *DeleteMultipleZoneAlarmRequest) GetZoneId() []int64 {
+	if m != nil {
+		return m.ZoneId
+	}
+	return nil
+}
+
+type DeleteMultipleDevAlarmRequest struct {
+	// Alarm Id (HEX encoded).
+	DevEuis              []string `protobuf:"bytes,1,rep,name=dev_euis,json=devEui,proto3" json:"dev_euis,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DeleteMultipleDevAlarmRequest) Reset()         { *m = DeleteMultipleDevAlarmRequest{} }
+func (m *DeleteMultipleDevAlarmRequest) String() string { return proto.CompactTextString(m) }
+func (*DeleteMultipleDevAlarmRequest) ProtoMessage()    {}
+func (*DeleteMultipleDevAlarmRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_810c2ee2c60e0ebe, []int{12}
+}
+
+func (m *DeleteMultipleDevAlarmRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteMultipleDevAlarmRequest.Unmarshal(m, b)
+}
+func (m *DeleteMultipleDevAlarmRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteMultipleDevAlarmRequest.Marshal(b, m, deterministic)
+}
+func (m *DeleteMultipleDevAlarmRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteMultipleDevAlarmRequest.Merge(m, src)
+}
+func (m *DeleteMultipleDevAlarmRequest) XXX_Size() int {
+	return xxx_messageInfo_DeleteMultipleDevAlarmRequest.Size(m)
+}
+func (m *DeleteMultipleDevAlarmRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteMultipleDevAlarmRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteMultipleDevAlarmRequest proto.InternalMessageInfo
+
+func (m *DeleteMultipleDevAlarmRequest) GetDevEuis() []string {
+	if m != nil {
+		return m.DevEuis
+	}
+	return nil
+}
+
 type ListOrganizationAlarmResponse struct {
 	// Alarm id.
 	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -720,28 +773,30 @@ type ListOrganizationAlarmResponse struct {
 	// Condition of alarm
 	MinTreshold float32 `protobuf:"fixed32,5,opt,name=min_treshold,json=minTreshold,proto3" json:"min_treshold,omitempty"`
 	// Value of alarm
-	MaxTreshold          float32              `protobuf:"fixed32,6,opt,name=max_treshold,json=maxTreshold,proto3" json:"max_treshold,omitempty"`
-	Sms                  bool                 `protobuf:"varint,7,opt,name=sms,proto3" json:"sms,omitempty"`
-	Email                bool                 `protobuf:"varint,8,opt,name=email,proto3" json:"email,omitempty"`
-	Temperature          bool                 `protobuf:"varint,9,opt,name=temperature,proto3" json:"temperature,omitempty"`
-	Humadity             bool                 `protobuf:"varint,10,opt,name=humadity,proto3" json:"humadity,omitempty"`
-	Ec                   bool                 `protobuf:"varint,11,opt,name=ec,proto3" json:"ec,omitempty"`
-	Door                 bool                 `protobuf:"varint,12,opt,name=door,proto3" json:"door,omitempty"`
-	WLeak                bool                 `protobuf:"varint,13,opt,name=w_leak,proto3" json:"w_leak,omitempty"`
-	SubmissionDate       *timestamp.Timestamp `protobuf:"bytes,14,opt,name=submission_date,proto3" json:"submission_date,omitempty"`
-	IsTimeScheduled      bool                 `protobuf:"varint,15,opt,name=is_time_scheduled,proto3" json:"is_time_scheduled,omitempty"`
-	Notification         bool                 `protobuf:"varint,16,opt,name=notification,proto3" json:"notification,omitempty"`
-	AlarmDateTime        []*AlarmDateTime     `protobuf:"bytes,17,rep,name=alarm_date_time,proto3" json:"alarm_date_time,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+	MaxTreshold     float32              `protobuf:"fixed32,6,opt,name=max_treshold,json=maxTreshold,proto3" json:"max_treshold,omitempty"`
+	Sms             bool                 `protobuf:"varint,7,opt,name=sms,proto3" json:"sms,omitempty"`
+	Email           bool                 `protobuf:"varint,8,opt,name=email,proto3" json:"email,omitempty"`
+	Temperature     bool                 `protobuf:"varint,9,opt,name=temperature,proto3" json:"temperature,omitempty"`
+	Humadity        bool                 `protobuf:"varint,10,opt,name=humadity,proto3" json:"humadity,omitempty"`
+	Ec              bool                 `protobuf:"varint,11,opt,name=ec,proto3" json:"ec,omitempty"`
+	Door            bool                 `protobuf:"varint,12,opt,name=door,proto3" json:"door,omitempty"`
+	WLeak           bool                 `protobuf:"varint,13,opt,name=w_leak,proto3" json:"w_leak,omitempty"`
+	SubmissionDate  *timestamp.Timestamp `protobuf:"bytes,14,opt,name=submission_date,proto3" json:"submission_date,omitempty"`
+	IsTimeScheduled bool                 `protobuf:"varint,15,opt,name=is_time_scheduled,proto3" json:"is_time_scheduled,omitempty"`
+	Notification    bool                 `protobuf:"varint,16,opt,name=notification,proto3" json:"notification,omitempty"`
+	AlarmDateTime   []*AlarmDateTime     `protobuf:"bytes,17,rep,name=alarm_date_time,proto3" json:"alarm_date_time,omitempty"`
+	// Device EUI (HEX encoded).
+	Username             string   `protobuf:"bytes,18,opt,name=username,proto3" json:"username,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *ListOrganizationAlarmResponse) Reset()         { *m = ListOrganizationAlarmResponse{} }
 func (m *ListOrganizationAlarmResponse) String() string { return proto.CompactTextString(m) }
 func (*ListOrganizationAlarmResponse) ProtoMessage()    {}
 func (*ListOrganizationAlarmResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_810c2ee2c60e0ebe, []int{11}
+	return fileDescriptor_810c2ee2c60e0ebe, []int{13}
 }
 
 func (m *ListOrganizationAlarmResponse) XXX_Unmarshal(b []byte) error {
@@ -881,6 +936,13 @@ func (m *ListOrganizationAlarmResponse) GetAlarmDateTime() []*AlarmDateTime {
 	return nil
 }
 
+func (m *ListOrganizationAlarmResponse) GetUsername() string {
+	if m != nil {
+		return m.Username
+	}
+	return ""
+}
+
 type UpdateAlarmRequest struct {
 	// Alarm object to update.
 	Alarm                *Alarm   `protobuf:"bytes,1,opt,name=alarm,proto3" json:"alarm,omitempty"`
@@ -894,7 +956,7 @@ func (m *UpdateAlarmRequest) Reset()         { *m = UpdateAlarmRequest{} }
 func (m *UpdateAlarmRequest) String() string { return proto.CompactTextString(m) }
 func (*UpdateAlarmRequest) ProtoMessage()    {}
 func (*UpdateAlarmRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_810c2ee2c60e0ebe, []int{12}
+	return fileDescriptor_810c2ee2c60e0ebe, []int{14}
 }
 
 func (m *UpdateAlarmRequest) XXX_Unmarshal(b []byte) error {
@@ -947,7 +1009,7 @@ func (m *ListAlarmRequest) Reset()         { *m = ListAlarmRequest{} }
 func (m *ListAlarmRequest) String() string { return proto.CompactTextString(m) }
 func (*ListAlarmRequest) ProtoMessage()    {}
 func (*ListAlarmRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_810c2ee2c60e0ebe, []int{13}
+	return fileDescriptor_810c2ee2c60e0ebe, []int{15}
 }
 
 func (m *ListAlarmRequest) XXX_Unmarshal(b []byte) error {
@@ -996,6 +1058,46 @@ func (m *ListAlarmRequest) GetUserId() int64 {
 	return 0
 }
 
+type ListOrganizationAlarmRequest struct {
+	// Max number of devices to return in the result-set.
+	OrganizationId       int64    `protobuf:"varint,1,opt,name=organization_id,json=organizationID,proto3" json:"organization_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ListOrganizationAlarmRequest) Reset()         { *m = ListOrganizationAlarmRequest{} }
+func (m *ListOrganizationAlarmRequest) String() string { return proto.CompactTextString(m) }
+func (*ListOrganizationAlarmRequest) ProtoMessage()    {}
+func (*ListOrganizationAlarmRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_810c2ee2c60e0ebe, []int{16}
+}
+
+func (m *ListOrganizationAlarmRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListOrganizationAlarmRequest.Unmarshal(m, b)
+}
+func (m *ListOrganizationAlarmRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListOrganizationAlarmRequest.Marshal(b, m, deterministic)
+}
+func (m *ListOrganizationAlarmRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListOrganizationAlarmRequest.Merge(m, src)
+}
+func (m *ListOrganizationAlarmRequest) XXX_Size() int {
+	return xxx_messageInfo_ListOrganizationAlarmRequest.Size(m)
+}
+func (m *ListOrganizationAlarmRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListOrganizationAlarmRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListOrganizationAlarmRequest proto.InternalMessageInfo
+
+func (m *ListOrganizationAlarmRequest) GetOrganizationId() int64 {
+	if m != nil {
+		return m.OrganizationId
+	}
+	return 0
+}
+
 type ListAlarmResponse struct {
 	// Total number of devices available within the result-set.
 	TotalCount int64 `protobuf:"varint,1,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
@@ -1011,7 +1113,7 @@ func (m *ListAlarmResponse) Reset()         { *m = ListAlarmResponse{} }
 func (m *ListAlarmResponse) String() string { return proto.CompactTextString(m) }
 func (*ListAlarmResponse) ProtoMessage()    {}
 func (*ListAlarmResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_810c2ee2c60e0ebe, []int{14}
+	return fileDescriptor_810c2ee2c60e0ebe, []int{17}
 }
 
 func (m *ListAlarmResponse) XXX_Unmarshal(b []byte) error {
@@ -1053,6 +1155,54 @@ func (m *ListAlarmResponse) GetLogs() []*AlarmLogs {
 	return nil
 }
 
+type ListOrganizationAlarmResponse2 struct {
+	// Total number of devices available within the result-set.
+	TotalCount           int64                            `protobuf:"varint,1,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	Result               []*ListOrganizationAlarmResponse `protobuf:"bytes,2,rep,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                         `json:"-"`
+	XXX_unrecognized     []byte                           `json:"-"`
+	XXX_sizecache        int32                            `json:"-"`
+}
+
+func (m *ListOrganizationAlarmResponse2) Reset()         { *m = ListOrganizationAlarmResponse2{} }
+func (m *ListOrganizationAlarmResponse2) String() string { return proto.CompactTextString(m) }
+func (*ListOrganizationAlarmResponse2) ProtoMessage()    {}
+func (*ListOrganizationAlarmResponse2) Descriptor() ([]byte, []int) {
+	return fileDescriptor_810c2ee2c60e0ebe, []int{18}
+}
+
+func (m *ListOrganizationAlarmResponse2) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListOrganizationAlarmResponse2.Unmarshal(m, b)
+}
+func (m *ListOrganizationAlarmResponse2) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListOrganizationAlarmResponse2.Marshal(b, m, deterministic)
+}
+func (m *ListOrganizationAlarmResponse2) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListOrganizationAlarmResponse2.Merge(m, src)
+}
+func (m *ListOrganizationAlarmResponse2) XXX_Size() int {
+	return xxx_messageInfo_ListOrganizationAlarmResponse2.Size(m)
+}
+func (m *ListOrganizationAlarmResponse2) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListOrganizationAlarmResponse2.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListOrganizationAlarmResponse2 proto.InternalMessageInfo
+
+func (m *ListOrganizationAlarmResponse2) GetTotalCount() int64 {
+	if m != nil {
+		return m.TotalCount
+	}
+	return 0
+}
+
+func (m *ListOrganizationAlarmResponse2) GetResult() []*ListOrganizationAlarmResponse {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
 type ListORganizationAlarmResponse struct {
 	// Total number of devices available within the result-set.
 	TotalCount           int64    `protobuf:"varint,1,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
@@ -1065,7 +1215,7 @@ func (m *ListORganizationAlarmResponse) Reset()         { *m = ListORganizationA
 func (m *ListORganizationAlarmResponse) String() string { return proto.CompactTextString(m) }
 func (*ListORganizationAlarmResponse) ProtoMessage()    {}
 func (*ListORganizationAlarmResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_810c2ee2c60e0ebe, []int{15}
+	return fileDescriptor_810c2ee2c60e0ebe, []int{19}
 }
 
 func (m *ListORganizationAlarmResponse) XXX_Unmarshal(b []byte) error {
@@ -1118,7 +1268,7 @@ func (m *AlarmLogs) Reset()         { *m = AlarmLogs{} }
 func (m *AlarmLogs) String() string { return proto.CompactTextString(m) }
 func (*AlarmLogs) ProtoMessage()    {}
 func (*AlarmLogs) Descriptor() ([]byte, []int) {
-	return fileDescriptor_810c2ee2c60e0ebe, []int{16}
+	return fileDescriptor_810c2ee2c60e0ebe, []int{20}
 }
 
 func (m *AlarmLogs) XXX_Unmarshal(b []byte) error {
@@ -1231,23 +1381,27 @@ func (m *AlarmLogs) GetSubmissionDate() *timestamp.Timestamp {
 }
 
 func init() {
-	proto.RegisterType((*Alarm)(nil), "als.Alarm")
-	proto.RegisterType((*AlarmDateTime)(nil), "als.AlarmDateTime")
-	proto.RegisterType((*CreateAlarmResponse)(nil), "als.CreateAlarmResponse")
-	proto.RegisterType((*CreateAlarmRequest)(nil), "als.CreateAlarmRequest")
-	proto.RegisterType((*CreateMultipleAlarmRequest)(nil), "als.CreateMultipleAlarmRequest")
-	proto.RegisterType((*CreateAlarmMultipleResponse)(nil), "als.CreateAlarmMultipleResponse")
-	proto.RegisterType((*GetAlarmRequest)(nil), "als.GetAlarmRequest")
-	proto.RegisterType((*GetAlarmResponse)(nil), "als.GetAlarmResponse")
-	proto.RegisterType((*DeleteAlarmRequest)(nil), "als.DeleteAlarmRequest")
-	proto.RegisterType((*ListOrganizationAlarmRequest)(nil), "als.ListOrganizationAlarmRequest")
-	proto.RegisterType((*DeleteMultipleAlarmRequest)(nil), "als.DeleteMultipleAlarmRequest")
-	proto.RegisterType((*ListOrganizationAlarmResponse)(nil), "als.ListOrganizationAlarmResponse")
-	proto.RegisterType((*UpdateAlarmRequest)(nil), "als.UpdateAlarmRequest")
-	proto.RegisterType((*ListAlarmRequest)(nil), "als.ListAlarmRequest")
-	proto.RegisterType((*ListAlarmResponse)(nil), "als.ListAlarmResponse")
-	proto.RegisterType((*ListORganizationAlarmResponse)(nil), "als.ListORganizationAlarmResponse")
-	proto.RegisterType((*AlarmLogs)(nil), "als.AlarmLogs")
+	proto.RegisterType((*Alarm)(nil), "api.Alarm")
+	proto.RegisterType((*AlarmDateTime)(nil), "api.AlarmDateTime")
+	proto.RegisterType((*CreateAlarmResponse)(nil), "api.CreateAlarmResponse")
+	proto.RegisterType((*CreateAlarmRequest)(nil), "api.CreateAlarmRequest")
+	proto.RegisterType((*CreateMultipleAlarmRequest)(nil), "api.CreateMultipleAlarmRequest")
+	proto.RegisterType((*CreateAlarmMultipleResponse)(nil), "api.CreateAlarmMultipleResponse")
+	proto.RegisterType((*GetAlarmRequest)(nil), "api.GetAlarmRequest")
+	proto.RegisterType((*GetAlarmResponse)(nil), "api.GetAlarmResponse")
+	proto.RegisterType((*DeleteAlarmRequest)(nil), "api.DeleteAlarmRequest")
+	proto.RegisterType((*ListOrganizationAlarmRequest2)(nil), "api.ListOrganizationAlarmRequest2")
+	proto.RegisterType((*DeleteMultipleAlarmRequest)(nil), "api.DeleteMultipleAlarmRequest")
+	proto.RegisterType((*DeleteMultipleZoneAlarmRequest)(nil), "api.DeleteMultipleZoneAlarmRequest")
+	proto.RegisterType((*DeleteMultipleDevAlarmRequest)(nil), "api.DeleteMultipleDevAlarmRequest")
+	proto.RegisterType((*ListOrganizationAlarmResponse)(nil), "api.ListOrganizationAlarmResponse")
+	proto.RegisterType((*UpdateAlarmRequest)(nil), "api.UpdateAlarmRequest")
+	proto.RegisterType((*ListAlarmRequest)(nil), "api.ListAlarmRequest")
+	proto.RegisterType((*ListOrganizationAlarmRequest)(nil), "api.ListOrganizationAlarmRequest")
+	proto.RegisterType((*ListAlarmResponse)(nil), "api.ListAlarmResponse")
+	proto.RegisterType((*ListOrganizationAlarmResponse2)(nil), "api.ListOrganizationAlarmResponse2")
+	proto.RegisterType((*ListORganizationAlarmResponse)(nil), "api.ListORganizationAlarmResponse")
+	proto.RegisterType((*AlarmLogs)(nil), "api.AlarmLogs")
 }
 
 func init() {
@@ -1255,84 +1409,92 @@ func init() {
 }
 
 var fileDescriptor_810c2ee2c60e0ebe = []byte{
-	// 1228 bytes of a gzipped FileDescriptorProto
+	// 1348 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x57, 0xdb, 0x6e, 0xdb, 0x46,
-	0x10, 0x0d, 0x45, 0x49, 0xb6, 0x46, 0xb2, 0x2c, 0xaf, 0x1d, 0x87, 0x65, 0x2e, 0x56, 0x88, 0xa2,
-	0x15, 0x8a, 0x44, 0x2a, 0xd2, 0xa0, 0x01, 0x7a, 0x01, 0x9a, 0x5a, 0x41, 0x60, 0x34, 0x4d, 0x51,
-	0x36, 0x79, 0x68, 0x5f, 0x88, 0x35, 0xb9, 0x96, 0x16, 0x21, 0xb9, 0x0c, 0x77, 0x99, 0xc6, 0x41,
-	0xbf, 0xa1, 0x0f, 0xfd, 0x8f, 0xbe, 0xf4, 0x1b, 0xfa, 0xd4, 0xaf, 0x2a, 0xb8, 0x4b, 0x89, 0x37,
-	0x5d, 0x5c, 0x14, 0x45, 0x9f, 0xec, 0x3d, 0x33, 0x3b, 0xbb, 0x33, 0x3b, 0x67, 0x0e, 0x05, 0x7b,
-	0xd8, 0xe7, 0x13, 0xec, 0xf3, 0x71, 0x14, 0x33, 0xc1, 0x90, 0x8e, 0x7d, 0x6e, 0xde, 0x9c, 0x31,
-	0x36, 0xf3, 0xc9, 0x44, 0x42, 0xe7, 0xc9, 0xc5, 0x84, 0x04, 0x91, 0xb8, 0x54, 0x1e, 0xe6, 0x49,
-	0xd5, 0x28, 0x68, 0x40, 0xb8, 0xc0, 0x41, 0x94, 0x39, 0xdc, 0xa9, 0x3a, 0x78, 0x49, 0x8c, 0x05,
-	0x65, 0x61, 0x66, 0x3f, 0x74, 0x59, 0x10, 0xb0, 0x70, 0xa2, 0xfe, 0x28, 0xd0, 0xfa, 0xab, 0x05,
-	0xad, 0xc7, 0x3e, 0x8e, 0x03, 0xd4, 0x87, 0x06, 0xf5, 0x0c, 0x6d, 0xa8, 0x8d, 0x74, 0xbb, 0x41,
-	0x3d, 0x74, 0x03, 0x76, 0x3c, 0xf2, 0xc6, 0x21, 0x09, 0x35, 0x1a, 0x43, 0x6d, 0xd4, 0xb1, 0xdb,
-	0x1e, 0x79, 0xf3, 0xe4, 0xe5, 0x19, 0xba, 0x0b, 0xbd, 0x80, 0x86, 0x8e, 0x88, 0x09, 0x9f, 0x33,
-	0xdf, 0x33, 0xf4, 0xa1, 0x36, 0x6a, 0xd8, 0xdd, 0x80, 0x86, 0x2f, 0x32, 0x48, 0xba, 0xe0, 0xb7,
-	0xb9, 0x4b, 0x33, 0x73, 0xc1, 0x6f, 0x97, 0x2e, 0x03, 0xd0, 0x79, 0xc0, 0x8d, 0xd6, 0x50, 0x1b,
-	0xed, 0xda, 0xe9, 0xbf, 0xe8, 0x08, 0x5a, 0x24, 0xc0, 0xd4, 0x37, 0xda, 0x12, 0x53, 0x0b, 0x34,
-	0x84, 0xae, 0x20, 0x41, 0x44, 0x62, 0x2c, 0x92, 0x98, 0x18, 0x3b, 0xd2, 0x56, 0x84, 0x90, 0x09,
-	0xbb, 0xf3, 0x24, 0xc0, 0x1e, 0x15, 0x97, 0xc6, 0xae, 0x34, 0x2f, 0xd7, 0x69, 0x52, 0xc4, 0x35,
-	0x3a, 0x12, 0x6d, 0x10, 0x17, 0x21, 0x68, 0x7a, 0x8c, 0xc5, 0x06, 0x48, 0x44, 0xfe, 0x8f, 0x8e,
-	0xa1, 0xfd, 0xb3, 0xe3, 0x13, 0xfc, 0xca, 0xe8, 0x4a, 0x34, 0x5b, 0xa1, 0x29, 0xec, 0xf3, 0xe4,
-	0x3c, 0xa0, 0x9c, 0x53, 0x16, 0x3a, 0x1e, 0x16, 0xc4, 0xe8, 0x0d, 0xb5, 0x51, 0xf7, 0x81, 0x39,
-	0x56, 0x95, 0x1e, 0x2f, 0x2a, 0x3d, 0x7e, 0xb1, 0x78, 0x0a, 0xbb, 0xba, 0x05, 0xdd, 0x01, 0xa0,
-	0x91, 0x83, 0x3d, 0x2f, 0x26, 0x9c, 0x1b, 0x7b, 0xb2, 0x92, 0x05, 0x04, 0xdd, 0x83, 0x03, 0xca,
-	0x9d, 0xf4, 0x2d, 0x1d, 0xee, 0xce, 0x89, 0x97, 0xf8, 0xc4, 0x33, 0xfa, 0xf2, 0x22, 0x75, 0x43,
-	0x1a, 0x8d, 0x0b, 0x1c, 0x0b, 0x89, 0x1b, 0xfb, 0xb2, 0xac, 0x05, 0x24, 0xad, 0x05, 0x09, 0x3d,
-	0x65, 0x1d, 0x48, 0xeb, 0x72, 0x8d, 0xde, 0x87, 0xbd, 0x77, 0x2c, 0x24, 0x8e, 0x8b, 0x05, 0x99,
-	0xb1, 0xf8, 0xd2, 0x38, 0x90, 0x6f, 0x5d, 0x06, 0xd1, 0x07, 0xd0, 0x77, 0x99, 0xef, 0x39, 0x31,
-	0x63, 0x81, 0x8a, 0x83, 0xa4, 0x5b, 0x05, 0x45, 0x1f, 0xc3, 0x61, 0x8e, 0x5c, 0xc4, 0xc4, 0x4d,
-	0x70, 0xe8, 0x5e, 0x1a, 0x87, 0xd2, 0x79, 0x95, 0x09, 0x59, 0xd0, 0x0b, 0x99, 0xa0, 0x17, 0xd4,
-	0x95, 0x5d, 0x69, 0x1c, 0xc9, 0x24, 0x4b, 0x18, 0xfa, 0x02, 0xf6, 0x71, 0xda, 0x8d, 0xb2, 0x76,
-	0xea, 0xf8, 0xeb, 0x43, 0x7d, 0xd4, 0x7d, 0x80, 0xc6, 0x29, 0x57, 0x64, 0xa7, 0x4e, 0xb1, 0x20,
-	0x69, 0xc1, 0xed, 0xaa, 0xab, 0xf5, 0xbb, 0x06, 0x7b, 0x25, 0x97, 0x5a, 0x53, 0x9b, 0xb0, 0xab,
-	0x36, 0x51, 0x4f, 0x76, 0xb5, 0x6e, 0x2f, 0xd7, 0xe8, 0x16, 0x74, 0x16, 0x01, 0x2f, 0x65, 0x53,
-	0xeb, 0x76, 0x0e, 0xa0, 0x8f, 0x60, 0xa0, 0x16, 0x85, 0xfa, 0xab, 0xb6, 0xae, 0xe1, 0x69, 0x0d,
-	0x15, 0xb6, 0x7c, 0x8b, 0x96, 0xf4, 0xac, 0xa0, 0xd6, 0x23, 0x38, 0x3c, 0x8d, 0x09, 0x16, 0x44,
-	0x5e, 0xda, 0x26, 0x3c, 0x62, 0x21, 0x27, 0x68, 0x08, 0x2d, 0xe9, 0x68, 0x68, 0x32, 0x75, 0xc8,
-	0x53, 0xb7, 0x95, 0xc1, 0x3a, 0x05, 0x54, 0xda, 0xf8, 0x3a, 0x21, 0x5c, 0xa0, 0xfb, 0xd0, 0x73,
-	0x25, 0xea, 0xac, 0xdb, 0xde, 0x75, 0xf3, 0x5d, 0x16, 0x01, 0x53, 0x05, 0xf9, 0x36, 0xf1, 0x05,
-	0x8d, 0xfc, 0x7f, 0x13, 0x0c, 0x19, 0xb0, 0x93, 0x70, 0x12, 0x9f, 0x79, 0xdc, 0x68, 0x0c, 0xf5,
-	0x91, 0x6e, 0x2f, 0x96, 0xd6, 0x8f, 0x70, 0xb3, 0x70, 0xd7, 0xc5, 0x59, 0x57, 0x4f, 0x76, 0x43,
-	0xe8, 0x7b, 0xb0, 0xff, 0x94, 0x88, 0xd2, 0xb5, 0xdf, 0x2b, 0x3c, 0xb0, 0x26, 0xc9, 0xb6, 0x23,
-	0xd7, 0x67, 0x53, 0xeb, 0x21, 0x0c, 0x72, 0xef, 0xfa, 0xe9, 0xda, 0xea, 0x52, 0x3f, 0x07, 0x34,
-	0x25, 0x3e, 0xa9, 0x94, 0xba, 0x7c, 0x8c, 0x5e, 0x38, 0x06, 0xdd, 0x2e, 0x11, 0x5e, 0x8d, 0xce,
-	0x0e, 0x8d, 0x1e, 0x2b, 0xc0, 0xfa, 0x55, 0x83, 0x5b, 0xcf, 0x28, 0x17, 0xdf, 0xc5, 0x33, 0x1c,
-	0xd2, 0x77, 0xb2, 0xed, 0x4b, 0xa1, 0x8f, 0xa0, 0xe5, 0xd3, 0x80, 0x8a, 0xac, 0x6b, 0xd5, 0x22,
-	0x1d, 0x52, 0xec, 0xe2, 0x82, 0x13, 0x91, 0xb5, 0x6d, 0xb6, 0x2a, 0x4e, 0x69, 0xbd, 0x34, 0xa5,
-	0x3f, 0x84, 0x7d, 0x56, 0x38, 0x22, 0xbd, 0x68, 0x53, 0x11, 0xb9, 0x08, 0x9f, 0x4d, 0xad, 0x4f,
-	0xc1, 0x54, 0x09, 0xae, 0x6c, 0x83, 0xac, 0xf8, 0x8b, 0x3c, 0x17, 0xc5, 0x9f, 0x72, 0xeb, 0xcf,
-	0x26, 0xdc, 0x5e, 0x93, 0x48, 0x56, 0xdc, 0x2b, 0x2b, 0xca, 0x09, 0x74, 0x3d, 0xf2, 0x86, 0xba,
-	0xc4, 0x09, 0x71, 0x40, 0xb2, 0x44, 0x40, 0x41, 0xcf, 0x71, 0x40, 0xd0, 0x4d, 0xe8, 0xc8, 0x29,
-	0x25, 0xcd, 0x4d, 0x69, 0xde, 0x4d, 0x01, 0x69, 0xac, 0xea, 0x51, 0x6b, 0xbb, 0x1e, 0xb5, 0xd7,
-	0xea, 0xd1, 0xce, 0x0a, 0x3d, 0xda, 0xdd, 0xa0, 0x47, 0x9d, 0xcd, 0x7a, 0x04, 0x2b, 0xf5, 0xa8,
-	0x5b, 0xd3, 0xa3, 0xde, 0x4a, 0x3d, 0xda, 0xdb, 0xa6, 0x47, 0xfd, 0x7f, 0xae, 0x47, 0x2b, 0xf5,
-	0x66, 0x7f, 0x9d, 0xde, 0x54, 0x67, 0xf6, 0xe0, 0x6a, 0x33, 0xfb, 0xe0, 0xea, 0x33, 0xfb, 0x7b,
-	0x40, 0x2f, 0x23, 0xaf, 0x3a, 0xca, 0xb6, 0xf2, 0xb2, 0xc4, 0xc0, 0x46, 0x99, 0xe8, 0xaf, 0x61,
-	0x90, 0x36, 0xe6, 0x7f, 0xc1, 0xaa, 0x63, 0x68, 0xab, 0xe1, 0x93, 0x91, 0x29, 0x5b, 0x59, 0xbf,
-	0xc0, 0x41, 0xe1, 0xc8, 0xac, 0xff, 0x4f, 0xa0, 0x2b, 0x98, 0xc0, 0xbe, 0xe3, 0xb2, 0x24, 0x5c,
-	0x9c, 0x0c, 0x12, 0x3a, 0x4d, 0x11, 0x64, 0x41, 0x3b, 0x26, 0x3c, 0xf1, 0x85, 0x1c, 0x6c, 0xe5,
-	0x34, 0x33, 0x0b, 0xb2, 0xa0, 0xe9, 0xb3, 0x19, 0x37, 0x74, 0xe9, 0xd1, 0xcf, 0x3d, 0x9e, 0xb1,
-	0x19, 0xb7, 0xa5, 0xcd, 0xfa, 0x2a, 0x63, 0xa2, 0xbd, 0x8e, 0x89, 0xdb, 0x6e, 0x62, 0xfd, 0xa6,
-	0x43, 0x67, 0x19, 0xb5, 0x98, 0xbe, 0xb6, 0xf1, 0xd3, 0xaf, 0xb1, 0x9d, 0x6a, 0x7a, 0x9d, 0x6a,
-	0x37, 0xf2, 0x99, 0x52, 0xaa, 0x62, 0x65, 0x74, 0xb6, 0x2a, 0xa3, 0x53, 0x9a, 0xb9, 0xe3, 0xc9,
-	0x61, 0xa5, 0x38, 0xac, 0xdb, 0x1d, 0xca, 0xd5, 0xf4, 0xf2, 0xfe, 0xc7, 0x2f, 0xc5, 0x6c, 0x76,
-	0xf4, 0xf2, 0xd9, 0x71, 0x5a, 0xe7, 0xea, 0xde, 0x56, 0xae, 0xf6, 0xf3, 0x2d, 0x29, 0x5f, 0x1e,
-	0xfc, 0xd1, 0x84, 0x9e, 0x7c, 0x94, 0x1f, 0x48, 0x9c, 0x8e, 0x42, 0xf4, 0x25, 0xb4, 0x95, 0x94,
-	0xa2, 0x1b, 0xb2, 0x0f, 0xea, 0xdf, 0x00, 0xa6, 0x51, 0x37, 0xa8, 0x1e, 0xb0, 0xae, 0xa1, 0x87,
-	0xa0, 0x3f, 0x25, 0x02, 0x1d, 0x49, 0x97, 0x8a, 0x70, 0x9a, 0xd7, 0x2b, 0xe8, 0x72, 0xd7, 0x23,
-	0x68, 0xa6, 0xcd, 0x85, 0x94, 0x43, 0x95, 0x58, 0xe6, 0x71, 0x15, 0x5e, 0x6e, 0xfc, 0x0c, 0xda,
-	0x8a, 0xd9, 0xd9, 0x6d, 0xeb, 0x34, 0x5f, 0x7f, 0xe8, 0xe7, 0xd0, 0x56, 0xcf, 0x9a, 0xed, 0xad,
-	0x4b, 0xb0, 0x79, 0x5c, 0xab, 0xe4, 0x93, 0xf4, 0xd7, 0x92, 0x75, 0x0d, 0x7d, 0x03, 0xfd, 0xf2,
-	0x87, 0x0d, 0x3a, 0x29, 0x54, 0x65, 0x95, 0xcc, 0x6d, 0x0e, 0x56, 0x96, 0xc7, 0x2c, 0xd8, 0x7a,
-	0xcd, 0xdc, 0x10, 0x0c, 0xc3, 0xf1, 0x4a, 0xc9, 0xe4, 0xe8, 0xee, 0xb2, 0x8c, 0xeb, 0x3e, 0x0c,
-	0x4c, 0x2b, 0x77, 0x59, 0x47, 0x74, 0xeb, 0xda, 0xd7, 0x4f, 0xe0, 0x3a, 0x65, 0x63, 0x77, 0x4e,
-	0xe3, 0x88, 0x0b, 0xec, 0xbe, 0x1a, 0xe3, 0x88, 0xa6, 0x1b, 0x7f, 0xba, 0x37, 0xa3, 0x62, 0x9e,
-	0x9c, 0x8f, 0x5d, 0x16, 0x4c, 0xe8, 0x79, 0x8c, 0xe7, 0x34, 0x60, 0xef, 0xc8, 0x2b, 0xea, 0xd2,
-	0x49, 0xee, 0x7d, 0x1f, 0x47, 0x34, 0xfd, 0x55, 0x7a, 0xde, 0x96, 0x77, 0xff, 0xe4, 0xef, 0x00,
-	0x00, 0x00, 0xff, 0xff, 0x25, 0x2d, 0x90, 0x5e, 0xa7, 0x0e, 0x00, 0x00,
+	0x13, 0x8e, 0x44, 0x4b, 0x96, 0x46, 0xb2, 0x2c, 0xaf, 0x0f, 0x61, 0x94, 0xc4, 0xd6, 0xcf, 0xfc,
+	0x68, 0x85, 0x22, 0x91, 0x0a, 0x35, 0x6d, 0xd0, 0xb4, 0x05, 0x9a, 0x5a, 0x41, 0x6a, 0x24, 0x4d,
+	0x11, 0x26, 0xb9, 0x68, 0x6e, 0x88, 0x35, 0xb9, 0x96, 0x17, 0x21, 0xb9, 0x0c, 0x77, 0xe9, 0xc6,
+	0x41, 0xfb, 0x12, 0x7d, 0x8f, 0xbe, 0x48, 0x1f, 0xa2, 0xe8, 0xa3, 0x14, 0xdc, 0xa5, 0x24, 0x1e,
+	0x24, 0xca, 0x45, 0x2f, 0x7a, 0x65, 0xed, 0x37, 0x07, 0xce, 0xce, 0xcc, 0x7e, 0x33, 0x86, 0x2d,
+	0xec, 0xf2, 0x11, 0x76, 0xf9, 0x30, 0x08, 0x99, 0x60, 0x48, 0xc3, 0x01, 0xed, 0xdd, 0x9c, 0x32,
+	0x36, 0x75, 0xc9, 0x48, 0x42, 0xa7, 0xd1, 0xd9, 0x88, 0x78, 0x81, 0xb8, 0x54, 0x1a, 0xbd, 0xa3,
+	0xbc, 0x50, 0x50, 0x8f, 0x70, 0x81, 0xbd, 0x20, 0x51, 0x38, 0xcc, 0x2b, 0x38, 0x51, 0x88, 0x05,
+	0x65, 0x7e, 0x22, 0xdf, 0xb5, 0x99, 0xe7, 0x31, 0x7f, 0xa4, 0xfe, 0x28, 0xd0, 0xf8, 0xa3, 0x06,
+	0xb5, 0x47, 0x2e, 0x0e, 0x3d, 0xd4, 0x81, 0x2a, 0x75, 0xf4, 0x4a, 0xbf, 0x32, 0xd0, 0xcc, 0x2a,
+	0x75, 0xd0, 0x75, 0xd8, 0x74, 0xc8, 0x85, 0x45, 0x22, 0xaa, 0x57, 0xfb, 0x95, 0x41, 0xd3, 0xac,
+	0x3b, 0xe4, 0xe2, 0xf1, 0xeb, 0x13, 0xf4, 0x3f, 0x68, 0x7b, 0xd4, 0xb7, 0x44, 0x48, 0xf8, 0x39,
+	0x73, 0x1d, 0x5d, 0xeb, 0x57, 0x06, 0x55, 0xb3, 0xe5, 0x51, 0xff, 0x55, 0x02, 0x49, 0x15, 0xfc,
+	0x7e, 0xa1, 0xb2, 0x91, 0xa8, 0xe0, 0xf7, 0x73, 0x95, 0x2e, 0x68, 0xdc, 0xe3, 0x7a, 0xad, 0x5f,
+	0x19, 0x34, 0xcc, 0xf8, 0x27, 0xda, 0x83, 0x1a, 0xf1, 0x30, 0x75, 0xf5, 0xba, 0xc4, 0xd4, 0x01,
+	0xf5, 0xa1, 0x25, 0x88, 0x17, 0x90, 0x10, 0x8b, 0x28, 0x24, 0xfa, 0xa6, 0x94, 0xa5, 0x21, 0xd4,
+	0x83, 0xc6, 0x79, 0xe4, 0x61, 0x87, 0x8a, 0x4b, 0xbd, 0x21, 0xc5, 0xf3, 0x73, 0x7c, 0x29, 0x62,
+	0xeb, 0x4d, 0x89, 0x56, 0x89, 0x8d, 0x10, 0x6c, 0x38, 0x8c, 0x85, 0x3a, 0x48, 0x44, 0xfe, 0x46,
+	0x07, 0x50, 0xff, 0xd9, 0x72, 0x09, 0x7e, 0xab, 0xb7, 0x24, 0x9a, 0x9c, 0xd0, 0x04, 0xb6, 0x79,
+	0x74, 0xea, 0x51, 0xce, 0x29, 0xf3, 0x2d, 0x07, 0x0b, 0xa2, 0xb7, 0xfb, 0x95, 0x41, 0x6b, 0xdc,
+	0x1b, 0xaa, 0x4c, 0x0f, 0x67, 0x99, 0x1e, 0xbe, 0x9a, 0x95, 0xc2, 0xcc, 0x9b, 0xa0, 0x43, 0x00,
+	0x1a, 0x58, 0xd8, 0x71, 0x42, 0xc2, 0xb9, 0xbe, 0x25, 0x33, 0x99, 0x42, 0xd0, 0x5d, 0xd8, 0xa1,
+	0xdc, 0x8a, 0x6b, 0x69, 0x71, 0xfb, 0x9c, 0x38, 0x91, 0x4b, 0x1c, 0xbd, 0x23, 0x03, 0x29, 0x0a,
+	0x62, 0x6f, 0x5c, 0xe0, 0x50, 0x48, 0x5c, 0xdf, 0x96, 0x69, 0x4d, 0x21, 0x71, 0x2e, 0x88, 0xef,
+	0x28, 0x69, 0x57, 0x4a, 0xe7, 0x67, 0xf4, 0x7f, 0xd8, 0xfa, 0xc0, 0x7c, 0x62, 0xd9, 0x58, 0x90,
+	0x29, 0x0b, 0x2f, 0xf5, 0x1d, 0x59, 0xeb, 0x2c, 0x88, 0x3e, 0x82, 0x8e, 0xcd, 0x5c, 0xc7, 0x0a,
+	0x19, 0xf3, 0x94, 0x1f, 0x24, 0xd5, 0x72, 0x28, 0xfa, 0x14, 0x76, 0x17, 0xc8, 0x59, 0x48, 0xec,
+	0x08, 0xfb, 0xf6, 0xa5, 0xbe, 0x2b, 0x95, 0x97, 0x89, 0x90, 0x01, 0x6d, 0x9f, 0x09, 0x7a, 0x46,
+	0x6d, 0xd9, 0x95, 0xfa, 0x9e, 0xbc, 0x64, 0x06, 0x43, 0x5f, 0xc3, 0x36, 0x8e, 0xbb, 0x51, 0xe6,
+	0x4e, 0x7d, 0x7e, 0xbf, 0xaf, 0x0d, 0x5a, 0x63, 0x34, 0xc4, 0x01, 0x1d, 0xca, 0x4e, 0x9d, 0x60,
+	0x41, 0xe2, 0x84, 0x9b, 0x79, 0x55, 0xe3, 0xf7, 0x0a, 0x6c, 0x65, 0x54, 0x0a, 0x4d, 0xdd, 0x83,
+	0x86, 0x32, 0xa2, 0x8e, 0xec, 0x6a, 0xcd, 0x9c, 0x9f, 0xd1, 0x2d, 0x68, 0xce, 0x1c, 0x5e, 0xca,
+	0xa6, 0xd6, 0xcc, 0x05, 0x80, 0x3e, 0x81, 0xae, 0x3a, 0xa4, 0xf2, 0xaf, 0xda, 0xba, 0x80, 0xc7,
+	0x39, 0x54, 0xd8, 0xbc, 0x16, 0x35, 0xa9, 0x99, 0x43, 0x8d, 0x07, 0xb0, 0x7b, 0x1c, 0x12, 0x2c,
+	0x88, 0x0c, 0xda, 0x24, 0x3c, 0x60, 0x3e, 0x27, 0xa8, 0x0f, 0x35, 0xa9, 0xa8, 0x57, 0xe4, 0xd5,
+	0x61, 0x71, 0x75, 0x53, 0x09, 0x8c, 0x63, 0x40, 0x19, 0xc3, 0x77, 0x11, 0xe1, 0x02, 0xdd, 0x83,
+	0xb6, 0x2d, 0x51, 0x6b, 0x95, 0x79, 0xcb, 0x5e, 0x58, 0x19, 0x04, 0x7a, 0xca, 0xc9, 0x0f, 0x91,
+	0x2b, 0x68, 0xe0, 0xfe, 0x1b, 0x67, 0x48, 0x87, 0xcd, 0x88, 0x93, 0xf0, 0xc4, 0xe1, 0x7a, 0xb5,
+	0xaf, 0x0d, 0x34, 0x73, 0x76, 0x34, 0x7e, 0x82, 0x9b, 0xa9, 0x58, 0x67, 0xdf, 0xba, 0xfa, 0x65,
+	0x4b, 0x5c, 0xdf, 0x85, 0xed, 0x27, 0x44, 0x64, 0xc2, 0xbe, 0x91, 0x2a, 0x70, 0x45, 0x3e, 0xb6,
+	0x4d, 0x79, 0x3e, 0x99, 0x18, 0xf7, 0xa1, 0xbb, 0xd0, 0x2e, 0x7e, 0xbd, 0xb2, 0x3c, 0xd5, 0xcf,
+	0x01, 0x4d, 0x88, 0x4b, 0x72, 0xa9, 0xce, 0x7e, 0x46, 0x4b, 0x7d, 0x06, 0xdd, 0xce, 0x3c, 0x78,
+	0x45, 0x9d, 0x4d, 0x1a, 0x3c, 0x52, 0x80, 0xf1, 0x3d, 0xdc, 0x7e, 0x46, 0xb9, 0xf8, 0x31, 0x9c,
+	0x62, 0x9f, 0x7e, 0x90, 0x5d, 0x9f, 0xf6, 0x3c, 0x46, 0x1f, 0xc3, 0x36, 0x4b, 0x09, 0xad, 0x79,
+	0xff, 0x76, 0xd2, 0xf0, 0xc9, 0xc4, 0xf8, 0x02, 0x7a, 0x2a, 0xb2, 0xa5, 0xf5, 0x4b, 0xb2, 0x36,
+	0x0b, 0x70, 0x96, 0xb5, 0x09, 0x37, 0x1e, 0xc2, 0x61, 0xd6, 0xee, 0x0d, 0xf3, 0x0b, 0xb6, 0x92,
+	0x14, 0x16, 0xb6, 0xf1, 0x31, 0xce, 0xf8, 0x97, 0x70, 0x3b, 0x6b, 0x3b, 0x21, 0x17, 0x39, 0xd3,
+	0x46, 0x32, 0x35, 0x78, 0x92, 0x18, 0x39, 0x36, 0x22, 0x6a, 0xfc, 0xb5, 0xb1, 0xf2, 0xe6, 0x49,
+	0x31, 0xae, 0x3c, 0x81, 0x8e, 0xa0, 0xe5, 0x90, 0x0b, 0x6a, 0x13, 0xcb, 0xc7, 0x1e, 0x91, 0x6f,
+	0xb5, 0x69, 0x82, 0x82, 0x9e, 0x63, 0x8f, 0xa0, 0x9b, 0xd0, 0x94, 0x17, 0x90, 0xe2, 0x0d, 0x29,
+	0x6e, 0xc4, 0x80, 0x14, 0xe6, 0xe7, 0x57, 0x6d, 0xfd, 0xfc, 0xaa, 0xaf, 0x9c, 0x5f, 0x9b, 0x4b,
+	0xe6, 0x57, 0xa3, 0x64, 0x7e, 0x35, 0xcb, 0xe7, 0x17, 0x2c, 0x9d, 0x5f, 0xad, 0xc2, 0xfc, 0x6a,
+	0x2f, 0x9d, 0x5f, 0x5b, 0xeb, 0xe6, 0x57, 0xe7, 0x9f, 0xcf, 0xaf, 0xa5, 0xf3, 0x69, 0x7b, 0xd5,
+	0x7c, 0xca, 0x73, 0x7c, 0xf7, 0x6a, 0x1c, 0xbf, 0x73, 0x65, 0x8e, 0x8f, 0xb3, 0x15, 0x37, 0xb2,
+	0xac, 0x2c, 0x52, 0x95, 0x9d, 0x9d, 0x8d, 0x17, 0x80, 0x5e, 0x07, 0x4e, 0x9e, 0x16, 0xd7, 0xbe,
+	0xf1, 0xcc, 0x6b, 0xae, 0x66, 0x49, 0xe3, 0x1d, 0x74, 0xe3, 0xa6, 0xcd, 0x38, 0xdc, 0x83, 0x9a,
+	0x4b, 0x3d, 0x2a, 0x92, 0x56, 0x55, 0x87, 0xb8, 0x0c, 0xec, 0xec, 0x8c, 0x13, 0x91, 0x0c, 0x96,
+	0xe4, 0x94, 0xee, 0x62, 0x2d, 0xd3, 0xc5, 0x07, 0x50, 0x57, 0x44, 0x26, 0x3b, 0x54, 0x33, 0x93,
+	0x93, 0xf1, 0x04, 0x6e, 0x95, 0x31, 0xc4, 0xd5, 0x09, 0xe2, 0x17, 0xd8, 0x49, 0xc5, 0x9e, 0x3c,
+	0xb2, 0x23, 0x68, 0x09, 0x26, 0xb0, 0x6b, 0xd9, 0x2c, 0xf2, 0x67, 0x57, 0x00, 0x09, 0x1d, 0xc7,
+	0x08, 0x32, 0xa0, 0x1e, 0x12, 0x1e, 0xb9, 0x42, 0xb2, 0x6d, 0x36, 0x5f, 0x89, 0x04, 0x19, 0xb0,
+	0xe1, 0xb2, 0x29, 0xd7, 0x35, 0xa9, 0xd1, 0x59, 0x68, 0x3c, 0x63, 0x53, 0x6e, 0x4a, 0x99, 0xf1,
+	0x2b, 0x1c, 0x96, 0x3e, 0xf7, 0xf1, 0xfa, 0x50, 0x1e, 0xe6, 0x42, 0x31, 0xe4, 0x87, 0x4a, 0xbd,
+	0xce, 0x42, 0x34, 0xbe, 0x4d, 0xd8, 0xc6, 0x5c, 0xc5, 0x36, 0xeb, 0xbe, 0x6e, 0xfc, 0xa6, 0x41,
+	0x73, 0x7e, 0xa9, 0x74, 0x19, 0x2b, 0xa5, 0xeb, 0x70, 0x75, 0x3d, 0x9d, 0x68, 0x45, 0x3a, 0xb9,
+	0xbe, 0xa0, 0xeb, 0x4c, 0x37, 0xe4, 0xc6, 0x49, 0x2d, 0x37, 0x4e, 0xa4, 0x98, 0x5b, 0x8e, 0xe4,
+	0x64, 0xc5, 0x53, 0x9a, 0xd9, 0xa4, 0x5c, 0x91, 0xb4, 0xf3, 0x1f, 0x6e, 0xcf, 0x09, 0x3f, 0xb6,
+	0x17, 0xfc, 0x78, 0x5c, 0xe4, 0xa3, 0xad, 0xb5, 0x7c, 0xd4, 0x59, 0x98, 0xc4, 0x9c, 0x30, 0xfe,
+	0xb3, 0x06, 0x6d, 0x59, 0x94, 0x97, 0x24, 0x8c, 0xe9, 0x1e, 0x7d, 0x03, 0x75, 0xb5, 0x5e, 0xa0,
+	0xeb, 0xb2, 0x3b, 0x8a, 0x7b, 0x51, 0x4f, 0x2f, 0x0a, 0x54, 0x0f, 0x18, 0xd7, 0xd0, 0x7d, 0xd0,
+	0x9e, 0x10, 0x81, 0xf6, 0xa4, 0x4a, 0x6e, 0x99, 0xe8, 0xed, 0xe7, 0xd0, 0xb9, 0xd5, 0x03, 0xd8,
+	0x88, 0x9b, 0x0b, 0xed, 0xcf, 0x1b, 0x32, 0x63, 0x77, 0x90, 0x87, 0xe7, 0x86, 0x0f, 0xa1, 0xae,
+	0x18, 0x2a, 0x89, 0xb6, 0x48, 0x57, 0xab, 0x3f, 0xfa, 0x15, 0xd4, 0x55, 0x59, 0x13, 0xdb, 0xe2,
+	0x5a, 0xd2, 0x3b, 0x28, 0x64, 0xf2, 0x71, 0xfc, 0x1f, 0xa4, 0x71, 0x0d, 0x9d, 0xc1, 0x0d, 0x15,
+	0x8f, 0x5b, 0x78, 0x3a, 0x1c, 0x95, 0xbe, 0x2b, 0xb5, 0x96, 0xf4, 0xee, 0xac, 0x7f, 0x7b, 0x63,
+	0xe3, 0x1a, 0x7a, 0x0a, 0x9d, 0xec, 0x52, 0x89, 0x8e, 0x52, 0xd9, 0x5f, 0xb6, 0xa9, 0x94, 0x04,
+	0xfd, 0x14, 0x3a, 0xd9, 0x6d, 0x23, 0x71, 0xb6, 0x7a, 0xed, 0x29, 0x71, 0x66, 0xce, 0x16, 0xb9,
+	0x97, 0xc4, 0xe7, 0x2c, 0xcc, 0x5c, 0xbd, 0x74, 0xa7, 0x29, 0xf1, 0xf9, 0x02, 0xba, 0xca, 0x74,
+	0xbe, 0x42, 0x71, 0x74, 0x67, 0x89, 0xc7, 0xfc, 0x86, 0xb5, 0xda, 0xe5, 0x77, 0x4f, 0x61, 0x9f,
+	0xb2, 0xa1, 0x7d, 0x4e, 0xc3, 0x80, 0x0b, 0x6c, 0xbf, 0x95, 0xde, 0xb0, 0xcb, 0xdf, 0x8c, 0xa7,
+	0x54, 0x9c, 0x47, 0xa7, 0x43, 0x9b, 0x79, 0x23, 0x7a, 0x1a, 0xe2, 0x73, 0xea, 0xb1, 0x0f, 0xe4,
+	0x2d, 0xb5, 0xe9, 0x68, 0xa1, 0x7d, 0x0f, 0x07, 0x74, 0x34, 0x65, 0xa3, 0x8b, 0xcf, 0x47, 0xd8,
+	0xe5, 0xa7, 0x75, 0xe9, 0xfe, 0xb3, 0xbf, 0x03, 0x00, 0x00, 0xff, 0xff, 0x5a, 0xae, 0x3b, 0x1b,
+	0x6d, 0x10, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1356,12 +1518,15 @@ type AlarmServiceClient interface {
 	Update(ctx context.Context, in *UpdateAlarmRequest, opts ...grpc.CallOption) (*GetAlarmResponse, error)
 	// Delete deletes the alarm matching the given alarm_id.
 	Delete(ctx context.Context, in *DeleteAlarmRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	ListAllOrganizationAlarms(ctx context.Context, in *ListOrganizationAlarmRequest2, opts ...grpc.CallOption) (*ListOrganizationAlarmResponse2, error)
 	// Create creates the alarm
 	CreateMultiple(ctx context.Context, in *CreateMultipleAlarmRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Delete deletes the alarm matching the given alarm_id.
 	DeleteMultiple(ctx context.Context, in *DeleteMultipleAlarmRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	// ListOrganizationAlarms ListOrganizationAlarms the alarm matching the given alarm_id.
-	ListOrganizationAlarms(ctx context.Context, in *ListOrganizationAlarmRequest, opts ...grpc.CallOption) (*ListORganizationAlarmResponse, error)
+	// Delete deletes the alarm matching the given alarm_id.
+	DeleteSensorAlarms(ctx context.Context, in *DeleteMultipleDevAlarmRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete deletes the alarm matching the given alarm_id.
+	DeleteZoneAlarms(ctx context.Context, in *DeleteMultipleZoneAlarmRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 }
 
 type alarmServiceClient struct {
@@ -1374,7 +1539,7 @@ func NewAlarmServiceClient(cc grpc.ClientConnInterface) AlarmServiceClient {
 
 func (c *alarmServiceClient) Create(ctx context.Context, in *CreateAlarmRequest, opts ...grpc.CallOption) (*CreateAlarmResponse, error) {
 	out := new(CreateAlarmResponse)
-	err := c.cc.Invoke(ctx, "/als.AlarmService/Create", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/api.AlarmService/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1383,7 +1548,7 @@ func (c *alarmServiceClient) Create(ctx context.Context, in *CreateAlarmRequest,
 
 func (c *alarmServiceClient) Get(ctx context.Context, in *GetAlarmRequest, opts ...grpc.CallOption) (*GetAlarmResponse, error) {
 	out := new(GetAlarmResponse)
-	err := c.cc.Invoke(ctx, "/als.AlarmService/Get", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/api.AlarmService/Get", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1392,7 +1557,7 @@ func (c *alarmServiceClient) Get(ctx context.Context, in *GetAlarmRequest, opts 
 
 func (c *alarmServiceClient) List(ctx context.Context, in *ListAlarmRequest, opts ...grpc.CallOption) (*ListAlarmResponse, error) {
 	out := new(ListAlarmResponse)
-	err := c.cc.Invoke(ctx, "/als.AlarmService/List", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/api.AlarmService/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1401,7 +1566,7 @@ func (c *alarmServiceClient) List(ctx context.Context, in *ListAlarmRequest, opt
 
 func (c *alarmServiceClient) Update(ctx context.Context, in *UpdateAlarmRequest, opts ...grpc.CallOption) (*GetAlarmResponse, error) {
 	out := new(GetAlarmResponse)
-	err := c.cc.Invoke(ctx, "/als.AlarmService/Update", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/api.AlarmService/Update", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1410,7 +1575,16 @@ func (c *alarmServiceClient) Update(ctx context.Context, in *UpdateAlarmRequest,
 
 func (c *alarmServiceClient) Delete(ctx context.Context, in *DeleteAlarmRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/als.AlarmService/Delete", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/api.AlarmService/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *alarmServiceClient) ListAllOrganizationAlarms(ctx context.Context, in *ListOrganizationAlarmRequest2, opts ...grpc.CallOption) (*ListOrganizationAlarmResponse2, error) {
+	out := new(ListOrganizationAlarmResponse2)
+	err := c.cc.Invoke(ctx, "/api.AlarmService/ListAllOrganizationAlarms", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1419,7 +1593,7 @@ func (c *alarmServiceClient) Delete(ctx context.Context, in *DeleteAlarmRequest,
 
 func (c *alarmServiceClient) CreateMultiple(ctx context.Context, in *CreateMultipleAlarmRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/als.AlarmService/CreateMultiple", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/api.AlarmService/CreateMultiple", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1428,16 +1602,25 @@ func (c *alarmServiceClient) CreateMultiple(ctx context.Context, in *CreateMulti
 
 func (c *alarmServiceClient) DeleteMultiple(ctx context.Context, in *DeleteMultipleAlarmRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/als.AlarmService/DeleteMultiple", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/api.AlarmService/DeleteMultiple", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *alarmServiceClient) ListOrganizationAlarms(ctx context.Context, in *ListOrganizationAlarmRequest, opts ...grpc.CallOption) (*ListORganizationAlarmResponse, error) {
-	out := new(ListORganizationAlarmResponse)
-	err := c.cc.Invoke(ctx, "/als.AlarmService/ListOrganizationAlarms", in, out, opts...)
+func (c *alarmServiceClient) DeleteSensorAlarms(ctx context.Context, in *DeleteMultipleDevAlarmRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/api.AlarmService/DeleteSensorAlarms", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *alarmServiceClient) DeleteZoneAlarms(ctx context.Context, in *DeleteMultipleZoneAlarmRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/api.AlarmService/DeleteZoneAlarms", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1455,12 +1638,15 @@ type AlarmServiceServer interface {
 	Update(context.Context, *UpdateAlarmRequest) (*GetAlarmResponse, error)
 	// Delete deletes the alarm matching the given alarm_id.
 	Delete(context.Context, *DeleteAlarmRequest) (*empty.Empty, error)
+	ListAllOrganizationAlarms(context.Context, *ListOrganizationAlarmRequest2) (*ListOrganizationAlarmResponse2, error)
 	// Create creates the alarm
 	CreateMultiple(context.Context, *CreateMultipleAlarmRequest) (*empty.Empty, error)
 	// Delete deletes the alarm matching the given alarm_id.
 	DeleteMultiple(context.Context, *DeleteMultipleAlarmRequest) (*empty.Empty, error)
-	// ListOrganizationAlarms ListOrganizationAlarms the alarm matching the given alarm_id.
-	ListOrganizationAlarms(context.Context, *ListOrganizationAlarmRequest) (*ListORganizationAlarmResponse, error)
+	// Delete deletes the alarm matching the given alarm_id.
+	DeleteSensorAlarms(context.Context, *DeleteMultipleDevAlarmRequest) (*empty.Empty, error)
+	// Delete deletes the alarm matching the given alarm_id.
+	DeleteZoneAlarms(context.Context, *DeleteMultipleZoneAlarmRequest) (*empty.Empty, error)
 }
 
 // UnimplementedAlarmServiceServer can be embedded to have forward compatible implementations.
@@ -1482,14 +1668,20 @@ func (*UnimplementedAlarmServiceServer) Update(ctx context.Context, req *UpdateA
 func (*UnimplementedAlarmServiceServer) Delete(ctx context.Context, req *DeleteAlarmRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
+func (*UnimplementedAlarmServiceServer) ListAllOrganizationAlarms(ctx context.Context, req *ListOrganizationAlarmRequest2) (*ListOrganizationAlarmResponse2, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAllOrganizationAlarms not implemented")
+}
 func (*UnimplementedAlarmServiceServer) CreateMultiple(ctx context.Context, req *CreateMultipleAlarmRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateMultiple not implemented")
 }
 func (*UnimplementedAlarmServiceServer) DeleteMultiple(ctx context.Context, req *DeleteMultipleAlarmRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteMultiple not implemented")
 }
-func (*UnimplementedAlarmServiceServer) ListOrganizationAlarms(ctx context.Context, req *ListOrganizationAlarmRequest) (*ListORganizationAlarmResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationAlarms not implemented")
+func (*UnimplementedAlarmServiceServer) DeleteSensorAlarms(ctx context.Context, req *DeleteMultipleDevAlarmRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSensorAlarms not implemented")
+}
+func (*UnimplementedAlarmServiceServer) DeleteZoneAlarms(ctx context.Context, req *DeleteMultipleZoneAlarmRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteZoneAlarms not implemented")
 }
 
 func RegisterAlarmServiceServer(s *grpc.Server, srv AlarmServiceServer) {
@@ -1506,7 +1698,7 @@ func _AlarmService_Create_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/als.AlarmService/Create",
+		FullMethod: "/api.AlarmService/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AlarmServiceServer).Create(ctx, req.(*CreateAlarmRequest))
@@ -1524,7 +1716,7 @@ func _AlarmService_Get_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/als.AlarmService/Get",
+		FullMethod: "/api.AlarmService/Get",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AlarmServiceServer).Get(ctx, req.(*GetAlarmRequest))
@@ -1542,7 +1734,7 @@ func _AlarmService_List_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/als.AlarmService/List",
+		FullMethod: "/api.AlarmService/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AlarmServiceServer).List(ctx, req.(*ListAlarmRequest))
@@ -1560,7 +1752,7 @@ func _AlarmService_Update_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/als.AlarmService/Update",
+		FullMethod: "/api.AlarmService/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AlarmServiceServer).Update(ctx, req.(*UpdateAlarmRequest))
@@ -1578,10 +1770,28 @@ func _AlarmService_Delete_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/als.AlarmService/Delete",
+		FullMethod: "/api.AlarmService/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AlarmServiceServer).Delete(ctx, req.(*DeleteAlarmRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AlarmService_ListAllOrganizationAlarms_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOrganizationAlarmRequest2)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AlarmServiceServer).ListAllOrganizationAlarms(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.AlarmService/ListAllOrganizationAlarms",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AlarmServiceServer).ListAllOrganizationAlarms(ctx, req.(*ListOrganizationAlarmRequest2))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1596,7 +1806,7 @@ func _AlarmService_CreateMultiple_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/als.AlarmService/CreateMultiple",
+		FullMethod: "/api.AlarmService/CreateMultiple",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AlarmServiceServer).CreateMultiple(ctx, req.(*CreateMultipleAlarmRequest))
@@ -1614,7 +1824,7 @@ func _AlarmService_DeleteMultiple_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/als.AlarmService/DeleteMultiple",
+		FullMethod: "/api.AlarmService/DeleteMultiple",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AlarmServiceServer).DeleteMultiple(ctx, req.(*DeleteMultipleAlarmRequest))
@@ -1622,26 +1832,44 @@ func _AlarmService_DeleteMultiple_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AlarmService_ListOrganizationAlarms_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListOrganizationAlarmRequest)
+func _AlarmService_DeleteSensorAlarms_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteMultipleDevAlarmRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AlarmServiceServer).ListOrganizationAlarms(ctx, in)
+		return srv.(AlarmServiceServer).DeleteSensorAlarms(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/als.AlarmService/ListOrganizationAlarms",
+		FullMethod: "/api.AlarmService/DeleteSensorAlarms",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlarmServiceServer).ListOrganizationAlarms(ctx, req.(*ListOrganizationAlarmRequest))
+		return srv.(AlarmServiceServer).DeleteSensorAlarms(ctx, req.(*DeleteMultipleDevAlarmRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AlarmService_DeleteZoneAlarms_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteMultipleZoneAlarmRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AlarmServiceServer).DeleteZoneAlarms(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.AlarmService/DeleteZoneAlarms",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AlarmServiceServer).DeleteZoneAlarms(ctx, req.(*DeleteMultipleZoneAlarmRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 var _AlarmService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "als.AlarmService",
+	ServiceName: "api.AlarmService",
 	HandlerType: (*AlarmServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -1665,6 +1893,10 @@ var _AlarmService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _AlarmService_Delete_Handler,
 		},
 		{
+			MethodName: "ListAllOrganizationAlarms",
+			Handler:    _AlarmService_ListAllOrganizationAlarms_Handler,
+		},
+		{
 			MethodName: "CreateMultiple",
 			Handler:    _AlarmService_CreateMultiple_Handler,
 		},
@@ -1673,8 +1905,12 @@ var _AlarmService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _AlarmService_DeleteMultiple_Handler,
 		},
 		{
-			MethodName: "ListOrganizationAlarms",
-			Handler:    _AlarmService_ListOrganizationAlarms_Handler,
+			MethodName: "DeleteSensorAlarms",
+			Handler:    _AlarmService_DeleteSensorAlarms_Handler,
+		},
+		{
+			MethodName: "DeleteZoneAlarms",
+			Handler:    _AlarmService_DeleteZoneAlarms_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

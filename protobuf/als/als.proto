@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package als;
+package api;
 
-option go_package = "github.com/ibrahimozekici/chirpstack-api/als";
+option go_package = "github.com/ibrahimozekici/chirpstack-api/go/v5/als";
 option java_package = "io.chirpstack.api.als";
 
 import "google/protobuf/empty.proto";
@@ -12,32 +12,50 @@ import "common/common.proto";
 
 service AlarmService {
     // Create creates the alarm
-    rpc Create(CreateAlarmRequest) returns (CreateAlarmResponse) { };
-    
-    // Get return the alarm
-    rpc Get(GetAlarmRequest) returns (GetAlarmResponse) {};
+    rpc Create(CreateAlarmRequest) returns (CreateAlarmResponse) {
+    }
 
+    // Get return the alarm
+    rpc Get(GetAlarmRequest) returns (GetAlarmResponse) {
+        
+    }
 
     rpc List(ListAlarmRequest) returns (ListAlarmResponse) {
+       
     }
+ 
     // Update updates the alarm matching the given alarm_id.
     rpc Update(UpdateAlarmRequest) returns (GetAlarmResponse) {
+        
     }
 
     // Delete deletes the alarm matching the given alarm_id.
     rpc Delete(DeleteAlarmRequest) returns (google.protobuf.Empty) {
+      
     }
 
+
+    rpc ListAllOrganizationAlarms(ListOrganizationAlarmRequest2) returns (ListOrganizationAlarmResponse2) {
+       
+    }
      // Create creates the alarm
      rpc CreateMultiple(CreateMultipleAlarmRequest) returns (google.protobuf.Empty) {
+      
     }
 
     // Delete deletes the alarm matching the given alarm_id.
     rpc DeleteMultiple(DeleteMultipleAlarmRequest) returns (google.protobuf.Empty) {
+       
     }
 
-    // ListOrganizationAlarms ListOrganizationAlarms the alarm matching the given alarm_id.
-    rpc ListOrganizationAlarms(ListOrganizationAlarmRequest) returns (ListORganizationAlarmResponse) {
+    // Delete deletes the alarm matching the given alarm_id.
+    rpc DeleteSensorAlarms(DeleteMultipleDevAlarmRequest) returns (google.protobuf.Empty) {
+      
+    }
+
+    // Delete deletes the alarm matching the given alarm_id.
+    rpc DeleteZoneAlarms(DeleteMultipleZoneAlarmRequest) returns (google.protobuf.Empty) {
+      
     }
 }
 
@@ -124,24 +142,24 @@ message DeleteAlarmRequest {
     string ip_address = 2;
 }
 
-message ListOrganizationAlarmRequest {
-       // Max number of devices to return in the result-set.
-       int64 limit = 1;
+message ListOrganizationAlarmRequest2 {
 
-       // Offset in the result-set (for pagination).
-       int64 offset = 2;
-   
-       // Device EUI (HEX encoded).
-       string dev_eui = 3 [json_name = "devEUI"];
-
-	int64 organization_id = 4 [json_name = "organizationID"];
+	int64 organization_id = 1 [json_name = "organizationID"];
 }
 
 message DeleteMultipleAlarmRequest {
     // Alarm Id (HEX encoded).
     repeated int64 user_id = 1 [json_name = "userIDs"];
 }
+message DeleteMultipleZoneAlarmRequest {
+    // Alarm Id (HEX encoded).
+    repeated int64 zone_id = 1 [json_name = "zoneIds"];
+}
 
+message DeleteMultipleDevAlarmRequest {
+    // Alarm Id (HEX encoded).
+    repeated string dev_euis = 1 [json_name = "devEui"];
+}
 message ListOrganizationAlarmResponse {
      // Alarm id.
      int64 id = 1;
@@ -176,6 +194,9 @@ message ListOrganizationAlarmResponse {
     bool notification = 16 [json_name = "notification"];
  
      repeated AlarmDateTime alarm_date_time = 17  [json_name = "alarm_date_time"];
+
+     // Device EUI (HEX encoded).
+     string username = 18 [json_name = "username"]; 
 }
 message UpdateAlarmRequest {
     // Alarm object to update.
@@ -198,6 +219,11 @@ message ListAlarmRequest {
     int64 userId = 4;
 }
 
+message ListOrganizationAlarmRequest {
+    // Max number of devices to return in the result-set.
+    int64 organization_id = 1 [json_name = "organizationID"];
+}
+
 message ListAlarmResponse {
     // Total number of devices available within the result-set.
     int64 total_count = 1;
@@ -208,6 +234,12 @@ message ListAlarmResponse {
     repeated AlarmLogs logs = 3;
 }
 
+message ListOrganizationAlarmResponse2 {
+    // Total number of devices available within the result-set.
+    int64 total_count = 1;
+    repeated ListOrganizationAlarmResponse result = 2;
+
+}
 message ListORganizationAlarmResponse {
     // Total number of devices available within the result-set.
     int64 total_count = 1;
