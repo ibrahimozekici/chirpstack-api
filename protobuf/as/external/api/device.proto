@@ -4,8 +4,6 @@ package api;
 
 option go_package = "github.com/ibrahimozekici/chirpstack-api/go/v5/as/external/api";
 option java_package = "io.chirpstack.api.as.external.api";
-option java_multiple_files = true;
-option java_outer_classname = "DeviceProto";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
@@ -17,7 +15,7 @@ import "as/external/api/frameLog.proto";
 // DeviceService is the service managing the devices.
 service DeviceService {
     // Create creates the given device.
-    rpc Create(CreateDeviceRequest) returns (google.protobuf.Empty) {
+    rpc Create(CreateDeviceRequest) returns (GetDeviceResponse) {
         option(google.api.http) = {
             post: "/api/devices"
             body: "*"
@@ -112,13 +110,6 @@ service DeviceService {
         };
     }
 
-    // GetStats returns the device stats.
-    rpc GetStats(GetDeviceStatsRequest) returns (GetDeviceStatsResponse) {
-        option (google.api.http) = {
-            get: "/api/devices/{dev_eui}/stats"
-        };
-    }
-
     // StreamFrameLogs streams the uplink and downlink frame-logs for the given DevEUI.
 	//   * These are the raw LoRaWAN frames and this endpoint is intended for debugging only.
 	//   * This endpoint does not work from a web-browser.
@@ -136,21 +127,12 @@ service DeviceService {
             get: "/api/devices/{dev_eui}/events"
         };
     }
-
-    // ClearDeviceNonces deletes the device older activation records for the given DevEUI.
-    //   * These are clear older DevNonce records from device activation records in Network Server
-    //   * These clears all DevNonce records but keeps latest 20 records for maintain device activation status
-    rpc ClearDeviceNonces(ClearDeviceNoncesRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            delete: "/api/devices/{dev_eui}/devnonce"
-        };
-    }
 }
 
 message Device {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
-
+    string dev_eui = 1 [json_name = "devEUI"]; 
+    
     // Name of the device (if left blank, it will be set to the DevEUI).
     string name = 2;
 
@@ -188,12 +170,28 @@ message Device {
 
     // Device is disabled.
     bool is_disabled = 10;
+
+    int64 data_time = 11 [json_name = "dataTime"];	
+    // Device lat value	
+    double lat = 12;	
+    // Device lng value	
+    double lng = 13;
+
+    // Device Profile Name
+    string device_profile_name = 14 [json_name = "deviceProfileName"];
+
+    int64 device_type = 15 [json_name = "deviceType"];
+
+    int64 organization_id = 16 [json_name = "organizationId"];
+
+    int64 zone_id = 17 [json_name = "zoneId"];
+
 }
 
 message DeviceListItem {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
-
+    string dev_eui = 1 [json_name = "devEUI"]; 
+    
     // Name of the device.
     string name = 2;
 
@@ -207,7 +205,7 @@ message DeviceListItem {
     string device_profile_id = 5 [json_name = "deviceProfileID"];
 
     // Device-profile name.
-    string device_profile_name = 6;
+    string device_profile_name = 6 [json_name = "deviceProfileName"];
 
     // The device battery status (deprecated, use device_status_battery_level).
     // 0:      The end-device is connected to an external power source
@@ -233,6 +231,17 @@ message DeviceListItem {
     // The last time the application-server received any data from the device,
     // or an empty string when the device never sent any data.
     google.protobuf.Timestamp last_seen_at = 9 [json_name = "lastSeenAt"];
+
+    // data time	
+    int64 data_time = 13 [json_name = "dataTime"];	
+    // device lat value	
+    double lat = 14;	
+    // device lng value	
+    double lng = 15;
+
+    int64 device_type = 16 [json_name = "deviceType"];
+
+    int64 organization_id = 17 [json_name = "organizationId"];
 }
 
 message DeviceKeys {
@@ -252,7 +261,52 @@ message DeviceKeys {
     // that implement the remote multicast setup specification.
     string gen_app_key = 4;
 }
+message DeviceAlarm {
 
+    // Alarm id.
+    int64 id = 1;
+     
+    // Device EUI (HEX encoded).
+    string dev_eui = 2 [json_name = "devEUI"]; 
+
+    // Condition of alarm
+    float min_treshold = 3 [json_name = "minTreshold"];
+
+    // Value of alarm
+    float max_treshold = 4 [json_name = "maxTreshold"];
+
+   bool sms = 5 [json_name = "sms"];
+   bool email = 6 [json_name = "email"];
+   bool temperature = 7 [json_name = "temperature"];
+   bool humadity = 8 [json_name = "humadity"];
+   bool ec = 9 [json_name = "ec"];
+   bool door = 10 [json_name = "door"];
+   bool w_leak = 11 [json_name = "w_leak"];
+   google.protobuf.Timestamp submission_date = 12 [json_name = "submission_date"];
+   string ip_address = 13 [json_name = "ip_address"];
+}
+message DeviceAlarmLogs {
+    string dev_eui = 1 [json_name = "devEUI"];
+     // Condition of alarm
+     float min_treshold = 2 [json_name = "minTreshold"];
+
+     // Value of alarm
+     float max_treshold = 3 [json_name = "maxTreshold"];
+
+     int64 user_id = 4;
+
+    string ip_address = 5;
+
+    int64 is_deleted = 6;
+    bool temperature = 7 [json_name = "temperature"];
+    bool humadity = 8 [json_name = "humadity"];
+    bool ec = 9 [json_name = "ec"];
+    bool door = 10 [json_name = "door"];
+    bool w_leak = 11 [json_name = "w_leak"];
+    bool sms = 12 [json_name = "sms"];
+
+    google.protobuf.Timestamp submission_date = 13;
+}
 message CreateDeviceRequest {
     // Device object to create.
     Device device = 1;
@@ -272,24 +326,29 @@ message GetDeviceResponse {
     // First seen at 4
 
     // Last seen timestamp.
-    google.protobuf.Timestamp last_seen_at = 5 [json_name = "lastSeenAt"];
+    google.protobuf.Timestamp last_seen_at = 2 [json_name = "lastSeenAt"];
 
     // The device battery status
     // 0:      The end-device is connected to an external power source
     // 1..254: The battery level, 1 being at minimum and 254 being at maximum
     // 255:    The end-device was not able to measure the battery level
     // 256:    The device-status is not available.
-    uint32 device_status_battery = 6;
+    uint32 device_status_battery = 3;
 
     // The device margin status
     // -32..32: The demodulation SNR ration in dB
     // 256:     The device-status is not available.
-    int32  device_status_margin = 20;
+    int32  device_status_margin = 4;
 
     // Device location.
     // This will set when the network-server was able to resolve the location
     // using the geolocation-server.
-    common.Location location = 21;
+    common.Location location = 5;
+
+    repeated DeviceAlarm alarms = 6;
+
+    repeated DeviceAlarmLogs logs = 7;
+    
 }
 
 message ListDeviceRequest {
@@ -311,8 +370,13 @@ message ListDeviceRequest {
     // Service-profile ID to filter on (string formatted UUID).
     string service_profile_id = 6 [json_name = "serviceProfileID"];
 
+    // device_profile_id ID to filter on (string formatted UUID).
+    string device_profile_id = 7 [json_name = "deviceProfileID"];
+
     // Tags to filter on.
-    map<string, string> tags = 7;
+    map<string, string> tags = 8;
+
+    int64 zone_id = 9 [json_name = "zoneID"];
 }
 
 message ListDeviceResponse {
@@ -417,48 +481,6 @@ message GetRandomDevAddrResponse {
     string dev_addr = 1;
 }
 
-message DeviceStats {
-	// Timestamp of the (aggregated) measurement.
-	google.protobuf.Timestamp timestamp = 1;
-
-    // Packets received from the device.
-    uint32 rx_packets = 2;
-
-    // Average RSSI (as reported by the gateway(s)).
-    float gw_rssi = 3;
-
-    // Average SNR (as reported by the gateway(s)).
-    float gw_snr = 4;
-
-    // Packets received by frequency.
-    map<uint32, uint32> rx_packets_per_frequency = 5;
-
-    // Packets received by DR.
-    map<uint32, uint32> rx_packets_per_dr = 6;
-
-    // Error count.
-    map<string, uint32> errors = 7;
-}
-
-message GetDeviceStatsRequest {
-    // DevEUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
-
-	// Aggregation interval.  One of "second", "minute", "hour", "day", "week",
-	// "month", "quarter", "year".  Case insensitive.
-	string interval = 2;
-
-	// Timestamp to start from.
-	google.protobuf.Timestamp start_timestamp = 3;
-
-	// Timestamp until to get from.
-	google.protobuf.Timestamp end_timestamp = 4;
-}
-
-message GetDeviceStatsResponse {
-    repeated DeviceStats result = 1;
-}
-
 message StreamDeviceFrameLogsRequest {
     // Device EUI (HEX encoded).
     string dev_eui = 1 [json_name = "devEUI"];
@@ -485,15 +507,4 @@ message StreamDeviceEventLogsResponse {
 
     // The event payload in JSON encoding.
     string payload_json = 2 [json_name = "payloadJSON"];
-
-    // Published at timestamp.
-    google.protobuf.Timestamp published_at = 3;
-
-    // Stream ID.
-    string stream_id = 4 [json_name = "streamID"];
-}
-
-message ClearDeviceNoncesRequest {
-    // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
 }
