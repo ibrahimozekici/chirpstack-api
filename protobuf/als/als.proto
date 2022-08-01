@@ -5,42 +5,39 @@ package api;
 option go_package = "github.com/ibrahimozekici/chirpstack-api/go/v5/als";
 option java_package = "io.chirpstack.api.als";
 
-import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/duration.proto";
-import "common/common.proto";
+import "google/protobuf/empty.proto";
 
 service AlarmService {
     // Create creates the alarm
     rpc Create(CreateAlarmRequest) returns (CreateAlarmResponse) {
     }
-
     // Get return the alarm
     rpc Get(GetAlarmRequest) returns (GetAlarmResponse) {
-        
+       
     }
 
     rpc List(ListAlarmRequest) returns (ListAlarmResponse) {
-       
+      
     }
  
     // Update updates the alarm matching the given alarm_id.
     rpc Update(UpdateAlarmRequest) returns (GetAlarmResponse) {
-        
+       
     }
 
     // Delete deletes the alarm matching the given alarm_id.
     rpc Delete(DeleteAlarmRequest) returns (google.protobuf.Empty) {
-      
+       
     }
 
 
     rpc ListAllOrganizationAlarms(ListOrganizationAlarmRequest2) returns (ListOrganizationAlarmResponse2) {
-       
+        
     }
      // Create creates the alarm
      rpc CreateMultiple(CreateMultipleAlarmRequest) returns (google.protobuf.Empty) {
-      
+       
     }
 
     // Delete deletes the alarm matching the given alarm_id.
@@ -50,7 +47,7 @@ service AlarmService {
 
     // Delete deletes the alarm matching the given alarm_id.
     rpc DeleteSensorAlarms(DeleteMultipleDevAlarmRequest) returns (google.protobuf.Empty) {
-      
+       
     }
 
     // Delete deletes the alarm matching the given alarm_id.

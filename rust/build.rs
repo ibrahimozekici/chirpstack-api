@@ -58,6 +58,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             &[
                 "as/as.proto",
                 "as/external/api/application.proto",
+                "as/external/api/data.proto",
                 "as/external/api/device.proto",
                 "as/external/api/deviceProfile.proto",
                 "as/external/api/deviceQueue.proto",

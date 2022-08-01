@@ -55,6 +55,7 @@ as-external-api:
 	$(eval PROTOC_GEN := python -m grpc_tools.protoc -I=proto -I=$(GOOGLEAPIS_PATH) --python_out=src --grpc_python_out=src)
 
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/application.proto
+	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/data.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/frameLog.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/device.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/deviceProfile.proto

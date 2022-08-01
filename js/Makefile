@@ -47,6 +47,7 @@ as-integration:
 as-external-api:
 	# gRPC
 	protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api $(PROTOC_ARGS) ../protobuf/as/external/api/application.proto
+	protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api $(PROTOC_ARGS) ../protobuf/as/external/api/data.proto
 	protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api $(PROTOC_ARGS) ../protobuf/as/external/api/frameLog.proto
 	protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api $(PROTOC_ARGS) ../protobuf/as/external/api/device.proto
 	protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api $(PROTOC_ARGS) ../protobuf/as/external/api/deviceProfile.proto

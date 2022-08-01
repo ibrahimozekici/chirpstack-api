@@ -1,0 +1,228 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "as/external/api/data.proto",
+      "version": "version not set"
+    },
+    "schemes": [
+      "http",
+      "https"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/api/data": {
+        "get": {
+          "summary": "GetData api method to get data",
+          "operationId": "GetData",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/apiListDataResponse"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "zoneID",
+              "description": "Service-profile ID to filter on (string formatted UUID).",
+              "in": "query",
+              "required": false,
+              "type": "string",
+              "format": "int64"
+            },
+            {
+              "name": "devEUI",
+              "description": "Search on name or DevEUI.",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "DeviceTypeID",
+              "description": "device_type_id device type id filter.",
+              "in": "query",
+              "required": false,
+              "type": "string",
+              "format": "int64"
+            },
+            {
+              "name": "limit",
+              "description": "Max number of devices to return in the result-set.",
+              "in": "query",
+              "required": false,
+              "type": "string",
+              "format": "int64"
+            },
+            {
+              "name": "startTime",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "endTime",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "tags": [
+            "DataService"
+          ]
+        }
+      },
+      "/api/dataList": {
+        "get": {
+          "operationId": "GetDataList",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/apiListDataResponse"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "idList",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "tags": [
+            "DataService"
+          ]
+        }
+      }
+    },
+    "definitions": {
+      "apiDataResponse": {
+        "type": "object",
+        "properties": {
+          "devEUI": {
+            "type": "string",
+            "description": "Device EUI (HEX encoded)."
+          },
+          "name": {
+            "type": "string",
+            "title": "name"
+          },
+          "Air_Temperature": {
+            "type": "number",
+            "format": "float",
+            "description": "temp_SHT of the device."
+          },
+          "Air_Humadity": {
+            "type": "number",
+            "format": "float",
+            "description": "hum_SHT."
+          },
+          "Sol_Water": {
+            "type": "number",
+            "format": "float",
+            "description": "water_SOIL of the device."
+          },
+          "Sol_Temperature": {
+            "type": "number",
+            "format": "float",
+            "description": "temp_SOIL of the device."
+          },
+          "Sol_conduct_soil": {
+            "type": "number",
+            "format": "float",
+            "description": "conduct_SOIL of the device."
+          },
+          "submission_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The last time the application-server received any data from the device,\r\nor an empty string when the device never sent any data."
+          },
+          "Description": {
+            "type": "string"
+          },
+          "WaterStatus": {
+            "type": "string",
+            "format": "int64"
+          },
+          "WaterLeekTimes": {
+            "type": "string",
+            "format": "int64"
+          },
+          "WaterLeekDuration": {
+            "type": "string",
+            "format": "int64"
+          },
+          "DoorStatus": {
+            "type": "string",
+            "format": "int64"
+          },
+          "DoorOpenTimes": {
+            "type": "string",
+            "format": "int64"
+          },
+          "DoorOpenDuration": {
+            "type": "string",
+            "format": "int64"
+          },
+          "ro1_status": {
+            "type": "string",
+            "format": "int64"
+          },
+          "ro2_status": {
+            "type": "string",
+            "format": "int64"
+          },
+          "Tvoc_ppb": {
+            "type": "number",
+            "format": "float",
+            "description": "temp_SOIL of the device."
+          },
+          "Co2_ppm": {
+            "type": "number",
+            "format": "float",
+            "description": "conduct_SOIL of the device."
+          },
+          "Ph_soil": {
+            "type": "number",
+            "format": "float",
+            "description": "temp_SOIL of the device."
+          },
+          "Batv": {
+            "type": "number",
+            "format": "float"
+          },
+          "SensecapLight": {
+            "type": "number",
+            "format": "float"
+          },
+          "BarometricPressure": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      },
+      "apiListDataResponse": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "string",
+            "format": "int64",
+            "description": "Total number of devices available within the result-set."
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/apiDataResponse"
+            }
+          }
+        }
+      }
+    }
+  }

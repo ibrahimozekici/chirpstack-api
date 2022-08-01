@@ -1,0 +1,107 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/ibrahimozekici/chirpstack-api/go/v5/as/external/api";
+option java_package = "io.chirpstack.api.as.external.api";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+// DataService is the service managing the data
+service DataService {
+    // GetData api method to get data 
+    rpc GetData (ListDataRequest) returns (ListDataResponse) {
+        option (google.api.http) = {
+            get: "/api/data"
+        };
+    }
+
+    rpc GetDataList (GetDataListRequest) returns (ListDataResponse) {
+        option (google.api.http) = {
+            get: "/api/dataList"
+        };
+    }
+}
+
+message GetDataListRequest {
+    string id_list = 1 [json_name = "idList"];
+}
+message ListDataRequest {
+    // Service-profile ID to filter on (string formatted UUID).
+    int64 zone_id = 1 [json_name = "zoneID"];
+
+    // Search on name or DevEUI.
+    string dev_eui = 2 [json_name = "devEUI"];
+
+    // device_type_id device type id filter
+    int64 device_type_id = 3 [json_name = "DeviceTypeID"];
+
+    // Max number of devices to return in the result-set.
+    int64 limit = 4;
+
+    string start_time = 5 [json_name = "startTime"];
+
+    string end_time = 6 [json_name = "endTime"];
+}
+
+message ListDataResponse {
+    // Total number of devices available within the result-set.
+    int64 total_count = 1;
+
+    repeated DataResponse result = 2;
+}
+
+message DataResponse {
+
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"]; 
+
+    // name
+    string name = 2 [json_name = "name"];
+    
+    // temp_SHT of the device.
+    float air_temperature = 3 [json_name = "Air_Temperature"];
+
+    // hum_SHT.
+    float air_humadity = 4 [json_name = "Air_Humadity"];
+
+    // water_SOIL of the device.
+    float sol_water = 5 [json_name = "Sol_Water"];
+
+    // temp_SOIL of the device.
+    float sol_temperature = 6 [json_name = "Sol_Temperature"];
+
+    // conduct_SOIL of the device.
+    float sol_conduct_soil = 7 [json_name = "Sol_conduct_soil"];
+
+    // The last time the application-server received any data from the device,
+    // or an empty string when the device never sent any data.
+    google.protobuf.Timestamp submission_date = 8 [json_name = "submission_date"];
+
+    string description = 9 [json_name = "Description"];
+
+    int64 water_status = 10 [json_name = "WaterStatus"];
+
+    int64 water_leek_times = 11 [json_name = "WaterLeekTimes"];
+    int64 water_leek_duration = 12 [json_name = "WaterLeekDuration"];
+    int64 door_status = 13 [json_name = "DoorStatus"];
+    int64 door_open_times = 14 [json_name = "DoorOpenTimes"];
+    int64 door_open_duration = 15 [json_name = "DoorOpenDuration"];
+
+    int64 ro1_status = 16 [json_name = "ro1_status"];
+    int64 ro2_status = 17 [json_name = "ro2_status"];
+
+     // temp_SOIL of the device.
+     float tvoc_ppb = 18 [json_name = "Tvoc_ppb"];
+
+     // conduct_SOIL of the device.
+     float co2_ppm = 19 [json_name = "Co2_ppm"];
+      // temp_SOIL of the device.
+      float ph_soil = 20 [json_name = "Ph_soil"];
+
+     float bat_v = 21 [json_name = "Batv"];
+
+     float sensecap_light = 22 [json_name = "SensecapLight"];
+     float barometric_pressure = 23 [json_name = "BarometricPressure"];
+}
