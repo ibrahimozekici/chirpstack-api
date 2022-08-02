@@ -1,0 +1,162 @@
+syntax = "proto3";
+
+package ns;
+
+option go_package = "github.com/ibrahimozekici/chirpstack-api/als";
+option java_package = "io.chirpstack.api.als";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/empty.proto";
+import "common/common.proto";
+import "gw/gw.proto";
+import "ns/profiles.proto";
+
+
+// AlarmServerService provides the Alarm-server API methods.
+service AlarmServerService {
+    // CreateServiceProfile creates the given service-profile.
+    rpc CreateServiceProfile(CreateServiceProfileRequest) returns (CreateServiceProfileResponse) {}
+
+    // GetServiceProfile returns the service-profile matching the given id.
+    rpc GetServiceProfile(GetServiceProfileRequest) returns (GetServiceProfileResponse) {}
+
+    // UpdateServiceProfile updates the given service-profile.
+    rpc UpdateServiceProfile(UpdateServiceProfileRequest) returns (google.protobuf.Empty) {}
+
+    // DeleteServiceProfile deletes the service-profile matching the given id.
+    rpc DeleteServiceProfile(DeleteServiceProfileRequest) returns (google.protobuf.Empty) {}
+
+    // CreateRoutingProfile creates the given routing-profile.
+    rpc CreateRoutingProfile(CreateRoutingProfileRequest) returns (CreateRoutingProfileResponse) {}
+
+    // GetRoutingProfile returns the routing-profile matching the given id.
+    rpc GetRoutingProfile(GetRoutingProfileRequest) returns (GetRoutingProfileResponse) {}
+
+    // UpdateRoutingProfile updates the given routing-profile.
+    rpc UpdateRoutingProfile(UpdateRoutingProfileRequest) returns (google.protobuf.Empty) {}
+
+    // DeleteRoutingProfile deletes the routing-profile matching the given id.
+    rpc DeleteRoutingProfile(DeleteRoutingProfileRequest) returns (google.protobuf.Empty) {}
+ 
+    // GetVersion returns the ChirpStack Alarm Server version.
+    rpc GetVersion(google.protobuf.Empty) returns (GetVersionResponse) {}
+
+    // GetADRAlgorithms returns the available ADR algorithms.
+    rpc GetADRAlgorithms(google.protobuf.Empty) returns (GetADRAlgorithmsResponse) {}
+}
+
+enum RXWindow {
+    // Receive window 1
+    RX1 = 0;
+
+    // Receive window 2
+    RX2 = 1;
+}
+
+message CreateServiceProfileRequest {
+    // Service-profile object to create.
+    ServiceProfile service_profile = 1;
+}
+
+message CreateServiceProfileResponse {
+    // ID of the created service-profile.
+    bytes id = 1;
+}
+
+message GetServiceProfileRequest {
+    // ID of the service-profile.
+    bytes id = 1;
+}
+
+message GetServiceProfileResponse {
+    // Service-profile object.
+    ServiceProfile service_profile = 1;
+
+    // Created at timestamp.
+    google.protobuf.Timestamp created_at = 2;
+
+    // Last update timestamp.
+    google.protobuf.Timestamp updated_at = 3;
+}
+
+message UpdateServiceProfileRequest {
+    // Service-profile object to update.
+    ServiceProfile service_profile = 1;
+}
+
+message DeleteServiceProfileRequest {
+    // ID of the service-profile.
+    bytes id = 1;
+}
+
+
+message CreateRoutingProfileRequest {
+    // Routing-profile object to create.
+    RoutingProfile routing_profile = 1;
+
+}
+
+message CreateRoutingProfileResponse {
+    // ID of the created routing-profile.
+    bytes id = 1;
+}
+
+message GetRoutingProfileRequest {
+    // ID of the routing-profile.
+    bytes id = 1;
+}
+
+message GetRoutingProfileResponse {
+    // Routing-profile object.
+    RoutingProfile routing_profile = 1;
+
+    // Created at timestamp.
+    google.protobuf.Timestamp created_at = 2;
+
+    // Last update timestamp.
+    google.protobuf.Timestamp updated_at = 3;
+}
+
+message UpdateRoutingProfileRequest {
+    // Routing-profile object to update.
+    RoutingProfile routing_profile = 1;
+}
+
+message DeleteRoutingProfileRequest {
+    // Routing-profile ID.
+    bytes id = 1;
+}
+
+
+
+enum AggregationInterval {
+    SECOND = 0;
+    MINUTE = 1;
+    HOUR = 2;
+    DAY = 3;
+    WEEK = 4;
+    MONTH = 5;
+    QUARTER = 6;
+    YEAR = 7;
+}
+
+message GetVersionResponse {
+    // ChirpStack Alarm Server version.
+    string version = 1;
+
+    // Region configured for this Alarm-server.
+    common.Region region = 2;
+}
+
+message GetADRAlgorithmsResponse {
+    repeated ADRAlgorithm adr_algorithms = 1;
+}
+
+message ADRAlgorithm {
+    // ADR algorithm ID.
+    string id = 1;
+
+    // ADR algorithm name.
+    string name = 2;
+}
