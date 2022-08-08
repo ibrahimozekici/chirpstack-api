@@ -10,11 +10,11 @@ import (
 	context "context"
 	proto "github.com/golang/protobuf/proto"
 	_ "github.com/golang/protobuf/ptypes/duration"
-	empty "github.com/golang/protobuf/ptypes/empty"
-	timestamp "github.com/golang/protobuf/ptypes/timestamp"
-	common "github.com/ibrahimozekici/chirpstack-api/go/v5/common"
+	_ "github.com/golang/protobuf/ptypes/empty"
+	_ "github.com/golang/protobuf/ptypes/timestamp"
+	_ "github.com/ibrahimozekici/chirpstack-api/go/v5/common"
 	_ "github.com/ibrahimozekici/chirpstack-api/go/v5/gw"
-	ns "github.com/ibrahimozekici/chirpstack-api/go/v5/ns"
+	_ "github.com/ibrahimozekici/chirpstack-api/ns"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -25,7 +25,6 @@ import (
 )
 
 const (
-	//a
 	// Verify that this generated code is sufficiently up-to-date.
 	_ = protoimpl.EnforceVersion(20 - protoimpl.MinVersion)
 	// Verify that runtime/protoimpl is sufficiently up-to-date.
@@ -84,81 +83,16 @@ func (RXWindow) EnumDescriptor() ([]byte, []int) {
 	return file_als_als_proto_rawDescGZIP(), []int{0}
 }
 
-type AggregationInterval int32
-
-const (
-	AggregationInterval_SECOND  AggregationInterval = 0
-	AggregationInterval_MINUTE  AggregationInterval = 1
-	AggregationInterval_HOUR    AggregationInterval = 2
-	AggregationInterval_DAY     AggregationInterval = 3
-	AggregationInterval_WEEK    AggregationInterval = 4
-	AggregationInterval_MONTH   AggregationInterval = 5
-	AggregationInterval_QUARTER AggregationInterval = 6
-	AggregationInterval_YEAR    AggregationInterval = 7
-)
-
-// Enum value maps for AggregationInterval.
-var (
-	AggregationInterval_name = map[int32]string{
-		0: "SECOND",
-		1: "MINUTE",
-		2: "HOUR",
-		3: "DAY",
-		4: "WEEK",
-		5: "MONTH",
-		6: "QUARTER",
-		7: "YEAR",
-	}
-	AggregationInterval_value = map[string]int32{
-		"SECOND":  0,
-		"MINUTE":  1,
-		"HOUR":    2,
-		"DAY":     3,
-		"WEEK":    4,
-		"MONTH":   5,
-		"QUARTER": 6,
-		"YEAR":    7,
-	}
-)
-
-func (x AggregationInterval) Enum() *AggregationInterval {
-	p := new(AggregationInterval)
-	*p = x
-	return p
-}
-
-func (x AggregationInterval) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (AggregationInterval) Descriptor() protoreflect.EnumDescriptor {
-	return file_als_als_proto_enumTypes[1].Descriptor()
-}
-
-func (AggregationInterval) Type() protoreflect.EnumType {
-	return &file_als_als_proto_enumTypes[1]
-}
-
-func (x AggregationInterval) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use AggregationInterval.Descriptor instead.
-func (AggregationInterval) EnumDescriptor() ([]byte, []int) {
-	return file_als_als_proto_rawDescGZIP(), []int{1}
-}
-
-type CreateServiceProfileRequest struct {
+type CreateAlarmRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Service-profile object to create.
-	ServiceProfile *ns.ServiceProfile `protobuf:"bytes,1,opt,name=service_profile,json=serviceProfile,proto3" json:"service_profile,omitempty"`
+	Alarm string `protobuf:"bytes,1,opt,name=alarm,proto3" json:"alarm,omitempty"`
 }
 
-func (x *CreateServiceProfileRequest) Reset() {
-	*x = CreateServiceProfileRequest{}
+func (x *CreateAlarmRequest) Reset() {
+	*x = CreateAlarmRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_als_als_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -166,13 +100,13 @@ func (x *CreateServiceProfileRequest) Reset() {
 	}
 }
 
-func (x *CreateServiceProfileRequest) String() string {
+func (x *CreateAlarmRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateServiceProfileRequest) ProtoMessage() {}
+func (*CreateAlarmRequest) ProtoMessage() {}
 
-func (x *CreateServiceProfileRequest) ProtoReflect() protoreflect.Message {
+func (x *CreateAlarmRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_als_als_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -184,29 +118,28 @@ func (x *CreateServiceProfileRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateServiceProfileRequest.ProtoReflect.Descriptor instead.
-func (*CreateServiceProfileRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateAlarmRequest.ProtoReflect.Descriptor instead.
+func (*CreateAlarmRequest) Descriptor() ([]byte, []int) {
 	return file_als_als_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CreateServiceProfileRequest) GetServiceProfile() *ns.ServiceProfile {
+func (x *CreateAlarmRequest) GetAlarm() string {
 	if x != nil {
-		return x.ServiceProfile
+		return x.Alarm
 	}
-	return nil
+	return ""
 }
 
-type CreateServiceProfileResponse struct {
+type CreateAlarmResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// ID of the created service-profile.
-	Id []byte `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	AlarmResp string `protobuf:"bytes,1,opt,name=alarm_resp,json=alarmResp,proto3" json:"alarm_resp,omitempty"`
 }
 
-func (x *CreateServiceProfileResponse) Reset() {
-	*x = CreateServiceProfileResponse{}
+func (x *CreateAlarmResponse) Reset() {
+	*x = CreateAlarmResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_als_als_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -214,13 +147,13 @@ func (x *CreateServiceProfileResponse) Reset() {
 	}
 }
 
-func (x *CreateServiceProfileResponse) String() string {
+func (x *CreateAlarmResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateServiceProfileResponse) ProtoMessage() {}
+func (*CreateAlarmResponse) ProtoMessage() {}
 
-func (x *CreateServiceProfileResponse) ProtoReflect() protoreflect.Message {
+func (x *CreateAlarmResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_als_als_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -232,691 +165,14 @@ func (x *CreateServiceProfileResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateServiceProfileResponse.ProtoReflect.Descriptor instead.
-func (*CreateServiceProfileResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateAlarmResponse.ProtoReflect.Descriptor instead.
+func (*CreateAlarmResponse) Descriptor() ([]byte, []int) {
 	return file_als_als_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateServiceProfileResponse) GetId() []byte {
+func (x *CreateAlarmResponse) GetAlarmResp() string {
 	if x != nil {
-		return x.Id
-	}
-	return nil
-}
-
-type GetServiceProfileRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// ID of the service-profile.
-	Id []byte `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-}
-
-func (x *GetServiceProfileRequest) Reset() {
-	*x = GetServiceProfileRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_als_als_proto_msgTypes[2]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetServiceProfileRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetServiceProfileRequest) ProtoMessage() {}
-
-func (x *GetServiceProfileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_als_als_proto_msgTypes[2]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetServiceProfileRequest.ProtoReflect.Descriptor instead.
-func (*GetServiceProfileRequest) Descriptor() ([]byte, []int) {
-	return file_als_als_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *GetServiceProfileRequest) GetId() []byte {
-	if x != nil {
-		return x.Id
-	}
-	return nil
-}
-
-type GetServiceProfileResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// Service-profile object.
-	ServiceProfile *ns.ServiceProfile `protobuf:"bytes,1,opt,name=service_profile,json=serviceProfile,proto3" json:"service_profile,omitempty"`
-	// Created at timestamp.
-	CreatedAt *timestamp.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	// Last update timestamp.
-	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-}
-
-func (x *GetServiceProfileResponse) Reset() {
-	*x = GetServiceProfileResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_als_als_proto_msgTypes[3]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetServiceProfileResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetServiceProfileResponse) ProtoMessage() {}
-
-func (x *GetServiceProfileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_als_als_proto_msgTypes[3]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetServiceProfileResponse.ProtoReflect.Descriptor instead.
-func (*GetServiceProfileResponse) Descriptor() ([]byte, []int) {
-	return file_als_als_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *GetServiceProfileResponse) GetServiceProfile() *ns.ServiceProfile {
-	if x != nil {
-		return x.ServiceProfile
-	}
-	return nil
-}
-
-func (x *GetServiceProfileResponse) GetCreatedAt() *timestamp.Timestamp {
-	if x != nil {
-		return x.CreatedAt
-	}
-	return nil
-}
-
-func (x *GetServiceProfileResponse) GetUpdatedAt() *timestamp.Timestamp {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return nil
-}
-
-type UpdateServiceProfileRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// Service-profile object to update.
-	ServiceProfile *ns.ServiceProfile `protobuf:"bytes,1,opt,name=service_profile,json=serviceProfile,proto3" json:"service_profile,omitempty"`
-}
-
-func (x *UpdateServiceProfileRequest) Reset() {
-	*x = UpdateServiceProfileRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_als_als_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *UpdateServiceProfileRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateServiceProfileRequest) ProtoMessage() {}
-
-func (x *UpdateServiceProfileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_als_als_proto_msgTypes[4]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateServiceProfileRequest.ProtoReflect.Descriptor instead.
-func (*UpdateServiceProfileRequest) Descriptor() ([]byte, []int) {
-	return file_als_als_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *UpdateServiceProfileRequest) GetServiceProfile() *ns.ServiceProfile {
-	if x != nil {
-		return x.ServiceProfile
-	}
-	return nil
-}
-
-type DeleteServiceProfileRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// ID of the service-profile.
-	Id []byte `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-}
-
-func (x *DeleteServiceProfileRequest) Reset() {
-	*x = DeleteServiceProfileRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_als_als_proto_msgTypes[5]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *DeleteServiceProfileRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteServiceProfileRequest) ProtoMessage() {}
-
-func (x *DeleteServiceProfileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_als_als_proto_msgTypes[5]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteServiceProfileRequest.ProtoReflect.Descriptor instead.
-func (*DeleteServiceProfileRequest) Descriptor() ([]byte, []int) {
-	return file_als_als_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *DeleteServiceProfileRequest) GetId() []byte {
-	if x != nil {
-		return x.Id
-	}
-	return nil
-}
-
-type CreateRoutingProfileRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// Routing-profile object to create.
-	RoutingProfile *ns.RoutingProfile `protobuf:"bytes,1,opt,name=routing_profile,json=routingProfile,proto3" json:"routing_profile,omitempty"`
-}
-
-func (x *CreateRoutingProfileRequest) Reset() {
-	*x = CreateRoutingProfileRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_als_als_proto_msgTypes[6]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *CreateRoutingProfileRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateRoutingProfileRequest) ProtoMessage() {}
-
-func (x *CreateRoutingProfileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_als_als_proto_msgTypes[6]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateRoutingProfileRequest.ProtoReflect.Descriptor instead.
-func (*CreateRoutingProfileRequest) Descriptor() ([]byte, []int) {
-	return file_als_als_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *CreateRoutingProfileRequest) GetRoutingProfile() *ns.RoutingProfile {
-	if x != nil {
-		return x.RoutingProfile
-	}
-	return nil
-}
-
-type CreateRoutingProfileResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// ID of the created routing-profile.
-	Id []byte `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-}
-
-func (x *CreateRoutingProfileResponse) Reset() {
-	*x = CreateRoutingProfileResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_als_als_proto_msgTypes[7]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *CreateRoutingProfileResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateRoutingProfileResponse) ProtoMessage() {}
-
-func (x *CreateRoutingProfileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_als_als_proto_msgTypes[7]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateRoutingProfileResponse.ProtoReflect.Descriptor instead.
-func (*CreateRoutingProfileResponse) Descriptor() ([]byte, []int) {
-	return file_als_als_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *CreateRoutingProfileResponse) GetId() []byte {
-	if x != nil {
-		return x.Id
-	}
-	return nil
-}
-
-type GetRoutingProfileRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// ID of the routing-profile.
-	Id []byte `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-}
-
-func (x *GetRoutingProfileRequest) Reset() {
-	*x = GetRoutingProfileRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_als_als_proto_msgTypes[8]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetRoutingProfileRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetRoutingProfileRequest) ProtoMessage() {}
-
-func (x *GetRoutingProfileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_als_als_proto_msgTypes[8]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetRoutingProfileRequest.ProtoReflect.Descriptor instead.
-func (*GetRoutingProfileRequest) Descriptor() ([]byte, []int) {
-	return file_als_als_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *GetRoutingProfileRequest) GetId() []byte {
-	if x != nil {
-		return x.Id
-	}
-	return nil
-}
-
-type GetRoutingProfileResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// Routing-profile object.
-	RoutingProfile *ns.RoutingProfile `protobuf:"bytes,1,opt,name=routing_profile,json=routingProfile,proto3" json:"routing_profile,omitempty"`
-	// Created at timestamp.
-	CreatedAt *timestamp.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	// Last update timestamp.
-	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-}
-
-func (x *GetRoutingProfileResponse) Reset() {
-	*x = GetRoutingProfileResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_als_als_proto_msgTypes[9]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetRoutingProfileResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetRoutingProfileResponse) ProtoMessage() {}
-
-func (x *GetRoutingProfileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_als_als_proto_msgTypes[9]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetRoutingProfileResponse.ProtoReflect.Descriptor instead.
-func (*GetRoutingProfileResponse) Descriptor() ([]byte, []int) {
-	return file_als_als_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *GetRoutingProfileResponse) GetRoutingProfile() *ns.RoutingProfile {
-	if x != nil {
-		return x.RoutingProfile
-	}
-	return nil
-}
-
-func (x *GetRoutingProfileResponse) GetCreatedAt() *timestamp.Timestamp {
-	if x != nil {
-		return x.CreatedAt
-	}
-	return nil
-}
-
-func (x *GetRoutingProfileResponse) GetUpdatedAt() *timestamp.Timestamp {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return nil
-}
-
-type UpdateRoutingProfileRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// Routing-profile object to update.
-	RoutingProfile *ns.RoutingProfile `protobuf:"bytes,1,opt,name=routing_profile,json=routingProfile,proto3" json:"routing_profile,omitempty"`
-}
-
-func (x *UpdateRoutingProfileRequest) Reset() {
-	*x = UpdateRoutingProfileRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_als_als_proto_msgTypes[10]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *UpdateRoutingProfileRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateRoutingProfileRequest) ProtoMessage() {}
-
-func (x *UpdateRoutingProfileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_als_als_proto_msgTypes[10]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateRoutingProfileRequest.ProtoReflect.Descriptor instead.
-func (*UpdateRoutingProfileRequest) Descriptor() ([]byte, []int) {
-	return file_als_als_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *UpdateRoutingProfileRequest) GetRoutingProfile() *ns.RoutingProfile {
-	if x != nil {
-		return x.RoutingProfile
-	}
-	return nil
-}
-
-type DeleteRoutingProfileRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// Routing-profile ID.
-	Id []byte `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-}
-
-func (x *DeleteRoutingProfileRequest) Reset() {
-	*x = DeleteRoutingProfileRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_als_als_proto_msgTypes[11]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *DeleteRoutingProfileRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteRoutingProfileRequest) ProtoMessage() {}
-
-func (x *DeleteRoutingProfileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_als_als_proto_msgTypes[11]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteRoutingProfileRequest.ProtoReflect.Descriptor instead.
-func (*DeleteRoutingProfileRequest) Descriptor() ([]byte, []int) {
-	return file_als_als_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *DeleteRoutingProfileRequest) GetId() []byte {
-	if x != nil {
-		return x.Id
-	}
-	return nil
-}
-
-type GetVersionResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// ChirpStack Alarm Server version.
-	Version string `protobuf:"bytes,1,opt,name=version,proto3" json:"version,omitempty"`
-	// Region configured for this Alarm-server.
-	Region common.Region `protobuf:"varint,2,opt,name=region,proto3,enum=common.Region" json:"region,omitempty"`
-}
-
-func (x *GetVersionResponse) Reset() {
-	*x = GetVersionResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_als_als_proto_msgTypes[12]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetVersionResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetVersionResponse) ProtoMessage() {}
-
-func (x *GetVersionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_als_als_proto_msgTypes[12]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetVersionResponse.ProtoReflect.Descriptor instead.
-func (*GetVersionResponse) Descriptor() ([]byte, []int) {
-	return file_als_als_proto_rawDescGZIP(), []int{12}
-}
-
-func (x *GetVersionResponse) GetVersion() string {
-	if x != nil {
-		return x.Version
-	}
-	return ""
-}
-
-func (x *GetVersionResponse) GetRegion() common.Region {
-	if x != nil {
-		return x.Region
-	}
-	return common.Region_EU868
-}
-
-type GetADRAlgorithmsResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	AdrAlgorithms []*ADRAlgorithm `protobuf:"bytes,1,rep,name=adr_algorithms,json=adrAlgorithms,proto3" json:"adr_algorithms,omitempty"`
-}
-
-func (x *GetADRAlgorithmsResponse) Reset() {
-	*x = GetADRAlgorithmsResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_als_als_proto_msgTypes[13]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetADRAlgorithmsResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetADRAlgorithmsResponse) ProtoMessage() {}
-
-func (x *GetADRAlgorithmsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_als_als_proto_msgTypes[13]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetADRAlgorithmsResponse.ProtoReflect.Descriptor instead.
-func (*GetADRAlgorithmsResponse) Descriptor() ([]byte, []int) {
-	return file_als_als_proto_rawDescGZIP(), []int{13}
-}
-
-func (x *GetADRAlgorithmsResponse) GetAdrAlgorithms() []*ADRAlgorithm {
-	if x != nil {
-		return x.AdrAlgorithms
-	}
-	return nil
-}
-
-type ADRAlgorithm struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// ADR algorithm ID.
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// ADR algorithm name.
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-}
-
-func (x *ADRAlgorithm) Reset() {
-	*x = ADRAlgorithm{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_als_als_proto_msgTypes[14]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ADRAlgorithm) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ADRAlgorithm) ProtoMessage() {}
-
-func (x *ADRAlgorithm) ProtoReflect() protoreflect.Message {
-	mi := &file_als_als_proto_msgTypes[14]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ADRAlgorithm.ProtoReflect.Descriptor instead.
-func (*ADRAlgorithm) Descriptor() ([]byte, []int) {
-	return file_als_als_proto_rawDescGZIP(), []int{14}
-}
-
-func (x *ADRAlgorithm) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *ADRAlgorithm) GetName() string {
-	if x != nil {
-		return x.Name
+		return x.AlarmResp
 	}
 	return ""
 }
@@ -934,154 +190,25 @@ var file_als_als_proto_rawDesc = []byte{
 	0x6f, 0x1a, 0x13, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e,
 	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x0b, 0x67, 0x77, 0x2f, 0x67, 0x77, 0x2e, 0x70, 0x72,
 	0x6f, 0x74, 0x6f, 0x1a, 0x11, 0x6e, 0x73, 0x2f, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x73,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x5a, 0x0a, 0x1b, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
-	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x3b, 0x0a, 0x0f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
-	0x5f, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12,
-	0x2e, 0x6e, 0x73, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69,
-	0x6c, 0x65, 0x52, 0x0e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69,
-	0x6c, 0x65, 0x22, 0x2e, 0x0a, 0x1c, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76,
-	0x69, 0x63, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x02,
-	0x69, 0x64, 0x22, 0x2a, 0x0a, 0x18, 0x47, 0x65, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
-	0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e,
-	0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x02, 0x69, 0x64, 0x22, 0xce,
-	0x01, 0x0a, 0x19, 0x47, 0x65, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x50, 0x72, 0x6f,
-	0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3b, 0x0a, 0x0f,
-	0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x6e, 0x73, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x69,
-	0x63, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x0e, 0x73, 0x65, 0x72, 0x76, 0x69,
-	0x63, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x39, 0x0a, 0x0a, 0x63, 0x72, 0x65,
-	0x61, 0x74, 0x65, 0x64, 0x5f, 0x61, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e,
-	0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e,
-	0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74,
-	0x65, 0x64, 0x41, 0x74, 0x12, 0x39, 0x0a, 0x0a, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x5f,
-	0x61, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
-	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73,
-	0x74, 0x61, 0x6d, 0x70, 0x52, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x22,
-	0x5a, 0x0a, 0x1b, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
-	0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x3b,
-	0x0a, 0x0f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c,
-	0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x6e, 0x73, 0x2e, 0x53, 0x65, 0x72,
-	0x76, 0x69, 0x63, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x0e, 0x73, 0x65, 0x72,
-	0x76, 0x69, 0x63, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x22, 0x2d, 0x0a, 0x1b, 0x44,
-	0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x50, 0x72, 0x6f, 0x66,
-	0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x02, 0x69, 0x64, 0x22, 0x5a, 0x0a, 0x1b, 0x43, 0x72,
-	0x65, 0x61, 0x74, 0x65, 0x52, 0x6f, 0x75, 0x74, 0x69, 0x6e, 0x67, 0x50, 0x72, 0x6f, 0x66, 0x69,
-	0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x3b, 0x0a, 0x0f, 0x72, 0x6f, 0x75,
-	0x74, 0x69, 0x6e, 0x67, 0x5f, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x12, 0x2e, 0x6e, 0x73, 0x2e, 0x52, 0x6f, 0x75, 0x74, 0x69, 0x6e, 0x67, 0x50,
-	0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x0e, 0x72, 0x6f, 0x75, 0x74, 0x69, 0x6e, 0x67, 0x50,
-	0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x22, 0x2e, 0x0a, 0x1c, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
-	0x52, 0x6f, 0x75, 0x74, 0x69, 0x6e, 0x67, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x0c, 0x52, 0x02, 0x69, 0x64, 0x22, 0x2a, 0x0a, 0x18, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x75,
-	0x74, 0x69, 0x6e, 0x67, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x02,
-	0x69, 0x64, 0x22, 0xce, 0x01, 0x0a, 0x19, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x75, 0x74, 0x69, 0x6e,
-	0x67, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x3b, 0x0a, 0x0f, 0x72, 0x6f, 0x75, 0x74, 0x69, 0x6e, 0x67, 0x5f, 0x70, 0x72, 0x6f, 0x66,
-	0x69, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x6e, 0x73, 0x2e, 0x52,
-	0x6f, 0x75, 0x74, 0x69, 0x6e, 0x67, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x0e, 0x72,
-	0x6f, 0x75, 0x74, 0x69, 0x6e, 0x67, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x39, 0x0a,
-	0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x61, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x09, 0x63,
-	0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x12, 0x39, 0x0a, 0x0a, 0x75, 0x70, 0x64, 0x61,
-	0x74, 0x65, 0x64, 0x5f, 0x61, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67,
-	0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54,
-	0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x64, 0x41, 0x74, 0x22, 0x5a, 0x0a, 0x1b, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x52, 0x6f, 0x75,
-	0x74, 0x69, 0x6e, 0x67, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x3b, 0x0a, 0x0f, 0x72, 0x6f, 0x75, 0x74, 0x69, 0x6e, 0x67, 0x5f, 0x70, 0x72,
-	0x6f, 0x66, 0x69, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x6e, 0x73,
-	0x2e, 0x52, 0x6f, 0x75, 0x74, 0x69, 0x6e, 0x67, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52,
-	0x0e, 0x72, 0x6f, 0x75, 0x74, 0x69, 0x6e, 0x67, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x22,
-	0x2d, 0x0a, 0x1b, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x6f, 0x75, 0x74, 0x69, 0x6e, 0x67,
-	0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e,
-	0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x02, 0x69, 0x64, 0x22, 0x56,
-	0x0a, 0x12, 0x47, 0x65, 0x74, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x26,
-	0x0a, 0x06, 0x72, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x0e,
-	0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x52, 0x06,
-	0x72, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x22, 0x53, 0x0a, 0x18, 0x47, 0x65, 0x74, 0x41, 0x44, 0x52,
-	0x41, 0x6c, 0x67, 0x6f, 0x72, 0x69, 0x74, 0x68, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x37, 0x0a, 0x0e, 0x61, 0x64, 0x72, 0x5f, 0x61, 0x6c, 0x67, 0x6f, 0x72, 0x69,
-	0x74, 0x68, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x6e, 0x73, 0x2e,
-	0x41, 0x44, 0x52, 0x41, 0x6c, 0x67, 0x6f, 0x72, 0x69, 0x74, 0x68, 0x6d, 0x52, 0x0d, 0x61, 0x64,
-	0x72, 0x41, 0x6c, 0x67, 0x6f, 0x72, 0x69, 0x74, 0x68, 0x6d, 0x73, 0x22, 0x32, 0x0a, 0x0c, 0x41,
-	0x44, 0x52, 0x41, 0x6c, 0x67, 0x6f, 0x72, 0x69, 0x74, 0x68, 0x6d, 0x12, 0x0e, 0x0a, 0x02, 0x69,
-	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e,
-	0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x2a,
-	0x1c, 0x0a, 0x08, 0x52, 0x58, 0x57, 0x69, 0x6e, 0x64, 0x6f, 0x77, 0x12, 0x07, 0x0a, 0x03, 0x52,
-	0x58, 0x31, 0x10, 0x00, 0x12, 0x07, 0x0a, 0x03, 0x52, 0x58, 0x32, 0x10, 0x01, 0x2a, 0x6c, 0x0a,
-	0x13, 0x41, 0x67, 0x67, 0x72, 0x65, 0x67, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x6e, 0x74, 0x65,
-	0x72, 0x76, 0x61, 0x6c, 0x12, 0x0a, 0x0a, 0x06, 0x53, 0x45, 0x43, 0x4f, 0x4e, 0x44, 0x10, 0x00,
-	0x12, 0x0a, 0x0a, 0x06, 0x4d, 0x49, 0x4e, 0x55, 0x54, 0x45, 0x10, 0x01, 0x12, 0x08, 0x0a, 0x04,
-	0x48, 0x4f, 0x55, 0x52, 0x10, 0x02, 0x12, 0x07, 0x0a, 0x03, 0x44, 0x41, 0x59, 0x10, 0x03, 0x12,
-	0x08, 0x0a, 0x04, 0x57, 0x45, 0x45, 0x4b, 0x10, 0x04, 0x12, 0x09, 0x0a, 0x05, 0x4d, 0x4f, 0x4e,
-	0x54, 0x48, 0x10, 0x05, 0x12, 0x0b, 0x0a, 0x07, 0x51, 0x55, 0x41, 0x52, 0x54, 0x45, 0x52, 0x10,
-	0x06, 0x12, 0x08, 0x0a, 0x04, 0x59, 0x45, 0x41, 0x52, 0x10, 0x07, 0x32, 0xce, 0x06, 0x0a, 0x12,
-	0x41, 0x6c, 0x61, 0x72, 0x6d, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69,
-	0x63, 0x65, 0x12, 0x5b, 0x0a, 0x14, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76,
-	0x69, 0x63, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x1f, 0x2e, 0x6e, 0x73, 0x2e,
-	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x50, 0x72, 0x6f,
-	0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20, 0x2e, 0x6e, 0x73,
-	0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x50, 0x72,
-	0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12,
-	0x52, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x50, 0x72, 0x6f,
-	0x66, 0x69, 0x6c, 0x65, 0x12, 0x1c, 0x2e, 0x6e, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x65, 0x72,
-	0x76, 0x69, 0x63, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x6e, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69,
-	0x63, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x22, 0x00, 0x12, 0x51, 0x0a, 0x14, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72,
-	0x76, 0x69, 0x63, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x1f, 0x2e, 0x6e, 0x73,
-	0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x50, 0x72,
-	0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x67,
-	0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45,
-	0x6d, 0x70, 0x74, 0x79, 0x22, 0x00, 0x12, 0x51, 0x0a, 0x14, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
-	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x1f,
-	0x2e, 0x6e, 0x73, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63,
-	0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
-	0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x00, 0x12, 0x5b, 0x0a, 0x14, 0x43, 0x72, 0x65,
-	0x61, 0x74, 0x65, 0x52, 0x6f, 0x75, 0x74, 0x69, 0x6e, 0x67, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c,
-	0x65, 0x12, 0x1f, 0x2e, 0x6e, 0x73, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x52, 0x6f, 0x75,
-	0x74, 0x69, 0x6e, 0x67, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x20, 0x2e, 0x6e, 0x73, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x52, 0x6f,
-	0x75, 0x74, 0x69, 0x6e, 0x67, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x52, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x75,
-	0x74, 0x69, 0x6e, 0x67, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x1c, 0x2e, 0x6e, 0x73,
-	0x2e, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x75, 0x74, 0x69, 0x6e, 0x67, 0x50, 0x72, 0x6f, 0x66, 0x69,
-	0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x6e, 0x73, 0x2e, 0x47,
-	0x65, 0x74, 0x52, 0x6f, 0x75, 0x74, 0x69, 0x6e, 0x67, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x51, 0x0a, 0x14, 0x55, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x52, 0x6f, 0x75, 0x74, 0x69, 0x6e, 0x67, 0x50, 0x72, 0x6f, 0x66, 0x69,
-	0x6c, 0x65, 0x12, 0x1f, 0x2e, 0x6e, 0x73, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x52, 0x6f,
-	0x75, 0x74, 0x69, 0x6e, 0x67, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x00, 0x12, 0x51, 0x0a,
-	0x14, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x6f, 0x75, 0x74, 0x69, 0x6e, 0x67, 0x50, 0x72,
-	0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x1f, 0x2e, 0x6e, 0x73, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74,
-	0x65, 0x52, 0x6f, 0x75, 0x74, 0x69, 0x6e, 0x67, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x00,
-	0x12, 0x3e, 0x0a, 0x0a, 0x47, 0x65, 0x74, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x16,
-	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
-	0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x16, 0x2e, 0x6e, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x56,
-	0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00,
-	0x12, 0x4a, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x41, 0x44, 0x52, 0x41, 0x6c, 0x67, 0x6f, 0x72, 0x69,
-	0x74, 0x68, 0x6d, 0x73, 0x12, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x1c, 0x2e, 0x6e,
-	0x73, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x44, 0x52, 0x41, 0x6c, 0x67, 0x6f, 0x72, 0x69, 0x74, 0x68,
-	0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x45, 0x0a, 0x15,
-	0x69, 0x6f, 0x2e, 0x63, 0x68, 0x69, 0x72, 0x70, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2e, 0x61, 0x70,
-	0x69, 0x2e, 0x61, 0x6c, 0x73, 0x5a, 0x2c, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
-	0x6d, 0x2f, 0x69, 0x62, 0x72, 0x61, 0x68, 0x69, 0x6d, 0x6f, 0x7a, 0x65, 0x6b, 0x69, 0x63, 0x69,
-	0x2f, 0x63, 0x68, 0x69, 0x72, 0x70, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2d, 0x61, 0x70, 0x69, 0x2f,
-	0x61, 0x6c, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x2a, 0x0a, 0x12, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x41, 0x6c, 0x61, 0x72, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05,
+	0x61, 0x6c, 0x61, 0x72, 0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x61, 0x6c, 0x61,
+	0x72, 0x6d, 0x22, 0x34, 0x0a, 0x13, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72,
+	0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x61, 0x6c, 0x61,
+	0x72, 0x6d, 0x5f, 0x72, 0x65, 0x73, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x61,
+	0x6c, 0x61, 0x72, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x2a, 0x1c, 0x0a, 0x08, 0x52, 0x58, 0x57, 0x69,
+	0x6e, 0x64, 0x6f, 0x77, 0x12, 0x07, 0x0a, 0x03, 0x52, 0x58, 0x31, 0x10, 0x00, 0x12, 0x07, 0x0a,
+	0x03, 0x52, 0x58, 0x32, 0x10, 0x01, 0x32, 0x56, 0x0a, 0x12, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x40, 0x0a, 0x0b,
+	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x12, 0x16, 0x2e, 0x6e, 0x73,
+	0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x17, 0x2e, 0x6e, 0x73, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41,
+	0x6c, 0x61, 0x72, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x45,
+	0x0a, 0x15, 0x69, 0x6f, 0x2e, 0x63, 0x68, 0x69, 0x72, 0x70, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2e,
+	0x61, 0x70, 0x69, 0x2e, 0x61, 0x6c, 0x73, 0x5a, 0x2c, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e,
+	0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x62, 0x72, 0x61, 0x68, 0x69, 0x6d, 0x6f, 0x7a, 0x65, 0x6b, 0x69,
+	0x63, 0x69, 0x2f, 0x63, 0x68, 0x69, 0x72, 0x70, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2d, 0x61, 0x70,
+	0x69, 0x2f, 0x61, 0x6c, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1096,70 +223,21 @@ func file_als_als_proto_rawDescGZIP() []byte {
 	return file_als_als_proto_rawDescData
 }
 
-var file_als_als_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_als_als_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_als_als_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_als_als_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_als_als_proto_goTypes = []interface{}{
-	(RXWindow)(0),                        // 0: ns.RXWindow
-	(AggregationInterval)(0),             // 1: ns.AggregationInterval
-	(*CreateServiceProfileRequest)(nil),  // 2: ns.CreateServiceProfileRequest
-	(*CreateServiceProfileResponse)(nil), // 3: ns.CreateServiceProfileResponse
-	(*GetServiceProfileRequest)(nil),     // 4: ns.GetServiceProfileRequest
-	(*GetServiceProfileResponse)(nil),    // 5: ns.GetServiceProfileResponse
-	(*UpdateServiceProfileRequest)(nil),  // 6: ns.UpdateServiceProfileRequest
-	(*DeleteServiceProfileRequest)(nil),  // 7: ns.DeleteServiceProfileRequest
-	(*CreateRoutingProfileRequest)(nil),  // 8: ns.CreateRoutingProfileRequest
-	(*CreateRoutingProfileResponse)(nil), // 9: ns.CreateRoutingProfileResponse
-	(*GetRoutingProfileRequest)(nil),     // 10: ns.GetRoutingProfileRequest
-	(*GetRoutingProfileResponse)(nil),    // 11: ns.GetRoutingProfileResponse
-	(*UpdateRoutingProfileRequest)(nil),  // 12: ns.UpdateRoutingProfileRequest
-	(*DeleteRoutingProfileRequest)(nil),  // 13: ns.DeleteRoutingProfileRequest
-	(*GetVersionResponse)(nil),           // 14: ns.GetVersionResponse
-	(*GetADRAlgorithmsResponse)(nil),     // 15: ns.GetADRAlgorithmsResponse
-	(*ADRAlgorithm)(nil),                 // 16: ns.ADRAlgorithm
-	(*ns.ServiceProfile)(nil),            // 17: ns.ServiceProfile
-	(*timestamp.Timestamp)(nil),          // 18: google.protobuf.Timestamp
-	(*ns.RoutingProfile)(nil),            // 19: ns.RoutingProfile
-	(common.Region)(0),                   // 20: common.Region
-	(*empty.Empty)(nil),                  // 21: google.protobuf.Empty
+	(RXWindow)(0),               // 0: ns.RXWindow
+	(*CreateAlarmRequest)(nil),  // 1: ns.CreateAlarmRequest
+	(*CreateAlarmResponse)(nil), // 2: ns.CreateAlarmResponse
 }
 var file_als_als_proto_depIdxs = []int32{
-	17, // 0: ns.CreateServiceProfileRequest.service_profile:type_name -> ns.ServiceProfile
-	17, // 1: ns.GetServiceProfileResponse.service_profile:type_name -> ns.ServiceProfile
-	18, // 2: ns.GetServiceProfileResponse.created_at:type_name -> google.protobuf.Timestamp
-	18, // 3: ns.GetServiceProfileResponse.updated_at:type_name -> google.protobuf.Timestamp
-	17, // 4: ns.UpdateServiceProfileRequest.service_profile:type_name -> ns.ServiceProfile
-	19, // 5: ns.CreateRoutingProfileRequest.routing_profile:type_name -> ns.RoutingProfile
-	19, // 6: ns.GetRoutingProfileResponse.routing_profile:type_name -> ns.RoutingProfile
-	18, // 7: ns.GetRoutingProfileResponse.created_at:type_name -> google.protobuf.Timestamp
-	18, // 8: ns.GetRoutingProfileResponse.updated_at:type_name -> google.protobuf.Timestamp
-	19, // 9: ns.UpdateRoutingProfileRequest.routing_profile:type_name -> ns.RoutingProfile
-	20, // 10: ns.GetVersionResponse.region:type_name -> common.Region
-	16, // 11: ns.GetADRAlgorithmsResponse.adr_algorithms:type_name -> ns.ADRAlgorithm
-	2,  // 12: ns.AlarmServerService.CreateServiceProfile:input_type -> ns.CreateServiceProfileRequest
-	4,  // 13: ns.AlarmServerService.GetServiceProfile:input_type -> ns.GetServiceProfileRequest
-	6,  // 14: ns.AlarmServerService.UpdateServiceProfile:input_type -> ns.UpdateServiceProfileRequest
-	7,  // 15: ns.AlarmServerService.DeleteServiceProfile:input_type -> ns.DeleteServiceProfileRequest
-	8,  // 16: ns.AlarmServerService.CreateRoutingProfile:input_type -> ns.CreateRoutingProfileRequest
-	10, // 17: ns.AlarmServerService.GetRoutingProfile:input_type -> ns.GetRoutingProfileRequest
-	12, // 18: ns.AlarmServerService.UpdateRoutingProfile:input_type -> ns.UpdateRoutingProfileRequest
-	13, // 19: ns.AlarmServerService.DeleteRoutingProfile:input_type -> ns.DeleteRoutingProfileRequest
-	21, // 20: ns.AlarmServerService.GetVersion:input_type -> google.protobuf.Empty
-	21, // 21: ns.AlarmServerService.GetADRAlgorithms:input_type -> google.protobuf.Empty
-	3,  // 22: ns.AlarmServerService.CreateServiceProfile:output_type -> ns.CreateServiceProfileResponse
-	5,  // 23: ns.AlarmServerService.GetServiceProfile:output_type -> ns.GetServiceProfileResponse
-	21, // 24: ns.AlarmServerService.UpdateServiceProfile:output_type -> google.protobuf.Empty
-	21, // 25: ns.AlarmServerService.DeleteServiceProfile:output_type -> google.protobuf.Empty
-	9,  // 26: ns.AlarmServerService.CreateRoutingProfile:output_type -> ns.CreateRoutingProfileResponse
-	11, // 27: ns.AlarmServerService.GetRoutingProfile:output_type -> ns.GetRoutingProfileResponse
-	21, // 28: ns.AlarmServerService.UpdateRoutingProfile:output_type -> google.protobuf.Empty
-	21, // 29: ns.AlarmServerService.DeleteRoutingProfile:output_type -> google.protobuf.Empty
-	14, // 30: ns.AlarmServerService.GetVersion:output_type -> ns.GetVersionResponse
-	15, // 31: ns.AlarmServerService.GetADRAlgorithms:output_type -> ns.GetADRAlgorithmsResponse
-	22, // [22:32] is the sub-list for method output_type
-	12, // [12:22] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	1, // 0: ns.AlarmServerService.CreateAlarm:input_type -> ns.CreateAlarmRequest
+	2, // 1: ns.AlarmServerService.CreateAlarm:output_type -> ns.CreateAlarmResponse
+	1, // [1:2] is the sub-list for method output_type
+	0, // [0:1] is the sub-list for method input_type
+	0, // [0:0] is the sub-list for extension type_name
+	0, // [0:0] is the sub-list for extension extendee
+	0, // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_als_als_proto_init() }
@@ -1169,7 +247,7 @@ func file_als_als_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_als_als_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateServiceProfileRequest); i {
+			switch v := v.(*CreateAlarmRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1181,163 +259,7 @@ func file_als_als_proto_init() {
 			}
 		}
 		file_als_als_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateServiceProfileResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_als_als_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetServiceProfileRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_als_als_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetServiceProfileResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_als_als_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateServiceProfileRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_als_als_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteServiceProfileRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_als_als_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateRoutingProfileRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_als_als_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateRoutingProfileResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_als_als_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRoutingProfileRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_als_als_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRoutingProfileResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_als_als_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateRoutingProfileRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_als_als_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteRoutingProfileRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_als_als_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetVersionResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_als_als_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetADRAlgorithmsResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_als_als_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ADRAlgorithm); i {
+			switch v := v.(*CreateAlarmResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1354,8 +276,8 @@ func file_als_als_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_als_als_proto_rawDesc,
-			NumEnums:      2,
-			NumMessages:   15,
+			NumEnums:      1,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -1382,26 +304,8 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AlarmServerServiceClient interface {
-	// CreateServiceProfile creates the given service-profile.
-	CreateServiceProfile(ctx context.Context, in *CreateServiceProfileRequest, opts ...grpc.CallOption) (*CreateServiceProfileResponse, error)
-	// GetServiceProfile returns the service-profile matching the given id.
-	GetServiceProfile(ctx context.Context, in *GetServiceProfileRequest, opts ...grpc.CallOption) (*GetServiceProfileResponse, error)
-	// UpdateServiceProfile updates the given service-profile.
-	UpdateServiceProfile(ctx context.Context, in *UpdateServiceProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	// DeleteServiceProfile deletes the service-profile matching the given id.
-	DeleteServiceProfile(ctx context.Context, in *DeleteServiceProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	// CreateRoutingProfile creates the given routing-profile.
-	CreateRoutingProfile(ctx context.Context, in *CreateRoutingProfileRequest, opts ...grpc.CallOption) (*CreateRoutingProfileResponse, error)
-	// GetRoutingProfile returns the routing-profile matching the given id.
-	GetRoutingProfile(ctx context.Context, in *GetRoutingProfileRequest, opts ...grpc.CallOption) (*GetRoutingProfileResponse, error)
-	// UpdateRoutingProfile updates the given routing-profile.
-	UpdateRoutingProfile(ctx context.Context, in *UpdateRoutingProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	// DeleteRoutingProfile deletes the routing-profile matching the given id.
-	DeleteRoutingProfile(ctx context.Context, in *DeleteRoutingProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	// GetVersion returns the ChirpStack Alarm Server version.
-	GetVersion(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetVersionResponse, error)
-	// GetADRAlgorithms returns the available ADR algorithms.
-	GetADRAlgorithms(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetADRAlgorithmsResponse, error)
+	// CreateDevice creates the given device.
+	CreateAlarm(ctx context.Context, in *CreateAlarmRequest, opts ...grpc.CallOption) (*CreateAlarmResponse, error)
 }
 
 type alarmServerServiceClient struct {
@@ -1412,90 +316,9 @@ func NewAlarmServerServiceClient(cc grpc.ClientConnInterface) AlarmServerService
 	return &alarmServerServiceClient{cc}
 }
 
-func (c *alarmServerServiceClient) CreateServiceProfile(ctx context.Context, in *CreateServiceProfileRequest, opts ...grpc.CallOption) (*CreateServiceProfileResponse, error) {
-	out := new(CreateServiceProfileResponse)
-	err := c.cc.Invoke(ctx, "/ns.AlarmServerService/CreateServiceProfile", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *alarmServerServiceClient) GetServiceProfile(ctx context.Context, in *GetServiceProfileRequest, opts ...grpc.CallOption) (*GetServiceProfileResponse, error) {
-	out := new(GetServiceProfileResponse)
-	err := c.cc.Invoke(ctx, "/ns.AlarmServerService/GetServiceProfile", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *alarmServerServiceClient) UpdateServiceProfile(ctx context.Context, in *UpdateServiceProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/ns.AlarmServerService/UpdateServiceProfile", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *alarmServerServiceClient) DeleteServiceProfile(ctx context.Context, in *DeleteServiceProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/ns.AlarmServerService/DeleteServiceProfile", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *alarmServerServiceClient) CreateRoutingProfile(ctx context.Context, in *CreateRoutingProfileRequest, opts ...grpc.CallOption) (*CreateRoutingProfileResponse, error) {
-	out := new(CreateRoutingProfileResponse)
-	err := c.cc.Invoke(ctx, "/ns.AlarmServerService/CreateRoutingProfile", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *alarmServerServiceClient) GetRoutingProfile(ctx context.Context, in *GetRoutingProfileRequest, opts ...grpc.CallOption) (*GetRoutingProfileResponse, error) {
-	out := new(GetRoutingProfileResponse)
-	err := c.cc.Invoke(ctx, "/ns.AlarmServerService/GetRoutingProfile", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *alarmServerServiceClient) UpdateRoutingProfile(ctx context.Context, in *UpdateRoutingProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/ns.AlarmServerService/UpdateRoutingProfile", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *alarmServerServiceClient) DeleteRoutingProfile(ctx context.Context, in *DeleteRoutingProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/ns.AlarmServerService/DeleteRoutingProfile", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *alarmServerServiceClient) GetVersion(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetVersionResponse, error) {
-	out := new(GetVersionResponse)
-	err := c.cc.Invoke(ctx, "/ns.AlarmServerService/GetVersion", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *alarmServerServiceClient) GetADRAlgorithms(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetADRAlgorithmsResponse, error) {
-	out := new(GetADRAlgorithmsResponse)
-	err := c.cc.Invoke(ctx, "/ns.AlarmServerService/GetADRAlgorithms", in, out, opts...)
+func (c *alarmServerServiceClient) CreateAlarm(ctx context.Context, in *CreateAlarmRequest, opts ...grpc.CallOption) (*CreateAlarmResponse, error) {
+	out := new(CreateAlarmResponse)
+	err := c.cc.Invoke(ctx, "/ns.AlarmServerService/CreateAlarm", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1504,243 +327,36 @@ func (c *alarmServerServiceClient) GetADRAlgorithms(ctx context.Context, in *emp
 
 // AlarmServerServiceServer is the server API for AlarmServerService service.
 type AlarmServerServiceServer interface {
-	// CreateServiceProfile creates the given service-profile.
-	CreateServiceProfile(context.Context, *CreateServiceProfileRequest) (*CreateServiceProfileResponse, error)
-	// GetServiceProfile returns the service-profile matching the given id.
-	GetServiceProfile(context.Context, *GetServiceProfileRequest) (*GetServiceProfileResponse, error)
-	// UpdateServiceProfile updates the given service-profile.
-	UpdateServiceProfile(context.Context, *UpdateServiceProfileRequest) (*empty.Empty, error)
-	// DeleteServiceProfile deletes the service-profile matching the given id.
-	DeleteServiceProfile(context.Context, *DeleteServiceProfileRequest) (*empty.Empty, error)
-	// CreateRoutingProfile creates the given routing-profile.
-	CreateRoutingProfile(context.Context, *CreateRoutingProfileRequest) (*CreateRoutingProfileResponse, error)
-	// GetRoutingProfile returns the routing-profile matching the given id.
-	GetRoutingProfile(context.Context, *GetRoutingProfileRequest) (*GetRoutingProfileResponse, error)
-	// UpdateRoutingProfile updates the given routing-profile.
-	UpdateRoutingProfile(context.Context, *UpdateRoutingProfileRequest) (*empty.Empty, error)
-	// DeleteRoutingProfile deletes the routing-profile matching the given id.
-	DeleteRoutingProfile(context.Context, *DeleteRoutingProfileRequest) (*empty.Empty, error)
-	// GetVersion returns the ChirpStack Alarm Server version.
-	GetVersion(context.Context, *empty.Empty) (*GetVersionResponse, error)
-	// GetADRAlgorithms returns the available ADR algorithms.
-	GetADRAlgorithms(context.Context, *empty.Empty) (*GetADRAlgorithmsResponse, error)
+	// CreateDevice creates the given device.
+	CreateAlarm(context.Context, *CreateAlarmRequest) (*CreateAlarmResponse, error)
 }
 
 // UnimplementedAlarmServerServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedAlarmServerServiceServer struct {
 }
 
-func (*UnimplementedAlarmServerServiceServer) CreateServiceProfile(context.Context, *CreateServiceProfileRequest) (*CreateServiceProfileResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateServiceProfile not implemented")
-}
-func (*UnimplementedAlarmServerServiceServer) GetServiceProfile(context.Context, *GetServiceProfileRequest) (*GetServiceProfileResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetServiceProfile not implemented")
-}
-func (*UnimplementedAlarmServerServiceServer) UpdateServiceProfile(context.Context, *UpdateServiceProfileRequest) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateServiceProfile not implemented")
-}
-func (*UnimplementedAlarmServerServiceServer) DeleteServiceProfile(context.Context, *DeleteServiceProfileRequest) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteServiceProfile not implemented")
-}
-func (*UnimplementedAlarmServerServiceServer) CreateRoutingProfile(context.Context, *CreateRoutingProfileRequest) (*CreateRoutingProfileResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateRoutingProfile not implemented")
-}
-func (*UnimplementedAlarmServerServiceServer) GetRoutingProfile(context.Context, *GetRoutingProfileRequest) (*GetRoutingProfileResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRoutingProfile not implemented")
-}
-func (*UnimplementedAlarmServerServiceServer) UpdateRoutingProfile(context.Context, *UpdateRoutingProfileRequest) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateRoutingProfile not implemented")
-}
-func (*UnimplementedAlarmServerServiceServer) DeleteRoutingProfile(context.Context, *DeleteRoutingProfileRequest) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteRoutingProfile not implemented")
-}
-func (*UnimplementedAlarmServerServiceServer) GetVersion(context.Context, *empty.Empty) (*GetVersionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetVersion not implemented")
-}
-func (*UnimplementedAlarmServerServiceServer) GetADRAlgorithms(context.Context, *empty.Empty) (*GetADRAlgorithmsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetADRAlgorithms not implemented")
+func (*UnimplementedAlarmServerServiceServer) CreateAlarm(context.Context, *CreateAlarmRequest) (*CreateAlarmResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateAlarm not implemented")
 }
 
 func RegisterAlarmServerServiceServer(s *grpc.Server, srv AlarmServerServiceServer) {
 	s.RegisterService(&_AlarmServerService_serviceDesc, srv)
 }
 
-func _AlarmServerService_CreateServiceProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateServiceProfileRequest)
+func _AlarmServerService_CreateAlarm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateAlarmRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AlarmServerServiceServer).CreateServiceProfile(ctx, in)
+		return srv.(AlarmServerServiceServer).CreateAlarm(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ns.AlarmServerService/CreateServiceProfile",
+		FullMethod: "/ns.AlarmServerService/CreateAlarm",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlarmServerServiceServer).CreateServiceProfile(ctx, req.(*CreateServiceProfileRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AlarmServerService_GetServiceProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetServiceProfileRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AlarmServerServiceServer).GetServiceProfile(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/ns.AlarmServerService/GetServiceProfile",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlarmServerServiceServer).GetServiceProfile(ctx, req.(*GetServiceProfileRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AlarmServerService_UpdateServiceProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateServiceProfileRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AlarmServerServiceServer).UpdateServiceProfile(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/ns.AlarmServerService/UpdateServiceProfile",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlarmServerServiceServer).UpdateServiceProfile(ctx, req.(*UpdateServiceProfileRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AlarmServerService_DeleteServiceProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteServiceProfileRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AlarmServerServiceServer).DeleteServiceProfile(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/ns.AlarmServerService/DeleteServiceProfile",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlarmServerServiceServer).DeleteServiceProfile(ctx, req.(*DeleteServiceProfileRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AlarmServerService_CreateRoutingProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateRoutingProfileRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AlarmServerServiceServer).CreateRoutingProfile(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/ns.AlarmServerService/CreateRoutingProfile",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlarmServerServiceServer).CreateRoutingProfile(ctx, req.(*CreateRoutingProfileRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AlarmServerService_GetRoutingProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRoutingProfileRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AlarmServerServiceServer).GetRoutingProfile(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/ns.AlarmServerService/GetRoutingProfile",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlarmServerServiceServer).GetRoutingProfile(ctx, req.(*GetRoutingProfileRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AlarmServerService_UpdateRoutingProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateRoutingProfileRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AlarmServerServiceServer).UpdateRoutingProfile(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/ns.AlarmServerService/UpdateRoutingProfile",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlarmServerServiceServer).UpdateRoutingProfile(ctx, req.(*UpdateRoutingProfileRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AlarmServerService_DeleteRoutingProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteRoutingProfileRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AlarmServerServiceServer).DeleteRoutingProfile(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/ns.AlarmServerService/DeleteRoutingProfile",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlarmServerServiceServer).DeleteRoutingProfile(ctx, req.(*DeleteRoutingProfileRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AlarmServerService_GetVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(empty.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AlarmServerServiceServer).GetVersion(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/ns.AlarmServerService/GetVersion",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlarmServerServiceServer).GetVersion(ctx, req.(*empty.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AlarmServerService_GetADRAlgorithms_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(empty.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AlarmServerServiceServer).GetADRAlgorithms(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/ns.AlarmServerService/GetADRAlgorithms",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlarmServerServiceServer).GetADRAlgorithms(ctx, req.(*empty.Empty))
+		return srv.(AlarmServerServiceServer).CreateAlarm(ctx, req.(*CreateAlarmRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1750,44 +366,8 @@ var _AlarmServerService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*AlarmServerServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateServiceProfile",
-			Handler:    _AlarmServerService_CreateServiceProfile_Handler,
-		},
-		{
-			MethodName: "GetServiceProfile",
-			Handler:    _AlarmServerService_GetServiceProfile_Handler,
-		},
-		{
-			MethodName: "UpdateServiceProfile",
-			Handler:    _AlarmServerService_UpdateServiceProfile_Handler,
-		},
-		{
-			MethodName: "DeleteServiceProfile",
-			Handler:    _AlarmServerService_DeleteServiceProfile_Handler,
-		},
-		{
-			MethodName: "CreateRoutingProfile",
-			Handler:    _AlarmServerService_CreateRoutingProfile_Handler,
-		},
-		{
-			MethodName: "GetRoutingProfile",
-			Handler:    _AlarmServerService_GetRoutingProfile_Handler,
-		},
-		{
-			MethodName: "UpdateRoutingProfile",
-			Handler:    _AlarmServerService_UpdateRoutingProfile_Handler,
-		},
-		{
-			MethodName: "DeleteRoutingProfile",
-			Handler:    _AlarmServerService_DeleteRoutingProfile_Handler,
-		},
-		{
-			MethodName: "GetVersion",
-			Handler:    _AlarmServerService_GetVersion_Handler,
-		},
-		{
-			MethodName: "GetADRAlgorithms",
-			Handler:    _AlarmServerService_GetADRAlgorithms_Handler,
+			MethodName: "CreateAlarm",
+			Handler:    _AlarmServerService_CreateAlarm_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
