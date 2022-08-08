@@ -14,7 +14,7 @@ import (
 	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/ibrahimozekici/chirpstack-api/go/v5/common"
 	_ "github.com/ibrahimozekici/chirpstack-api/go/v5/gw"
-	_ "github.com/ibrahimozekici/chirpstack-api/ns"
+	_ "github.com/ibrahimozekici/chirpstack-api/go/v5/ns"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
