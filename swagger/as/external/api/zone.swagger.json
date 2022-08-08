@@ -412,7 +412,6 @@
         },
         "submission_date": {
           "type": "string",
-          "format": "date-time",
           "description": "The last time the application-server received any data from the device,\r\nor an empty string when the device never sent any data."
         },
         "water_leak_status": {

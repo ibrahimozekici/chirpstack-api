@@ -127,7 +127,7 @@ message ZoneData {
    
       // The last time the application-server received any data from the device,
       // or an empty string when the device never sent any data.
-      google.protobuf.Timestamp submission_date = 10 [json_name = "submission_date"];
+      string submission_date = 10 [json_name = "submission_date"];
   
   
       int64 water_leak_status = 11 [json_name = "water_leak_status"];
