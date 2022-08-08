@@ -273,16 +273,16 @@
     "apiGetZonesItem": {
       "type": "object",
       "properties": {
-        "zoneId": {
+        "zone_id": {
           "type": "string",
           "format": "int64",
           "title": "Zone ID"
         },
-        "zoneName": {
+        "zone_name": {
           "type": "string",
           "title": "Name of Zone"
         },
-        "orgID": {
+        "org_id": {
           "type": "string",
           "format": "int64",
           "title": "Organization ID"
