@@ -363,55 +363,116 @@
         }
       }
     },
-    "apiZoneAlarm": {
+    "apiZoneData": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string",
           "format": "int64",
-          "description": "Alarm id."
+          "description": "Device EUI (HEX encoded)."
         },
         "dev_eui": {
           "type": "string",
-          "description": "Device EUI (HEX encoded)."
+          "title": "name"
         },
-        "minTreshold": {
+        "device_type_id": {
+          "type": "string",
+          "format": "int64",
+          "description": "temp_SHT of the device."
+        },
+        "org_id": {
+          "type": "string",
+          "format": "int64",
+          "description": "hum_SHT."
+        },
+        "air_temperature": {
           "type": "number",
           "format": "float",
-          "title": "Condition of alarm"
+          "description": "water_SOIL of the device."
         },
-        "maxTreshold": {
+        "air_humidity": {
           "type": "number",
           "format": "float",
-          "title": "Value of alarm"
+          "description": "temp_SOIL of the device."
         },
-        "sms": {
-          "type": "boolean",
-          "format": "boolean"
+        "sol_temperature": {
+          "type": "number",
+          "format": "float",
+          "description": "conduct_SOIL of the device."
         },
-        "email": {
-          "type": "boolean",
-          "format": "boolean"
+        "sol_water": {
+          "type": "number",
+          "format": "float",
+          "description": "water_SOIL of the device."
         },
-        "temperature": {
-          "type": "boolean",
-          "format": "boolean"
+        "sol_conduct_soil": {
+          "type": "number",
+          "format": "float",
+          "description": "temp_SOIL of the device."
         },
-        "humadity": {
-          "type": "boolean",
-          "format": "boolean"
+        "submission_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last time the application-server received any data from the device,\r\nor an empty string when the device never sent any data."
         },
-        "ec": {
-          "type": "boolean",
-          "format": "boolean"
+        "water_leak_status": {
+          "type": "string",
+          "format": "int64"
         },
-        "door": {
-          "type": "boolean",
-          "format": "boolean"
+        "water_leak_times": {
+          "type": "string",
+          "format": "int64"
         },
-        "w_leak": {
-          "type": "boolean",
-          "format": "boolean"
+        "last_water_leak_duration": {
+          "type": "string",
+          "format": "int64"
+        },
+        "door_open_status": {
+          "type": "string",
+          "format": "int64"
+        },
+        "door_open_times": {
+          "type": "string",
+          "format": "int64"
+        },
+        "last_door_open_duration": {
+          "type": "string",
+          "format": "int64"
+        },
+        "batv": {
+          "type": "number",
+          "format": "float"
+        },
+        "ro1_status": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ro2_status": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ph_soil": {
+          "type": "number",
+          "format": "float",
+          "description": "temp_SOIL of the device."
+        },
+        "co2_ppm": {
+          "type": "number",
+          "format": "float",
+          "description": "conduct_SOIL of the device."
+        },
+        "tvoc_ppm": {
+          "type": "number",
+          "format": "float",
+          "description": "temp_SOIL of the device."
+        },
+        "sensecap_light": {
+          "type": "number",
+          "format": "float"
+        },
+        "barometric_pressure": {
+          "type": "number",
+          "format": "float"
         }
       }
     },
@@ -468,7 +529,7 @@
         "alerts": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/apiZoneAlarm"
+            "$ref": "#/definitions/apiZoneData"
           },
           "title": "device landing alarms"
         },
