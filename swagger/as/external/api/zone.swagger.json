@@ -525,7 +525,7 @@
           "type": "string",
           "format": "int64"
         },
-        "alerts": {
+        "data": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/apiZoneData"
