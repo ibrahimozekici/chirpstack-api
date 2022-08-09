@@ -177,13 +177,13 @@ message Zone {
 
 message GetZonesItem {
     // Zone ID 
-    int64 zone_id = 1 [json_name = "zone_id"];;
+    int64 zone_id = 1 [json_name = "zoneId"];
 
     // Name of Zone
-    string zone_name = 2 [json_name = "zone_name"];
+    string zone_name = 2 [json_name = "zoneName"];
 
     // Organization ID
-    int64 org_id = 3 [json_name = "org_id"];
+    int64 org_id = 3 [json_name = "orgID"];
 
     // Order index of zone
     int64 order = 4 [json_name = "order"];
