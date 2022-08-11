@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package ns;
+package als;
 
 option go_package = "github.com/ibrahimozekici/chirpstack-api/als";
 option java_package = "io.chirpstack.api.als";
@@ -11,10 +11,14 @@ import "google/protobuf/empty.proto";
 // AlarmServerService provides the Alarm-server API methods.
 service AlarmServerService {
     // CreateDevice creates the given device.
-    rpc CreateAlarm(CreateAlarmRequest) returns (google.protobuf.Empty) {}
+    rpc CreateAlarm(CreateAlarmRequest) returns (CreateAlarmResponse) {}
 }
 
 message CreateAlarmRequest{
     string alarm= 1;
+}
+
+message CreateAlarmResponse{
+    string alarmResp=1;
 }
 
