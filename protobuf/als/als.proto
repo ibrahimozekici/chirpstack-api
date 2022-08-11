@@ -16,21 +16,10 @@ import "ns/profiles.proto";
 // AlarmServerService provides the Alarm-server API methods.
 service AlarmServerService {
     // CreateDevice creates the given device.
-    rpc CreateAlarm(CreateAlarmRequest) returns (CreateAlarmResponse) {}
-}
-
-enum RXWindow {
-    // Receive window 1
-    RX1 = 0;
-
-    // Receive window 2
-    RX2 = 1;
+    rpc CreateAlarm(CreateAlarmRequest) returns (google.protobuf.Empty) {}
 }
 
 message CreateAlarmRequest{
     string alarm= 1;
 }
 
-message CreateAlarmResponse{
-    string alarm_resp = 1;
-}

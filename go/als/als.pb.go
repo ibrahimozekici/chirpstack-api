@@ -10,11 +10,11 @@ import (
 	context "context"
 	proto "github.com/golang/protobuf/proto"
 	_ "github.com/golang/protobuf/ptypes/duration"
-	_ "github.com/golang/protobuf/ptypes/empty"
+	empty "github.com/golang/protobuf/ptypes/empty"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/ibrahimozekici/chirpstack-api/go/v5/common"
 	_ "github.com/ibrahimozekici/chirpstack-api/go/v5/gw"
-	_ "github.com/ibrahimozekici/chirpstack-api/go/v5/ns"
+	_ "github.com/ibrahimozekici/chirpstack-api/ns"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -34,54 +34,6 @@ const (
 // This is a compile-time assertion that a sufficiently up-to-date version
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
-
-type RXWindow int32
-
-const (
-	// Receive window 1
-	RXWindow_RX1 RXWindow = 0
-	// Receive window 2
-	RXWindow_RX2 RXWindow = 1
-)
-
-// Enum value maps for RXWindow.
-var (
-	RXWindow_name = map[int32]string{
-		0: "RX1",
-		1: "RX2",
-	}
-	RXWindow_value = map[string]int32{
-		"RX1": 0,
-		"RX2": 1,
-	}
-)
-
-func (x RXWindow) Enum() *RXWindow {
-	p := new(RXWindow)
-	*p = x
-	return p
-}
-
-func (x RXWindow) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (RXWindow) Descriptor() protoreflect.EnumDescriptor {
-	return file_als_als_proto_enumTypes[0].Descriptor()
-}
-
-func (RXWindow) Type() protoreflect.EnumType {
-	return &file_als_als_proto_enumTypes[0]
-}
-
-func (x RXWindow) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use RXWindow.Descriptor instead.
-func (RXWindow) EnumDescriptor() ([]byte, []int) {
-	return file_als_als_proto_rawDescGZIP(), []int{0}
-}
 
 type CreateAlarmRequest struct {
 	state         protoimpl.MessageState
@@ -130,53 +82,6 @@ func (x *CreateAlarmRequest) GetAlarm() string {
 	return ""
 }
 
-type CreateAlarmResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	AlarmResp string `protobuf:"bytes,1,opt,name=alarm_resp,json=alarmResp,proto3" json:"alarm_resp,omitempty"`
-}
-
-func (x *CreateAlarmResponse) Reset() {
-	*x = CreateAlarmResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_als_als_proto_msgTypes[1]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *CreateAlarmResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateAlarmResponse) ProtoMessage() {}
-
-func (x *CreateAlarmResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_als_als_proto_msgTypes[1]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateAlarmResponse.ProtoReflect.Descriptor instead.
-func (*CreateAlarmResponse) Descriptor() ([]byte, []int) {
-	return file_als_als_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *CreateAlarmResponse) GetAlarmResp() string {
-	if x != nil {
-		return x.AlarmResp
-	}
-	return ""
-}
-
 var File_als_als_proto protoreflect.FileDescriptor
 
 var file_als_als_proto_rawDesc = []byte{
@@ -193,22 +98,17 @@ var file_als_als_proto_rawDesc = []byte{
 	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x2a, 0x0a, 0x12, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
 	0x41, 0x6c, 0x61, 0x72, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05,
 	0x61, 0x6c, 0x61, 0x72, 0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x61, 0x6c, 0x61,
-	0x72, 0x6d, 0x22, 0x34, 0x0a, 0x13, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72,
-	0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x61, 0x6c, 0x61,
-	0x72, 0x6d, 0x5f, 0x72, 0x65, 0x73, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x61,
-	0x6c, 0x61, 0x72, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x2a, 0x1c, 0x0a, 0x08, 0x52, 0x58, 0x57, 0x69,
-	0x6e, 0x64, 0x6f, 0x77, 0x12, 0x07, 0x0a, 0x03, 0x52, 0x58, 0x31, 0x10, 0x00, 0x12, 0x07, 0x0a,
-	0x03, 0x52, 0x58, 0x32, 0x10, 0x01, 0x32, 0x56, 0x0a, 0x12, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x53,
-	0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x40, 0x0a, 0x0b,
-	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x12, 0x16, 0x2e, 0x6e, 0x73,
-	0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x17, 0x2e, 0x6e, 0x73, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41,
-	0x6c, 0x61, 0x72, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x45,
-	0x0a, 0x15, 0x69, 0x6f, 0x2e, 0x63, 0x68, 0x69, 0x72, 0x70, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2e,
-	0x61, 0x70, 0x69, 0x2e, 0x61, 0x6c, 0x73, 0x5a, 0x2c, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e,
-	0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x62, 0x72, 0x61, 0x68, 0x69, 0x6d, 0x6f, 0x7a, 0x65, 0x6b, 0x69,
-	0x63, 0x69, 0x2f, 0x63, 0x68, 0x69, 0x72, 0x70, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2d, 0x61, 0x70,
-	0x69, 0x2f, 0x61, 0x6c, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x72, 0x6d, 0x32, 0x55, 0x0a, 0x12, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x53, 0x65, 0x72, 0x76, 0x65,
+	0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x3f, 0x0a, 0x0b, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x12, 0x16, 0x2e, 0x6e, 0x73, 0x2e, 0x43, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
+	0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x00, 0x42, 0x45, 0x0a, 0x15, 0x69, 0x6f, 0x2e,
+	0x63, 0x68, 0x69, 0x72, 0x70, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x61,
+	0x6c, 0x73, 0x5a, 0x2c, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x69,
+	0x62, 0x72, 0x61, 0x68, 0x69, 0x6d, 0x6f, 0x7a, 0x65, 0x6b, 0x69, 0x63, 0x69, 0x2f, 0x63, 0x68,
+	0x69, 0x72, 0x70, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2d, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6c, 0x73,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -223,16 +123,14 @@ func file_als_als_proto_rawDescGZIP() []byte {
 	return file_als_als_proto_rawDescData
 }
 
-var file_als_als_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_als_als_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_als_als_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_als_als_proto_goTypes = []interface{}{
-	(RXWindow)(0),               // 0: ns.RXWindow
-	(*CreateAlarmRequest)(nil),  // 1: ns.CreateAlarmRequest
-	(*CreateAlarmResponse)(nil), // 2: ns.CreateAlarmResponse
+	(*CreateAlarmRequest)(nil), // 0: ns.CreateAlarmRequest
+	(*empty.Empty)(nil),        // 1: google.protobuf.Empty
 }
 var file_als_als_proto_depIdxs = []int32{
-	1, // 0: ns.AlarmServerService.CreateAlarm:input_type -> ns.CreateAlarmRequest
-	2, // 1: ns.AlarmServerService.CreateAlarm:output_type -> ns.CreateAlarmResponse
+	0, // 0: ns.AlarmServerService.CreateAlarm:input_type -> ns.CreateAlarmRequest
+	1, // 1: ns.AlarmServerService.CreateAlarm:output_type -> google.protobuf.Empty
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -258,32 +156,19 @@ func file_als_als_proto_init() {
 				return nil
 			}
 		}
-		file_als_als_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateAlarmResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_als_als_proto_rawDesc,
-			NumEnums:      1,
-			NumMessages:   2,
+			NumEnums:      0,
+			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_als_als_proto_goTypes,
 		DependencyIndexes: file_als_als_proto_depIdxs,
-		EnumInfos:         file_als_als_proto_enumTypes,
 		MessageInfos:      file_als_als_proto_msgTypes,
 	}.Build()
 	File_als_als_proto = out.File
@@ -305,7 +190,7 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AlarmServerServiceClient interface {
 	// CreateDevice creates the given device.
-	CreateAlarm(ctx context.Context, in *CreateAlarmRequest, opts ...grpc.CallOption) (*CreateAlarmResponse, error)
+	CreateAlarm(ctx context.Context, in *CreateAlarmRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 }
 
 type alarmServerServiceClient struct {
@@ -316,8 +201,8 @@ func NewAlarmServerServiceClient(cc grpc.ClientConnInterface) AlarmServerService
 	return &alarmServerServiceClient{cc}
 }
 
-func (c *alarmServerServiceClient) CreateAlarm(ctx context.Context, in *CreateAlarmRequest, opts ...grpc.CallOption) (*CreateAlarmResponse, error) {
-	out := new(CreateAlarmResponse)
+func (c *alarmServerServiceClient) CreateAlarm(ctx context.Context, in *CreateAlarmRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.AlarmServerService/CreateAlarm", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -328,14 +213,14 @@ func (c *alarmServerServiceClient) CreateAlarm(ctx context.Context, in *CreateAl
 // AlarmServerServiceServer is the server API for AlarmServerService service.
 type AlarmServerServiceServer interface {
 	// CreateDevice creates the given device.
-	CreateAlarm(context.Context, *CreateAlarmRequest) (*CreateAlarmResponse, error)
+	CreateAlarm(context.Context, *CreateAlarmRequest) (*empty.Empty, error)
 }
 
 // UnimplementedAlarmServerServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedAlarmServerServiceServer struct {
 }
 
-func (*UnimplementedAlarmServerServiceServer) CreateAlarm(context.Context, *CreateAlarmRequest) (*CreateAlarmResponse, error) {
+func (*UnimplementedAlarmServerServiceServer) CreateAlarm(context.Context, *CreateAlarmRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateAlarm not implemented")
 }
 
