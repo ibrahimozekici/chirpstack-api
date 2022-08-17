@@ -11,14 +11,12 @@ import "google/protobuf/empty.proto";
 // AlarmServerService provides the Alarm-server API methods.
 service AlarmServerService {
     // CreateDevice creates the given device.
-    rpc CreateAlarm(CreateAlarmRequest) returns (CreateAlarmResponse) {}
+    rpc CreateAlarm(CreateAlarmRequest) returns (google.protobuf.Empty) {}
 }
 
 message CreateAlarmRequest{
-    string alarm= 1;
+    int64 userID= 1;
 }
 
-message CreateAlarmResponse{
-    string alarmResp=1;
-}
+
 
