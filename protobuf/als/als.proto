@@ -6,17 +6,84 @@ option go_package = "github.com/ibrahimozekici/chirpstack-api/als";
 option java_package = "io.chirpstack.api.als";
 
 import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
 
 
 // AlarmServerService provides the Alarm-server API methods.
 service AlarmServerService {
     // CreateDevice creates the given device.
-    rpc CreateAlarm(CreateAlarmRequest) returns (google.protobuf.Empty) {}
+    rpc CreateAlarm(CreateAlarmRequest) returns (CreateAlarmResponse) {}
+    rpc GetAlarm(GetAlarmRequest) returns (GetAlarmResponse){}
+}
+
+message Alarm {
+
+    // Alarm id.
+    int64 id = 1;
+     
+    // Device EUI (HEX encoded).
+    string dev_eui = 2 [json_name = "devEUI"]; 
+
+    // Condition of alarm
+    float min_treshold = 3 [json_name = "minTreshold"];
+
+    // Value of alarm
+    float max_treshold = 4 [json_name = "maxTreshold"];
+
+   bool sms = 5 [json_name = "sms"];
+
+   bool email = 6 [json_name = "email"];
+   
+   bool temperature = 7 [json_name = "temperature"];
+   bool humadity = 8 [json_name = "humadity"];
+   bool ec = 9 [json_name = "ec"];
+   bool door = 10 [json_name = "door"];
+   bool w_leak = 11 [json_name = "w_leak"];
+   google.protobuf.Timestamp submission_date = 12 [json_name = "submission_date"];
+   string ip_address = 13 [json_name = "ip_address"];
+   bool is_time_scheduled = 14 [json_name = "is_time_scheduled"];
+   float start_time = 15 [json_name = "start_time"];
+   float end_time = 16 [json_name = "end_time"];
+   int64 zone_category = 17 [json_name = "zone_category"];
+   int64 cold_room_time = 18  [json_name = "cold_room_time"];
+   int64 cold_room_frecuancy = 19  [json_name = "cold_room_frecuancy"];
+
+   bool notification = 20 [json_name = "notification"];
+
+    repeated AlarmDateTime alarm_date_time = 21  [json_name = "alarm_date_time"];
+}
+
+message AlarmDateTime {
+    int64 id = 1 [json_name = "id"];
+
+    int64 alarm_id = 2 [json_name = "alarm_id"];
+
+    int64 alarm_day = 3 [json_name = "alarm_day"];
+
+    float alarm_start_time = 4[json_name = "alarm_start_time"];
+
+    float alarm_end_time = 5[json_name = "alarm_end_time"];
 }
 
 message CreateAlarmRequest{
-    int64 userID= 1;
+    Alarm alarm = 1;
 }
+
+message CreateAlarmResponse{
+    Alarm alarm = 1;
+}
+
+message GetAlarmRequest{
+    int64 alarmID = 1;
+}
+
+message GetAlarmResponse{
+    Alarm alarm = 1;
+}
+
+
+
+
 
 
 
