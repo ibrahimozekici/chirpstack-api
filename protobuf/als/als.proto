@@ -16,41 +16,26 @@ service AlarmServerService {
     rpc GetAlarm(GetAlarmRequest) returns (GetAlarmResponse){}
 }
 
-message Alarm {
-
-    // Alarm id.
-    int64 id = 1;
-     
-    // Device EUI (HEX encoded).
-    string dev_eui = 2 [json_name = "devEUI"]; 
-
-    // Condition of alarm
-    float min_treshold = 3 [json_name = "minTreshold"];
-
-    // Value of alarm
-    float max_treshold = 4 [json_name = "maxTreshold"];
-
-   bool sms = 5 [json_name = "sms"];
-
-   bool email = 6 [json_name = "email"];
-   
-   bool temperature = 7 [json_name = "temperature"];
-   bool humadity = 8 [json_name = "humadity"];
-   bool ec = 9 [json_name = "ec"];
-   bool door = 10 [json_name = "door"];
-   bool w_leak = 11 [json_name = "w_leak"];
-   google.protobuf.Timestamp submission_date = 12 [json_name = "submission_date"];
-   string ip_address = 13 [json_name = "ip_address"];
-   bool is_time_scheduled = 14 [json_name = "is_time_scheduled"];
-   float start_time = 15 [json_name = "start_time"];
-   float end_time = 16 [json_name = "end_time"];
-   int64 zone_category = 17 [json_name = "zone_category"];
-   int64 cold_room_time = 18  [json_name = "cold_room_time"];
-   int64 cold_room_frecuancy = 19  [json_name = "cold_room_frecuancy"];
-
-   bool notification = 20 [json_name = "notification"];
-
-    repeated AlarmDateTime alarm_date_time = 21  [json_name = "alarm_date_time"];
+message Alarm{
+	int64 id=1;
+	string devEui = 2;
+	float minTreshold = 3;
+	float maxTreshold = 4;
+	bool sms = 5;
+	bool email = 6;
+	bool notification = 7;
+	bool temperature = 8;
+	bool humadity = 9;
+	bool ec = 10;
+	bool door = 11;
+	bool wLeak = 12;
+	int64 userID = 13;
+	string ipAddress = 14;
+	bool isTimeLimitActive = 15;
+	float alarmStartTime = 16;
+	float alarmStopTime = 17;
+	int64 zoneCategoryID = 18;
+	bool isActive = 19;
 }
 
 message AlarmDateTime {
