@@ -14,6 +14,18 @@ service AlarmServerService {
     // CreateDevice creates the given device.
     rpc CreateAlarm(CreateAlarmRequest) returns (CreateAlarmResponse) {}
     rpc GetAlarm(GetAlarmRequest) returns (GetAlarmResponse){}
+	// rpc ListAlarm(ListAlarmRequest) returns (ListAlarmResponse){}
+	// rpc UpdateAlarm(UpdateAlarmRequest) returns (GetAlarmResponse){}
+	// rpc DeleteAlarm(DeleteAlarmRequest) returns (google.protobuf.Empty){}
+	// rpc ListAllOrganizationAlarms(ListOrganizationAlarmRequest) returns (ListOrganizationAlarmResponse){}
+	// rpc CreateMultipleAlarms(CreateMultipleAlarmRequest) returns (CreateMultipleAlarmResponse){}
+	// rpc DeleteMultipleAlarms(DeleteMultipleAlarmRequest) returns (google.protobuf.Empty){}
+	// rpc DeleteSensorAlarms(DeleteMultipleDevAlarmRequest) returns (google.protobuf.Empty){}
+	// rpc DeleteZoneAlarms(DeleteMultipleZoneAlarmRequest) returns (google.protobuf.Empty){}
+	// rpc CreateAlarmDateTime(CreateAlarmDateTimeRequest) returns (CreateAlarmDateResponse){}
+	// rpc CreateAlarmDates(CreateAlarmDateRequest) returns (CreateAlarmDateResponse){}
+	// rpc GetAlarmLogs(GetAlarmLogRequest) returns (GetAlarmLogResponse){}
+	rpc CreateColdRoomRestrictions(CreateColdRoomRestrictionsRequest) returns (CreateColdRoomRestrictionsResponse){}
 }
 
 message Alarm{
@@ -38,17 +50,29 @@ message Alarm{
 	bool isActive = 19;
 }
 
-message AlarmDateTime {
-    int64 id = 1 [json_name = "id"];
+// message AlarmDateTime {
+//     int64 id = 1;
+//     int64 alarm_id = 2;
+//     int64 alarm_day = 3 ;
+//     float alarm_start_time = 4;
+//     float alarm_end_time = 5;
+// }
 
-    int64 alarm_id = 2 [json_name = "alarm_id"];
-
-    int64 alarm_day = 3 [json_name = "alarm_day"];
-
-    float alarm_start_time = 4[json_name = "alarm_start_time"];
-
-    float alarm_end_time = 5[json_name = "alarm_end_time"];
+message ColdRoomRestrictions {
+    int64 id = 1;
+    string devEui = 2;
+    int64 alarmID = 3 ;
+	int64 defrostTime = 4;
+    int64 defrostFrq = 5;
+	int64 alarmTime = 6;
 }
+
+// message ListAlarm{
+// 	int64 totalCount=1;
+// 	repeated Alarm result=2;
+// 	repeated AlarmLogs logs=3; 
+// }
+
 
 message CreateAlarmRequest{
     Alarm alarm = 1;
@@ -65,6 +89,50 @@ message GetAlarmRequest{
 message GetAlarmResponse{
     Alarm alarm = 1;
 }
+
+message CreateColdRoomRestrictionsRequest{
+	ColdRoomRestrictions coldRes = 1;
+}
+
+message CreateColdRoomRestrictionsResponse{
+	ColdRoomRestrictions coldResResp =1;
+}
+
+// message ListAlarmRequest{
+// 	int64 limit = 1;
+// 	string dev_eui=2;
+// 	int64 userId=3;
+// }
+
+// message ListAlarmResponse{
+// 	int64 limit=1;
+// 	string dev_eui=2;
+// 	int64 userId=3;
+// }
+
+// message GetAlarmLogRequest{
+// 	string dev_eui=1;
+// }
+
+// message GetAlarmLogResponse{
+// 	repeated AlarmLog =1;
+// }
+
+// message AlarmLogs{
+// 	string dev_eui=1;
+// 	float minTreshold=2;
+// 	int64 userId=3;
+// 	string ipAddress=4;
+// 	int64 isDeleted=5;
+// 	bool temperature=6;
+// 	bool humadity=7;
+// 	bool ec=8;
+// 	bool door=9;
+// 	bool w_leak=10;
+// 	bool sms=11;
+// 	float maxTreshold=12;
+// 	google.protobuf.Timestamp submission_date = 13;
+// }
 
 
 
