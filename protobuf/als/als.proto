@@ -25,7 +25,7 @@ service AlarmServerService {
 	// rpc CreateAlarmDateTime(CreateAlarmDateTimeRequest) returns (CreateAlarmDateResponse){}
 	// rpc CreateAlarmDates(CreateAlarmDateRequest) returns (CreateAlarmDateResponse){}
 	// rpc GetAlarmLogs(GetAlarmLogRequest) returns (GetAlarmLogResponse){}
-	rpc CreateColdRoomRestrictions(CreateColdRoomRestrictionsRequest) returns (CreateColdRoomRestrictionsResponse){}
+	rpc CreateColdRoomRestrictions(CreateColdRoomRestrictionsRequest) returns (google.protobuf.Empty){}
 }
 
 message Alarm{
@@ -92,10 +92,6 @@ message GetAlarmResponse{
 
 message CreateColdRoomRestrictionsRequest{
 	ColdRoomRestrictions coldRes = 1;
-}
-
-message CreateColdRoomRestrictionsResponse{
-	ColdRoomRestrictions coldResResp =1;
 }
 
 // message ListAlarmRequest{
