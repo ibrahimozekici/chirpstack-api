@@ -14,8 +14,16 @@ service AlarmServerService {
     // CreateDevice creates the given device.
     rpc CreateAlarm(CreateAlarmRequest) returns (CreateAlarmResponse) {}
     rpc GetAlarm(GetAlarmRequest) returns (GetAlarmResponse){}
-	rpc CreateAlarmDateFilter(CreateFilterRequest) returns (CreateFilterResponse){}
+	rpc CreateAlarmLog(CreateAlarmLogRequest) returns (google.protobuf.Empty){}
+	rpc GetAlarmLogs(GetAlarmLogsRequest) returns (GetAlarmLogsResponse){}
 	rpc CreateAlarmDates(CreateAlarmDatesRequest) returns (CreateAlarmDatesResponse){}
+	rpc GetAlarmDates(GetAlarmDatesRequest) returns (GetAlarmDatesResponse) {}
+	rpc DeleteAlarmDates(DeleteAlarmDatesRequest) returns (google.protobuf.Empty){}
+	rpc DeleteAlarm(DeleteAlarmRequest) returns (google.protobuf.Empty) {}
+	rpc DeleteUserAlarm(DeleteUserAlarmRequest) returns (google.protobuf.Empty){}
+	rpc DeleteSensorAlarm(DeleteSensorAlarmRequest) returns (google.protobuf.Empty){}
+	rpc DeleteZoneAlarm(DeleteZoneAlarmRequest) returns (google.protobuf.Empty){}
+
 	// rpc ListAlarm(ListAlarmRequest) returns (ListAlarmResponse){}
 	// rpc UpdateAlarm(UpdateAlarmRequest) returns (GetAlarmResponse){}
 	// rpc DeleteAlarm(DeleteAlarmRequest) returns (google.protobuf.Empty){}
@@ -51,7 +59,6 @@ message Alarm{
 	int64 zoneCategoryID = 18;
 	bool isActive = 19;
 }
-
 
 message AlarmDateFilter{
 	int64 ID = 1;
@@ -105,16 +112,17 @@ message GetAlarmResponse{
     Alarm alarm = 1;
 }
 
+message GetAlarmLogsRequest{
+	string devEui = 1;
+}
+
+message GetAlarmLogsResponse{
+	repeated AlarmLogs respLog = 1;
+}
+
+
 message CreateColdRoomRestrictionsRequest{
 	ColdRoomRestrictions coldRes = 1;
-}
-
-message CreateFilterRequest{
-	AlarmDateFilter reqFilter = 1;
-}
-
-message CreateFilterResponse{
-	AlarmDateFilter respFilter =1;
 }
 
 message CreateAlarmDatesRequest{
@@ -123,6 +131,48 @@ message CreateAlarmDatesRequest{
 
 message CreateAlarmDatesResponse{
 	repeated AlarmDateTime respDateTime = 1;
+}
+
+message GetAlarmDatesRequest{
+	int64 alarmId = 1;
+}
+
+message GetAlarmDatesResponse{
+	repeated AlarmDateTime respDate = 1;
+}
+
+message DeleteAlarmRequest{
+	string alarmID = 1;
+	int64 userID =2;
+	string ipAddress = 3;
+}
+
+message DeleteUserAlarmRequest{
+	repeated int64 userIds = 1;
+}
+
+message DeleteSensorAlarmRequest{
+	repeated string devEuis = 1;
+}
+
+message DeleteZoneAlarmRequest{
+	repeated int64 zones = 1;
+}
+
+message DeleteAlarmDevEuiRequest{
+	string deveui = 1;
+	int64 userId = 2;
+}
+
+message DeleteAlarmDatesRequest{
+	string alarmId = 1;
+}
+
+message CreateAlarmLogRequest{
+	Alarm alarm = 1;
+	int64 userID = 2;
+	string ipAddress = 3;
+	int64 isDeleted = 4;
 }
 
 // message ListAlarmRequest{
@@ -137,29 +187,29 @@ message CreateAlarmDatesResponse{
 // 	int64 userId=3;
 // }
 
-// message GetAlarmLogRequest{
-// 	string dev_eui=1;
-// }
+message GetAlarmLogRequest{
+	string dev_eui=1;
+}
 
-// message GetAlarmLogResponse{
-// 	repeated AlarmLog =1;
-// }
+message GetAlarmLogResponse{
+	repeated AlarmLogs respLog =1;
+}
 
-// message AlarmLogs{
-// 	string dev_eui=1;
-// 	float minTreshold=2;
-// 	int64 userId=3;
-// 	string ipAddress=4;
-// 	int64 isDeleted=5;
-// 	bool temperature=6;
-// 	bool humadity=7;
-// 	bool ec=8;
-// 	bool door=9;
-// 	bool w_leak=10;
-// 	bool sms=11;
-// 	float maxTreshold=12;
-// 	google.protobuf.Timestamp submission_date = 13;
-// }
+message AlarmLogs{
+	string dev_eui=1;
+	float minTreshold=2;
+	int64 userId=3;
+	string ipAddress=4;
+	int64 isDeleted=5;
+	bool temperature=6;
+	bool humadity=7;
+	bool ec=8;
+	bool door=9;
+	bool w_leak=10;
+	bool sms=11;
+	float maxTreshold=12;
+	google.protobuf.Timestamp submission_date = 13;
+}
 
 
 

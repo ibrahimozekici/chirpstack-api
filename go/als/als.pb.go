@@ -10,7 +10,7 @@ import (
 	context "context"
 	proto "github.com/golang/protobuf/proto"
 	empty "github.com/golang/protobuf/ptypes/empty"
-	_ "github.com/golang/protobuf/ptypes/timestamp"
+	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -655,6 +655,100 @@ func (x *GetAlarmResponse) GetAlarm() *Alarm {
 	return nil
 }
 
+type GetAlarmLogsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DevEui string `protobuf:"bytes,1,opt,name=devEui,proto3" json:"devEui,omitempty"`
+}
+
+func (x *GetAlarmLogsRequest) Reset() {
+	*x = GetAlarmLogsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_als_als_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAlarmLogsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAlarmLogsRequest) ProtoMessage() {}
+
+func (x *GetAlarmLogsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_als_als_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAlarmLogsRequest.ProtoReflect.Descriptor instead.
+func (*GetAlarmLogsRequest) Descriptor() ([]byte, []int) {
+	return file_als_als_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *GetAlarmLogsRequest) GetDevEui() string {
+	if x != nil {
+		return x.DevEui
+	}
+	return ""
+}
+
+type GetAlarmLogsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	RespLog []*AlarmLogs `protobuf:"bytes,1,rep,name=respLog,proto3" json:"respLog,omitempty"`
+}
+
+func (x *GetAlarmLogsResponse) Reset() {
+	*x = GetAlarmLogsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_als_als_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAlarmLogsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAlarmLogsResponse) ProtoMessage() {}
+
+func (x *GetAlarmLogsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_als_als_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAlarmLogsResponse.ProtoReflect.Descriptor instead.
+func (*GetAlarmLogsResponse) Descriptor() ([]byte, []int) {
+	return file_als_als_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *GetAlarmLogsResponse) GetRespLog() []*AlarmLogs {
+	if x != nil {
+		return x.RespLog
+	}
+	return nil
+}
+
 type CreateColdRoomRestrictionsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -666,7 +760,7 @@ type CreateColdRoomRestrictionsRequest struct {
 func (x *CreateColdRoomRestrictionsRequest) Reset() {
 	*x = CreateColdRoomRestrictionsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_als_als_proto_msgTypes[8]
+		mi := &file_als_als_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -679,7 +773,7 @@ func (x *CreateColdRoomRestrictionsRequest) String() string {
 func (*CreateColdRoomRestrictionsRequest) ProtoMessage() {}
 
 func (x *CreateColdRoomRestrictionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_als_als_proto_msgTypes[8]
+	mi := &file_als_als_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -692,106 +786,12 @@ func (x *CreateColdRoomRestrictionsRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use CreateColdRoomRestrictionsRequest.ProtoReflect.Descriptor instead.
 func (*CreateColdRoomRestrictionsRequest) Descriptor() ([]byte, []int) {
-	return file_als_als_proto_rawDescGZIP(), []int{8}
+	return file_als_als_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *CreateColdRoomRestrictionsRequest) GetColdRes() *ColdRoomRestrictions {
 	if x != nil {
 		return x.ColdRes
-	}
-	return nil
-}
-
-type CreateFilterRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	ReqFilter *AlarmDateFilter `protobuf:"bytes,1,opt,name=reqFilter,proto3" json:"reqFilter,omitempty"`
-}
-
-func (x *CreateFilterRequest) Reset() {
-	*x = CreateFilterRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_als_als_proto_msgTypes[9]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *CreateFilterRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateFilterRequest) ProtoMessage() {}
-
-func (x *CreateFilterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_als_als_proto_msgTypes[9]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateFilterRequest.ProtoReflect.Descriptor instead.
-func (*CreateFilterRequest) Descriptor() ([]byte, []int) {
-	return file_als_als_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *CreateFilterRequest) GetReqFilter() *AlarmDateFilter {
-	if x != nil {
-		return x.ReqFilter
-	}
-	return nil
-}
-
-type CreateFilterResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	RespFilter *AlarmDateFilter `protobuf:"bytes,1,opt,name=respFilter,proto3" json:"respFilter,omitempty"`
-}
-
-func (x *CreateFilterResponse) Reset() {
-	*x = CreateFilterResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_als_als_proto_msgTypes[10]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *CreateFilterResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateFilterResponse) ProtoMessage() {}
-
-func (x *CreateFilterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_als_als_proto_msgTypes[10]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateFilterResponse.ProtoReflect.Descriptor instead.
-func (*CreateFilterResponse) Descriptor() ([]byte, []int) {
-	return file_als_als_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *CreateFilterResponse) GetRespFilter() *AlarmDateFilter {
-	if x != nil {
-		return x.RespFilter
 	}
 	return nil
 }
@@ -890,6 +890,714 @@ func (x *CreateAlarmDatesResponse) GetRespDateTime() []*AlarmDateTime {
 	return nil
 }
 
+type GetAlarmDatesRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	AlarmId int64 `protobuf:"varint,1,opt,name=alarmId,proto3" json:"alarmId,omitempty"`
+}
+
+func (x *GetAlarmDatesRequest) Reset() {
+	*x = GetAlarmDatesRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_als_als_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAlarmDatesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAlarmDatesRequest) ProtoMessage() {}
+
+func (x *GetAlarmDatesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_als_als_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAlarmDatesRequest.ProtoReflect.Descriptor instead.
+func (*GetAlarmDatesRequest) Descriptor() ([]byte, []int) {
+	return file_als_als_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *GetAlarmDatesRequest) GetAlarmId() int64 {
+	if x != nil {
+		return x.AlarmId
+	}
+	return 0
+}
+
+type GetAlarmDatesResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	RespDate []*AlarmDateTime `protobuf:"bytes,1,rep,name=respDate,proto3" json:"respDate,omitempty"`
+}
+
+func (x *GetAlarmDatesResponse) Reset() {
+	*x = GetAlarmDatesResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_als_als_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAlarmDatesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAlarmDatesResponse) ProtoMessage() {}
+
+func (x *GetAlarmDatesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_als_als_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAlarmDatesResponse.ProtoReflect.Descriptor instead.
+func (*GetAlarmDatesResponse) Descriptor() ([]byte, []int) {
+	return file_als_als_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *GetAlarmDatesResponse) GetRespDate() []*AlarmDateTime {
+	if x != nil {
+		return x.RespDate
+	}
+	return nil
+}
+
+type DeleteAlarmRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	AlarmID   string `protobuf:"bytes,1,opt,name=alarmID,proto3" json:"alarmID,omitempty"`
+	UserID    int64  `protobuf:"varint,2,opt,name=userID,proto3" json:"userID,omitempty"`
+	IpAddress string `protobuf:"bytes,3,opt,name=ipAddress,proto3" json:"ipAddress,omitempty"`
+}
+
+func (x *DeleteAlarmRequest) Reset() {
+	*x = DeleteAlarmRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_als_als_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteAlarmRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteAlarmRequest) ProtoMessage() {}
+
+func (x *DeleteAlarmRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_als_als_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteAlarmRequest.ProtoReflect.Descriptor instead.
+func (*DeleteAlarmRequest) Descriptor() ([]byte, []int) {
+	return file_als_als_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *DeleteAlarmRequest) GetAlarmID() string {
+	if x != nil {
+		return x.AlarmID
+	}
+	return ""
+}
+
+func (x *DeleteAlarmRequest) GetUserID() int64 {
+	if x != nil {
+		return x.UserID
+	}
+	return 0
+}
+
+func (x *DeleteAlarmRequest) GetIpAddress() string {
+	if x != nil {
+		return x.IpAddress
+	}
+	return ""
+}
+
+type DeleteUserAlarmRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserIds []int64 `protobuf:"varint,1,rep,packed,name=userIds,proto3" json:"userIds,omitempty"`
+}
+
+func (x *DeleteUserAlarmRequest) Reset() {
+	*x = DeleteUserAlarmRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_als_als_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteUserAlarmRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteUserAlarmRequest) ProtoMessage() {}
+
+func (x *DeleteUserAlarmRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_als_als_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteUserAlarmRequest.ProtoReflect.Descriptor instead.
+func (*DeleteUserAlarmRequest) Descriptor() ([]byte, []int) {
+	return file_als_als_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *DeleteUserAlarmRequest) GetUserIds() []int64 {
+	if x != nil {
+		return x.UserIds
+	}
+	return nil
+}
+
+type DeleteSensorAlarmRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DevEuis []string `protobuf:"bytes,1,rep,name=devEuis,proto3" json:"devEuis,omitempty"`
+}
+
+func (x *DeleteSensorAlarmRequest) Reset() {
+	*x = DeleteSensorAlarmRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_als_als_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteSensorAlarmRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteSensorAlarmRequest) ProtoMessage() {}
+
+func (x *DeleteSensorAlarmRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_als_als_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteSensorAlarmRequest.ProtoReflect.Descriptor instead.
+func (*DeleteSensorAlarmRequest) Descriptor() ([]byte, []int) {
+	return file_als_als_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *DeleteSensorAlarmRequest) GetDevEuis() []string {
+	if x != nil {
+		return x.DevEuis
+	}
+	return nil
+}
+
+type DeleteZoneAlarmRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Zones []int64 `protobuf:"varint,1,rep,packed,name=zones,proto3" json:"zones,omitempty"`
+}
+
+func (x *DeleteZoneAlarmRequest) Reset() {
+	*x = DeleteZoneAlarmRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_als_als_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteZoneAlarmRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteZoneAlarmRequest) ProtoMessage() {}
+
+func (x *DeleteZoneAlarmRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_als_als_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteZoneAlarmRequest.ProtoReflect.Descriptor instead.
+func (*DeleteZoneAlarmRequest) Descriptor() ([]byte, []int) {
+	return file_als_als_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *DeleteZoneAlarmRequest) GetZones() []int64 {
+	if x != nil {
+		return x.Zones
+	}
+	return nil
+}
+
+type DeleteAlarmDevEuiRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Deveui string `protobuf:"bytes,1,opt,name=deveui,proto3" json:"deveui,omitempty"`
+	UserId int64  `protobuf:"varint,2,opt,name=userId,proto3" json:"userId,omitempty"`
+}
+
+func (x *DeleteAlarmDevEuiRequest) Reset() {
+	*x = DeleteAlarmDevEuiRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_als_als_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteAlarmDevEuiRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteAlarmDevEuiRequest) ProtoMessage() {}
+
+func (x *DeleteAlarmDevEuiRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_als_als_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteAlarmDevEuiRequest.ProtoReflect.Descriptor instead.
+func (*DeleteAlarmDevEuiRequest) Descriptor() ([]byte, []int) {
+	return file_als_als_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *DeleteAlarmDevEuiRequest) GetDeveui() string {
+	if x != nil {
+		return x.Deveui
+	}
+	return ""
+}
+
+func (x *DeleteAlarmDevEuiRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+type DeleteAlarmDatesRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	AlarmId string `protobuf:"bytes,1,opt,name=alarmId,proto3" json:"alarmId,omitempty"`
+}
+
+func (x *DeleteAlarmDatesRequest) Reset() {
+	*x = DeleteAlarmDatesRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_als_als_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteAlarmDatesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteAlarmDatesRequest) ProtoMessage() {}
+
+func (x *DeleteAlarmDatesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_als_als_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteAlarmDatesRequest.ProtoReflect.Descriptor instead.
+func (*DeleteAlarmDatesRequest) Descriptor() ([]byte, []int) {
+	return file_als_als_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *DeleteAlarmDatesRequest) GetAlarmId() string {
+	if x != nil {
+		return x.AlarmId
+	}
+	return ""
+}
+
+type CreateAlarmLogRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Alarm     *Alarm `protobuf:"bytes,1,opt,name=alarm,proto3" json:"alarm,omitempty"`
+	UserID    int64  `protobuf:"varint,2,opt,name=userID,proto3" json:"userID,omitempty"`
+	IpAddress string `protobuf:"bytes,3,opt,name=ipAddress,proto3" json:"ipAddress,omitempty"`
+	IsDeleted int64  `protobuf:"varint,4,opt,name=isDeleted,proto3" json:"isDeleted,omitempty"`
+}
+
+func (x *CreateAlarmLogRequest) Reset() {
+	*x = CreateAlarmLogRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_als_als_proto_msgTypes[21]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateAlarmLogRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateAlarmLogRequest) ProtoMessage() {}
+
+func (x *CreateAlarmLogRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_als_als_proto_msgTypes[21]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateAlarmLogRequest.ProtoReflect.Descriptor instead.
+func (*CreateAlarmLogRequest) Descriptor() ([]byte, []int) {
+	return file_als_als_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *CreateAlarmLogRequest) GetAlarm() *Alarm {
+	if x != nil {
+		return x.Alarm
+	}
+	return nil
+}
+
+func (x *CreateAlarmLogRequest) GetUserID() int64 {
+	if x != nil {
+		return x.UserID
+	}
+	return 0
+}
+
+func (x *CreateAlarmLogRequest) GetIpAddress() string {
+	if x != nil {
+		return x.IpAddress
+	}
+	return ""
+}
+
+func (x *CreateAlarmLogRequest) GetIsDeleted() int64 {
+	if x != nil {
+		return x.IsDeleted
+	}
+	return 0
+}
+
+type GetAlarmLogRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DevEui string `protobuf:"bytes,1,opt,name=dev_eui,json=devEui,proto3" json:"dev_eui,omitempty"`
+}
+
+func (x *GetAlarmLogRequest) Reset() {
+	*x = GetAlarmLogRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_als_als_proto_msgTypes[22]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAlarmLogRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAlarmLogRequest) ProtoMessage() {}
+
+func (x *GetAlarmLogRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_als_als_proto_msgTypes[22]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAlarmLogRequest.ProtoReflect.Descriptor instead.
+func (*GetAlarmLogRequest) Descriptor() ([]byte, []int) {
+	return file_als_als_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *GetAlarmLogRequest) GetDevEui() string {
+	if x != nil {
+		return x.DevEui
+	}
+	return ""
+}
+
+type GetAlarmLogResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	RespLog []*AlarmLogs `protobuf:"bytes,1,rep,name=respLog,proto3" json:"respLog,omitempty"`
+}
+
+func (x *GetAlarmLogResponse) Reset() {
+	*x = GetAlarmLogResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_als_als_proto_msgTypes[23]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAlarmLogResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAlarmLogResponse) ProtoMessage() {}
+
+func (x *GetAlarmLogResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_als_als_proto_msgTypes[23]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAlarmLogResponse.ProtoReflect.Descriptor instead.
+func (*GetAlarmLogResponse) Descriptor() ([]byte, []int) {
+	return file_als_als_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *GetAlarmLogResponse) GetRespLog() []*AlarmLogs {
+	if x != nil {
+		return x.RespLog
+	}
+	return nil
+}
+
+type AlarmLogs struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DevEui         string               `protobuf:"bytes,1,opt,name=dev_eui,json=devEui,proto3" json:"dev_eui,omitempty"`
+	MinTreshold    float32              `protobuf:"fixed32,2,opt,name=minTreshold,proto3" json:"minTreshold,omitempty"`
+	UserId         int64                `protobuf:"varint,3,opt,name=userId,proto3" json:"userId,omitempty"`
+	IpAddress      string               `protobuf:"bytes,4,opt,name=ipAddress,proto3" json:"ipAddress,omitempty"`
+	IsDeleted      int64                `protobuf:"varint,5,opt,name=isDeleted,proto3" json:"isDeleted,omitempty"`
+	Temperature    bool                 `protobuf:"varint,6,opt,name=temperature,proto3" json:"temperature,omitempty"`
+	Humadity       bool                 `protobuf:"varint,7,opt,name=humadity,proto3" json:"humadity,omitempty"`
+	Ec             bool                 `protobuf:"varint,8,opt,name=ec,proto3" json:"ec,omitempty"`
+	Door           bool                 `protobuf:"varint,9,opt,name=door,proto3" json:"door,omitempty"`
+	WLeak          bool                 `protobuf:"varint,10,opt,name=w_leak,json=wLeak,proto3" json:"w_leak,omitempty"`
+	Sms            bool                 `protobuf:"varint,11,opt,name=sms,proto3" json:"sms,omitempty"`
+	MaxTreshold    float32              `protobuf:"fixed32,12,opt,name=maxTreshold,proto3" json:"maxTreshold,omitempty"`
+	SubmissionDate *timestamp.Timestamp `protobuf:"bytes,13,opt,name=submission_date,json=submissionDate,proto3" json:"submission_date,omitempty"`
+}
+
+func (x *AlarmLogs) Reset() {
+	*x = AlarmLogs{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_als_als_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AlarmLogs) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AlarmLogs) ProtoMessage() {}
+
+func (x *AlarmLogs) ProtoReflect() protoreflect.Message {
+	mi := &file_als_als_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AlarmLogs.ProtoReflect.Descriptor instead.
+func (*AlarmLogs) Descriptor() ([]byte, []int) {
+	return file_als_als_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *AlarmLogs) GetDevEui() string {
+	if x != nil {
+		return x.DevEui
+	}
+	return ""
+}
+
+func (x *AlarmLogs) GetMinTreshold() float32 {
+	if x != nil {
+		return x.MinTreshold
+	}
+	return 0
+}
+
+func (x *AlarmLogs) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *AlarmLogs) GetIpAddress() string {
+	if x != nil {
+		return x.IpAddress
+	}
+	return ""
+}
+
+func (x *AlarmLogs) GetIsDeleted() int64 {
+	if x != nil {
+		return x.IsDeleted
+	}
+	return 0
+}
+
+func (x *AlarmLogs) GetTemperature() bool {
+	if x != nil {
+		return x.Temperature
+	}
+	return false
+}
+
+func (x *AlarmLogs) GetHumadity() bool {
+	if x != nil {
+		return x.Humadity
+	}
+	return false
+}
+
+func (x *AlarmLogs) GetEc() bool {
+	if x != nil {
+		return x.Ec
+	}
+	return false
+}
+
+func (x *AlarmLogs) GetDoor() bool {
+	if x != nil {
+		return x.Door
+	}
+	return false
+}
+
+func (x *AlarmLogs) GetWLeak() bool {
+	if x != nil {
+		return x.WLeak
+	}
+	return false
+}
+
+func (x *AlarmLogs) GetSms() bool {
+	if x != nil {
+		return x.Sms
+	}
+	return false
+}
+
+func (x *AlarmLogs) GetMaxTreshold() float32 {
+	if x != nil {
+		return x.MaxTreshold
+	}
+	return 0
+}
+
+func (x *AlarmLogs) GetSubmissionDate() *timestamp.Timestamp {
+	if x != nil {
+		return x.SubmissionDate
+	}
+	return nil
+}
+
 var File_als_als_proto protoreflect.FileDescriptor
 
 var file_als_als_proto_rawDesc = []byte{
@@ -979,62 +1687,164 @@ var file_als_als_proto_rawDesc = []byte{
 	0x65, 0x74, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
 	0x20, 0x0a, 0x05, 0x61, 0x6c, 0x61, 0x72, 0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a,
 	0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x52, 0x05, 0x61, 0x6c, 0x61, 0x72,
-	0x6d, 0x22, 0x58, 0x0a, 0x21, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6c, 0x64, 0x52,
-	0x6f, 0x6f, 0x6d, 0x52, 0x65, 0x73, 0x74, 0x72, 0x69, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x33, 0x0a, 0x07, 0x63, 0x6f, 0x6c, 0x64, 0x52, 0x65,
-	0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x43, 0x6f,
-	0x6c, 0x64, 0x52, 0x6f, 0x6f, 0x6d, 0x52, 0x65, 0x73, 0x74, 0x72, 0x69, 0x63, 0x74, 0x69, 0x6f,
-	0x6e, 0x73, 0x52, 0x07, 0x63, 0x6f, 0x6c, 0x64, 0x52, 0x65, 0x73, 0x22, 0x49, 0x0a, 0x13, 0x43,
-	0x72, 0x65, 0x61, 0x74, 0x65, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x32, 0x0a, 0x09, 0x72, 0x65, 0x71, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x41, 0x6c, 0x61, 0x72,
-	0x6d, 0x44, 0x61, 0x74, 0x65, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x09, 0x72, 0x65, 0x71,
-	0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x22, 0x4c, 0x0a, 0x14, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
-	0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x34,
-	0x0a, 0x0a, 0x72, 0x65, 0x73, 0x70, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x14, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x44, 0x61,
-	0x74, 0x65, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x0a, 0x72, 0x65, 0x73, 0x70, 0x46, 0x69,
-	0x6c, 0x74, 0x65, 0x72, 0x22, 0x4d, 0x0a, 0x17, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c,
-	0x61, 0x72, 0x6d, 0x44, 0x61, 0x74, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
-	0x32, 0x0a, 0x09, 0x72, 0x65, 0x71, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x18, 0x01, 0x20, 0x03,
-	0x28, 0x0b, 0x32, 0x14, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x44, 0x61,
-	0x74, 0x65, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x09, 0x72, 0x65, 0x71, 0x46, 0x69, 0x6c,
-	0x74, 0x65, 0x72, 0x22, 0x52, 0x0a, 0x18, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x61,
-	0x72, 0x6d, 0x44, 0x61, 0x74, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x36, 0x0a, 0x0c, 0x72, 0x65, 0x73, 0x70, 0x44, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x18,
-	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x41, 0x6c, 0x61, 0x72,
-	0x6d, 0x44, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x52, 0x0c, 0x72, 0x65, 0x73, 0x70, 0x44,
-	0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x32, 0x96, 0x03, 0x0a, 0x12, 0x41, 0x6c, 0x61, 0x72,
-	0x6d, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x42,
-	0x0a, 0x0b, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x12, 0x17, 0x2e,
-	0x61, 0x6c, 0x73, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x43, 0x72, 0x65,
-	0x61, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x22, 0x00, 0x12, 0x39, 0x0a, 0x08, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x12, 0x14,
-	0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x6c,
-	0x61, 0x72, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x4e, 0x0a,
-	0x15, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x44, 0x61, 0x74, 0x65,
-	0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x12, 0x18, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x43, 0x72, 0x65,
-	0x61, 0x74, 0x65, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x19, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x46, 0x69, 0x6c,
-	0x74, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x51, 0x0a,
-	0x10, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x44, 0x61, 0x74, 0x65,
-	0x73, 0x12, 0x1c, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c,
-	0x61, 0x72, 0x6d, 0x44, 0x61, 0x74, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x1d, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72,
-	0x6d, 0x44, 0x61, 0x74, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00,
-	0x12, 0x5e, 0x0a, 0x1a, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6c, 0x64, 0x52, 0x6f,
-	0x6f, 0x6d, 0x52, 0x65, 0x73, 0x74, 0x72, 0x69, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x26,
-	0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6c, 0x64, 0x52,
-	0x6f, 0x6f, 0x6d, 0x52, 0x65, 0x73, 0x74, 0x72, 0x69, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x00,
-	0x42, 0x45, 0x0a, 0x15, 0x69, 0x6f, 0x2e, 0x63, 0x68, 0x69, 0x72, 0x70, 0x73, 0x74, 0x61, 0x63,
-	0x6b, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x61, 0x6c, 0x73, 0x5a, 0x2c, 0x67, 0x69, 0x74, 0x68, 0x75,
-	0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x69, 0x62, 0x72, 0x61, 0x68, 0x69, 0x6d, 0x6f, 0x7a, 0x65,
-	0x6b, 0x69, 0x63, 0x69, 0x2f, 0x63, 0x68, 0x69, 0x72, 0x70, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2d,
-	0x61, 0x70, 0x69, 0x2f, 0x61, 0x6c, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6d, 0x22, 0x2d, 0x0a, 0x13, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x4c, 0x6f, 0x67,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x64, 0x65, 0x76, 0x45,
+	0x75, 0x69, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x64, 0x65, 0x76, 0x45, 0x75, 0x69,
+	0x22, 0x40, 0x0a, 0x14, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x4c, 0x6f, 0x67, 0x73,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x28, 0x0a, 0x07, 0x72, 0x65, 0x73, 0x70,
+	0x4c, 0x6f, 0x67, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x61, 0x6c, 0x73, 0x2e,
+	0x41, 0x6c, 0x61, 0x72, 0x6d, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x07, 0x72, 0x65, 0x73, 0x70, 0x4c,
+	0x6f, 0x67, 0x22, 0x58, 0x0a, 0x21, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6c, 0x64,
+	0x52, 0x6f, 0x6f, 0x6d, 0x52, 0x65, 0x73, 0x74, 0x72, 0x69, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x33, 0x0a, 0x07, 0x63, 0x6f, 0x6c, 0x64, 0x52,
+	0x65, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x43,
+	0x6f, 0x6c, 0x64, 0x52, 0x6f, 0x6f, 0x6d, 0x52, 0x65, 0x73, 0x74, 0x72, 0x69, 0x63, 0x74, 0x69,
+	0x6f, 0x6e, 0x73, 0x52, 0x07, 0x63, 0x6f, 0x6c, 0x64, 0x52, 0x65, 0x73, 0x22, 0x4d, 0x0a, 0x17,
+	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x44, 0x61, 0x74, 0x65, 0x73,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x32, 0x0a, 0x09, 0x72, 0x65, 0x71, 0x46, 0x69,
+	0x6c, 0x74, 0x65, 0x72, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x61, 0x6c, 0x73,
+	0x2e, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x44, 0x61, 0x74, 0x65, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72,
+	0x52, 0x09, 0x72, 0x65, 0x71, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x22, 0x52, 0x0a, 0x18, 0x43,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x44, 0x61, 0x74, 0x65, 0x73, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a, 0x0c, 0x72, 0x65, 0x73, 0x70, 0x44,
+	0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x12, 0x2e,
+	0x61, 0x6c, 0x73, 0x2e, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x44, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d,
+	0x65, 0x52, 0x0c, 0x72, 0x65, 0x73, 0x70, 0x44, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x22,
+	0x30, 0x0a, 0x14, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x44, 0x61, 0x74, 0x65, 0x73,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x6c, 0x61, 0x72, 0x6d,
+	0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x61, 0x6c, 0x61, 0x72, 0x6d, 0x49,
+	0x64, 0x22, 0x47, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x44, 0x61, 0x74,
+	0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x08, 0x72, 0x65,
+	0x73, 0x70, 0x44, 0x61, 0x74, 0x65, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x61,
+	0x6c, 0x73, 0x2e, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x44, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65,
+	0x52, 0x08, 0x72, 0x65, 0x73, 0x70, 0x44, 0x61, 0x74, 0x65, 0x22, 0x64, 0x0a, 0x12, 0x44, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x18, 0x0a, 0x07, 0x61, 0x6c, 0x61, 0x72, 0x6d, 0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x07, 0x61, 0x6c, 0x61, 0x72, 0x6d, 0x49, 0x44, 0x12, 0x16, 0x0a, 0x06, 0x75, 0x73,
+	0x65, 0x72, 0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72,
+	0x49, 0x44, 0x12, 0x1c, 0x0a, 0x09, 0x69, 0x70, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x69, 0x70, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73,
+	0x22, 0x32, 0x0a, 0x16, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x41, 0x6c,
+	0x61, 0x72, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x75, 0x73,
+	0x65, 0x72, 0x49, 0x64, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x03, 0x52, 0x07, 0x75, 0x73, 0x65,
+	0x72, 0x49, 0x64, 0x73, 0x22, 0x34, 0x0a, 0x18, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x65,
+	0x6e, 0x73, 0x6f, 0x72, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x18, 0x0a, 0x07, 0x64, 0x65, 0x76, 0x45, 0x75, 0x69, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28,
+	0x09, 0x52, 0x07, 0x64, 0x65, 0x76, 0x45, 0x75, 0x69, 0x73, 0x22, 0x2e, 0x0a, 0x16, 0x44, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x5a, 0x6f, 0x6e, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x7a, 0x6f, 0x6e, 0x65, 0x73, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x03, 0x52, 0x05, 0x7a, 0x6f, 0x6e, 0x65, 0x73, 0x22, 0x4a, 0x0a, 0x18, 0x44, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x44, 0x65, 0x76, 0x45, 0x75, 0x69, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x64, 0x65, 0x76, 0x65, 0x75, 0x69,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x64, 0x65, 0x76, 0x65, 0x75, 0x69, 0x12, 0x16,
+	0x0a, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06,
+	0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x22, 0x33, 0x0a, 0x17, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
+	0x41, 0x6c, 0x61, 0x72, 0x6d, 0x44, 0x61, 0x74, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x6c, 0x61, 0x72, 0x6d, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x07, 0x61, 0x6c, 0x61, 0x72, 0x6d, 0x49, 0x64, 0x22, 0x8d, 0x01, 0x0a, 0x15,
+	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x4c, 0x6f, 0x67, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x20, 0x0a, 0x05, 0x61, 0x6c, 0x61, 0x72, 0x6d, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x41, 0x6c, 0x61, 0x72, 0x6d,
+	0x52, 0x05, 0x61, 0x6c, 0x61, 0x72, 0x6d, 0x12, 0x16, 0x0a, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49,
+	0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x44, 0x12,
+	0x1c, 0x0a, 0x09, 0x69, 0x70, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x09, 0x69, 0x70, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x1c, 0x0a,
+	0x09, 0x69, 0x73, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x64, 0x18, 0x04, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x09, 0x69, 0x73, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x64, 0x22, 0x2d, 0x0a, 0x12, 0x47,
+	0x65, 0x74, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x17, 0x0a, 0x07, 0x64, 0x65, 0x76, 0x5f, 0x65, 0x75, 0x69, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x06, 0x64, 0x65, 0x76, 0x45, 0x75, 0x69, 0x22, 0x3f, 0x0a, 0x13, 0x47, 0x65,
+	0x74, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x28, 0x0a, 0x07, 0x72, 0x65, 0x73, 0x70, 0x4c, 0x6f, 0x67, 0x18, 0x01, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x4c, 0x6f,
+	0x67, 0x73, 0x52, 0x07, 0x72, 0x65, 0x73, 0x70, 0x4c, 0x6f, 0x67, 0x22, 0x8c, 0x03, 0x0a, 0x09,
+	0x41, 0x6c, 0x61, 0x72, 0x6d, 0x4c, 0x6f, 0x67, 0x73, 0x12, 0x17, 0x0a, 0x07, 0x64, 0x65, 0x76,
+	0x5f, 0x65, 0x75, 0x69, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x64, 0x65, 0x76, 0x45,
+	0x75, 0x69, 0x12, 0x20, 0x0a, 0x0b, 0x6d, 0x69, 0x6e, 0x54, 0x72, 0x65, 0x73, 0x68, 0x6f, 0x6c,
+	0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x02, 0x52, 0x0b, 0x6d, 0x69, 0x6e, 0x54, 0x72, 0x65, 0x73,
+	0x68, 0x6f, 0x6c, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x1c, 0x0a, 0x09,
+	0x69, 0x70, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x09, 0x69, 0x70, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x1c, 0x0a, 0x09, 0x69, 0x73,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x03, 0x52, 0x09, 0x69,
+	0x73, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x64, 0x12, 0x20, 0x0a, 0x0b, 0x74, 0x65, 0x6d, 0x70,
+	0x65, 0x72, 0x61, 0x74, 0x75, 0x72, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0b, 0x74,
+	0x65, 0x6d, 0x70, 0x65, 0x72, 0x61, 0x74, 0x75, 0x72, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x68, 0x75,
+	0x6d, 0x61, 0x64, 0x69, 0x74, 0x79, 0x18, 0x07, 0x20, 0x01, 0x28, 0x08, 0x52, 0x08, 0x68, 0x75,
+	0x6d, 0x61, 0x64, 0x69, 0x74, 0x79, 0x12, 0x0e, 0x0a, 0x02, 0x65, 0x63, 0x18, 0x08, 0x20, 0x01,
+	0x28, 0x08, 0x52, 0x02, 0x65, 0x63, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x6f, 0x6f, 0x72, 0x18, 0x09,
+	0x20, 0x01, 0x28, 0x08, 0x52, 0x04, 0x64, 0x6f, 0x6f, 0x72, 0x12, 0x15, 0x0a, 0x06, 0x77, 0x5f,
+	0x6c, 0x65, 0x61, 0x6b, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x08, 0x52, 0x05, 0x77, 0x4c, 0x65, 0x61,
+	0x6b, 0x12, 0x10, 0x0a, 0x03, 0x73, 0x6d, 0x73, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x08, 0x52, 0x03,
+	0x73, 0x6d, 0x73, 0x12, 0x20, 0x0a, 0x0b, 0x6d, 0x61, 0x78, 0x54, 0x72, 0x65, 0x73, 0x68, 0x6f,
+	0x6c, 0x64, 0x18, 0x0c, 0x20, 0x01, 0x28, 0x02, 0x52, 0x0b, 0x6d, 0x61, 0x78, 0x54, 0x72, 0x65,
+	0x73, 0x68, 0x6f, 0x6c, 0x64, 0x12, 0x43, 0x0a, 0x0f, 0x73, 0x75, 0x62, 0x6d, 0x69, 0x73, 0x73,
+	0x69, 0x6f, 0x6e, 0x5f, 0x64, 0x61, 0x74, 0x65, 0x18, 0x0d, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a,
+	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
+	0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x0e, 0x73, 0x75, 0x62, 0x6d,
+	0x69, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x44, 0x61, 0x74, 0x65, 0x32, 0x8f, 0x07, 0x0a, 0x12, 0x41,
+	0x6c, 0x61, 0x72, 0x6d, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63,
+	0x65, 0x12, 0x42, 0x0a, 0x0b, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d,
+	0x12, 0x17, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x61,
+	0x72, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x61, 0x6c, 0x73, 0x2e,
+	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x39, 0x0a, 0x08, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x61, 0x72,
+	0x6d, 0x12, 0x14, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x61, 0x72, 0x6d,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x47, 0x65,
+	0x74, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00,
+	0x12, 0x46, 0x0a, 0x0e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x4c,
+	0x6f, 0x67, 0x12, 0x1a, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41,
+	0x6c, 0x61, 0x72, 0x6d, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16,
+	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
+	0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x00, 0x12, 0x45, 0x0a, 0x0c, 0x47, 0x65, 0x74, 0x41,
+	0x6c, 0x61, 0x72, 0x6d, 0x4c, 0x6f, 0x67, 0x73, 0x12, 0x18, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x47,
+	0x65, 0x74, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x19, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x61, 0x72,
+	0x6d, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12,
+	0x51, 0x0a, 0x10, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x44, 0x61,
+	0x74, 0x65, 0x73, 0x12, 0x1c, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x41, 0x6c, 0x61, 0x72, 0x6d, 0x44, 0x61, 0x74, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x1d, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x6c,
+	0x61, 0x72, 0x6d, 0x44, 0x61, 0x74, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0x00, 0x12, 0x48, 0x0a, 0x0d, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x44, 0x61,
+	0x74, 0x65, 0x73, 0x12, 0x19, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x61,
+	0x72, 0x6d, 0x44, 0x61, 0x74, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1a,
+	0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x44, 0x61, 0x74,
+	0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x4a, 0x0a, 0x10,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x44, 0x61, 0x74, 0x65, 0x73,
+	0x12, 0x1c, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x41, 0x6c, 0x61,
+	0x72, 0x6d, 0x44, 0x61, 0x74, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16,
+	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
+	0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x00, 0x12, 0x40, 0x0a, 0x0b, 0x44, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x12, 0x17, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x44, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62,
+	0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x00, 0x12, 0x48, 0x0a, 0x0f, 0x44, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x12, 0x1b, 0x2e,
+	0x61, 0x6c, 0x73, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x41, 0x6c,
+	0x61, 0x72, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f,
+	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70,
+	0x74, 0x79, 0x22, 0x00, 0x12, 0x4c, 0x0a, 0x11, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x65,
+	0x6e, 0x73, 0x6f, 0x72, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x12, 0x1d, 0x2e, 0x61, 0x6c, 0x73, 0x2e,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x41, 0x6c, 0x61, 0x72,
+	0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79,
+	0x22, 0x00, 0x12, 0x48, 0x0a, 0x0f, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x5a, 0x6f, 0x6e, 0x65,
+	0x41, 0x6c, 0x61, 0x72, 0x6d, 0x12, 0x1b, 0x2e, 0x61, 0x6c, 0x73, 0x2e, 0x44, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x5a, 0x6f, 0x6e, 0x65, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x00, 0x12, 0x5e, 0x0a, 0x1a,
+	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6c, 0x64, 0x52, 0x6f, 0x6f, 0x6d, 0x52, 0x65,
+	0x73, 0x74, 0x72, 0x69, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x26, 0x2e, 0x61, 0x6c, 0x73,
+	0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6c, 0x64, 0x52, 0x6f, 0x6f, 0x6d, 0x52,
+	0x65, 0x73, 0x74, 0x72, 0x69, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x00, 0x42, 0x45, 0x0a, 0x15,
+	0x69, 0x6f, 0x2e, 0x63, 0x68, 0x69, 0x72, 0x70, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2e, 0x61, 0x70,
+	0x69, 0x2e, 0x61, 0x6c, 0x73, 0x5a, 0x2c, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
+	0x6d, 0x2f, 0x69, 0x62, 0x72, 0x61, 0x68, 0x69, 0x6d, 0x6f, 0x7a, 0x65, 0x6b, 0x69, 0x63, 0x69,
+	0x2f, 0x63, 0x68, 0x69, 0x72, 0x70, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2d, 0x61, 0x70, 0x69, 0x2f,
+	0x61, 0x6c, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1049,7 +1859,7 @@ func file_als_als_proto_rawDescGZIP() []byte {
 	return file_als_als_proto_rawDescData
 }
 
-var file_als_als_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_als_als_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_als_als_proto_goTypes = []interface{}{
 	(*Alarm)(nil),                             // 0: als.Alarm
 	(*AlarmDateFilter)(nil),                   // 1: als.AlarmDateFilter
@@ -1059,37 +1869,67 @@ var file_als_als_proto_goTypes = []interface{}{
 	(*CreateAlarmResponse)(nil),               // 5: als.CreateAlarmResponse
 	(*GetAlarmRequest)(nil),                   // 6: als.GetAlarmRequest
 	(*GetAlarmResponse)(nil),                  // 7: als.GetAlarmResponse
-	(*CreateColdRoomRestrictionsRequest)(nil), // 8: als.CreateColdRoomRestrictionsRequest
-	(*CreateFilterRequest)(nil),               // 9: als.CreateFilterRequest
-	(*CreateFilterResponse)(nil),              // 10: als.CreateFilterResponse
+	(*GetAlarmLogsRequest)(nil),               // 8: als.GetAlarmLogsRequest
+	(*GetAlarmLogsResponse)(nil),              // 9: als.GetAlarmLogsResponse
+	(*CreateColdRoomRestrictionsRequest)(nil), // 10: als.CreateColdRoomRestrictionsRequest
 	(*CreateAlarmDatesRequest)(nil),           // 11: als.CreateAlarmDatesRequest
 	(*CreateAlarmDatesResponse)(nil),          // 12: als.CreateAlarmDatesResponse
-	(*empty.Empty)(nil),                       // 13: google.protobuf.Empty
+	(*GetAlarmDatesRequest)(nil),              // 13: als.GetAlarmDatesRequest
+	(*GetAlarmDatesResponse)(nil),             // 14: als.GetAlarmDatesResponse
+	(*DeleteAlarmRequest)(nil),                // 15: als.DeleteAlarmRequest
+	(*DeleteUserAlarmRequest)(nil),            // 16: als.DeleteUserAlarmRequest
+	(*DeleteSensorAlarmRequest)(nil),          // 17: als.DeleteSensorAlarmRequest
+	(*DeleteZoneAlarmRequest)(nil),            // 18: als.DeleteZoneAlarmRequest
+	(*DeleteAlarmDevEuiRequest)(nil),          // 19: als.DeleteAlarmDevEuiRequest
+	(*DeleteAlarmDatesRequest)(nil),           // 20: als.DeleteAlarmDatesRequest
+	(*CreateAlarmLogRequest)(nil),             // 21: als.CreateAlarmLogRequest
+	(*GetAlarmLogRequest)(nil),                // 22: als.GetAlarmLogRequest
+	(*GetAlarmLogResponse)(nil),               // 23: als.GetAlarmLogResponse
+	(*AlarmLogs)(nil),                         // 24: als.AlarmLogs
+	(*timestamp.Timestamp)(nil),               // 25: google.protobuf.Timestamp
+	(*empty.Empty)(nil),                       // 26: google.protobuf.Empty
 }
 var file_als_als_proto_depIdxs = []int32{
 	0,  // 0: als.CreateAlarmRequest.alarm:type_name -> als.Alarm
 	0,  // 1: als.CreateAlarmResponse.alarm:type_name -> als.Alarm
 	0,  // 2: als.GetAlarmResponse.alarm:type_name -> als.Alarm
-	2,  // 3: als.CreateColdRoomRestrictionsRequest.coldRes:type_name -> als.ColdRoomRestrictions
-	1,  // 4: als.CreateFilterRequest.reqFilter:type_name -> als.AlarmDateFilter
-	1,  // 5: als.CreateFilterResponse.respFilter:type_name -> als.AlarmDateFilter
-	1,  // 6: als.CreateAlarmDatesRequest.reqFilter:type_name -> als.AlarmDateFilter
-	3,  // 7: als.CreateAlarmDatesResponse.respDateTime:type_name -> als.AlarmDateTime
-	4,  // 8: als.AlarmServerService.CreateAlarm:input_type -> als.CreateAlarmRequest
-	6,  // 9: als.AlarmServerService.GetAlarm:input_type -> als.GetAlarmRequest
-	9,  // 10: als.AlarmServerService.CreateAlarmDateFilter:input_type -> als.CreateFilterRequest
-	11, // 11: als.AlarmServerService.CreateAlarmDates:input_type -> als.CreateAlarmDatesRequest
-	8,  // 12: als.AlarmServerService.CreateColdRoomRestrictions:input_type -> als.CreateColdRoomRestrictionsRequest
-	5,  // 13: als.AlarmServerService.CreateAlarm:output_type -> als.CreateAlarmResponse
-	7,  // 14: als.AlarmServerService.GetAlarm:output_type -> als.GetAlarmResponse
-	10, // 15: als.AlarmServerService.CreateAlarmDateFilter:output_type -> als.CreateFilterResponse
-	12, // 16: als.AlarmServerService.CreateAlarmDates:output_type -> als.CreateAlarmDatesResponse
-	13, // 17: als.AlarmServerService.CreateColdRoomRestrictions:output_type -> google.protobuf.Empty
-	13, // [13:18] is the sub-list for method output_type
-	8,  // [8:13] is the sub-list for method input_type
-	8,  // [8:8] is the sub-list for extension type_name
-	8,  // [8:8] is the sub-list for extension extendee
-	0,  // [0:8] is the sub-list for field type_name
+	24, // 3: als.GetAlarmLogsResponse.respLog:type_name -> als.AlarmLogs
+	2,  // 4: als.CreateColdRoomRestrictionsRequest.coldRes:type_name -> als.ColdRoomRestrictions
+	1,  // 5: als.CreateAlarmDatesRequest.reqFilter:type_name -> als.AlarmDateFilter
+	3,  // 6: als.CreateAlarmDatesResponse.respDateTime:type_name -> als.AlarmDateTime
+	3,  // 7: als.GetAlarmDatesResponse.respDate:type_name -> als.AlarmDateTime
+	0,  // 8: als.CreateAlarmLogRequest.alarm:type_name -> als.Alarm
+	24, // 9: als.GetAlarmLogResponse.respLog:type_name -> als.AlarmLogs
+	25, // 10: als.AlarmLogs.submission_date:type_name -> google.protobuf.Timestamp
+	4,  // 11: als.AlarmServerService.CreateAlarm:input_type -> als.CreateAlarmRequest
+	6,  // 12: als.AlarmServerService.GetAlarm:input_type -> als.GetAlarmRequest
+	21, // 13: als.AlarmServerService.CreateAlarmLog:input_type -> als.CreateAlarmLogRequest
+	8,  // 14: als.AlarmServerService.GetAlarmLogs:input_type -> als.GetAlarmLogsRequest
+	11, // 15: als.AlarmServerService.CreateAlarmDates:input_type -> als.CreateAlarmDatesRequest
+	13, // 16: als.AlarmServerService.GetAlarmDates:input_type -> als.GetAlarmDatesRequest
+	20, // 17: als.AlarmServerService.DeleteAlarmDates:input_type -> als.DeleteAlarmDatesRequest
+	15, // 18: als.AlarmServerService.DeleteAlarm:input_type -> als.DeleteAlarmRequest
+	16, // 19: als.AlarmServerService.DeleteUserAlarm:input_type -> als.DeleteUserAlarmRequest
+	17, // 20: als.AlarmServerService.DeleteSensorAlarm:input_type -> als.DeleteSensorAlarmRequest
+	18, // 21: als.AlarmServerService.DeleteZoneAlarm:input_type -> als.DeleteZoneAlarmRequest
+	10, // 22: als.AlarmServerService.CreateColdRoomRestrictions:input_type -> als.CreateColdRoomRestrictionsRequest
+	5,  // 23: als.AlarmServerService.CreateAlarm:output_type -> als.CreateAlarmResponse
+	7,  // 24: als.AlarmServerService.GetAlarm:output_type -> als.GetAlarmResponse
+	26, // 25: als.AlarmServerService.CreateAlarmLog:output_type -> google.protobuf.Empty
+	9,  // 26: als.AlarmServerService.GetAlarmLogs:output_type -> als.GetAlarmLogsResponse
+	12, // 27: als.AlarmServerService.CreateAlarmDates:output_type -> als.CreateAlarmDatesResponse
+	14, // 28: als.AlarmServerService.GetAlarmDates:output_type -> als.GetAlarmDatesResponse
+	26, // 29: als.AlarmServerService.DeleteAlarmDates:output_type -> google.protobuf.Empty
+	26, // 30: als.AlarmServerService.DeleteAlarm:output_type -> google.protobuf.Empty
+	26, // 31: als.AlarmServerService.DeleteUserAlarm:output_type -> google.protobuf.Empty
+	26, // 32: als.AlarmServerService.DeleteSensorAlarm:output_type -> google.protobuf.Empty
+	26, // 33: als.AlarmServerService.DeleteZoneAlarm:output_type -> google.protobuf.Empty
+	26, // 34: als.AlarmServerService.CreateColdRoomRestrictions:output_type -> google.protobuf.Empty
+	23, // [23:35] is the sub-list for method output_type
+	11, // [11:23] is the sub-list for method input_type
+	11, // [11:11] is the sub-list for extension type_name
+	11, // [11:11] is the sub-list for extension extendee
+	0,  // [0:11] is the sub-list for field type_name
 }
 
 func init() { file_als_als_proto_init() }
@@ -1195,7 +2035,7 @@ func file_als_als_proto_init() {
 			}
 		}
 		file_als_als_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateColdRoomRestrictionsRequest); i {
+			switch v := v.(*GetAlarmLogsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1207,7 +2047,7 @@ func file_als_als_proto_init() {
 			}
 		}
 		file_als_als_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateFilterRequest); i {
+			switch v := v.(*GetAlarmLogsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1219,7 +2059,7 @@ func file_als_als_proto_init() {
 			}
 		}
 		file_als_als_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateFilterResponse); i {
+			switch v := v.(*CreateColdRoomRestrictionsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1254,6 +2094,150 @@ func file_als_als_proto_init() {
 				return nil
 			}
 		}
+		file_als_als_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetAlarmDatesRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_als_als_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetAlarmDatesResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_als_als_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteAlarmRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_als_als_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteUserAlarmRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_als_als_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteSensorAlarmRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_als_als_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteZoneAlarmRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_als_als_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteAlarmDevEuiRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_als_als_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteAlarmDatesRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_als_als_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateAlarmLogRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_als_als_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetAlarmLogRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_als_als_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetAlarmLogResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_als_als_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AlarmLogs); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -1261,7 +2245,7 @@ func file_als_als_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_als_als_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   13,
+			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -1290,8 +2274,15 @@ type AlarmServerServiceClient interface {
 	// CreateDevice creates the given device.
 	CreateAlarm(ctx context.Context, in *CreateAlarmRequest, opts ...grpc.CallOption) (*CreateAlarmResponse, error)
 	GetAlarm(ctx context.Context, in *GetAlarmRequest, opts ...grpc.CallOption) (*GetAlarmResponse, error)
-	CreateAlarmDateFilter(ctx context.Context, in *CreateFilterRequest, opts ...grpc.CallOption) (*CreateFilterResponse, error)
+	CreateAlarmLog(ctx context.Context, in *CreateAlarmLogRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	GetAlarmLogs(ctx context.Context, in *GetAlarmLogsRequest, opts ...grpc.CallOption) (*GetAlarmLogsResponse, error)
 	CreateAlarmDates(ctx context.Context, in *CreateAlarmDatesRequest, opts ...grpc.CallOption) (*CreateAlarmDatesResponse, error)
+	GetAlarmDates(ctx context.Context, in *GetAlarmDatesRequest, opts ...grpc.CallOption) (*GetAlarmDatesResponse, error)
+	DeleteAlarmDates(ctx context.Context, in *DeleteAlarmDatesRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	DeleteAlarm(ctx context.Context, in *DeleteAlarmRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	DeleteUserAlarm(ctx context.Context, in *DeleteUserAlarmRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	DeleteSensorAlarm(ctx context.Context, in *DeleteSensorAlarmRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	DeleteZoneAlarm(ctx context.Context, in *DeleteZoneAlarmRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// rpc ListAlarm(ListAlarmRequest) returns (ListAlarmResponse){}
 	// rpc UpdateAlarm(UpdateAlarmRequest) returns (GetAlarmResponse){}
 	// rpc DeleteAlarm(DeleteAlarmRequest) returns (google.protobuf.Empty){}
@@ -1332,9 +2323,18 @@ func (c *alarmServerServiceClient) GetAlarm(ctx context.Context, in *GetAlarmReq
 	return out, nil
 }
 
-func (c *alarmServerServiceClient) CreateAlarmDateFilter(ctx context.Context, in *CreateFilterRequest, opts ...grpc.CallOption) (*CreateFilterResponse, error) {
-	out := new(CreateFilterResponse)
-	err := c.cc.Invoke(ctx, "/als.AlarmServerService/CreateAlarmDateFilter", in, out, opts...)
+func (c *alarmServerServiceClient) CreateAlarmLog(ctx context.Context, in *CreateAlarmLogRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/als.AlarmServerService/CreateAlarmLog", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *alarmServerServiceClient) GetAlarmLogs(ctx context.Context, in *GetAlarmLogsRequest, opts ...grpc.CallOption) (*GetAlarmLogsResponse, error) {
+	out := new(GetAlarmLogsResponse)
+	err := c.cc.Invoke(ctx, "/als.AlarmServerService/GetAlarmLogs", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1344,6 +2344,60 @@ func (c *alarmServerServiceClient) CreateAlarmDateFilter(ctx context.Context, in
 func (c *alarmServerServiceClient) CreateAlarmDates(ctx context.Context, in *CreateAlarmDatesRequest, opts ...grpc.CallOption) (*CreateAlarmDatesResponse, error) {
 	out := new(CreateAlarmDatesResponse)
 	err := c.cc.Invoke(ctx, "/als.AlarmServerService/CreateAlarmDates", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *alarmServerServiceClient) GetAlarmDates(ctx context.Context, in *GetAlarmDatesRequest, opts ...grpc.CallOption) (*GetAlarmDatesResponse, error) {
+	out := new(GetAlarmDatesResponse)
+	err := c.cc.Invoke(ctx, "/als.AlarmServerService/GetAlarmDates", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *alarmServerServiceClient) DeleteAlarmDates(ctx context.Context, in *DeleteAlarmDatesRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/als.AlarmServerService/DeleteAlarmDates", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *alarmServerServiceClient) DeleteAlarm(ctx context.Context, in *DeleteAlarmRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/als.AlarmServerService/DeleteAlarm", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *alarmServerServiceClient) DeleteUserAlarm(ctx context.Context, in *DeleteUserAlarmRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/als.AlarmServerService/DeleteUserAlarm", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *alarmServerServiceClient) DeleteSensorAlarm(ctx context.Context, in *DeleteSensorAlarmRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/als.AlarmServerService/DeleteSensorAlarm", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *alarmServerServiceClient) DeleteZoneAlarm(ctx context.Context, in *DeleteZoneAlarmRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/als.AlarmServerService/DeleteZoneAlarm", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1364,8 +2418,15 @@ type AlarmServerServiceServer interface {
 	// CreateDevice creates the given device.
 	CreateAlarm(context.Context, *CreateAlarmRequest) (*CreateAlarmResponse, error)
 	GetAlarm(context.Context, *GetAlarmRequest) (*GetAlarmResponse, error)
-	CreateAlarmDateFilter(context.Context, *CreateFilterRequest) (*CreateFilterResponse, error)
+	CreateAlarmLog(context.Context, *CreateAlarmLogRequest) (*empty.Empty, error)
+	GetAlarmLogs(context.Context, *GetAlarmLogsRequest) (*GetAlarmLogsResponse, error)
 	CreateAlarmDates(context.Context, *CreateAlarmDatesRequest) (*CreateAlarmDatesResponse, error)
+	GetAlarmDates(context.Context, *GetAlarmDatesRequest) (*GetAlarmDatesResponse, error)
+	DeleteAlarmDates(context.Context, *DeleteAlarmDatesRequest) (*empty.Empty, error)
+	DeleteAlarm(context.Context, *DeleteAlarmRequest) (*empty.Empty, error)
+	DeleteUserAlarm(context.Context, *DeleteUserAlarmRequest) (*empty.Empty, error)
+	DeleteSensorAlarm(context.Context, *DeleteSensorAlarmRequest) (*empty.Empty, error)
+	DeleteZoneAlarm(context.Context, *DeleteZoneAlarmRequest) (*empty.Empty, error)
 	// rpc ListAlarm(ListAlarmRequest) returns (ListAlarmResponse){}
 	// rpc UpdateAlarm(UpdateAlarmRequest) returns (GetAlarmResponse){}
 	// rpc DeleteAlarm(DeleteAlarmRequest) returns (google.protobuf.Empty){}
@@ -1390,11 +2451,32 @@ func (*UnimplementedAlarmServerServiceServer) CreateAlarm(context.Context, *Crea
 func (*UnimplementedAlarmServerServiceServer) GetAlarm(context.Context, *GetAlarmRequest) (*GetAlarmResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAlarm not implemented")
 }
-func (*UnimplementedAlarmServerServiceServer) CreateAlarmDateFilter(context.Context, *CreateFilterRequest) (*CreateFilterResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateAlarmDateFilter not implemented")
+func (*UnimplementedAlarmServerServiceServer) CreateAlarmLog(context.Context, *CreateAlarmLogRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateAlarmLog not implemented")
+}
+func (*UnimplementedAlarmServerServiceServer) GetAlarmLogs(context.Context, *GetAlarmLogsRequest) (*GetAlarmLogsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAlarmLogs not implemented")
 }
 func (*UnimplementedAlarmServerServiceServer) CreateAlarmDates(context.Context, *CreateAlarmDatesRequest) (*CreateAlarmDatesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateAlarmDates not implemented")
+}
+func (*UnimplementedAlarmServerServiceServer) GetAlarmDates(context.Context, *GetAlarmDatesRequest) (*GetAlarmDatesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAlarmDates not implemented")
+}
+func (*UnimplementedAlarmServerServiceServer) DeleteAlarmDates(context.Context, *DeleteAlarmDatesRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteAlarmDates not implemented")
+}
+func (*UnimplementedAlarmServerServiceServer) DeleteAlarm(context.Context, *DeleteAlarmRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteAlarm not implemented")
+}
+func (*UnimplementedAlarmServerServiceServer) DeleteUserAlarm(context.Context, *DeleteUserAlarmRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserAlarm not implemented")
+}
+func (*UnimplementedAlarmServerServiceServer) DeleteSensorAlarm(context.Context, *DeleteSensorAlarmRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSensorAlarm not implemented")
+}
+func (*UnimplementedAlarmServerServiceServer) DeleteZoneAlarm(context.Context, *DeleteZoneAlarmRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteZoneAlarm not implemented")
 }
 func (*UnimplementedAlarmServerServiceServer) CreateColdRoomRestrictions(context.Context, *CreateColdRoomRestrictionsRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateColdRoomRestrictions not implemented")
@@ -1440,20 +2522,38 @@ func _AlarmServerService_GetAlarm_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AlarmServerService_CreateAlarmDateFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateFilterRequest)
+func _AlarmServerService_CreateAlarmLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateAlarmLogRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AlarmServerServiceServer).CreateAlarmDateFilter(ctx, in)
+		return srv.(AlarmServerServiceServer).CreateAlarmLog(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/als.AlarmServerService/CreateAlarmDateFilter",
+		FullMethod: "/als.AlarmServerService/CreateAlarmLog",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlarmServerServiceServer).CreateAlarmDateFilter(ctx, req.(*CreateFilterRequest))
+		return srv.(AlarmServerServiceServer).CreateAlarmLog(ctx, req.(*CreateAlarmLogRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AlarmServerService_GetAlarmLogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAlarmLogsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AlarmServerServiceServer).GetAlarmLogs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/als.AlarmServerService/GetAlarmLogs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AlarmServerServiceServer).GetAlarmLogs(ctx, req.(*GetAlarmLogsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1472,6 +2572,114 @@ func _AlarmServerService_CreateAlarmDates_Handler(srv interface{}, ctx context.C
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AlarmServerServiceServer).CreateAlarmDates(ctx, req.(*CreateAlarmDatesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AlarmServerService_GetAlarmDates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAlarmDatesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AlarmServerServiceServer).GetAlarmDates(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/als.AlarmServerService/GetAlarmDates",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AlarmServerServiceServer).GetAlarmDates(ctx, req.(*GetAlarmDatesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AlarmServerService_DeleteAlarmDates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteAlarmDatesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AlarmServerServiceServer).DeleteAlarmDates(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/als.AlarmServerService/DeleteAlarmDates",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AlarmServerServiceServer).DeleteAlarmDates(ctx, req.(*DeleteAlarmDatesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AlarmServerService_DeleteAlarm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteAlarmRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AlarmServerServiceServer).DeleteAlarm(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/als.AlarmServerService/DeleteAlarm",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AlarmServerServiceServer).DeleteAlarm(ctx, req.(*DeleteAlarmRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AlarmServerService_DeleteUserAlarm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteUserAlarmRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AlarmServerServiceServer).DeleteUserAlarm(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/als.AlarmServerService/DeleteUserAlarm",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AlarmServerServiceServer).DeleteUserAlarm(ctx, req.(*DeleteUserAlarmRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AlarmServerService_DeleteSensorAlarm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteSensorAlarmRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AlarmServerServiceServer).DeleteSensorAlarm(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/als.AlarmServerService/DeleteSensorAlarm",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AlarmServerServiceServer).DeleteSensorAlarm(ctx, req.(*DeleteSensorAlarmRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AlarmServerService_DeleteZoneAlarm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteZoneAlarmRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AlarmServerServiceServer).DeleteZoneAlarm(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/als.AlarmServerService/DeleteZoneAlarm",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AlarmServerServiceServer).DeleteZoneAlarm(ctx, req.(*DeleteZoneAlarmRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1507,12 +2715,40 @@ var _AlarmServerService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _AlarmServerService_GetAlarm_Handler,
 		},
 		{
-			MethodName: "CreateAlarmDateFilter",
-			Handler:    _AlarmServerService_CreateAlarmDateFilter_Handler,
+			MethodName: "CreateAlarmLog",
+			Handler:    _AlarmServerService_CreateAlarmLog_Handler,
+		},
+		{
+			MethodName: "GetAlarmLogs",
+			Handler:    _AlarmServerService_GetAlarmLogs_Handler,
 		},
 		{
 			MethodName: "CreateAlarmDates",
 			Handler:    _AlarmServerService_CreateAlarmDates_Handler,
+		},
+		{
+			MethodName: "GetAlarmDates",
+			Handler:    _AlarmServerService_GetAlarmDates_Handler,
+		},
+		{
+			MethodName: "DeleteAlarmDates",
+			Handler:    _AlarmServerService_DeleteAlarmDates_Handler,
+		},
+		{
+			MethodName: "DeleteAlarm",
+			Handler:    _AlarmServerService_DeleteAlarm_Handler,
+		},
+		{
+			MethodName: "DeleteUserAlarm",
+			Handler:    _AlarmServerService_DeleteUserAlarm_Handler,
+		},
+		{
+			MethodName: "DeleteSensorAlarm",
+			Handler:    _AlarmServerService_DeleteSensorAlarm_Handler,
+		},
+		{
+			MethodName: "DeleteZoneAlarm",
+			Handler:    _AlarmServerService_DeleteZoneAlarm_Handler,
 		},
 		{
 			MethodName: "CreateColdRoomRestrictions",
