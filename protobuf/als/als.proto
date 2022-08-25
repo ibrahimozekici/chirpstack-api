@@ -14,6 +14,8 @@ service AlarmServerService {
     // CreateDevice creates the given device.
     rpc CreateAlarm(CreateAlarmRequest) returns (CreateAlarmResponse) {}
     rpc GetAlarm(GetAlarmRequest) returns (GetAlarmResponse){}
+	rpc CreateAlarmDateFilter(CreateFilterRequest) returns (CreateFilterResponse){}
+	rpc CreateAlarmDates(CreateAlarmDatesRequest) returns (CreateAlarmDatesResponse){}
 	// rpc ListAlarm(ListAlarmRequest) returns (ListAlarmResponse){}
 	// rpc UpdateAlarm(UpdateAlarmRequest) returns (GetAlarmResponse){}
 	// rpc DeleteAlarm(DeleteAlarmRequest) returns (google.protobuf.Empty){}
@@ -50,13 +52,14 @@ message Alarm{
 	bool isActive = 19;
 }
 
-// message AlarmDateTime {
-//     int64 id = 1;
-//     int64 alarm_id = 2;
-//     int64 alarm_day = 3 ;
-//     float alarm_start_time = 4;
-//     float alarm_end_time = 5;
-// }
+
+message AlarmDateFilter{
+	int64 ID = 1;
+	int64 alarmId = 2;
+	int64 alarmDay=3;
+	float alarmStartTime =4;
+	float alarmEndTime = 5;
+}
 
 message ColdRoomRestrictions {
     int64 id = 1;
@@ -65,6 +68,18 @@ message ColdRoomRestrictions {
 	int64 defrostTime = 4;
     int64 defrostFrq = 5;
 	int64 alarmTime = 6;
+}
+
+message AlarmDateTime {
+    int64 id = 1;
+
+    int64 alarm_id = 2;
+
+    int64 alarm_day = 3;
+
+    float alarm_start_time = 4;
+
+    float alarm_end_time = 5;
 }
 
 // message ListAlarm{
@@ -92,6 +107,22 @@ message GetAlarmResponse{
 
 message CreateColdRoomRestrictionsRequest{
 	ColdRoomRestrictions coldRes = 1;
+}
+
+message CreateFilterRequest{
+	AlarmDateFilter reqFilter = 1;
+}
+
+message CreateFilterResponse{
+	AlarmDateFilter respFilter =1;
+}
+
+message CreateAlarmDatesRequest{
+	repeated AlarmDateFilter reqFilter = 1;
+}
+
+message CreateAlarmDatesResponse{
+	repeated AlarmDateTime respDateTime = 1;
 }
 
 // message ListAlarmRequest{
