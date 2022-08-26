@@ -23,18 +23,10 @@ service AlarmServerService {
 	rpc DeleteUserAlarm(DeleteUserAlarmRequest) returns (google.protobuf.Empty){}
 	rpc DeleteSensorAlarm(DeleteSensorAlarmRequest) returns (google.protobuf.Empty){}
 	rpc DeleteZoneAlarm(DeleteZoneAlarmRequest) returns (google.protobuf.Empty){}
-
-	// rpc ListAlarm(ListAlarmRequest) returns (ListAlarmResponse){}
-	// rpc UpdateAlarm(UpdateAlarmRequest) returns (GetAlarmResponse){}
-	// rpc DeleteAlarm(DeleteAlarmRequest) returns (google.protobuf.Empty){}
-	// rpc ListAllOrganizationAlarms(ListOrganizationAlarmRequest) returns (ListOrganizationAlarmResponse){}
-	// rpc CreateMultipleAlarms(CreateMultipleAlarmRequest) returns (CreateMultipleAlarmResponse){}
-	// rpc DeleteMultipleAlarms(DeleteMultipleAlarmRequest) returns (google.protobuf.Empty){}
-	// rpc DeleteSensorAlarms(DeleteMultipleDevAlarmRequest) returns (google.protobuf.Empty){}
-	// rpc DeleteZoneAlarms(DeleteMultipleZoneAlarmRequest) returns (google.protobuf.Empty){}
-	// rpc CreateAlarmDateTime(CreateAlarmDateTimeRequest) returns (CreateAlarmDateResponse){}
-	// rpc CreateAlarmDates(CreateAlarmDateRequest) returns (CreateAlarmDateResponse){}
-	// rpc GetAlarmLogs(GetAlarmLogRequest) returns (GetAlarmLogResponse){}
+	rpc DeleteAlarmDevEui(DeleteAlarmDevEuiRequest) returns (google.protobuf.Empty){}
+	rpc UpdateAlarm(UpdateAlarmRequest) returns (google.protobuf.Empty){}
+	rpc GetAlarmList(GetAlarmListRequest) returns (GetAlarmListResponse){}
+	rpc GetOrganizationAlarmList(GetOrganizationAlarmListRequest) returns (GetOrganizationAlarmListResponse){}
 	rpc CreateColdRoomRestrictions(CreateColdRoomRestrictionsRequest) returns (google.protobuf.Empty){}
 }
 
@@ -58,6 +50,56 @@ message Alarm{
 	float alarmStopTime = 17;
 	int64 zoneCategoryID = 18;
 	bool isActive = 19;
+}
+
+message OrganizationAlarm{
+	int64 id=1;
+	string devEui = 2;
+	float minTreshold = 3;
+	float maxTreshold = 4;
+	bool sms = 5;
+	bool email = 6;
+	bool notification = 7;
+	bool temperature = 8;
+	bool humadity = 9;
+	bool ec = 10;
+	bool door = 11;
+	bool wLeak = 12;
+	int64 userID = 13;
+	string ipAddress = 14;
+	bool isTimeLimitActive = 15;
+	float alarmStartTime = 16;
+	float alarmStopTime = 17;
+	int64 zoneCategoryID = 18;
+	bool isActive = 19;
+	string zoneName = 20;
+	string deviceName = 21;
+	string userName = 22;
+}
+
+message AlarmWithDates{
+	int64 id=1;
+	string devEui = 2;
+	float minTreshold = 3;
+	float maxTreshold = 4;
+	bool sms = 5;
+	bool email = 6;
+	bool notification = 7;
+	bool temperature = 8;
+	bool humadity = 9;
+	bool ec = 10;
+	bool door = 11;
+	bool wLeak = 12;
+	int64 userID = 13;
+	string ipAddress = 14;
+	bool isTimeLimitActive = 15;
+	int64 zoneCategoryID = 16;
+	bool isActive = 17;
+	float alarmStartTime2 = 18;
+	float alarmStopTime2 = 19;
+	int64 alarmDay = 20;
+	int64 alarmStartTime = 21;
+	int64 alarmEndTime = 22;
 }
 
 message AlarmDateFilter{
@@ -110,6 +152,11 @@ message GetAlarmRequest{
 
 message GetAlarmResponse{
     Alarm alarm = 1;
+}
+
+message UpdateAlarmRequest{
+	string alarmID = 1;
+	Alarm alarm = 2;
 }
 
 message GetAlarmLogsRequest{
@@ -175,24 +222,20 @@ message CreateAlarmLogRequest{
 	int64 isDeleted = 4;
 }
 
-// message ListAlarmRequest{
-// 	int64 limit = 1;
-// 	string dev_eui=2;
-// 	int64 userId=3;
-// }
-
-// message ListAlarmResponse{
-// 	int64 limit=1;
-// 	string dev_eui=2;
-// 	int64 userId=3;
-// }
-
-message GetAlarmLogRequest{
-	string dev_eui=1;
+message GetAlarmListRequest{
+	AlarmFilters filter = 1;
 }
 
-message GetAlarmLogResponse{
-	repeated AlarmLogs respLog =1;
+message GetAlarmListResponse{
+	repeated Alarm list =1;
+}
+
+message GetOrganizationAlarmListRequest{
+	int64 organizationID = 1;
+}
+
+message GetOrganizationAlarmListResponse{
+	repeated OrganizationAlarm respList = 1;
 }
 
 message AlarmLogs{
@@ -209,6 +252,12 @@ message AlarmLogs{
 	bool sms=11;
 	float maxTreshold=12;
 	google.protobuf.Timestamp submission_date = 13;
+}
+
+message AlarmFilters{
+	int64 limit =1;
+	string devEui = 2;
+	int64 userID = 3;
 }
 
 
