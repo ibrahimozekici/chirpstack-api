@@ -228,7 +228,6 @@ message GetAlarmListRequest{
 
 message GetAlarmListResponse{
 	repeated Alarm respList =1;
-	repeated AlarmDateTime respDate = 2;
 }
 
 message GetOrganizationAlarmListRequest{
@@ -237,7 +236,6 @@ message GetOrganizationAlarmListRequest{
 
 message GetOrganizationAlarmListResponse{
 	repeated OrganizationAlarm respList = 1;
-	repeated AlarmDateTime respDate = 2;
 }
 
 message AlarmLogs{
