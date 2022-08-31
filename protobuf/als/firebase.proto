@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package als;
+
+option go_package = "github.com/ibrahimozekici/chirpstack-api/als";
+option java_package = "io.chirpstack.api.als";
+
+
+service FirebaseService{
+
+}
+
+message FirebaseNotification{
+    FirebaseNotificationData notification = 1;
+    string to = 2;
+}
+
+message FirebaseData{
+    FirebaseDataUpdate data = 1;
+    string to = 2;
+}
+
+message FirebaseDataUpdate{
+    string data = 1;
+    string devEui = 2;
+} 
+
+message FirebaseNotificationData{
+    string title = 1;
+    string body = 2;
+    int64 time = 3;
+    bool delay = 4;
+}
+
+message OneSignalNotification {
+    repeated string ids = 1;
+    string appId = 2;
+    OneSignalNotificationEN headings = 3;
+    OneSignalNotificationEN contents = 4;
+    OneSignalNotificationData data = 5;
+    int64 androidVisibility = 6;
+    int64 priority = 7;
+}
+
+message OneSignalNotificationEN{
+    string en = 1;
+}
+
+message OneSignalNotificationData{
+    int64 priority = 1;
+}

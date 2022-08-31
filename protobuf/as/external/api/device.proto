@@ -186,6 +186,16 @@ message Device {
 
     int64 zone_id = 17 [json_name = "zoneId"];
 
+    // google.protobuf.Timestamp createdAt = 18;
+    // google.protobuf.Timestamp updatedAt = 19;
+    // google.protobuf.Timestamp lastSeenAt = 20;
+
+    // float deviceStatusBattery = 21;
+    // int64 deviceStatusMargin = 22;
+    // bool deviceStatusExternalPower = 23;
+    // int64 dr = 24;
+
+
 }
 
 message DeviceListItem {
