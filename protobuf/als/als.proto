@@ -29,6 +29,7 @@ service AlarmServerService {
 	rpc GetOrganizationAlarmList(GetOrganizationAlarmListRequest) returns (GetOrganizationAlarmListResponse){}
 	rpc CreateColdRoomRestrictions(CreateColdRoomRestrictionsRequest) returns (google.protobuf.Empty){}
 	rpc CheckAlarm(CheckAlarmRequest) returns (google.protobuf.Empty){}
+	rpc ExecuteAlarm(ExecuteAlarmRequest) returns (google.protobuf.Empty){}
 }
 
 message Alarm{
@@ -132,11 +133,6 @@ message AlarmDateTime {
     float alarm_end_time = 5;
 }
 
-// message ListAlarm{
-// 	int64 totalCount=1;
-// 	repeated Alarm result=2;
-// 	repeated AlarmLogs logs=3; 
-// }
 
 
 message CreateAlarmRequest{
@@ -244,6 +240,15 @@ message CheckAlarmRequest{
 	Application application = 2;
 	Device device = 3;
 	string objectJSON = 4;
+}
+
+message ExecuteAlarmRequest{
+	AlarmWithDates a = 1;
+	string deviceName= 2;
+	Application ap =3;
+	string zoneName = 4;
+	string alarmType = 5;
+	string date = 6;
 }
 
 message AlarmLogs{
