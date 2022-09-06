@@ -50,6 +50,7 @@ message Alarm{
 	bool isActive = 19;
 	int64 coldRoomTime = 20;
 	int64 coldRoomFreq = 21;
+	repeated AlarmDateTime alarm_date_time = 22;
 }
 
 message OrganizationAlarm{
