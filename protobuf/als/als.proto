@@ -15,7 +15,6 @@ service AlarmServerService {
     rpc GetAlarm(GetAlarmRequest) returns (GetAlarmResponse){}
 	rpc CreateAlarmLog(CreateAlarmLogRequest) returns (google.protobuf.Empty){}
 	rpc GetAlarmLogs(GetAlarmLogsRequest) returns (GetAlarmLogsResponse){}
-	rpc CreateAlarmDates(CreateAlarmDatesRequest) returns (CreateAlarmDatesResponse){}
 	rpc GetAlarmDates(GetAlarmDatesRequest) returns (GetAlarmDatesResponse) {}
 	rpc DeleteAlarmDates(DeleteAlarmDatesRequest) returns (google.protobuf.Empty){}
 	rpc DeleteAlarm(DeleteAlarmRequest) returns (google.protobuf.Empty) {}
@@ -155,13 +154,6 @@ message GetAlarmLogsResponse{
 }
 
 
-message CreateAlarmDatesRequest{
-	repeated AlarmDateFilter reqFilter = 1;
-}
-
-message CreateAlarmDatesResponse{
-	repeated AlarmDateTime respDateTime = 1;
-}
 
 message GetAlarmDatesRequest{
 	int64 alarmId = 1;
