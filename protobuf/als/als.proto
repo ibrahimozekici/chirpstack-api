@@ -49,6 +49,8 @@ message Alarm{
 	float alarmStopTime = 17;
 	int64 zoneCategoryID = 18;
 	bool isActive = 19;
+	int64 coldRoomTime = 20;
+	int64 coldRoomFreq = 21;
 }
 
 message OrganizationAlarm{
