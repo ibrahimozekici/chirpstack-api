@@ -13,7 +13,6 @@ import "google/protobuf/timestamp.proto";
 service AlarmServerService {
     rpc CreateAlarm(CreateAlarmRequest) returns (CreateAlarmResponse) {}
     rpc GetAlarm(GetAlarmRequest) returns (GetAlarmResponse){}
-	rpc CreateAlarmLog(CreateAlarmLogRequest) returns (google.protobuf.Empty){}
 	rpc GetAlarmLogs(GetAlarmLogsRequest) returns (GetAlarmLogsResponse){}
 	rpc GetAlarmDates(GetAlarmDatesRequest) returns (GetAlarmDatesResponse) {}
 	rpc DeleteAlarmDates(DeleteAlarmDatesRequest) returns (google.protobuf.Empty){}
