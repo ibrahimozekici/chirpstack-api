@@ -89,33 +89,72 @@ message ZoneDevice {
     int64 device_application_id = 11 [json_name = "device_application_id"];
 
      // device landing alarms
-     repeated ZoneAlarm alerts = 12 [json_name = "alerts"];
+     repeated ZoneData data = 12 [json_name = "data"];
 
      repeated ZoneDeviceProfile device_profile_name = 13 [json_name= "device_profile_name"];
 }
 message ZoneDeviceProfile {
     string name = 1 [json_name = "name"];
 }
-message ZoneAlarm {
-        // Alarm id.
-        int64 id = 1 [json_name = "id"];
+message ZoneData {
+      // Device EUI (HEX encoded).
+      int64 id = 1 [json_name = "id"]; 
 
-        // Device EUI (HEX encoded).
-        string dev_eui = 2 [json_name = "dev_eui"]; 
-    
-         // Condition of alarm
-         float min_treshold = 3 [json_name = "minTreshold"];
-    
-         // Value of alarm
-         float max_treshold = 4 [json_name = "maxTreshold"];
-     
-         bool sms = 5 [json_name = "sms"];
-         bool email = 6 [json_name = "email"];
-         bool temperature = 7 [json_name = "temperature"];
-         bool humadity = 8 [json_name = "humadity"];
-         bool ec = 9 [json_name = "ec"];
-         bool door = 10 [json_name = "door"];
-         bool w_leak = 11 [json_name = "w_leak"];
+      // name
+      string dev_eui = 2 [json_name = "dev_eui"];
+      
+      // temp_SHT of the device.
+      int64 device_type_id = 3 [json_name = "device_type_id"];
+  
+      // hum_SHT.
+      int64 org_id = 4 [json_name = "org_id"];
+  
+      // water_SOIL of the device.
+      float air_temperature = 5 [json_name = "air_temperature"];
+  
+      // temp_SOIL of the device.
+      float air_humidity = 6 [json_name = "air_humidity"];
+  
+      // conduct_SOIL of the device.
+      float sol_temperature = 7 [json_name = "sol_temperature"];
+  
+       // water_SOIL of the device.
+       float sol_water = 8 [json_name = "sol_water"];
+  
+       // temp_SOIL of the device.
+       float sol_conduct_soil = 9 [json_name = "sol_conduct_soil"];
+   
+      // The last time the application-server received any data from the device,
+      // or an empty string when the device never sent any data.
+      string submission_date = 10 [json_name = "submission_date"];
+  
+  
+      int64 water_leak_status = 11 [json_name = "water_leak_status"];
+  
+      int64 water_leak_times = 12 [json_name = "water_leak_times"];
+      int64 last_water_leak_duration = 13 [json_name = "last_water_leak_duration"];
+
+
+      int64 door_open_status = 14 [json_name = "door_open_status"];
+      int64 door_open_times = 15 [json_name = "door_open_times"];
+      int64 last_door_open_duration = 16 [json_name = "last_door_open_duration"];
+      float batv = 17 [json_name = "batv"];
+  
+      int64 ro1_status = 18 [json_name = "ro1_status"];
+      int64 ro2_status = 19 [json_name = "ro2_status"];
+  
+       // temp_SOIL of the device.
+       float ph_soil = 20 [json_name = "ph_soil"];
+  
+       // conduct_SOIL of the device.
+       float co2_ppm = 21 [json_name = "co2_ppm"];
+
+        // temp_SOIL of the device.
+        float tvoc_ppm = 22 [json_name = "tvoc_ppm"];
+  
+  
+       float sensecap_light = 23 [json_name = "sensecap_light"];
+       float barometric_pressure = 24 [json_name = "barometric_pressure"];
 }
 message Zone {
     // Zone ID 
@@ -138,7 +177,7 @@ message Zone {
 
 message GetZonesItem {
     // Zone ID 
-    int64 zone_id = 1;
+    int64 zone_id = 1 [json_name = "zoneId"];
 
     // Name of Zone
     string zone_name = 2 [json_name = "zoneName"];
