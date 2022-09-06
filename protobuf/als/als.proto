@@ -11,7 +11,6 @@ import "google/protobuf/timestamp.proto";
 
 // AlarmServerService provides the Alarm-server API methods.
 service AlarmServerService {
-    // CreateDevice creates the given device.
     rpc CreateAlarm(CreateAlarmRequest) returns (CreateAlarmResponse) {}
     rpc GetAlarm(GetAlarmRequest) returns (GetAlarmResponse){}
 	rpc CreateAlarmLog(CreateAlarmLogRequest) returns (google.protobuf.Empty){}
@@ -27,7 +26,6 @@ service AlarmServerService {
 	rpc UpdateAlarm(UpdateAlarmRequest) returns (google.protobuf.Empty){}
 	rpc GetAlarmList(GetAlarmListRequest) returns (GetAlarmListResponse){}
 	rpc GetOrganizationAlarmList(GetOrganizationAlarmListRequest) returns (GetOrganizationAlarmListResponse){}
-	rpc CreateColdRoomRestrictions(CreateColdRoomRestrictionsRequest) returns (google.protobuf.Empty){}
 	rpc CheckAlarm(CheckAlarmRequest) returns (google.protobuf.Empty){}
 }
 
@@ -111,15 +109,6 @@ message AlarmDateFilter{
 	float alarmEndTime = 5;
 }
 
-message ColdRoomRestrictions {
-    int64 id = 1;
-    string devEui = 2;
-    int64 alarmID = 3 ;
-	int64 defrostTime = 4;
-    int64 defrostFrq = 5;
-	int64 alarmTime = 6;
-}
-
 message AlarmDateTime {
     int64 id = 1;
 
@@ -163,10 +152,6 @@ message GetAlarmLogsResponse{
 	repeated AlarmLogs respLog = 1;
 }
 
-
-message CreateColdRoomRestrictionsRequest{
-	ColdRoomRestrictions coldRes = 1;
-}
 
 message CreateAlarmDatesRequest{
 	repeated AlarmDateFilter reqFilter = 1;
@@ -235,20 +220,9 @@ message GetOrganizationAlarmListResponse{
 }
 
 message CheckAlarmRequest{
-	string deviceName = 1;
-	Application application = 2;
-	Device device = 3;
-	string objectJSON = 4;
+	Device device = 1;
+	string objectJSON = 2;
 }
-
-// message ExecuteAlarmRequest{
-// 	AlarmWithDates a = 1;
-// 	string deviceName= 2;
-// 	Application ap =3;
-// 	string zoneName = 4;
-// 	string alarmType = 5;
-// 	string date = 6;
-// }
 
 message AlarmLogs{
 	string dev_eui=1;
@@ -273,17 +247,7 @@ message AlarmFilters{
 }
 
 
-message Application{
-	int64 id = 1;
-	string name = 2;
-	string description = 3;
-	int64 organization_id = 4;
-	string service_profile_id = 5;
-	string payload_codec = 6;
-	string payload_encoder_script = 7;
-	string payload_decoder_script = 8;
-	bytes MQTTTLSCert = 9;
-}
+
 
 message Device{
 	 string dev_eui = 1; 
@@ -305,9 +269,9 @@ message Device{
 	 int64 zone_id = 17;
 }
 
-message User{
+// message User{
 
-}
+// }
 
 
 
