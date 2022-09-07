@@ -12,6 +12,7 @@ import "google/protobuf/timestamp.proto";
 // AlarmServerService provides the Alarm-server API methods.
 service AlarmServerService {
     rpc CreateAlarm(CreateAlarmRequest) returns (CreateAlarmResponse) {}
+	rpc CheckAlarm2(CheckAlarmRequest2) returns (google.protobuf.Empty) {}
     rpc GetAlarm(GetAlarmRequest) returns (GetAlarmResponse){}
 	rpc GetAlarmLogs(GetAlarmLogsRequest) returns (GetAlarmLogsResponse){}
 	rpc GetAlarmDates(GetAlarmDatesRequest) returns (GetAlarmDatesResponse) {}
@@ -269,6 +270,10 @@ message Device{
 // }
 
 
+message CheckAlarmRequest2 {
+	Device device = 1;
+	string objectJSON = 2;
+}
 
 
 
