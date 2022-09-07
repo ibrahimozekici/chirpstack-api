@@ -214,6 +214,11 @@ message GetOrganizationAlarmListResponse{
 	repeated OrganizationAlarm respList = 1;
 }
 
+message CheckAlarmIbo {
+	Device device = 1;
+	string objectJSON = 2;
+}
+
 message CheckAlarmRequest{
 	Device device = 1;
 	string objectJSON = 2;
