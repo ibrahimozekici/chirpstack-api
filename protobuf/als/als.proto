@@ -75,6 +75,7 @@ message OrganizationAlarm{
 	string zoneName = 20;
 	string deviceName = 21;
 	string userName = 22;
+	repeated AlarmDateTime alarmDateTime = 23;
 }
 
 message AlarmWithDates{
