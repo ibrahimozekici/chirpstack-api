@@ -26,6 +26,7 @@ service AlarmServerService {
 	rpc GetAlarmList(GetAlarmListRequest) returns (GetAlarmListResponse){}
 	rpc GetOrganizationAlarmList(GetOrganizationAlarmListRequest) returns (GetOrganizationAlarmListResponse){}
 	rpc CheckAlarm(CheckAlarmRequest) returns (google.protobuf.Empty){}
+	rpc CheckAlarmibo(CheckAlarmIbo) returns (google.protobuf.Empty){}
 }
 
 message Alarm{
@@ -215,6 +216,9 @@ message GetOrganizationAlarmListResponse{
 	repeated OrganizationAlarm respList = 1;
 }
 
+message CheckAlarmIbo {
+	Device device = 1;
+}
 message CheckAlarmRequest{
 	Device device = 1;
 	string objectJSON = 2;
