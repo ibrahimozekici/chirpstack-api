@@ -218,6 +218,8 @@ message GetOrganizationAlarmListResponse{
 
 message CheckAlarmIbo {
 	Device device = 1;
+	string objectJSON = 2;
+
 }
 message CheckAlarmRequest{
 	Device device = 1;
