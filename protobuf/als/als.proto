@@ -24,7 +24,6 @@ service AlarmServerService {
 	rpc UpdateAlarm(UpdateAlarmRequest) returns (google.protobuf.Empty){}
 	rpc GetAlarmList(GetAlarmListRequest) returns (GetAlarmListResponse){}
 	rpc GetOrganizationAlarmList(GetOrganizationAlarmListRequest) returns (GetOrganizationAlarmListResponse){}
-	rpc CheckAlarm(CheckAlarmRequest) returns (google.protobuf.Empty){}
 }
 
 message Alarm{
@@ -214,11 +213,6 @@ message GetOrganizationAlarmListResponse{
 	repeated OrganizationAlarm respList = 1;
 }
 
-message CheckAlarmIbo {
-	Device device = 1;
-	string objectJSON = 2;
-}
-
 message CheckAlarmRequest{
 	Device device = 1;
 	string objectJSON = 2;
@@ -265,10 +259,6 @@ message Device{
 	 int64 organization_id = 16;
 	 int64 zone_id = 17;
 }
-
-// message User{
-
-// }
 
 
 
