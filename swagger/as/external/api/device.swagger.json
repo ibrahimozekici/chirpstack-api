@@ -64,7 +64,8 @@
             "description": "Multicast-group ID to filter on (string formatted UUID).",
             "in": "query",
             "required": false,
-            "type": "string"
+            "type": "string",
+            "format": "int64"
           },
           {
             "name": "serviceProfileID",
