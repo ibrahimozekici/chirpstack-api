@@ -60,7 +60,7 @@
             "type": "string"
           },
           {
-            "name": "multicastGroupID",
+            "name": "OrganizationId",
             "description": "Multicast-group ID to filter on (string formatted UUID).",
             "in": "query",
             "required": false,

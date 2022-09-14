@@ -375,7 +375,7 @@ message ListDeviceRequest {
     string search = 4;
 
     // Multicast-group ID to filter on (string formatted UUID).
-    string multicast_group_id = 5 [json_name = "multicastGroupID"];
+    string organization_id = 5 [json_name = "OrganizationId"];
 
     // Service-profile ID to filter on (string formatted UUID).
     string service_profile_id = 6 [json_name = "serviceProfileID"];
