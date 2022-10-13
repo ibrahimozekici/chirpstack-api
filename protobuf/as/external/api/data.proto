@@ -7,6 +7,7 @@ option java_package = "io.chirpstack.api.as.external.api";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/any.proto";
 
 // DataService is the service managing the data
 service DataService {
@@ -16,7 +17,11 @@ service DataService {
             get: "/api/data"
         };
     }
-
+    rpc GetDataTemHum (ListDataRequest) returns (ListDataResponse2) {
+        option (google.api.http) = {
+            get: "/api/data"
+        };
+    }
     rpc GetDataList (GetDataListRequest) returns (ListDataResponse) {
         option (google.api.http) = {
             get: "/api/dataList"
@@ -55,7 +60,22 @@ message ListDataResponse2 {
     // Total number of devices available within the result-set.
     int64 total_count = 1;
 
-    repeated DataResponse result = 2;
+    repeated google.protobuf.Any result = 2;
+}
+
+message TemHumDateResponse {
+     // Device EUI (HEX encoded).
+     string dev_eui = 1 [json_name = "devEUI"]; 
+
+     // name
+     string name = 2 [json_name = "name"];
+     
+     // temp_SHT of the device.
+     float air_temperature = 3 [json_name = "Air_Temperature"];
+ 
+     // hum_SHT.
+     float air_humadity = 4 [json_name = "Air_Humadity"];
+ 
 }
 message DataResponse {
 
