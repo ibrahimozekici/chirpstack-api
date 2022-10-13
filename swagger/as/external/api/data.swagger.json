@@ -17,12 +17,13 @@
   "paths": {
     "/api/data": {
       "get": {
-        "operationId": "GetDataTemHum",
+        "summary": "GetData api method to get data",
+        "operationId": "GetData",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiListDataResponse2"
+              "$ref": "#/definitions/apiListDataResponse"
             }
           }
         },
@@ -90,6 +91,67 @@
         "parameters": [
           {
             "name": "idList",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DataService"
+        ]
+      }
+    },
+    "/api/dataTemHum": {
+      "get": {
+        "operationId": "GetDataTemHum",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListDataResponse2"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "zoneID",
+            "description": "Service-profile ID to filter on (string formatted UUID).",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "devEUI",
+            "description": "Search on name or DevEUI.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "DeviceTypeID",
+            "description": "device_type_id device type id filter.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "limit",
+            "description": "Max number of devices to return in the result-set.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "startTime",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endTime",
             "in": "query",
             "required": false,
             "type": "string"

@@ -302,7 +302,7 @@ func RegisterDataServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 var (
 	pattern_DataService_GetData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "data"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_DataService_GetDataTemHum_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "data"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_DataService_GetDataTemHum_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "dataTemHum"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_DataService_GetDataList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "dataList"}, "", runtime.AssumeColonVerbOpt(true)))
 )

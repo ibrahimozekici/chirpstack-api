@@ -19,7 +19,7 @@ service DataService {
     }
     rpc GetDataTemHum (ListDataRequest) returns (ListDataResponse2) {
         option (google.api.http) = {
-            get: "/api/data"
+            get: "/api/dataTemHum"
         };
     }
     rpc GetDataList (GetDataListRequest) returns (ListDataResponse) {
