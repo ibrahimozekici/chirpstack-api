@@ -194,7 +194,7 @@
           "format": "float",
           "description": "temp_SOIL of the device."
         },
-        "Batv": {
+        "batV": {
           "type": "number",
           "format": "float"
         },
