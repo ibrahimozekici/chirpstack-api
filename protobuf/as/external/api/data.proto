@@ -75,8 +75,69 @@ message TemHumDateResponse {
  
      // hum_SHT.
      float air_humadity = 4 [json_name = "Air_Humadity"];
- 
+
+     google.protobuf.Timestamp submission_date = 8 [json_name = "submission_date"];
 }
+
+message SoilSensorResponse {
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"]; 
+
+    // name
+    string name = 2 [json_name = "name"];
+    
+    // water_SOIL of the device.
+    float sol_water = 5 [json_name = "Sol_Water"];
+
+    // temp_SOIL of the device.
+    float sol_temperature = 6 [json_name = "Sol_Temperature"];
+
+    // conduct_SOIL of the device.
+    float sol_conduct_soil = 7 [json_name = "Sol_conduct_soil"];
+
+    google.protobuf.Timestamp submission_date = 8 [json_name = "submission_date"];
+}
+
+message WaterLeekSensorResponse {
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"]; 
+
+    // name
+    string name = 2 [json_name = "name"];
+    
+    int64 water_status = 10 [json_name = "WaterStatus"];
+
+    int64 water_leek_times = 11 [json_name = "WaterLeekTimes"];
+
+    int64 water_leek_duration = 12 [json_name = "WaterLeekDuration"];
+    
+    google.protobuf.Timestamp submission_date = 8 [json_name = "submission_date"];
+}
+
+message AirQualitySensorResponse {
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"]; 
+
+    // name
+    string name = 2 [json_name = "name"];
+    
+    // temp_SHT of the device.
+    float air_temperature = 3 [json_name = "Air_Temperature"];
+
+    // hum_SHT.
+    float air_humadity = 4 [json_name = "Air_Humadity"];
+    
+    // temp_SOIL of the device.
+    float tvoc_ppb = 18 [json_name = "Tvoc_ppb"];
+
+    // conduct_SOIL of the device.
+    float co2_ppm = 19 [json_name = "Co2_ppm"];
+
+    float barometric_pressure = 23 [json_name = "BarometricPressure"];
+
+    google.protobuf.Timestamp submission_date = 8 [json_name = "submission_date"];
+}
+
 message DataResponse {
 
     // Device EUI (HEX encoded).
