@@ -137,7 +137,31 @@ message AirQualitySensorResponse {
 
     google.protobuf.Timestamp submission_date = 8 [json_name = "submission_date"];
 }
+message DoorSensorResponse {
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"]; 
 
+    // name
+    string name = 2 [json_name = "name"];
+    
+    int64 door_status = 13 [json_name = "DoorStatus"];
+    int64 door_open_times = 14 [json_name = "DoorOpenTimes"];
+    int64 door_open_duration = 15 [json_name = "DoorOpenDuration"];
+    
+    google.protobuf.Timestamp submission_date = 8 [json_name = "submission_date"];
+}
+
+message LightSensorResponse {
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"]; 
+
+    // name
+    string name = 2 [json_name = "name"];
+    
+    float sensecap_light = 22 [json_name = "SensecapLight"];
+    
+    google.protobuf.Timestamp submission_date = 8 [json_name = "submission_date"];
+}
 message DataResponse {
 
     // Device EUI (HEX encoded).
