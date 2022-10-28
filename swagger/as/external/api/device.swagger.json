@@ -491,6 +491,124 @@
         }
       }
     },
+    "apiAlarm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Alarm id."
+        },
+        "devEUI": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "minTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Condition of alarm"
+        },
+        "maxTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Value of alarm"
+        },
+        "sms": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "email": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "temperature": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "humadity": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "ec": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "door": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "w_leak": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "submission_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ip_address": {
+          "type": "string"
+        },
+        "is_time_scheduled": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "start_time": {
+          "type": "number",
+          "format": "float"
+        },
+        "end_time": {
+          "type": "number",
+          "format": "float"
+        },
+        "zone_category": {
+          "type": "string",
+          "format": "int64"
+        },
+        "cold_room_time": {
+          "type": "string",
+          "format": "int64"
+        },
+        "cold_room_frecuancy": {
+          "type": "string",
+          "format": "int64"
+        },
+        "notification": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "alarm_date_time": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAlarmDateTime"
+          }
+        }
+      }
+    },
+    "apiAlarmDateTime": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "alarm_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "alarm_day": {
+          "type": "string",
+          "format": "int64"
+        },
+        "alarm_start_time": {
+          "type": "number",
+          "format": "float"
+        },
+        "alarm_end_time": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
     "apiCreateDeviceKeysRequest": {
       "type": "object",
       "properties": {
@@ -506,6 +624,17 @@
         "device": {
           "$ref": "#/definitions/apiDevice",
           "description": "Device object to create."
+        }
+      }
+    },
+    "apiDalarms": {
+      "type": "object",
+      "properties": {
+        "alarms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAlarm"
+          }
         }
       }
     },
@@ -855,6 +984,9 @@
         "organizationId": {
           "type": "string",
           "format": "int64"
+        },
+        "alarms": {
+          "$ref": "#/definitions/apiDalarms"
         }
       }
     },
