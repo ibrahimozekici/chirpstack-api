@@ -256,10 +256,10 @@ message DeviceListItem {
     Dalarms alarms = 18;
 }
 message Dalarms {
-    repeated Alarm alarms = 1;
+    repeated DAlarm alarms = 1;
 }
 
-message Alarm {
+message DAlarm {
 
     // Alarm id.
     int64 id = 1;
@@ -293,10 +293,10 @@ message Alarm {
 
    bool notification = 20 [json_name = "notification"];
 
-    repeated AlarmDateTime alarm_date_time = 21  [json_name = "alarm_date_time"];
+    repeated DAlarmDateTime alarm_date_time = 21  [json_name = "alarm_date_time"];
 }
 
-message AlarmDateTime {
+message DAlarmDateTime {
     int64 id = 1 [json_name = "id"];
 
     int64 alarm_id = 2 [json_name = "alarm_id"];

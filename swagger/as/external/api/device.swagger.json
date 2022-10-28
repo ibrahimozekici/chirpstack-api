@@ -491,7 +491,25 @@
         }
       }
     },
-    "apiAlarm": {
+    "apiCreateDeviceKeysRequest": {
+      "type": "object",
+      "properties": {
+        "deviceKeys": {
+          "$ref": "#/definitions/apiDeviceKeys",
+          "description": "Device-keys object to create."
+        }
+      }
+    },
+    "apiCreateDeviceRequest": {
+      "type": "object",
+      "properties": {
+        "device": {
+          "$ref": "#/definitions/apiDevice",
+          "description": "Device object to create."
+        }
+      }
+    },
+    "apiDAlarm": {
       "type": "object",
       "properties": {
         "id": {
@@ -579,12 +597,12 @@
         "alarm_date_time": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/apiAlarmDateTime"
+            "$ref": "#/definitions/apiDAlarmDateTime"
           }
         }
       }
     },
-    "apiAlarmDateTime": {
+    "apiDAlarmDateTime": {
       "type": "object",
       "properties": {
         "id": {
@@ -609,31 +627,13 @@
         }
       }
     },
-    "apiCreateDeviceKeysRequest": {
-      "type": "object",
-      "properties": {
-        "deviceKeys": {
-          "$ref": "#/definitions/apiDeviceKeys",
-          "description": "Device-keys object to create."
-        }
-      }
-    },
-    "apiCreateDeviceRequest": {
-      "type": "object",
-      "properties": {
-        "device": {
-          "$ref": "#/definitions/apiDevice",
-          "description": "Device object to create."
-        }
-      }
-    },
     "apiDalarms": {
       "type": "object",
       "properties": {
         "alarms": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/apiAlarm"
+            "$ref": "#/definitions/apiDAlarm"
           }
         }
       }
