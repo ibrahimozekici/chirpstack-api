@@ -265,13 +265,13 @@ message DAlarm {
     int64 id = 1;
      
     // Device EUI (HEX encoded).
-    string dev_eui = 2 [json_name = "devEUI"]; 
+    string dev_eui = 2 [json_name = "dev_eui"]; 
 
     // Condition of alarm
-    float min_treshold = 3 [json_name = "minTreshold"];
+    float min_treshold = 3 [json_name = "min_treshold"];
 
     // Value of alarm
-    float max_treshold = 4 [json_name = "maxTreshold"];
+    float max_treshold = 4 [json_name = "max_treshold"];
 
    bool sms = 5 [json_name = "sms"];
 
@@ -282,18 +282,12 @@ message DAlarm {
    bool ec = 9 [json_name = "ec"];
    bool door = 10 [json_name = "door"];
    bool w_leak = 11 [json_name = "w_leak"];
-   google.protobuf.Timestamp submission_date = 12 [json_name = "submission_date"];
-   string ip_address = 13 [json_name = "ip_address"];
-   bool is_time_scheduled = 14 [json_name = "is_time_scheduled"];
-   float start_time = 15 [json_name = "start_time"];
-   float end_time = 16 [json_name = "end_time"];
-   int64 zone_category = 17 [json_name = "zone_category"];
-   int64 cold_room_time = 18  [json_name = "cold_room_time"];
-   int64 cold_room_frecuancy = 19  [json_name = "cold_room_frecuancy"];
 
-   bool notification = 20 [json_name = "notification"];
+   bool is_time_scheduled = 14 [json_name = "is_time_scheduled"];
+
+      bool notification = 20 [json_name = "notification"];
     string username = 21 [json_name = "username"]; 
-    repeated DAlarmDateTime alarm_date_time = 22  [json_name = "alarm_date_time"];
+    // repeated DAlarmDateTime alarm_date_time = 22  [json_name = "alarm_date_time"];
 }
 
 message DAlarmDateTime {

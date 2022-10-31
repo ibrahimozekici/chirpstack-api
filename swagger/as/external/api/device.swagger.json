@@ -517,16 +517,16 @@
           "format": "int64",
           "description": "Alarm id."
         },
-        "devEUI": {
+        "dev_eui": {
           "type": "string",
           "description": "Device EUI (HEX encoded)."
         },
-        "minTreshold": {
+        "min_treshold": {
           "type": "number",
           "format": "float",
           "title": "Condition of alarm"
         },
-        "maxTreshold": {
+        "max_treshold": {
           "type": "number",
           "format": "float",
           "title": "Value of alarm"
@@ -559,36 +559,9 @@
           "type": "boolean",
           "format": "boolean"
         },
-        "submission_date": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "ip_address": {
-          "type": "string"
-        },
         "is_time_scheduled": {
           "type": "boolean",
           "format": "boolean"
-        },
-        "start_time": {
-          "type": "number",
-          "format": "float"
-        },
-        "end_time": {
-          "type": "number",
-          "format": "float"
-        },
-        "zone_category": {
-          "type": "string",
-          "format": "int64"
-        },
-        "cold_room_time": {
-          "type": "string",
-          "format": "int64"
-        },
-        "cold_room_frecuancy": {
-          "type": "string",
-          "format": "int64"
         },
         "notification": {
           "type": "boolean",
@@ -596,37 +569,6 @@
         },
         "username": {
           "type": "string"
-        },
-        "alarm_date_time": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiDAlarmDateTime"
-          }
-        }
-      }
-    },
-    "apiDAlarmDateTime": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64"
-        },
-        "alarm_id": {
-          "type": "string",
-          "format": "int64"
-        },
-        "alarm_day": {
-          "type": "string",
-          "format": "int64"
-        },
-        "alarm_start_time": {
-          "type": "number",
-          "format": "float"
-        },
-        "alarm_end_time": {
-          "type": "number",
-          "format": "float"
         }
       }
     },
