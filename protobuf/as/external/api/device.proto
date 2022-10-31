@@ -287,19 +287,15 @@ message DAlarm {
 
       bool notification = 20 [json_name = "notification"];
     string username = 21 [json_name = "username"]; 
-    // repeated DAlarmDateTime alarm_date_time = 22  [json_name = "alarm_date_time"];
+    repeated DAlarmDateTime alarm_date_time = 22  [json_name = "alarm_date_time"];
 }
 
 message DAlarmDateTime {
-    int64 id = 1 [json_name = "id"];
+    int64 alarm_day = 1 [json_name = "alarm_day"];
 
-    int64 alarm_id = 2 [json_name = "alarm_id"];
+    float alarm_start_time = 2[json_name = "alarm_start_time"];
 
-    int64 alarm_day = 3 [json_name = "alarm_day"];
-
-    float alarm_start_time = 4[json_name = "alarm_start_time"];
-
-    float alarm_end_time = 5[json_name = "alarm_end_time"];
+    float alarm_end_time = 3[json_name = "alarm_end_time"];
 }
 message DeviceKeys {
     // Device EUI (HEX encoded).

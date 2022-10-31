@@ -569,6 +569,29 @@
         },
         "username": {
           "type": "string"
+        },
+        "alarm_date_time": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiDAlarmDateTime"
+          }
+        }
+      }
+    },
+    "apiDAlarmDateTime": {
+      "type": "object",
+      "properties": {
+        "alarm_day": {
+          "type": "string",
+          "format": "int64"
+        },
+        "alarm_start_time": {
+          "type": "number",
+          "format": "float"
+        },
+        "alarm_end_time": {
+          "type": "number",
+          "format": "float"
         }
       }
     },
