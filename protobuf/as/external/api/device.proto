@@ -292,8 +292,8 @@ message DAlarm {
    int64 cold_room_frecuancy = 19  [json_name = "cold_room_frecuancy"];
 
    bool notification = 20 [json_name = "notification"];
-
-    repeated DAlarmDateTime alarm_date_time = 21  [json_name = "alarm_date_time"];
+    string username = 21 [json_name = "username"]; 
+    repeated DAlarmDateTime alarm_date_time = 22  [json_name = "alarm_date_time"];
 }
 
 message DAlarmDateTime {

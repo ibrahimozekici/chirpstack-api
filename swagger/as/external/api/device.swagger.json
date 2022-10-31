@@ -594,6 +594,9 @@
           "type": "boolean",
           "format": "boolean"
         },
+        "username": {
+          "type": "string"
+        },
         "alarm_date_time": {
           "type": "array",
           "items": {
