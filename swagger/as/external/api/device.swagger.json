@@ -910,7 +910,7 @@
     "apiDeviceListItem": {
       "type": "object",
       "properties": {
-        "devEUI": {
+        "devEui": {
           "type": "string",
           "description": "Device EUI (HEX encoded)."
         },
