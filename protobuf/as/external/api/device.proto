@@ -253,7 +253,7 @@ message DeviceListItem {
 
     int64 organization_id = 17 [json_name = "organizationId"];
 
-    Dalarms alarms = 18;
+    repeated DAlarm alarms  = 18;
 }
 message Dalarms {
     repeated DAlarm alarms = 1;

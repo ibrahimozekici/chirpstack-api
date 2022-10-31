@@ -572,17 +572,6 @@
         }
       }
     },
-    "apiDalarms": {
-      "type": "object",
-      "properties": {
-        "alarms": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiDAlarm"
-          }
-        }
-      }
-    },
     "apiDevice": {
       "type": "object",
       "properties": {
@@ -931,7 +920,10 @@
           "format": "int64"
         },
         "alarms": {
-          "$ref": "#/definitions/apiDalarms"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiDAlarm"
+          }
         }
       }
     },
