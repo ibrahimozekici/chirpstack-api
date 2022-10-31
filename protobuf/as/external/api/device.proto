@@ -200,7 +200,7 @@ message Device {
 
 message DeviceListItem {
     // Device EUI (HEX encoded).
-    string dev_eui = 1; 
+    string dev_eui = 1 [json_name = "devEUI"]; 
     
     // Name of the device.
     string name = 2;
