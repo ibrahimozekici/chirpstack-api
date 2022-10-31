@@ -430,6 +430,8 @@ message ListDeviceRequest {
     map<string, string> tags = 8;
 
     int64 zone_id = 9 [json_name = "zoneID"];
+
+    int64 alarm = 10;
 }
 
 message ListDeviceResponse {
