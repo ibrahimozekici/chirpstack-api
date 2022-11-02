@@ -1188,6 +1188,9 @@
         "training": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "expo_key": {
+          "type": "string"
         }
       }
     }

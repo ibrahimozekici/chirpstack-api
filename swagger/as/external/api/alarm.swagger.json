@@ -398,6 +398,14 @@
           "items": {
             "$ref": "#/definitions/apiAlarmDateTime"
           }
+        },
+        "is_timer_active": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "timer_value": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -687,6 +695,14 @@
         "username": {
           "type": "string",
           "description": "Device EUI (HEX encoded)."
+        },
+        "is_timer_active": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "timer_value": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

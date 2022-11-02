@@ -120,6 +120,9 @@ message Alarm {
    bool notification = 20 [json_name = "notification"];
 
     repeated AlarmDateTime alarm_date_time = 21  [json_name = "alarm_date_time"];
+
+    bool is_timer_active = 22 [json_name = "is_timer_active"];
+    int64 timer_value = 23 [json_name = "timer_value"];
 }
 
 message AlarmDateTime {
@@ -222,7 +225,10 @@ message ListOrganizationAlarmResponse {
     repeated AlarmDateTime alarm_date_time = 17  [json_name = "alarm_date_time"];
 
      // Device EUI (HEX encoded).
-     string username = 18 [json_name = "username"]; 
+     string username = 18 [json_name = "username"];
+
+     bool is_timer_active = 19 [json_name = "is_timer_active"];
+    int64 timer_value = 20 [json_name = "timer_value"];
 }
 message UpdateAlarmRequest {
     // Alarm object to update.
