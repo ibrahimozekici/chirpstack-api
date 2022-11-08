@@ -49,6 +49,7 @@ message Alarm{
 	int64 coldRoomTime = 20;
 	int64 coldRoomFreq = 21;
 	repeated AlarmDateTime alarm_date_time = 22;
+	bool pressure = 23;
 }
 
 message OrganizationAlarm{
@@ -75,6 +76,7 @@ message OrganizationAlarm{
 	string deviceName = 21;
 	string userName = 22;
 	repeated AlarmDateTime alarmDateTime = 23;
+	bool pressure = 24;
 }
 
 message AlarmWithDates{
@@ -100,6 +102,7 @@ message AlarmWithDates{
 	int64 alarmDay = 20;
 	int64 alarmStartTime = 21;
 	int64 alarmEndTime = 22;
+	bool pressure = 23;
 }
 
 message AlarmDateFilter{
