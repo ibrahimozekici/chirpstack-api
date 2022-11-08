@@ -406,6 +406,10 @@
         "timer_value": {
           "type": "string",
           "format": "int64"
+        },
+        "pressure": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -703,6 +707,10 @@
         "timer_value": {
           "type": "string",
           "format": "int64"
+        },
+        "pressure": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },

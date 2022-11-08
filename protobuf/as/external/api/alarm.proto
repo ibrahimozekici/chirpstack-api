@@ -123,6 +123,7 @@ message Alarm {
 
     bool is_timer_active = 22 [json_name = "is_timer_active"];
     int64 timer_value = 23 [json_name = "timer_value"];
+    bool pressure = 24 [json_name = "pressure"];
 }
 
 message AlarmDateTime {
@@ -229,6 +230,7 @@ message ListOrganizationAlarmResponse {
 
      bool is_timer_active = 19 [json_name = "is_timer_active"];
     int64 timer_value = 20 [json_name = "timer_value"];
+    bool pressure = 21 [json_name = "pressure"];
 }
 message UpdateAlarmRequest {
     // Alarm object to update.
