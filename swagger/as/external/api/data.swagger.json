@@ -142,7 +142,7 @@
         "submission_date": {
           "type": "string",
           "format": "date-time",
-          "description": "The last time the application-server received any data from the device,\r\nor an empty string when the device never sent any data."
+          "description": "The last time the application-server received any data from the device,\nor an empty string when the device never sent any data."
         },
         "Description": {
           "type": "string"
@@ -205,6 +205,30 @@
         "BarometricPressure": {
           "type": "number",
           "format": "float"
+        },
+        "Power": {
+          "type": "number",
+          "format": "float"
+        },
+        "Current": {
+          "type": "number",
+          "format": "float"
+        },
+        "Voltage": {
+          "type": "number",
+          "format": "float"
+        },
+        "Factor": {
+          "type": "number",
+          "format": "float"
+        },
+        "PowerSum": {
+          "type": "number",
+          "format": "float"
+        },
+        "State": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
