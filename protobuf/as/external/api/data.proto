@@ -214,6 +214,12 @@ message DataResponse {
 
      float sensecap_light = 22 [json_name = "SensecapLight"];
      float barometric_pressure = 23 [json_name = "BarometricPressure"];
+    float power = 24 [json_name = "Power"];
+    float current = 25 [json_name = "Current"];
+    float voltage = 26 [json_name = "Voltage"];
+    float factor = 27 [json_name = "Factor"];
+    float power_sum = 28 [json_name = "PowerSum"];
+    int64 state = 29 [json_name = "State"];
 }
 
 
