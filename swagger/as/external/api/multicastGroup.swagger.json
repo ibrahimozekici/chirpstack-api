@@ -169,7 +169,7 @@
         "parameters": [
           {
             "name": "multicast_group.id",
-            "description": "ID (string formatted UUID).\nThis will be generated automatically on create.",
+            "description": "ID (string formatted UUID).\r\nThis will be generated automatically on create.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -350,7 +350,7 @@
         },
         "devEUI": {
           "type": "string",
-          "description": "Device EUI (HEX encoded string).\nNote that the device must be under the same service-profile as the\nmulticast-group."
+          "description": "Device EUI (HEX encoded string).\r\nNote that the device must be under the same service-profile as the\r\nmulticast-group."
         }
       }
     },
@@ -442,7 +442,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "description": "ID (string formatted UUID).\nThis will be generated automatically on create."
+          "description": "ID (string formatted UUID).\r\nThis will be generated automatically on create."
         },
         "name": {
           "type": "string",
@@ -482,11 +482,11 @@
         "pingSlotPeriod": {
           "type": "integer",
           "format": "int64",
-          "description": "Ping-slot period.\nMandatory for Class-B multicast groups."
+          "description": "Ping-slot period.\r\nMandatory for Class-B multicast groups."
         },
         "serviceProfileID": {
           "type": "string",
-          "description": "Service-profile ID.\nAfter creation, this can not be updated."
+          "description": "Service-profile ID.\r\nAfter creation, this can not be updated."
         }
       }
     },
@@ -530,7 +530,7 @@
         "fCnt": {
           "type": "integer",
           "format": "int64",
-          "description": "Downlink frame-counter.\nThis will be automatically set on enqueue."
+          "description": "Downlink frame-counter.\r\nThis will be automatically set on enqueue."
         },
         "fPort": {
           "type": "integer",

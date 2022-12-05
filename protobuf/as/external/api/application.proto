@@ -389,6 +389,8 @@ message Application {
     // in the next major release. When set, the device-profile payload_ fields
     // have priority over the application payload_ fields.
 	string payload_decoder_script = 8;
+    
+    // repeated byte MQTTTLSCert = 9;
 }
 
 message ApplicationListItem {

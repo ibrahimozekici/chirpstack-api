@@ -1,4 +1,4 @@
-.PHONY: requirements common gw geo nc ns as as-integration as-external-api publish
+.PHONY: requirements common gw geo nc als ns as as-integration as-external-api publish
 
 GOOGLEAPIS_PATH := "/googleapis"
 
@@ -7,7 +7,7 @@ PROTOC_ARGS := --plugin=protoc-gen-grpc-java=/protoc-gen-grpc-java --grpc-java_o
 
 BASE_PATH := ../protobuf
 
-all: requirements version common gw geo nc ns as as-integration as-external-api google-api publish
+all: requirements version common gw geo nc als ns as as-integration as-external-api google-api publish
 
 requirements:
 	rm -rf build
@@ -28,6 +28,9 @@ geo:
 
 nc:
 	protoc -I=${BASE_PATH} -I=${BASE_PATH}/nc $(PROTOC_ARGS) ${BASE_PATH}/nc/nc.proto
+
+als:
+	protoc -I=${BASE_PATH} -I=${BASE_PATH}/als $(PROTOC_ARGS) ${BASE_PATH}/als/als.proto
 
 ns:
 	protoc -I=${BASE_PATH} -I=${BASE_PATH}/ns $(PROTOC_ARGS) ${BASE_PATH}/ns/profiles.proto

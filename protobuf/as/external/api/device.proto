@@ -186,6 +186,16 @@ message Device {
 
     int64 zone_id = 17 [json_name = "zoneId"];
 
+    // google.protobuf.Timestamp createdAt = 18;
+    // google.protobuf.Timestamp updatedAt = 19;
+    // google.protobuf.Timestamp lastSeenAt = 20;
+
+    // float deviceStatusBattery = 21;
+    // int64 deviceStatusMargin = 22;
+    // bool deviceStatusExternalPower = 23;
+    // int64 dr = 24;
+
+
 }
 
 message DeviceListItem {
@@ -242,8 +252,51 @@ message DeviceListItem {
     int64 device_type = 16 [json_name = "deviceType"];
 
     int64 organization_id = 17 [json_name = "organizationId"];
+
+    repeated DAlarm alarms  = 18;
+}
+message Dalarms {
+    repeated DAlarm alarms = 1;
 }
 
+message DAlarm {
+
+    // Alarm id.
+    int64 id = 1;
+     
+    // Device EUI (HEX encoded).
+    string dev_eui = 2 [json_name = "dev_eui"]; 
+
+    // Condition of alarm
+    float min_treshold = 3 [json_name = "min_treshold"];
+
+    // Value of alarm
+    float max_treshold = 4 [json_name = "max_treshold"];
+
+   bool sms = 5 [json_name = "sms"];
+
+   bool email = 6 [json_name = "email"];
+   
+   bool temperature = 7 [json_name = "temperature"];
+   bool humadity = 8 [json_name = "humadity"];
+   bool ec = 9 [json_name = "ec"];
+   bool door = 10 [json_name = "door"];
+   bool w_leak = 11 [json_name = "w_leak"];
+
+   bool is_time_scheduled = 14 [json_name = "is_time_scheduled"];
+
+      bool notification = 20 [json_name = "notification"];
+    string username = 21 [json_name = "username"]; 
+    repeated DAlarmDateTime alarm_date_time = 22  [json_name = "alarm_date_time"];
+}
+
+message DAlarmDateTime {
+    int64 alarm_day = 1 [json_name = "alarm_day"];
+
+    float alarm_start_time = 2[json_name = "alarm_start_time"];
+
+    float alarm_end_time = 3[json_name = "alarm_end_time"];
+}
 message DeviceKeys {
     // Device EUI (HEX encoded).
     string dev_eui = 1 [json_name = "devEUI"];
@@ -365,7 +418,7 @@ message ListDeviceRequest {
     string search = 4;
 
     // Multicast-group ID to filter on (string formatted UUID).
-    string multicast_group_id = 5 [json_name = "multicastGroupID"];
+    int64 organization_id = 5 [json_name = "OrganizationId"];
 
     // Service-profile ID to filter on (string formatted UUID).
     string service_profile_id = 6 [json_name = "serviceProfileID"];
@@ -377,6 +430,8 @@ message ListDeviceRequest {
     map<string, string> tags = 8;
 
     int64 zone_id = 9 [json_name = "zoneID"];
+
+    int64 alarm = 10;
 }
 
 message ListDeviceResponse {

@@ -11,6 +11,7 @@ import "google/protobuf/empty.proto";
 
 service NotificationService {
 
+    // rpc CreateNotification(CreateNotificationRequest) returns (CreateNotificationResponse){}
 
     rpc List(ListNotificationsRequest) returns (ListNotificationsResponse) {
         option (google.api.http) = {
@@ -90,3 +91,11 @@ message UpdateNotficationResponse {
 message DeleteNotficationRequest {
     int64 id =1;
 }
+
+// message CreateNotificationRequest{
+//     Notification notification = 1;
+// }
+
+// message CreateNotificationResponse{
+//     Notification Notification = 1;
+// }

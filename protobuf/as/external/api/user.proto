@@ -121,6 +121,8 @@ message User {
 	string user_name = 16 [json_name = "userName"];
 
 	bool training = 17 [json_name = "training"];
+
+	string expo_key = 18 [json_name = "expo_key"];
 }
 
 message UserListItem {
@@ -166,6 +168,8 @@ message UserListItem {
 
 	// Username of the user
 	string user_name = 16 [json_name = "userName"];
+
+	string expo_key = 17 [json_name = "expo_key"];
 }
 
 message UserOrganization {
