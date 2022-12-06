@@ -472,6 +472,30 @@
         "barometric_pressure": {
           "type": "number",
           "format": "float"
+        },
+        "power": {
+          "type": "number",
+          "format": "float"
+        },
+        "current": {
+          "type": "number",
+          "format": "float"
+        },
+        "voltage": {
+          "type": "number",
+          "format": "float"
+        },
+        "factor": {
+          "type": "number",
+          "format": "float"
+        },
+        "powerSum": {
+          "type": "number",
+          "format": "float"
+        },
+        "state": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

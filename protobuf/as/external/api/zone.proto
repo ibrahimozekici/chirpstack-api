@@ -155,6 +155,12 @@ message ZoneData {
   
        float sensecap_light = 23 [json_name = "sensecap_light"];
        float barometric_pressure = 24 [json_name = "barometric_pressure"];
+       float power = 25 [json_name = "power"];
+        float current = 26 [json_name = "current"];
+        float voltage = 27 [json_name = "voltage"];
+        float factor = 28 [json_name = "factor"];
+        float power_sum = 29 [json_name = "powerSum"];
+        int64 state = 30 [json_name = "state"];
 }
 message Zone {
     // Zone ID 
