@@ -493,7 +493,7 @@
           "type": "number",
           "format": "float"
         },
-        "state": {
+        "status": {
           "type": "string",
           "format": "int64"
         }

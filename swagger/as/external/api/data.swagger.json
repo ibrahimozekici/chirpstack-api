@@ -287,7 +287,7 @@
           "type": "number",
           "format": "float"
         },
-        "State": {
+        "status": {
           "type": "string",
           "format": "int64"
         }

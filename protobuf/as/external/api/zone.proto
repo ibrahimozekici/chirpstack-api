@@ -160,7 +160,7 @@ message ZoneData {
         float voltage = 27 [json_name = "voltage"];
         float factor = 28 [json_name = "factor"];
         float power_sum = 29 [json_name = "powerSum"];
-        int64 state = 30 [json_name = "state"];
+        int64 status = 30 [json_name = "status"];
 }
 message Zone {
     // Zone ID 
