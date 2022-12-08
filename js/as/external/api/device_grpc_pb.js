@@ -1,7 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
-var grpc = require('grpc');
+var grpc = require('@grpc/grpc-js');
 var as_external_api_device_pb = require('../../../as/external/api/device_pb.js');
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js');
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
@@ -18,6 +18,17 @@ function serialize_api_ActivateDeviceRequest(arg) {
 
 function deserialize_api_ActivateDeviceRequest(buffer_arg) {
   return as_external_api_device_pb.ActivateDeviceRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_api_ClearDeviceNoncesRequest(arg) {
+  if (!(arg instanceof as_external_api_device_pb.ClearDeviceNoncesRequest)) {
+    throw new Error('Expected argument of type api.ClearDeviceNoncesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_api_ClearDeviceNoncesRequest(buffer_arg) {
+  return as_external_api_device_pb.ClearDeviceNoncesRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_api_CreateDeviceKeysRequest(arg) {
@@ -139,6 +150,28 @@ function serialize_api_GetDeviceResponse(arg) {
 
 function deserialize_api_GetDeviceResponse(buffer_arg) {
   return as_external_api_device_pb.GetDeviceResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_api_GetDeviceStatsRequest(arg) {
+  if (!(arg instanceof as_external_api_device_pb.GetDeviceStatsRequest)) {
+    throw new Error('Expected argument of type api.GetDeviceStatsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_api_GetDeviceStatsRequest(buffer_arg) {
+  return as_external_api_device_pb.GetDeviceStatsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_api_GetDeviceStatsResponse(arg) {
+  if (!(arg instanceof as_external_api_device_pb.GetDeviceStatsResponse)) {
+    throw new Error('Expected argument of type api.GetDeviceStatsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_api_GetDeviceStatsResponse(buffer_arg) {
+  return as_external_api_device_pb.GetDeviceStatsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_api_GetRandomDevAddrRequest(arg) {
@@ -266,7 +299,7 @@ function deserialize_google_protobuf_Empty(buffer_arg) {
 // DeviceService is the service managing the devices.
 var DeviceServiceService = exports.DeviceServiceService = {
   // Create creates the given device.
-  create: {
+create: {
     path: '/api.DeviceService/Create',
     requestStream: false,
     responseStream: false,
@@ -278,7 +311,7 @@ var DeviceServiceService = exports.DeviceServiceService = {
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // Get returns the device matching the given DevEUI.
-  get: {
+get: {
     path: '/api.DeviceService/Get',
     requestStream: false,
     responseStream: false,
@@ -290,7 +323,7 @@ var DeviceServiceService = exports.DeviceServiceService = {
     responseDeserialize: deserialize_api_GetDeviceResponse,
   },
   // List returns the available devices.
-  list: {
+list: {
     path: '/api.DeviceService/List',
     requestStream: false,
     responseStream: false,
@@ -302,7 +335,7 @@ var DeviceServiceService = exports.DeviceServiceService = {
     responseDeserialize: deserialize_api_ListDeviceResponse,
   },
   // Delete deletes the device matching the given DevEUI.
-  delete: {
+delete: {
     path: '/api.DeviceService/Delete',
     requestStream: false,
     responseStream: false,
@@ -314,7 +347,7 @@ var DeviceServiceService = exports.DeviceServiceService = {
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // Update updates the device matching the given DevEUI.
-  update: {
+update: {
     path: '/api.DeviceService/Update',
     requestStream: false,
     responseStream: false,
@@ -326,7 +359,7 @@ var DeviceServiceService = exports.DeviceServiceService = {
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // CreateKeys creates the given device-keys.
-  createKeys: {
+createKeys: {
     path: '/api.DeviceService/CreateKeys',
     requestStream: false,
     responseStream: false,
@@ -338,7 +371,7 @@ var DeviceServiceService = exports.DeviceServiceService = {
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // GetKeys returns the device-keys for the given DevEUI.
-  getKeys: {
+getKeys: {
     path: '/api.DeviceService/GetKeys',
     requestStream: false,
     responseStream: false,
@@ -350,7 +383,7 @@ var DeviceServiceService = exports.DeviceServiceService = {
     responseDeserialize: deserialize_api_GetDeviceKeysResponse,
   },
   // UpdateKeys updates the device-keys.
-  updateKeys: {
+updateKeys: {
     path: '/api.DeviceService/UpdateKeys',
     requestStream: false,
     responseStream: false,
@@ -362,7 +395,7 @@ var DeviceServiceService = exports.DeviceServiceService = {
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // DeleteKeys deletes the device-keys for the given DevEUI.
-  deleteKeys: {
+deleteKeys: {
     path: '/api.DeviceService/DeleteKeys',
     requestStream: false,
     responseStream: false,
@@ -374,7 +407,7 @@ var DeviceServiceService = exports.DeviceServiceService = {
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // Activate (re)activates the device with the given parameters (for ABP or for importing OTAA activations).
-  activate: {
+activate: {
     path: '/api.DeviceService/Activate',
     requestStream: false,
     responseStream: false,
@@ -386,7 +419,7 @@ var DeviceServiceService = exports.DeviceServiceService = {
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // Deactivate de-activates the device.
-  deactivate: {
+deactivate: {
     path: '/api.DeviceService/Deactivate',
     requestStream: false,
     responseStream: false,
@@ -398,7 +431,7 @@ var DeviceServiceService = exports.DeviceServiceService = {
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // GetActivation returns the current activation details of the device (OTAA and ABP).
-  getActivation: {
+getActivation: {
     path: '/api.DeviceService/GetActivation',
     requestStream: false,
     responseStream: false,
@@ -410,7 +443,7 @@ var DeviceServiceService = exports.DeviceServiceService = {
     responseDeserialize: deserialize_api_GetDeviceActivationResponse,
   },
   // GetRandomDevAddr returns a random DevAddr taking the NwkID prefix into account.
-  getRandomDevAddr: {
+getRandomDevAddr: {
     path: '/api.DeviceService/GetRandomDevAddr',
     requestStream: false,
     responseStream: false,
@@ -421,10 +454,22 @@ var DeviceServiceService = exports.DeviceServiceService = {
     responseSerialize: serialize_api_GetRandomDevAddrResponse,
     responseDeserialize: deserialize_api_GetRandomDevAddrResponse,
   },
+  // GetStats returns the device stats.
+getStats: {
+    path: '/api.DeviceService/GetStats',
+    requestStream: false,
+    responseStream: false,
+    requestType: as_external_api_device_pb.GetDeviceStatsRequest,
+    responseType: as_external_api_device_pb.GetDeviceStatsResponse,
+    requestSerialize: serialize_api_GetDeviceStatsRequest,
+    requestDeserialize: deserialize_api_GetDeviceStatsRequest,
+    responseSerialize: serialize_api_GetDeviceStatsResponse,
+    responseDeserialize: deserialize_api_GetDeviceStatsResponse,
+  },
   // StreamFrameLogs streams the uplink and downlink frame-logs for the given DevEUI.
-  //   * These are the raw LoRaWAN frames and this endpoint is intended for debugging only.
-  //   * This endpoint does not work from a web-browser.
-  streamFrameLogs: {
+//   * These are the raw LoRaWAN frames and this endpoint is intended for debugging only.
+//   * This endpoint does not work from a web-browser.
+streamFrameLogs: {
     path: '/api.DeviceService/StreamFrameLogs',
     requestStream: false,
     responseStream: true,
@@ -436,9 +481,9 @@ var DeviceServiceService = exports.DeviceServiceService = {
     responseDeserialize: deserialize_api_StreamDeviceFrameLogsResponse,
   },
   // StreamEventLogs stream the device events (uplink payloads, ACKs, joins, errors).
-  //   * This endpoint is intended for debugging only.
-  //   * This endpoint does not work from a web-browser.
-  streamEventLogs: {
+//   * This endpoint is intended for debugging only.
+//   * This endpoint does not work from a web-browser.
+streamEventLogs: {
     path: '/api.DeviceService/StreamEventLogs',
     requestStream: false,
     responseStream: true,
@@ -448,6 +493,20 @@ var DeviceServiceService = exports.DeviceServiceService = {
     requestDeserialize: deserialize_api_StreamDeviceEventLogsRequest,
     responseSerialize: serialize_api_StreamDeviceEventLogsResponse,
     responseDeserialize: deserialize_api_StreamDeviceEventLogsResponse,
+  },
+  // ClearDeviceNonces deletes the device older activation records for the given DevEUI.
+//   * These are clear older DevNonce records from device activation records in Network Server
+//   * These clears all DevNonce records but keeps latest 20 records for maintain device activation status
+clearDeviceNonces: {
+    path: '/api.DeviceService/ClearDeviceNonces',
+    requestStream: false,
+    responseStream: false,
+    requestType: as_external_api_device_pb.ClearDeviceNoncesRequest,
+    responseType: google_protobuf_empty_pb.Empty,
+    requestSerialize: serialize_api_ClearDeviceNoncesRequest,
+    requestDeserialize: deserialize_api_ClearDeviceNoncesRequest,
+    responseSerialize: serialize_google_protobuf_Empty,
+    responseDeserialize: deserialize_google_protobuf_Empty,
   },
 };
 

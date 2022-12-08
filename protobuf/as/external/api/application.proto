@@ -4,6 +4,8 @@ package api;
 
 option go_package = "github.com/ibrahimozekici/chirpstack-api/go/v5/as/external/api";
 option java_package = "io.chirpstack.api.as.external.api";
+option java_multiple_files = true;
+option java_outer_classname = "ApplicationProto";
 
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
@@ -389,8 +391,6 @@ message Application {
     // in the next major release. When set, the device-profile payload_ fields
     // have priority over the application payload_ fields.
 	string payload_decoder_script = 8;
-    
-    // repeated byte MQTTTLSCert = 9;
 }
 
 message ApplicationListItem {
@@ -461,7 +461,7 @@ message ListApplicationRequest {
 message ListApplicationResponse {
 	// Total number of applications available within the result-set.
 	int64 total_count = 1;
-	
+
 	// Applications within this result-set.
 	repeated ApplicationListItem result = 2;
 }
@@ -576,6 +576,11 @@ enum InfluxDBPrecision {
 	H = 5;
 }
 
+enum InfluxDBVersion {
+    INFLUXDB_1 = 0;
+    INFLUXDB_2 = 1;
+}
+
 message InfluxDBIntegration {
 	// Application ID.
 	int64 application_id = 1 [json_name = "applicationID"];
@@ -583,20 +588,32 @@ message InfluxDBIntegration {
 	// InfluxDB API write endpoint (e.g. http://localhost:8086/write).
 	string endpoint = 2;
 
-	// InfluxDB database name.
+	// InfluxDB database name. (InfluxDB v1)
 	string db = 3;
 
-	// InfluxDB username.
+	// InfluxDB username. (InfluxDB v1)
 	string username = 4;
 
-	// InfluxDB password.
+	// InfluxDB password. (InfluxDB v1)
 	string password = 5;
 
-	// InfluxDB retention policy name.
+	// InfluxDB retention policy name. (InfluxDB v1)
 	string retention_policy_name = 6;
 
-	// InfluxDB timestamp precision.
+	// InfluxDB timestamp precision (InfluxDB v1).
 	InfluxDBPrecision precision = 7;
+
+    // InfluxDB version.
+    InfluxDBVersion version = 8;
+
+    // Token. (InfluxDB v2)
+    string token = 9;
+
+    // Organization. (InfluxDB v2)
+    string organization = 10;
+
+    // Bucket. (InfluxDB v2)
+    string bucket = 11;
 }
 
 message CreateInfluxDBIntegrationRequest {

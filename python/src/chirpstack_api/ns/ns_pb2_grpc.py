@@ -256,6 +256,16 @@ class NetworkServerServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
                 response_deserializer=chirpstack__api_dot_ns_dot_ns__pb2.GetVersionResponse.FromString,
                 )
+        self.GetADRAlgorithms = channel.unary_unary(
+                '/ns.NetworkServerService/GetADRAlgorithms',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=chirpstack__api_dot_ns_dot_ns__pb2.GetADRAlgorithmsResponse.FromString,
+                )
+        self.ClearDeviceNonces = channel.unary_unary(
+                '/ns.NetworkServerService/ClearDeviceNonces',
+                request_serializer=chirpstack__api_dot_ns_dot_ns__pb2.ClearDeviceNoncesRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
 
 
 class NetworkServerServiceServicer(object):
@@ -604,6 +614,22 @@ class NetworkServerServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetADRAlgorithms(self, request, context):
+        """GetADRAlgorithms returns the available ADR algorithms.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ClearDeviceNonces(self, request, context):
+        """ClearDeviceNonces deletes the device older activation records for the given DevEUI.
+        * These are clear older DevNonce records from device activation records
+        * These clears all DevNonce records but keeps latest 20 records for maintain device activation status
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_NetworkServerServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -846,6 +872,16 @@ def add_NetworkServerServiceServicer_to_server(servicer, server):
                     servicer.GetVersion,
                     request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                     response_serializer=chirpstack__api_dot_ns_dot_ns__pb2.GetVersionResponse.SerializeToString,
+            ),
+            'GetADRAlgorithms': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetADRAlgorithms,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=chirpstack__api_dot_ns_dot_ns__pb2.GetADRAlgorithmsResponse.SerializeToString,
+            ),
+            'ClearDeviceNonces': grpc.unary_unary_rpc_method_handler(
+                    servicer.ClearDeviceNonces,
+                    request_deserializer=chirpstack__api_dot_ns_dot_ns__pb2.ClearDeviceNoncesRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -1671,5 +1707,39 @@ class NetworkServerService(object):
         return grpc.experimental.unary_unary(request, target, '/ns.NetworkServerService/GetVersion',
             google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             chirpstack__api_dot_ns_dot_ns__pb2.GetVersionResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetADRAlgorithms(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/ns.NetworkServerService/GetADRAlgorithms',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            chirpstack__api_dot_ns_dot_ns__pb2.GetADRAlgorithmsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ClearDeviceNonces(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/ns.NetworkServerService/ClearDeviceNonces',
+            chirpstack__api_dot_ns_dot_ns__pb2.ClearDeviceNoncesRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

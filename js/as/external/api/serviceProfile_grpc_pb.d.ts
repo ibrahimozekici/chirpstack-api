@@ -5,7 +5,7 @@
 
 import * as as_external_api_serviceProfile_pb from "../../../as/external/api/serviceProfile_pb";
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
-import * as grpc from "grpc";
+import * as grpc from "@grpc/grpc-js";
 
 interface IServiceProfileServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
   create: grpc.MethodDefinition<as_external_api_serviceProfile_pb.CreateServiceProfileRequest, as_external_api_serviceProfile_pb.CreateServiceProfileResponse>;
@@ -16,6 +16,14 @@ interface IServiceProfileServiceService extends grpc.ServiceDefinition<grpc.Unty
 }
 
 export const ServiceProfileServiceService: IServiceProfileServiceService;
+
+export interface IServiceProfileServiceServer extends grpc.UntypedServiceImplementation {
+  create: grpc.handleUnaryCall<as_external_api_serviceProfile_pb.CreateServiceProfileRequest, as_external_api_serviceProfile_pb.CreateServiceProfileResponse>;
+  get: grpc.handleUnaryCall<as_external_api_serviceProfile_pb.GetServiceProfileRequest, as_external_api_serviceProfile_pb.GetServiceProfileResponse>;
+  update: grpc.handleUnaryCall<as_external_api_serviceProfile_pb.UpdateServiceProfileRequest, google_protobuf_empty_pb.Empty>;
+  delete: grpc.handleUnaryCall<as_external_api_serviceProfile_pb.DeleteServiceProfileRequest, google_protobuf_empty_pb.Empty>;
+  list: grpc.handleUnaryCall<as_external_api_serviceProfile_pb.ListServiceProfileRequest, as_external_api_serviceProfile_pb.ListServiceProfileResponse>;
+}
 
 export class ServiceProfileServiceClient extends grpc.Client {
   constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);

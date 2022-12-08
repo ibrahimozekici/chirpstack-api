@@ -1,7 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
-var grpc = require('grpc');
+var grpc = require('@grpc/grpc-js');
 var as_external_api_gatewayProfile_pb = require('../../../as/external/api/gatewayProfile_pb.js');
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js');
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
@@ -112,7 +112,7 @@ function deserialize_google_protobuf_Empty(buffer_arg) {
 // GatewayProfileService is the service managing the gateway-profiles.
 var GatewayProfileServiceService = exports.GatewayProfileServiceService = {
   // Create creates the given gateway-profile.
-  create: {
+create: {
     path: '/api.GatewayProfileService/Create',
     requestStream: false,
     responseStream: false,
@@ -124,7 +124,7 @@ var GatewayProfileServiceService = exports.GatewayProfileServiceService = {
     responseDeserialize: deserialize_api_CreateGatewayProfileResponse,
   },
   // Get returns the gateway-profile matching the given id.
-  get: {
+get: {
     path: '/api.GatewayProfileService/Get',
     requestStream: false,
     responseStream: false,
@@ -136,7 +136,7 @@ var GatewayProfileServiceService = exports.GatewayProfileServiceService = {
     responseDeserialize: deserialize_api_GetGatewayProfileResponse,
   },
   // Update updates the given gateway-profile.
-  update: {
+update: {
     path: '/api.GatewayProfileService/Update',
     requestStream: false,
     responseStream: false,
@@ -148,7 +148,7 @@ var GatewayProfileServiceService = exports.GatewayProfileServiceService = {
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // Delete deletes the gateway-profile matching the given id.
-  delete: {
+delete: {
     path: '/api.GatewayProfileService/Delete',
     requestStream: false,
     responseStream: false,
@@ -160,7 +160,7 @@ var GatewayProfileServiceService = exports.GatewayProfileServiceService = {
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // List returns the existing gateway-profiles.
-  list: {
+list: {
     path: '/api.GatewayProfileService/List',
     requestStream: false,
     responseStream: false,

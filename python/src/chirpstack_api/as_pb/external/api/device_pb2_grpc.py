@@ -81,6 +81,11 @@ class DeviceServiceStub(object):
                 request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.GetRandomDevAddrRequest.SerializeToString,
                 response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.GetRandomDevAddrResponse.FromString,
                 )
+        self.GetStats = channel.unary_unary(
+                '/api.DeviceService/GetStats',
+                request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.GetDeviceStatsRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.GetDeviceStatsResponse.FromString,
+                )
         self.StreamFrameLogs = channel.unary_stream(
                 '/api.DeviceService/StreamFrameLogs',
                 request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.StreamDeviceFrameLogsRequest.SerializeToString,
@@ -90,6 +95,11 @@ class DeviceServiceStub(object):
                 '/api.DeviceService/StreamEventLogs',
                 request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.StreamDeviceEventLogsRequest.SerializeToString,
                 response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.StreamDeviceEventLogsResponse.FromString,
+                )
+        self.ClearDeviceNonces = channel.unary_unary(
+                '/api.DeviceService/ClearDeviceNonces',
+                request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.ClearDeviceNoncesRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
 
 
@@ -188,6 +198,13 @@ class DeviceServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetStats(self, request, context):
+        """GetStats returns the device stats.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def StreamFrameLogs(self, request, context):
         """StreamFrameLogs streams the uplink and downlink frame-logs for the given DevEUI.
         * These are the raw LoRaWAN frames and this endpoint is intended for debugging only.
@@ -201,6 +218,15 @@ class DeviceServiceServicer(object):
         """StreamEventLogs stream the device events (uplink payloads, ACKs, joins, errors).
         * This endpoint is intended for debugging only.
         * This endpoint does not work from a web-browser.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ClearDeviceNonces(self, request, context):
+        """ClearDeviceNonces deletes the device older activation records for the given DevEUI.
+        * These are clear older DevNonce records from device activation records in Network Server
+        * These clears all DevNonce records but keeps latest 20 records for maintain device activation status
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -274,6 +300,11 @@ def add_DeviceServiceServicer_to_server(servicer, server):
                     request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.GetRandomDevAddrRequest.FromString,
                     response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.GetRandomDevAddrResponse.SerializeToString,
             ),
+            'GetStats': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetStats,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.GetDeviceStatsRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.GetDeviceStatsResponse.SerializeToString,
+            ),
             'StreamFrameLogs': grpc.unary_stream_rpc_method_handler(
                     servicer.StreamFrameLogs,
                     request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.StreamDeviceFrameLogsRequest.FromString,
@@ -283,6 +314,11 @@ def add_DeviceServiceServicer_to_server(servicer, server):
                     servicer.StreamEventLogs,
                     request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.StreamDeviceEventLogsRequest.FromString,
                     response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.StreamDeviceEventLogsResponse.SerializeToString,
+            ),
+            'ClearDeviceNonces': grpc.unary_unary_rpc_method_handler(
+                    servicer.ClearDeviceNonces,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.ClearDeviceNoncesRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -517,6 +553,23 @@ class DeviceService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetStats(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/api.DeviceService/GetStats',
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.GetDeviceStatsRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.GetDeviceStatsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def StreamFrameLogs(request,
             target,
             options=(),
@@ -547,5 +600,22 @@ class DeviceService(object):
         return grpc.experimental.unary_stream(request, target, '/api.DeviceService/StreamEventLogs',
             chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.StreamDeviceEventLogsRequest.SerializeToString,
             chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.StreamDeviceEventLogsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ClearDeviceNonces(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/api.DeviceService/ClearDeviceNonces',
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_device__pb2.ClearDeviceNoncesRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

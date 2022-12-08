@@ -2,8 +2,10 @@ syntax = "proto3";
 
 package ns;
 
-option go_package = "github.com/ibrahimozekici/chirpstack-api/ns";
+option go_package = "github.com/brocaar/chirpstack-api/ns";
 option java_package = "io.chirpstack.api.ns";
+option java_multiple_files = true;
+option java_outer_classname = "NetworkServerProto";
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
@@ -167,6 +169,11 @@ service NetworkServerService {
 
     // GetADRAlgorithms returns the available ADR algorithms.
     rpc GetADRAlgorithms(google.protobuf.Empty) returns (GetADRAlgorithmsResponse) {}
+
+    // ClearDeviceNonces deletes the device older activation records for the given DevEUI.
+    //   * These are clear older DevNonce records from device activation records
+    //   * These clears all DevNonce records but keeps latest 20 records for maintain device activation status
+    rpc ClearDeviceNonces(ClearDeviceNoncesRequest) returns (google.protobuf.Empty) {}
 }
 
 enum RXWindow {
@@ -638,6 +645,18 @@ message UplinkFrameLog {
 
     // RX meta-data.
     repeated gw.UplinkRXInfo rx_info = 3;
+
+    // Message type.
+    common.MType m_type = 4;
+
+    // Device address (optional).
+    bytes dev_addr = 5;
+
+    // Device EUI (optional).
+    bytes dev_eui = 6;
+
+    // Published at timestamp.
+    google.protobuf.Timestamp published_at = 7;
 }
 
 message DownlinkFrameLog {
@@ -656,6 +675,18 @@ message DownlinkFrameLog {
 
     // Gateway ID.
     bytes gateway_id = 5 [json_name = "gatewayID"];
+
+    // Message type.
+    common.MType m_type = 6;
+
+    // Device address (optional).
+    bytes dev_addr = 7;
+
+    // Device EUI (optional).
+    bytes dev_eui = 8;
+
+    // Published at timestamp.
+    google.protobuf.Timestamp published_at = 9;
 }
 
 message StreamFrameLogsForGatewayRequest {
@@ -905,4 +936,9 @@ message ADRAlgorithm {
 
     // ADR algorithm name.
     string name = 2;
+}
+
+message ClearDeviceNoncesRequest {
+    // Device EUI (8 bytes).
+    bytes dev_eui = 1;
 }

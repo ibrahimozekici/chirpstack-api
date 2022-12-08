@@ -22,7 +22,7 @@ All messages, services, constants, etc. are auto-generated from the ChirpStack p
 this package structure matches that of the protobuf definitions. There is no ES6 index gathering all of the exports, so
 full import/require paths should be used. The generated code is all callback based, but can be promisified.
 
-The protobuf definitions can be found here: https://github.com/ibrahimozekici/chirpstack-api/tree/master/protobuf
+The protobuf definitions can be found here: https://github.com/brocaar/chirpstack-api/tree/master/protobuf
 
 The generated code all depends on the `grpc` package, and for most use cases you will probably need to make use of the
 `grpc` package directly as well. This is seen in the example below.
@@ -33,7 +33,7 @@ This example shows how to log in to ChirpStack via the gRPC API and then create 
 JWT. This metadata could then be passed to any future requests that require authorization.
 
 ```javascript
-import * as grpc from 'grpc';
+import * as grpc from '@grpc/grpc-js';
 
 import * as internalService from '@chirpstack/chirpstack-api/as/external/api/internal_grpc_pb';
 import * as internalMessages from '@chirpstack/chirpstack-api/as/external/api/internal_pb';
@@ -47,7 +47,7 @@ const internalServiceClient = new internalService.InternalServiceClient(
 // Create and build the login request message
 const loginRequest = new internalMessages.LoginRequest();
 
-loginRequest.setUsername('username');
+loginRequest.setEmail('email');
 loginRequest.setPassword('password');
 
 // Send the login request

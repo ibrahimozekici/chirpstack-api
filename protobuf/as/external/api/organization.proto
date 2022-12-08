@@ -4,6 +4,8 @@ package api;
 
 option go_package = "github.com/ibrahimozekici/chirpstack-api/go/v5/as/external/api";
 option java_package = "io.chirpstack.api.as.external.api";
+option java_multiple_files = true;
+option java_outer_classname = "OrganizationProto";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
@@ -63,14 +65,20 @@ service OrganizationService {
 		};
 	}
 
-	// Add a new user to an organization.
+	// Add a new user to an organization. The user is matched based on email, not user id.
 	rpc AddUser(AddOrganizationUserRequest) returns (google.protobuf.Empty) {
 		option(google.api.http) = {
 			post: "/api/organizations/{organization_user.organization_id}/users"
 			body: "*"
 		};
+	
 	}
-
+	rpc OrganizationExist(OrganizationExistRequest) returns (OrganizationExistResponse) {
+		option(google.api.http) = {
+			post: "/api/organizations/organizationExist"
+			body: "*"
+		};
+	}
 	// Update a user in an organization.
 	rpc UpdateUser(UpdateOrganizationUserRequest) returns (google.protobuf.Empty) {
 		option(google.api.http) = {
@@ -85,19 +93,12 @@ service OrganizationService {
 			delete: "/api/organizations/{organization_id}/users/{user_id}"
 		};
 	}
-
-	rpc OrganizationExist(OrganizationExistRequest) returns (OrganizationExistResponse) {
-		option(google.api.http) = {
-			post: "/api/organizations/organizationExist"
-			body: "*"
-		};
-	}
 }
 
 message Organization {
 	// Organization ID.
 	int64 id = 1;
-	
+
 	// Organization name.
 	string name = 2;
 
@@ -107,19 +108,19 @@ message Organization {
 	// Can the organization create and "own" Gateways?
 	bool can_have_gateways = 4;
 
-    // Max. gateway count for organization.
-    // When set to 0, the organization can have unlimited gateways.
-    uint32 max_gateway_count = 5;
+	// Max. gateway count for organization.
+	// When set to 0, the organization can have unlimited gateways.
+	uint32 max_gateway_count = 5;
 
-    // Max. device count for organization.
-    // When set to 0, the organization can have unlimited devices.
-    uint32 max_device_count = 6;
+	// Max. device count for organization.
+	// When set to 0, the organization can have unlimited devices.
+	uint32 max_device_count = 6;
 }
 
 message OrganizationListItem {
 	// Organization ID.
 	int64 id = 1;
-	
+
 	// Organization name.
 	string name = 2;
 
@@ -199,58 +200,50 @@ message OrganizationUser {
 	int64 user_id = 2 [json_name = "userID"];
 
 	// User is admin within the context of the organization.
-    // There is no need to set the is_device_admin and is_gateway_admin flags.
+	// There is no need to set the is_device_admin and is_gateway_admin flags.
 	bool is_admin = 3;
 
-	// Email (only used on get).
 	string email = 4;
 
-    // User is able to modify device related resources (applications,
-    // device-profiles, devices, multicast-groups).
-    bool is_device_admin = 5;
+	// User is able to modify device related resources (applications,
+	// device-profiles, devices, multicast-groups).
+	bool is_device_admin = 5;
 
-    // User is able to modify gateways.
-    bool is_gateway_admin = 6;
+	// User is able to modify gateways.
+	bool is_gateway_admin = 6;
 
+	// Email (only used on get and when adding a user to an organization).
 	repeated int64 zones= 7 [json_name = "zones"];
 
 	string name = 8;
 	string phone_number = 9;
 }
 
-message OrganizationUserZone {
-	// Zone ID 
-	int64 zone_id = 1;
-
-	// Name of Zone
-	string zone_name = 2 [json_name = "zoneName"];
-}
 message OrganizationUserListItem {
 	// User ID.
-    // This is not used on create, you must set the user email address
-    // associated with the user to add an user to an organization.
+	// This is not used on create, you must set the user email address
+	// associated with the user to add an user to an organization.
 	int64 user_id = 1 [json_name = "userID"];
 
 	// Email.
 	string email = 2;
 
 	// User is admin within the context of the organization.
-    // There is no need to set the is_device_admin and is_gateway_admin flags.
+	// There is no need to set the is_device_admin and is_gateway_admin flags.
 	bool is_admin = 3;
 
-    // User is able to modify device related resources (applications,
-    // device-profiles, devices, multicast-groups).
-    bool is_device_admin = 6;
+	// User is able to modify device related resources (applications,
+	// device-profiles, devices, multicast-groups).
+	bool is_device_admin = 6;
 
-    // User is able to modify gateways.
-    bool is_gateway_admin = 7;
+	// User is able to modify gateways.
+	bool is_gateway_admin = 7;
 
 	// Created at timestamp.
 	google.protobuf.Timestamp created_at = 4;
 
 	// Last update timestamp.
 	google.protobuf.Timestamp updated_at = 5;
-
 		// Username of user
 		string username = 8;
 
@@ -265,7 +258,13 @@ message TempZone {
 	repeated OrganizationUserZone zones = 1;
 
 }
+message OrganizationUserZone {
+	// Zone ID 
+	int64 zone_id = 1;
 
+	// Name of Zone
+	string zone_name = 2 [json_name = "zoneName"];
+}
 message AddOrganizationUserRequest {
 	// Organization-user object to create.
 	OrganizationUser organization_user = 1;
@@ -279,7 +278,7 @@ message UpdateOrganizationUserRequest {
 message DeleteOrganizationUserRequest {
 	// Organization ID.
 	int64 organization_id = 1 [json_name = "organizationID"];
-	
+
 	// User ID.
 	int64 user_id = 2 [json_name = "userID"];
 }
@@ -287,7 +286,7 @@ message DeleteOrganizationUserRequest {
 message ListOrganizationUsersRequest {
 	// Organization ID.
 	int64 organization_id = 1 [json_name = "organizationID"];
-	
+
 	// Max number of users to return in the result-set.
 	int32 limit = 2;
 
@@ -298,7 +297,7 @@ message ListOrganizationUsersRequest {
 message ListOrganizationUsersResponse {
 	// The total number of users in the organization.
 	int64 total_count = 1;
-	
+
 	repeated OrganizationUserListItem result = 2;
 }
 
@@ -321,7 +320,6 @@ message GetOrganizationUserResponse {
 	// Last update timestamp.
 	google.protobuf.Timestamp updated_at = 3;
 }
-
 message OrganizationExistRequest {
 	string organizationName = 1 [json_name = "organizationName"];
 }

@@ -1,7 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
-var grpc = require('grpc');
+var grpc = require('@grpc/grpc-js');
 var as_external_api_deviceQueue_pb = require('../../../as/external/api/deviceQueue_pb.js');
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
@@ -76,7 +76,7 @@ function deserialize_google_protobuf_Empty(buffer_arg) {
 // DeviceQueueService is the service managing the downlink data queue.
 var DeviceQueueServiceService = exports.DeviceQueueServiceService = {
   // Enqueue adds the given item to the device-queue.
-  enqueue: {
+enqueue: {
     path: '/api.DeviceQueueService/Enqueue',
     requestStream: false,
     responseStream: false,
@@ -88,7 +88,7 @@ var DeviceQueueServiceService = exports.DeviceQueueServiceService = {
     responseDeserialize: deserialize_api_EnqueueDeviceQueueItemResponse,
   },
   // Flush flushes the downlink device-queue.
-  flush: {
+flush: {
     path: '/api.DeviceQueueService/Flush',
     requestStream: false,
     responseStream: false,
@@ -100,7 +100,7 @@ var DeviceQueueServiceService = exports.DeviceQueueServiceService = {
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // List lists the items in the device-queue.
-  list: {
+list: {
     path: '/api.DeviceQueueService/List',
     requestStream: false,
     responseStream: false,

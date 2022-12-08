@@ -4,7 +4,7 @@
 // file: geo/geo.proto
 
 import * as geo_geo_pb from "../geo/geo_pb";
-import * as grpc from "grpc";
+import * as grpc from "@grpc/grpc-js";
 
 interface IGeolocationServerServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
   resolveTDOA: grpc.MethodDefinition<geo_geo_pb.ResolveTDOARequest, geo_geo_pb.ResolveTDOAResponse>;
@@ -12,6 +12,11 @@ interface IGeolocationServerServiceService extends grpc.ServiceDefinition<grpc.U
 }
 
 export const GeolocationServerServiceService: IGeolocationServerServiceService;
+
+export interface IGeolocationServerServiceServer extends grpc.UntypedServiceImplementation {
+  resolveTDOA: grpc.handleUnaryCall<geo_geo_pb.ResolveTDOARequest, geo_geo_pb.ResolveTDOAResponse>;
+  resolveMultiFrameTDOA: grpc.handleUnaryCall<geo_geo_pb.ResolveMultiFrameTDOARequest, geo_geo_pb.ResolveMultiFrameTDOAResponse>;
+}
 
 export class GeolocationServerServiceClient extends grpc.Client {
   constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);

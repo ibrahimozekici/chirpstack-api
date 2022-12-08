@@ -5,7 +5,7 @@
 
 import * as as_external_api_deviceProfile_pb from "../../../as/external/api/deviceProfile_pb";
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
-import * as grpc from "grpc";
+import * as grpc from "@grpc/grpc-js";
 
 interface IDeviceProfileServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
   create: grpc.MethodDefinition<as_external_api_deviceProfile_pb.CreateDeviceProfileRequest, as_external_api_deviceProfile_pb.CreateDeviceProfileResponse>;
@@ -16,6 +16,14 @@ interface IDeviceProfileServiceService extends grpc.ServiceDefinition<grpc.Untyp
 }
 
 export const DeviceProfileServiceService: IDeviceProfileServiceService;
+
+export interface IDeviceProfileServiceServer extends grpc.UntypedServiceImplementation {
+  create: grpc.handleUnaryCall<as_external_api_deviceProfile_pb.CreateDeviceProfileRequest, as_external_api_deviceProfile_pb.CreateDeviceProfileResponse>;
+  get: grpc.handleUnaryCall<as_external_api_deviceProfile_pb.GetDeviceProfileRequest, as_external_api_deviceProfile_pb.GetDeviceProfileResponse>;
+  update: grpc.handleUnaryCall<as_external_api_deviceProfile_pb.UpdateDeviceProfileRequest, google_protobuf_empty_pb.Empty>;
+  delete: grpc.handleUnaryCall<as_external_api_deviceProfile_pb.DeleteDeviceProfileRequest, google_protobuf_empty_pb.Empty>;
+  list: grpc.handleUnaryCall<as_external_api_deviceProfile_pb.ListDeviceProfileRequest, as_external_api_deviceProfile_pb.ListDeviceProfileResponse>;
+}
 
 export class DeviceProfileServiceClient extends grpc.Client {
   constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);

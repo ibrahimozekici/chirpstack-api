@@ -4,6 +4,8 @@ package api;
 
 option go_package = "github.com/ibrahimozekici/chirpstack-api/go/v5/as/external/api";
 option java_package = "io.chirpstack.api.as.external.api";
+option java_multiple_files = true;
+option java_outer_classname = "UserProto";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
@@ -99,30 +101,30 @@ message User {
 	// Optional note to store with the user.
 	string note = 7;
 
-	// User web key
-	string web_key = 10 [json_name = "web_key"];
+		// User web key
+		string web_key = 10 [json_name = "web_key"];
 
-	// User ios key
-	string ios_key = 11 [json_name = "ios_key"];
-
-	// User android key
-	string android_key = 12 [json_name = "android_key"];
-
-	// Phone number of User
-	string phone_number = 13 [json_name = "phone_number"];
-
-	// Zones of User
-	repeated int64 zones = 14 [json_name = "zones"];
-
-	// Name of the user
-	string name = 15 [json_name = "name"];
-
-	// Username of the user
-	string user_name = 16 [json_name = "userName"];
-
-	bool training = 17 [json_name = "training"];
-
-	string expo_key = 18 [json_name = "expo_key"];
+		// User ios key
+		string ios_key = 11 [json_name = "ios_key"];
+	
+		// User android key
+		string android_key = 12 [json_name = "android_key"];
+	
+		// Phone number of User
+		string phone_number = 13 [json_name = "phone_number"];
+	
+		// Zones of User
+		repeated int64 zones = 14 [json_name = "zones"];
+	
+		// Name of the user
+		string name = 15 [json_name = "name"];
+	
+		// Username of the user
+		string user_name = 16 [json_name = "userName"];
+	
+		bool training = 17 [json_name = "training"];
+	
+		string expo_key = 18 [json_name = "expo_key"];
 }
 
 message UserListItem {
@@ -253,7 +255,6 @@ message UpdateUserPasswordRequest {
 	// New pasword.
 	string password = 2;
 }
-
 message ForgetPasswordRequest {
 
 	string username = 1 [json_name = "userName"];

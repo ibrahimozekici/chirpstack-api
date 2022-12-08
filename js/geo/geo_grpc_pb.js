@@ -1,7 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
-var grpc = require('grpc');
+var grpc = require('@grpc/grpc-js');
 var geo_geo_pb = require('../geo/geo_pb.js');
 var gw_gw_pb = require('../gw/gw_pb.js');
 var common_common_pb = require('../common/common_pb.js');
@@ -54,7 +54,7 @@ function deserialize_geo_ResolveTDOAResponse(buffer_arg) {
 // GeolocationServerService implements a geolocation-server service.
 var GeolocationServerServiceService = exports.GeolocationServerServiceService = {
   // ResolveTDOA resolves the location based on TDOA.
-  resolveTDOA: {
+resolveTDOA: {
     path: '/geo.GeolocationServerService/ResolveTDOA',
     requestStream: false,
     responseStream: false,
@@ -66,8 +66,8 @@ var GeolocationServerServiceService = exports.GeolocationServerServiceService = 
     responseDeserialize: deserialize_geo_ResolveTDOAResponse,
   },
   // ResolveMultiFrameTDOA resolves the location using TDOA, based on
-  // multiple frames.
-  resolveMultiFrameTDOA: {
+// multiple frames.
+resolveMultiFrameTDOA: {
     path: '/geo.GeolocationServerService/ResolveMultiFrameTDOA',
     requestStream: false,
     responseStream: false,

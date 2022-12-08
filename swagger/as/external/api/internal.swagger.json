@@ -179,23 +179,6 @@
         ]
       }
     },
-    "/api/internal/licencePrice": {
-      "get": {
-        "summary": "GetLicencePrice Get licence order.",
-        "operationId": "GetLicencePrice",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiGetLicencePriceResponse"
-            }
-          }
-        },
-        "tags": [
-          "InternalService"
-        ]
-      }
-    },
     "/api/internal/login": {
       "post": {
         "summary": "Log in a user",
@@ -249,59 +232,6 @@
             "in": "query",
             "required": false,
             "type": "string"
-          }
-        ],
-        "tags": [
-          "InternalService"
-        ]
-      }
-    },
-    "/api/internal/order": {
-      "post": {
-        "summary": "CreateLicenceOrder Create licence order.",
-        "operationId": "CreateLicenceOrder",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiCreateLicenceOrderResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/apiCreateLicenceOrderRequest"
-            }
-          }
-        ],
-        "tags": [
-          "InternalService"
-        ]
-      }
-    },
-    "/api/internal/order/{order_id}": {
-      "get": {
-        "summary": "GetLicenceOrder Get licence order.",
-        "operationId": "GetLicenceOrder",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiGetLicenceOrderResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "order_id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
           }
         ],
         "tags": [
@@ -450,86 +380,6 @@
         }
       }
     },
-    "apiCreateLicenceOrderRequest": {
-      "type": "object",
-      "properties": {
-        "userId": {
-          "type": "integer",
-          "format": "int64",
-          "title": "User ID"
-        },
-        "userName": {
-          "type": "string",
-          "title": "User Name"
-        },
-        "userSurname": {
-          "type": "string",
-          "title": "User Surname"
-        },
-        "userPhone": {
-          "type": "string",
-          "title": "User Phone number"
-        },
-        "userMail": {
-          "type": "string",
-          "title": "User Email"
-        },
-        "userIdentity": {
-          "type": "string",
-          "title": "User Identity Number"
-        },
-        "userVat": {
-          "type": "string",
-          "title": "User Vat"
-        },
-        "userAddress": {
-          "type": "string",
-          "title": "User Address"
-        },
-        "userCity": {
-          "type": "string",
-          "title": "User City"
-        },
-        "userCountry": {
-          "type": "string",
-          "title": "User Country"
-        },
-        "userZipcode": {
-          "type": "string",
-          "title": "User Zipcode"
-        },
-        "orderDetail": {
-          "type": "string",
-          "title": "User City"
-        },
-        "orderQuantity": {
-          "type": "string",
-          "title": "User City"
-        },
-        "orderPrice": {
-          "type": "string",
-          "title": "User City"
-        },
-        "orderTime": {
-          "type": "string",
-          "title": "User City"
-        },
-        "orgenizationId": {
-          "type": "integer",
-          "format": "int64",
-          "title": "Organization ID"
-        }
-      }
-    },
-    "apiCreateLicenceOrderResponse": {
-      "type": "object",
-      "properties": {
-        "orderId": {
-          "type": "integer",
-          "format": "int64"
-        }
-      }
-    },
     "apiGetDevicesSummaryResponse": {
       "type": "object",
       "properties": {
@@ -635,95 +485,6 @@
         "training": {
           "type": "boolean",
           "format": "boolean"
-        }
-      }
-    },
-    "apiGetLicenceOrderResponse": {
-      "type": "object",
-      "properties": {
-        "userId": {
-          "type": "integer",
-          "format": "int64",
-          "title": "User ID"
-        },
-        "userName": {
-          "type": "string",
-          "title": "User Name"
-        },
-        "userSurname": {
-          "type": "string",
-          "title": "User Surname"
-        },
-        "userPhone": {
-          "type": "string",
-          "title": "User Phone number"
-        },
-        "userMail": {
-          "type": "string",
-          "title": "User Email"
-        },
-        "userIdentity": {
-          "type": "string",
-          "title": "User Identity Number"
-        },
-        "userVat": {
-          "type": "string",
-          "title": "User Vat"
-        },
-        "userAddress": {
-          "type": "string",
-          "title": "User Address"
-        },
-        "userCity": {
-          "type": "string",
-          "title": "User City"
-        },
-        "userCountry": {
-          "type": "string",
-          "title": "User Country"
-        },
-        "userZipcode": {
-          "type": "string",
-          "title": "User Zipcode"
-        },
-        "orderDetail": {
-          "type": "string",
-          "title": "User City"
-        },
-        "orderPrice": {
-          "type": "string",
-          "title": "User City"
-        },
-        "orderTime": {
-          "type": "string",
-          "title": "User City"
-        },
-        "lastLoginDate": {
-          "type": "string"
-        },
-        "registrationDate": {
-          "type": "string"
-        },
-        "orgenizationId": {
-          "type": "string",
-          "format": "int64"
-        }
-      }
-    },
-    "apiGetLicencePriceResponse": {
-      "type": "object",
-      "properties": {
-        "option1": {
-          "type": "string",
-          "title": "Licence Option 1"
-        },
-        "option2": {
-          "type": "string",
-          "title": "Licence Option 2"
-        },
-        "option3": {
-          "type": "string",
-          "title": "Licence Option 3"
         }
       }
     },

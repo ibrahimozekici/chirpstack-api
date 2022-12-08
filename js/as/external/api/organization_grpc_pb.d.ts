@@ -5,7 +5,7 @@
 
 import * as as_external_api_organization_pb from "../../../as/external/api/organization_pb";
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
-import * as grpc from "grpc";
+import * as grpc from "@grpc/grpc-js";
 
 interface IOrganizationServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
   list: grpc.MethodDefinition<as_external_api_organization_pb.ListOrganizationRequest, as_external_api_organization_pb.ListOrganizationResponse>;
@@ -21,6 +21,19 @@ interface IOrganizationServiceService extends grpc.ServiceDefinition<grpc.Untype
 }
 
 export const OrganizationServiceService: IOrganizationServiceService;
+
+export interface IOrganizationServiceServer extends grpc.UntypedServiceImplementation {
+  list: grpc.handleUnaryCall<as_external_api_organization_pb.ListOrganizationRequest, as_external_api_organization_pb.ListOrganizationResponse>;
+  get: grpc.handleUnaryCall<as_external_api_organization_pb.GetOrganizationRequest, as_external_api_organization_pb.GetOrganizationResponse>;
+  create: grpc.handleUnaryCall<as_external_api_organization_pb.CreateOrganizationRequest, as_external_api_organization_pb.CreateOrganizationResponse>;
+  update: grpc.handleUnaryCall<as_external_api_organization_pb.UpdateOrganizationRequest, google_protobuf_empty_pb.Empty>;
+  delete: grpc.handleUnaryCall<as_external_api_organization_pb.DeleteOrganizationRequest, google_protobuf_empty_pb.Empty>;
+  listUsers: grpc.handleUnaryCall<as_external_api_organization_pb.ListOrganizationUsersRequest, as_external_api_organization_pb.ListOrganizationUsersResponse>;
+  getUser: grpc.handleUnaryCall<as_external_api_organization_pb.GetOrganizationUserRequest, as_external_api_organization_pb.GetOrganizationUserResponse>;
+  addUser: grpc.handleUnaryCall<as_external_api_organization_pb.AddOrganizationUserRequest, google_protobuf_empty_pb.Empty>;
+  updateUser: grpc.handleUnaryCall<as_external_api_organization_pb.UpdateOrganizationUserRequest, google_protobuf_empty_pb.Empty>;
+  deleteUser: grpc.handleUnaryCall<as_external_api_organization_pb.DeleteOrganizationUserRequest, google_protobuf_empty_pb.Empty>;
+}
 
 export class OrganizationServiceClient extends grpc.Client {
   constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);

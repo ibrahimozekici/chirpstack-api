@@ -5,7 +5,7 @@
 
 import * as as_external_api_deviceQueue_pb from "../../../as/external/api/deviceQueue_pb";
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
-import * as grpc from "grpc";
+import * as grpc from "@grpc/grpc-js";
 
 interface IDeviceQueueServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
   enqueue: grpc.MethodDefinition<as_external_api_deviceQueue_pb.EnqueueDeviceQueueItemRequest, as_external_api_deviceQueue_pb.EnqueueDeviceQueueItemResponse>;
@@ -14,6 +14,12 @@ interface IDeviceQueueServiceService extends grpc.ServiceDefinition<grpc.Untyped
 }
 
 export const DeviceQueueServiceService: IDeviceQueueServiceService;
+
+export interface IDeviceQueueServiceServer extends grpc.UntypedServiceImplementation {
+  enqueue: grpc.handleUnaryCall<as_external_api_deviceQueue_pb.EnqueueDeviceQueueItemRequest, as_external_api_deviceQueue_pb.EnqueueDeviceQueueItemResponse>;
+  flush: grpc.handleUnaryCall<as_external_api_deviceQueue_pb.FlushDeviceQueueRequest, google_protobuf_empty_pb.Empty>;
+  list: grpc.handleUnaryCall<as_external_api_deviceQueue_pb.ListDeviceQueueItemsRequest, as_external_api_deviceQueue_pb.ListDeviceQueueItemsResponse>;
+}
 
 export class DeviceQueueServiceClient extends grpc.Client {
   constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);

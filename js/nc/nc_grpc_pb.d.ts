@@ -5,7 +5,7 @@
 
 import * as nc_nc_pb from "../nc/nc_pb";
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
-import * as grpc from "grpc";
+import * as grpc from "@grpc/grpc-js";
 
 interface INetworkControllerServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
   handleUplinkMetaData: grpc.MethodDefinition<nc_nc_pb.HandleUplinkMetaDataRequest, google_protobuf_empty_pb.Empty>;
@@ -15,6 +15,13 @@ interface INetworkControllerServiceService extends grpc.ServiceDefinition<grpc.U
 }
 
 export const NetworkControllerServiceService: INetworkControllerServiceService;
+
+export interface INetworkControllerServiceServer extends grpc.UntypedServiceImplementation {
+  handleUplinkMetaData: grpc.handleUnaryCall<nc_nc_pb.HandleUplinkMetaDataRequest, google_protobuf_empty_pb.Empty>;
+  handleDownlinkMetaData: grpc.handleUnaryCall<nc_nc_pb.HandleDownlinkMetaDataRequest, google_protobuf_empty_pb.Empty>;
+  handleUplinkMACCommand: grpc.handleUnaryCall<nc_nc_pb.HandleUplinkMACCommandRequest, google_protobuf_empty_pb.Empty>;
+  handleRejectedUplinkFrameSet: grpc.handleUnaryCall<nc_nc_pb.HandleRejectedUplinkFrameSetRequest, google_protobuf_empty_pb.Empty>;
+}
 
 export class NetworkControllerServiceClient extends grpc.Client {
   constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);
