@@ -1,0 +1,269 @@
+syntax = "proto3";
+
+package als;
+
+option go_package = "github.com/ibrahimozekici/chirpstack-api/als";
+option java_package = "io.chirpstack.api.als";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+
+// AlarmServerService provides the Alarm-server API methods.
+service AlarmServerService {
+    rpc CreateAlarm(CreateAlarmRequest) returns (CreateAlarmResponse) {}
+    rpc GetAlarm(GetAlarmRequest) returns (GetAlarmResponse){}
+	rpc GetAlarmLogs(GetAlarmLogsRequest) returns (GetAlarmLogsResponse){}
+	rpc GetAlarmDates(GetAlarmDatesRequest) returns (GetAlarmDatesResponse) {}
+	rpc DeleteAlarmDates(DeleteAlarmDatesRequest) returns (google.protobuf.Empty){}
+	rpc DeleteAlarm(DeleteAlarmRequest) returns (google.protobuf.Empty) {}
+	rpc DeleteUserAlarm(DeleteUserAlarmRequest) returns (google.protobuf.Empty){}
+	rpc DeleteSensorAlarm(DeleteSensorAlarmRequest) returns (google.protobuf.Empty){}
+	rpc DeleteZoneAlarm(DeleteZoneAlarmRequest) returns (google.protobuf.Empty){}
+	rpc DeleteAlarmDevEui(DeleteAlarmDevEuiRequest) returns (google.protobuf.Empty){}
+	rpc UpdateAlarm(UpdateAlarmRequest) returns (google.protobuf.Empty){}
+	rpc GetAlarmList(GetAlarmListRequest) returns (GetAlarmListResponse){}
+	rpc GetOrganizationAlarmList(GetOrganizationAlarmListRequest) returns (GetOrganizationAlarmListResponse){}
+}
+
+message Alarm{
+	int64 id=1;
+	string devEui = 2;
+	float minTreshold = 3;
+	float maxTreshold = 4;
+	bool sms = 5;
+	bool email = 6;
+	bool notification = 7;
+	bool temperature = 8;
+	bool humadity = 9;
+	bool ec = 10;
+	bool door = 11;
+	bool wLeak = 12;
+	int64 userID = 13;
+	string ipAddress = 14;
+	bool isTimeLimitActive = 15;
+	float alarmStartTime = 16;
+	float alarmStopTime = 17;
+	int64 zoneCategoryID = 18;
+	bool isActive = 19;
+	int64 coldRoomTime = 20;
+	int64 coldRoomFreq = 21;
+	repeated AlarmDateTime alarm_date_time = 22;
+	bool pressure = 23;
+}
+
+message OrganizationAlarm{
+	int64 id=1;
+	string devEui = 2;
+	float minTreshold = 3;
+	float maxTreshold = 4;
+	bool sms = 5;
+	bool email = 6;
+	bool notification = 7;
+	bool temperature = 8;
+	bool humadity = 9;
+	bool ec = 10;
+	bool door = 11;
+	bool wLeak = 12;
+	int64 userID = 13;
+	string ipAddress = 14;
+	bool isTimeLimitActive = 15;
+	float alarmStartTime = 16;
+	float alarmStopTime = 17;
+	int64 zoneCategoryID = 18;
+	bool isActive = 19;
+	string zoneName = 20;
+	string deviceName = 21;
+	string userName = 22;
+	repeated AlarmDateTime alarmDateTime = 23;
+	bool pressure = 24;
+}
+
+message AlarmWithDates{
+	int64 id=1;
+	string devEui = 2;
+	float minTreshold = 3;
+	float maxTreshold = 4;
+	bool sms = 5;
+	bool email = 6;
+	bool notification = 7;
+	bool temperature = 8;
+	bool humadity = 9;
+	bool ec = 10;
+	bool door = 11;
+	bool wLeak = 12;
+	int64 userID = 13;
+	string ipAddress = 14;
+	bool isTimeLimitActive = 15;
+	int64 zoneCategoryID = 16;
+	bool isActive = 17;
+	float alarmStartTime2 = 18;
+	float alarmStopTime2 = 19;
+	int64 alarmDay = 20;
+	int64 alarmStartTime = 21;
+	int64 alarmEndTime = 22;
+	bool pressure = 23;
+}
+
+message AlarmDateFilter{
+	int64 ID = 1;
+	int64 alarmId = 2;
+	int64 alarmDay=3;
+	float alarmStartTime =4;
+	float alarmEndTime = 5;
+}
+
+message AlarmDateTime {
+    int64 id = 1;
+
+    int64 alarm_id = 2;
+
+    int64 alarm_day = 3;
+
+    float alarm_start_time = 4;
+
+    float alarm_end_time = 5;
+}
+
+
+
+message CreateAlarmRequest{
+    Alarm alarm = 1;
+}
+
+message CreateAlarmResponse{
+    Alarm alarm = 1;
+}
+
+message GetAlarmRequest{
+    int64 alarmID = 1;
+}
+
+message GetAlarmResponse{
+    Alarm alarm = 1;
+}
+
+message UpdateAlarmRequest{
+	string alarmID = 1;
+	Alarm alarm = 2;
+}
+
+message GetAlarmLogsRequest{
+	string devEui = 1;
+}
+
+message GetAlarmLogsResponse{
+	repeated AlarmLogs respLog = 1;
+}
+
+
+
+message GetAlarmDatesRequest{
+	int64 alarmId = 1;
+}
+
+message GetAlarmDatesResponse{
+	repeated AlarmDateTime respDate = 1;
+}
+
+message DeleteAlarmRequest{
+	string alarmID = 1;
+	int64 userID =2;
+	string ipAddress = 3;
+}
+
+message DeleteUserAlarmRequest{
+	repeated int64 userIds = 1;
+}
+
+message DeleteSensorAlarmRequest{
+	repeated string devEuis = 1;
+}
+
+message DeleteZoneAlarmRequest{
+	repeated int64 zones = 1;
+}
+
+message DeleteAlarmDevEuiRequest{
+	string deveui = 1;
+	int64 userId = 2;
+}
+
+message DeleteAlarmDatesRequest{
+	string alarmId = 1;
+}
+
+message CreateAlarmLogRequest{
+	Alarm alarm = 1;
+	int64 userID = 2;
+	string ipAddress = 3;
+	int64 isDeleted = 4;
+}
+
+message GetAlarmListRequest{
+	AlarmFilters filter = 1;
+}
+
+message GetAlarmListResponse{
+	repeated Alarm respList =1;
+}
+
+message GetOrganizationAlarmListRequest{
+	int64 organizationID = 1;
+}
+
+message GetOrganizationAlarmListResponse{
+	repeated OrganizationAlarm respList = 1;
+}
+
+message CheckAlarmRequest{
+	Device device = 1;
+	string objectJSON = 2;
+}
+
+message AlarmLogs{
+	string dev_eui=1;
+	float minTreshold=2;
+	int64 userId=3;
+	string ipAddress=4;
+	int64 isDeleted=5;
+	bool temperature=6;
+	bool humadity=7;
+	bool ec=8;
+	bool door=9;
+	bool w_leak=10;
+	bool sms=11;
+	float maxTreshold=12;
+	google.protobuf.Timestamp submission_date = 13;
+}
+
+message AlarmFilters{
+	int64 limit =1;
+	string devEui = 2;
+	int64 userID = 3;
+}
+
+message Device{
+	 string dev_eui = 1; 
+	 string name = 2;
+	 int64 application_id = 3;
+	 string description = 4;
+	 string device_profile_id = 5;
+	 bool skip_f_cnt_check = 6;
+	 double reference_altitude = 7;
+	 map<string, string> variables = 8;
+	 map<string, string> tags = 9;
+	 bool is_disabled = 10;
+	 int64 data_time = 11;
+	 double lat = 12;	
+	 double lng = 13;
+	 string device_profile_name = 14;
+	 int64 device_type = 15;
+	 int64 organization_id = 16;
+	 int64 zone_id = 17;
+}
+
+
+
+
+

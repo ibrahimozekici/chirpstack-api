@@ -19,6 +19,9 @@ gw:
 geo:
 	protoc -I=../protobuf -I=../protobuf/geo --go_out=plugins=grpc,paths=source_relative:. geo/geo.proto
 
+als:
+	protoc -I=../protobuf -I=../protobuf/als --go_out=plugins=grpc,paths=source_relative:. als/als.proto
+
 nc:
 	protoc -I=../protobuf -I=../protobuf/nc --go_out=plugins=grpc,paths=source_relative:. nc/nc.proto
 
