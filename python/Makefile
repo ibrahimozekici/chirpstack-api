@@ -35,6 +35,9 @@ geo:
 nc:
 	python -m grpc_tools.protoc -I=proto --python_out=src --grpc_python_out=./src proto/chirpstack-api/nc/nc.proto
 
+als:
+	python -m grpc_tools.protoc -I=proto --python_out=src --grpc_python_out=src proto/chirpstack-api/als/als.proto
+
 ns:
 	python -m grpc_tools.protoc -I=proto --python_out=src proto/chirpstack-api/ns/profiles.proto
 	python -m grpc_tools.protoc -I=proto --python_out=src --grpc_python_out=src proto/chirpstack-api/ns/ns.proto
