@@ -1,0 +1,261 @@
+syntax = "proto3";
+
+package api;
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+service ZoneService {
+    // Create creates the given zone
+    rpc Create(CreateZoneRequest) returns (GetZoneResponse) {
+        option(google.api.http) = {
+            post: "/api/zones"
+            body: "*"
+        };
+    }
+
+    // Get returns the zone matching the given zone id
+    rpc Get(GetZoneRequest) returns (GetZoneResponse) {
+        option (google.api.http) = {
+            get: "/api/zones/{zone_id}"
+        };
+    }
+
+    // List returns the available zones.
+    rpc List(ListZoneRequest) returns (ListZoneResponse) {
+        option (google.api.http) = {
+            get: "/api/zones"
+        };
+    }
+
+    // Delete deletes the zones matching the given id.
+    rpc Delete(DeleteZoneRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/zones/{zone_id}"
+        };
+    }
+
+    // Update updates the zone matching the given id.
+    rpc Update(UpdateZoneRequest) returns (GetZoneResponse) {
+        option (google.api.http) = {
+            put: "/api/zones/{zone_id}"
+            body: "*"
+        };
+    }
+    rpc AddUserToZone (AddUserToZoneRequest) returns (AddUserToZoneResponse) {
+        option (google.api.http) = {
+            put: "/api/zones/addUser/{user_id}"
+            body: "*"
+        };
+    }
+
+    rpc OrderZones(ZonesOrderRequest) returns (ZonesOrderResponse) {
+        option (google.api.http) = {
+            put: "/api/zones/order"
+            body: "*"
+        };
+    }
+}
+message ZoneDevice {
+    // Device EUI (HEX encoded).
+    string device_dev_eui = 1 [json_name = "device_dev_eui"]; 
+    
+    // device_created_at
+    string device_created_at = 2 [json_name = "device_created_at"];
+
+    // device_updated_at
+    string device_updated_at = 3 [json_name = "device_updated_at"];
+
+    // Device-profile ID attached to the device.
+    string device_profile_id = 4 [json_name = "device_profile_id"];
+
+    // Name of the device.
+    string device_name = 5 [json_name = "device_name"];
+ 
+    // Description of the device.
+    string device_description = 6 [json_name = "device_description"];
+
+    // device_last_seen_at
+    string device_last_seen_at = 7 [json_name = "device_last_seen_at"];
+
+    // data time
+    int64 device_data_time = 8 [json_name = "device_data_time"];
+
+    // device lat value
+    double device_lat = 9 [json_name = "device_lat"];
+
+    // device lng value
+    double device_lng = 10 [json_name = "device_lng"];
+
+    int64 device_application_id = 11 [json_name = "device_application_id"];
+
+     // device landing alarms
+     repeated ZoneData data = 12 [json_name = "data"];
+
+     repeated ZoneDeviceProfile device_profile_name = 13 [json_name= "device_profile_name"];
+}
+message ZoneDeviceProfile {
+    string name = 1 [json_name = "name"];
+}
+message ZoneData {
+      // Device EUI (HEX encoded).
+      int64 id = 1 [json_name = "id"]; 
+
+      // name
+      string dev_eui = 2 [json_name = "dev_eui"];
+      
+      // temp_SHT of the device.
+      int64 device_type_id = 3 [json_name = "device_type_id"];
+  
+      // hum_SHT.
+      int64 org_id = 4 [json_name = "org_id"];
+  
+      // water_SOIL of the device.
+      float air_temperature = 5 [json_name = "air_temperature"];
+  
+      // temp_SOIL of the device.
+      float air_humidity = 6 [json_name = "air_humidity"];
+  
+      // conduct_SOIL of the device.
+      float sol_temperature = 7 [json_name = "sol_temperature"];
+  
+       // water_SOIL of the device.
+       float sol_water = 8 [json_name = "sol_water"];
+  
+       // temp_SOIL of the device.
+       float sol_conduct_soil = 9 [json_name = "sol_conduct_soil"];
+   
+      // The last time the application-server received any data from the device,
+      // or an empty string when the device never sent any data.
+      string submission_date = 10 [json_name = "submission_date"];
+  
+  
+      int64 water_leak_status = 11 [json_name = "water_leak_status"];
+  
+      int64 water_leak_times = 12 [json_name = "water_leak_times"];
+      int64 last_water_leak_duration = 13 [json_name = "last_water_leak_duration"];
+
+
+      int64 door_open_status = 14 [json_name = "door_open_status"];
+      int64 door_open_times = 15 [json_name = "door_open_times"];
+      int64 last_door_open_duration = 16 [json_name = "last_door_open_duration"];
+      float batv = 17 [json_name = "batv"];
+  
+      int64 ro1_status = 18 [json_name = "ro1_status"];
+      int64 ro2_status = 19 [json_name = "ro2_status"];
+  
+       // temp_SOIL of the device.
+       float ph_soil = 20 [json_name = "ph_soil"];
+  
+       // conduct_SOIL of the device.
+       float co2_ppm = 21 [json_name = "co2_ppm"];
+
+        // temp_SOIL of the device.
+        float tvoc_ppm = 22 [json_name = "tvoc_ppm"];
+  
+  
+       float sensecap_light = 23 [json_name = "sensecap_light"];
+       float barometric_pressure = 24 [json_name = "barometric_pressure"];
+       float power = 25 [json_name = "power"];
+        float current = 26 [json_name = "current"];
+        float voltage = 27 [json_name = "voltage"];
+        float factor = 28 [json_name = "factor"];
+        float power_sum = 29 [json_name = "powerSum"];
+        int64 status = 30 [json_name = "status"];
+}
+message Zone {
+    // Zone ID 
+    int64 zone_id = 1;
+
+    // Name of Zone
+    string zone_name = 2 [json_name = "zoneName"];
+
+    // Organization ID
+    int64 org_id = 3 [json_name = "orgID"];
+
+    // Order index of zone
+    int64 order = 4 [json_name = "order"];
+
+    // Devices
+    repeated string devices = 5 [json_name = "devices"];
+
+    int64 contentType = 6 [json_name = "contentType"];
+}
+
+message GetZonesItem {
+    // Zone ID 
+    int64 zone_id = 1 [json_name = "zoneId"];
+
+    // Name of Zone
+    string zone_name = 2 [json_name = "zoneName"];
+
+    // Organization ID
+    int64 org_id = 3 [json_name = "orgID"];
+
+    // Order index of zone
+    int64 order = 4 [json_name = "order"];
+
+    // Devices
+    repeated ZoneDevice devices = 5 [json_name = "devices"];
+
+    int64 contentType = 6 [json_name = "contentType"];
+}
+message CreateZoneRequest {
+    // Zone object to create
+    Zone zone = 1;
+}
+
+message GetZoneResponse {
+    Zone zone = 1;
+}
+
+message GetZoneRequest {
+    int64 zone_id = 1 [json_name = "zoneID"];
+}
+
+message ListZoneRequest {
+    // Max number of devices to return in the result-set.
+    int64 limit = 1;
+
+    // Offset in the result-set (for pagination).
+    int64 offset = 2;
+
+    int64 organization_id = 3 [json_name = "orgId"];
+}
+
+message ListZoneResponse {
+    repeated GetZonesItem zones = 1;
+}
+
+message DeleteZoneRequest {
+    int64 zone_id = 1 [json_name = "zoneID"];
+}
+
+message UpdateZoneRequest {
+    Zone zone = 1;
+    int64 zone_id = 2 [json_name = "zoneID"];
+}
+
+message AddUserToZoneRequest {
+    int64 zone_id = 1 [json_name = "zoneID"];
+    int64 user_id = 2 [json_name = "userID"];
+}
+
+message AddUserToZoneResponse {
+    string user_name = 1;
+    repeated int64 zone_list = 2;
+}
+
+message ZonesOrderRequest {
+    repeated ZoneOrder zoneOrder = 1 [json_name = "zonesOrder"];
+}
+
+message ZoneOrder {
+    int64 zone_id = 1 [json_name = "zoneID"];
+
+    int64 zone_order = 2 [json_name = "zoneOrder"];
+}
+
+message ZonesOrderResponse {
+    repeated ZoneOrder zoneOrder = 1 [json_name = "zonesOrder"];
+
+}
