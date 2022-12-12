@@ -60,6 +60,14 @@
             "type": "string"
           },
           {
+            "name": "OrganizationId",
+            "description": "Multicast-group ID to filter on (string formatted UUID).",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
             "name": "multicastGroupID",
             "description": "Multicast-group ID to filter on (string formatted UUID).",
             "in": "query",
@@ -72,6 +80,20 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "zoneID",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "alarm",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -569,6 +591,92 @@
         }
       }
     },
+    "apiDAlarm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Alarm id."
+        },
+        "dev_eui": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "min_treshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Condition of alarm"
+        },
+        "max_treshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Value of alarm"
+        },
+        "sms": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "email": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "temperature": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "humadity": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "ec": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "door": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "w_leak": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "is_time_scheduled": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "notification": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "username": {
+          "type": "string"
+        },
+        "alarm_date_time": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiDAlarmDateTime"
+          }
+        }
+      }
+    },
+    "apiDAlarmDateTime": {
+      "type": "object",
+      "properties": {
+        "alarm_day": {
+          "type": "string",
+          "format": "int64"
+        },
+        "alarm_start_time": {
+          "type": "number",
+          "format": "float"
+        },
+        "alarm_end_time": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
     "apiDevice": {
       "type": "object",
       "properties": {
@@ -621,6 +729,36 @@
           "type": "boolean",
           "format": "boolean",
           "description": "Device is disabled."
+        },
+        "dataTime": {
+          "type": "string",
+          "format": "int64"
+        },
+        "lat": {
+          "type": "number",
+          "format": "double",
+          "title": "Device lat value"
+        },
+        "lng": {
+          "type": "number",
+          "format": "double",
+          "title": "Device lng value"
+        },
+        "deviceProfileName": {
+          "type": "string",
+          "title": "Device Profile Name"
+        },
+        "deviceType": {
+          "type": "string",
+          "format": "int64"
+        },
+        "organizationId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "zoneId": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -665,6 +803,122 @@
           "type": "integer",
           "format": "int64",
           "description": "Downlink application frame-counter."
+        }
+      }
+    },
+    "apiDeviceAlarm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Alarm id."
+        },
+        "devEUI": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "minTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Condition of alarm"
+        },
+        "maxTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Value of alarm"
+        },
+        "sms": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "email": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "temperature": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "humadity": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "ec": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "door": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "w_leak": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "submission_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ip_address": {
+          "type": "string"
+        }
+      }
+    },
+    "apiDeviceAlarmLogs": {
+      "type": "object",
+      "properties": {
+        "devEUI": {
+          "type": "string"
+        },
+        "minTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Condition of alarm"
+        },
+        "maxTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Value of alarm"
+        },
+        "userId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ipAddress": {
+          "type": "string"
+        },
+        "isDeleted": {
+          "type": "string",
+          "format": "int64"
+        },
+        "temperature": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "humadity": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "ec": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "door": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "w_leak": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "sms": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "submissionDate": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
@@ -746,6 +1000,35 @@
           "type": "string",
           "format": "date-time",
           "description": "The last time the application-server received any data from the device,\nor an empty string when the device never sent any data."
+        },
+        "dataTime": {
+          "type": "string",
+          "format": "int64",
+          "title": "data time"
+        },
+        "lat": {
+          "type": "number",
+          "format": "double",
+          "title": "device lat value"
+        },
+        "lng": {
+          "type": "number",
+          "format": "double",
+          "title": "device lng value"
+        },
+        "deviceType": {
+          "type": "string",
+          "format": "int64"
+        },
+        "organizationId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "alarms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiDAlarm"
+          }
         }
       }
     },
@@ -863,6 +1146,18 @@
         "location": {
           "$ref": "#/definitions/commonLocation",
           "description": "Device location.\nThis will set when the network-server was able to resolve the location\nusing the geolocation-server."
+        },
+        "alarms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiDeviceAlarm"
+          }
+        },
+        "logs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiDeviceAlarmLogs"
+          }
         }
       }
     },
