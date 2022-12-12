@@ -233,6 +233,28 @@ message OrganizationUserListItem {
 
 	// Last update timestamp.
 	google.protobuf.Timestamp updated_at = 5;
+
+	// Username of user
+	string username = 8;
+
+	// Name of the user
+	string name = 9;
+
+	TempZone zones = 10;
+
+	string phone_number= 11;
+}
+
+message TempZone {
+	repeated OrganizationUserZone zones = 1;
+}
+
+message OrganizationUserZone {
+	// Zone ID 
+	int64 zone_id = 1;
+
+	// Name of Zone
+	string zone_name = 2 [json_name = "zoneName"];
 }
 
 message AddOrganizationUserRequest {

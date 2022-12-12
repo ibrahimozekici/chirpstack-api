@@ -595,6 +595,45 @@
           "type": "string",
           "format": "date-time",
           "description": "Last update timestamp."
+        },
+        "username": {
+          "type": "string",
+          "title": "Username of user"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name of the user"
+        },
+        "zones": {
+          "$ref": "#/definitions/apiTempZone"
+        },
+        "phoneNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "apiOrganizationUserZone": {
+      "type": "object",
+      "properties": {
+        "zoneId": {
+          "type": "string",
+          "format": "int64",
+          "title": "Zone ID"
+        },
+        "zoneName": {
+          "type": "string",
+          "title": "Name of Zone"
+        }
+      }
+    },
+    "apiTempZone": {
+      "type": "object",
+      "properties": {
+        "zones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiOrganizationUserZone"
+          }
         }
       }
     },
