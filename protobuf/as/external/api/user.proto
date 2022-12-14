@@ -80,6 +80,31 @@ message User {
 
 	// Optional note to store with the user.
 	string note = 7;
+
+	// User web key
+	string web_key = 10 [json_name = "web_key"];
+
+	// User ios key
+	string ios_key = 11 [json_name = "ios_key"];
+
+	// User android key
+	string android_key = 12 [json_name = "android_key"];
+
+	// Phone number of User
+	string phone_number = 13 [json_name = "phone_number"];
+
+	// Zones of User
+	repeated int64 zones = 14 [json_name = "zones"];
+
+	// Name of the user
+	string name = 15 [json_name = "name"];
+
+	// Username of the user
+	string user_name = 16 [json_name = "userName"];
+
+	bool training = 17 [json_name = "training"];
+
+	string expo_key = 18 [json_name = "expo_key"];
 }
 
 message UserListItem {
@@ -104,6 +129,29 @@ message UserListItem {
 
 	// Last update timestamp.
 	google.protobuf.Timestamp updated_at = 9;
+
+	// User web key
+	string web_key = 10 [json_name = "web_key"];
+
+	// User ios key
+	string ios_key = 11 [json_name = "ios_key"];
+
+	// User android key
+	string android_key = 12 [json_name = "android_key"];
+
+	// Phone number of User
+	string phone_number = 13 [json_name = "phone_number"];
+
+	// Zones of User
+	repeated int64 zone_id_list = 14 [json_name = "zoneIdList"];
+
+	// Name of the user
+	string name = 15 [json_name = "name"];
+
+	// Username of the user
+	string user_name = 16 [json_name = "userName"];
+
+	string expo_key = 17 [json_name = "expo_key"];
 }
 
 message UserOrganization {

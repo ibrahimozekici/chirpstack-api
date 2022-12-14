@@ -761,7 +761,7 @@
     "apiLoginRequest": {
       "type": "object",
       "properties": {
-        "email": {
+        "username": {
           "type": "string",
           "description": "Email of the user."
         },
@@ -913,6 +913,45 @@
         "note": {
           "type": "string",
           "description": "Optional note to store with the user."
+        },
+        "web_key": {
+          "type": "string",
+          "title": "User web key"
+        },
+        "ios_key": {
+          "type": "string",
+          "title": "User ios key"
+        },
+        "android_key": {
+          "type": "string",
+          "title": "User android key"
+        },
+        "phone_number": {
+          "type": "string",
+          "title": "Phone number of User"
+        },
+        "zones": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          },
+          "title": "Zones of User"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name of the user"
+        },
+        "userName": {
+          "type": "string",
+          "title": "Username of the user"
+        },
+        "training": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "expo_key": {
+          "type": "string"
         }
       }
     }
