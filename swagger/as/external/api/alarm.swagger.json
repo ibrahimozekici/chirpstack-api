@@ -410,6 +410,30 @@
         "pressure": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "current": {
+          "type": "string",
+          "format": "int64"
+        },
+        "voltage": {
+          "type": "string",
+          "format": "int64"
+        },
+        "factor": {
+          "type": "string",
+          "format": "int64"
+        },
+        "status": {
+          "type": "string",
+          "format": "int64"
+        },
+        "powerSum": {
+          "type": "string",
+          "format": "int64"
+        },
+        "power": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
