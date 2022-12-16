@@ -124,12 +124,12 @@ message Alarm {
     bool is_timer_active = 22 [json_name = "is_timer_active"];
     int64 timer_value = 23 [json_name = "timer_value"];
     bool pressure = 24 [json_name = "pressure"];
-	int64 current = 25;
-	int64 voltage = 26;
-	int64 factor = 27;
+	float current = 25;
+	float voltage = 26;
+	float factor = 27;
 	int64 status = 28;
-	int64 power_sum = 29;
-    int64 power = 30;
+	float power_sum = 29;
+    float power = 30;
 }
 
 message AlarmDateTime {

@@ -50,12 +50,12 @@ message Alarm{
 	int64 coldRoomFreq = 21;
 	repeated AlarmDateTime alarm_date_time = 22;
 	bool pressure = 23;
-	int64 power = 24;
-	int64 current = 25;
-	int64 voltage = 26;
-	int64 factor = 27;
+	float power = 24;
+	float current = 25;
+	float voltage = 26;
+	float factor = 27;
 	int64 status = 28;
-	int64 power_sum = 29;
+	float power_sum = 29;
 }
 
 message OrganizationAlarm{

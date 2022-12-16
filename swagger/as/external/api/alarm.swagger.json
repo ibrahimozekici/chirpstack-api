@@ -412,28 +412,28 @@
           "format": "boolean"
         },
         "current": {
-          "type": "string",
-          "format": "int64"
+          "type": "number",
+          "format": "float"
         },
         "voltage": {
-          "type": "string",
-          "format": "int64"
+          "type": "number",
+          "format": "float"
         },
         "factor": {
-          "type": "string",
-          "format": "int64"
+          "type": "number",
+          "format": "float"
         },
         "status": {
           "type": "string",
           "format": "int64"
         },
         "powerSum": {
-          "type": "string",
-          "format": "int64"
+          "type": "number",
+          "format": "float"
         },
         "power": {
-          "type": "string",
-          "format": "int64"
+          "type": "number",
+          "format": "float"
         }
       }
     },
