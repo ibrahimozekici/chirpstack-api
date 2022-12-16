@@ -1,9 +1,9 @@
-.PHONY: requirements common gw geo nc ns as as-integration as-external-api fuota
+.PHONY: requirements common gw geo nc ns als as as-integration as-external-api fuota
 
 GRPC_GW_PATH := $(shell go list -f '{{ .Dir }}' github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway)
 GOOGLEAPIS_PATH := "$(GRPC_GW_PATH)/../third_party/googleapis"
 
-all: requirements common gw geo nc ns fuota as as-integration as-external-api
+all: requirements common gw geo als nc ns fuota as as-integration as-external-api
 
 requirements:
 	@go mod download
