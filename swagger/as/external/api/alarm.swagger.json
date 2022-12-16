@@ -1,0 +1,746 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "as/external/api/alarm.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/alarm": {
+      "get": {
+        "operationId": "List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListAlarmResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "Max number of devices to return in the result-set.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "description": "Offset in the result-set (for pagination).",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "devEUI",
+            "description": "Device EUI (HEX encoded).",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "description": "Offset in the result-set (for pagination).",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      },
+      "post": {
+        "summary": "Create creates the alarm",
+        "operationId": "Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiCreateAlarmResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateAlarmRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
+    "/api/alarm/createMultiple": {
+      "post": {
+        "summary": "Create creates the alarm",
+        "operationId": "CreateMultiple",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateMultipleAlarmRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
+    "/api/alarm/delete": {
+      "post": {
+        "summary": "Delete deletes the alarm matching the given alarm_id.",
+        "operationId": "Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiDeleteAlarmRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
+    "/api/alarm/deleteMultiple": {
+      "post": {
+        "summary": "Delete deletes the alarm matching the given alarm_id.",
+        "operationId": "DeleteMultiple",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiDeleteMultipleAlarmRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
+    "/api/alarm/deleteSensorAlarms": {
+      "post": {
+        "summary": "Delete deletes the alarm matching the given alarm_id.",
+        "operationId": "DeleteSensorAlarms",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiDeleteMultipleDevAlarmRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
+    "/api/alarm/deleteZoneAlarms": {
+      "post": {
+        "summary": "Delete deletes the alarm matching the given alarm_id.",
+        "operationId": "DeleteZoneAlarms",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiDeleteMultipleZoneAlarmRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
+    "/api/alarm/listOrganizationAlarms/{organization_id}": {
+      "get": {
+        "operationId": "ListAllOrganizationAlarms",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListOrganizationAlarmResponse2"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
+    "/api/alarm/{alarm_id}": {
+      "get": {
+        "summary": "Get return the alarm",
+        "operationId": "Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetAlarmResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "alarm_id",
+            "description": "Device EUI (HEX encoded).",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      },
+      "put": {
+        "summary": "Update updates the alarm matching the given alarm_id.",
+        "operationId": "Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetAlarmResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "alarm_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiUpdateAlarmRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apiAlarm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Alarm id."
+        },
+        "devEUI": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "minTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Condition of alarm"
+        },
+        "maxTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Value of alarm"
+        },
+        "sms": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "email": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "temperature": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "humadity": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "ec": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "door": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "w_leak": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "submission_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ip_address": {
+          "type": "string"
+        },
+        "is_time_scheduled": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "start_time": {
+          "type": "number",
+          "format": "float"
+        },
+        "end_time": {
+          "type": "number",
+          "format": "float"
+        },
+        "zone_category": {
+          "type": "string",
+          "format": "int64"
+        },
+        "cold_room_time": {
+          "type": "string",
+          "format": "int64"
+        },
+        "cold_room_frecuancy": {
+          "type": "string",
+          "format": "int64"
+        },
+        "notification": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "alarm_date_time": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAlarmDateTime"
+          }
+        },
+        "is_timer_active": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "timer_value": {
+          "type": "string",
+          "format": "int64"
+        },
+        "pressure": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "apiAlarmDateTime": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "alarm_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "alarm_day": {
+          "type": "string",
+          "format": "int64"
+        },
+        "alarm_start_time": {
+          "type": "number",
+          "format": "float"
+        },
+        "alarm_end_time": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "apiAlarmLogs": {
+      "type": "object",
+      "properties": {
+        "devEUI": {
+          "type": "string"
+        },
+        "minTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Condition of alarm"
+        },
+        "maxTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Value of alarm"
+        },
+        "userId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ipAddress": {
+          "type": "string"
+        },
+        "isDeleted": {
+          "type": "string",
+          "format": "int64"
+        },
+        "temperature": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "humadity": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "ec": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "door": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "w_leak": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "sms": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "submissionDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "apiCreateAlarmRequest": {
+      "type": "object",
+      "properties": {
+        "createAlarm": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAlarm"
+          }
+        }
+      }
+    },
+    "apiCreateAlarmResponse": {
+      "type": "object",
+      "properties": {
+        "alarm": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAlarm"
+          }
+        }
+      }
+    },
+    "apiCreateMultipleAlarmRequest": {
+      "type": "object",
+      "properties": {
+        "createAlarm": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAlarm"
+          }
+        },
+        "userIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        }
+      }
+    },
+    "apiDeleteAlarmRequest": {
+      "type": "object",
+      "properties": {
+        "alarmID": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Alarm Id (HEX encoded)."
+        },
+        "ipAddress": {
+          "type": "string"
+        }
+      }
+    },
+    "apiDeleteMultipleAlarmRequest": {
+      "type": "object",
+      "properties": {
+        "userIDs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          },
+          "description": "Alarm Id (HEX encoded)."
+        }
+      }
+    },
+    "apiDeleteMultipleDevAlarmRequest": {
+      "type": "object",
+      "properties": {
+        "devEui": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Alarm Id (HEX encoded)."
+        }
+      }
+    },
+    "apiDeleteMultipleZoneAlarmRequest": {
+      "type": "object",
+      "properties": {
+        "zoneIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          },
+          "description": "Alarm Id (HEX encoded)."
+        }
+      }
+    },
+    "apiGetAlarmResponse": {
+      "type": "object",
+      "properties": {
+        "alarm": {
+          "$ref": "#/definitions/apiAlarm",
+          "title": "Alarm object"
+        }
+      }
+    },
+    "apiListAlarmResponse": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "type": "string",
+          "format": "int64",
+          "description": "Total number of devices available within the result-set."
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAlarm"
+          },
+          "description": "Devices within this result-set."
+        },
+        "logs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAlarmLogs"
+          }
+        }
+      }
+    },
+    "apiListOrganizationAlarmResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Alarm id."
+        },
+        "devEUI": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "deviceName": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "zoneName": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "minTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Condition of alarm"
+        },
+        "maxTreshold": {
+          "type": "number",
+          "format": "float",
+          "title": "Value of alarm"
+        },
+        "sms": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "email": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "temperature": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "humadity": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "ec": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "door": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "w_leak": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "submission_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "is_time_scheduled": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "notification": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "alarm_date_time": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAlarmDateTime"
+          }
+        },
+        "username": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "is_timer_active": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "timer_value": {
+          "type": "string",
+          "format": "int64"
+        },
+        "pressure": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "apiListOrganizationAlarmResponse2": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "type": "string",
+          "format": "int64",
+          "description": "Total number of devices available within the result-set."
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiListOrganizationAlarmResponse"
+          }
+        }
+      }
+    },
+    "apiUpdateAlarmRequest": {
+      "type": "object",
+      "properties": {
+        "alarm": {
+          "$ref": "#/definitions/apiAlarm",
+          "description": "Alarm object to update."
+        },
+        "alarmID": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
