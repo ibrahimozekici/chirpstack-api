@@ -496,6 +496,42 @@
         "status": {
           "type": "string",
           "format": "int64"
+        },
+        "power_consumption": {
+          "type": "string",
+          "format": "int64"
+        },
+        "switch1": {
+          "type": "string",
+          "format": "int64"
+        },
+        "switch2": {
+          "type": "string",
+          "format": "int64"
+        },
+        "switch3": {
+          "type": "string",
+          "format": "int64"
+        },
+        "switch4": {
+          "type": "string",
+          "format": "int64"
+        },
+        "switch5": {
+          "type": "string",
+          "format": "int64"
+        },
+        "switch6": {
+          "type": "string",
+          "format": "int64"
+        },
+        "switch7": {
+          "type": "string",
+          "format": "int64"
+        },
+        "switch8": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
