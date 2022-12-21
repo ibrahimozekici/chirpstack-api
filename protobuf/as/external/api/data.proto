@@ -178,6 +178,29 @@ message EnergySensorResponse {
     
     google.protobuf.Timestamp submission_date = 9 [json_name = "submission_date"];
 }
+
+message WS558Response {
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"]; 
+
+    // name
+    string name = 2 [json_name = "name"];
+    
+    float power = 3 [json_name = "Power"];
+    float power_consumption = 4 [json_name = "PowerConsumption"];
+    float current = 5 [json_name = "Current"];
+    float voltage = 6 [json_name = "Voltage"];
+    float factor = 7 [json_name = "Factor"];
+    int64 switch1 = 8 [json_name = "Switch1"];
+    int64 switch2 = 9 [json_name = "Switch2"];
+    int64 switch3 = 10 [json_name = "Switch3"];
+    int64 switch4 = 11 [json_name = "Switch4"];
+    int64 switch5 = 12 [json_name = "Switch5"];
+    int64 switch6 = 13 [json_name = "Switch6"];
+    int64 switch7 = 14 [json_name = "Switch7"];
+    int64 switch8 = 15 [json_name = "Switch8"];
+    google.protobuf.Timestamp submission_date = 16 [json_name = "submission_date"];
+}
 message DataResponse {
 
     // Device EUI (HEX encoded).
@@ -236,6 +259,14 @@ message DataResponse {
     float factor = 27 [json_name = "Factor"];
     float power_sum = 28 [json_name = "PowerSum"];
     int64 status = 29 [json_name = "status"];
+    int64 switch1 = 30 [json_name = "Switch1"];
+    int64 switch2 = 31 [json_name = "Switch2"];
+    int64 switch3 = 32 [json_name = "Switch3"];
+    int64 switch4 = 33 [json_name = "Switch4"];
+    int64 switch5 = 34 [json_name = "Switch5"];
+    int64 switch6 = 35 [json_name = "Switch6"];
+    int64 switch7 = 36 [json_name = "Switch7"];
+    int64 switch8 = 37 [json_name = "Switch8"];
 }
 
 

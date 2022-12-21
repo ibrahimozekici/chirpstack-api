@@ -290,6 +290,38 @@
         "status": {
           "type": "string",
           "format": "int64"
+        },
+        "Switch1": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Switch2": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Switch3": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Switch4": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Switch5": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Switch6": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Switch7": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Switch8": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
