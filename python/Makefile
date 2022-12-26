@@ -38,6 +38,9 @@ nc:
 als:
 	python -m grpc_tools.protoc -I=proto --python_out=src --grpc_python_out=src proto/chirpstack-api/als/als.proto
 
+ps:
+	python -m grpc_tools.protoc -I=proto --python_out=src --grpc_python_out=src proto/chirpstack-api/ps/ps.proto
+
 ns:
 	python -m grpc_tools.protoc -I=proto --python_out=src proto/chirpstack-api/ns/profiles.proto
 	python -m grpc_tools.protoc -I=proto --python_out=src --grpc_python_out=src proto/chirpstack-api/ns/ns.proto
