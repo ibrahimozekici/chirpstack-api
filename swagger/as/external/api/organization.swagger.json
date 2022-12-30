@@ -556,6 +556,19 @@
         "email": {
           "type": "string",
           "description": "Email (only used on get and when adding a user to an organization)."
+        },
+        "zones": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
         }
       }
     },
