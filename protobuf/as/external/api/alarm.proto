@@ -130,6 +130,7 @@ message Alarm {
 	int64 status = 28;
 	float power_sum = 29;
     float power = 30;
+    string notification_sound = 31;
 }
 
 message AlarmDateTime {

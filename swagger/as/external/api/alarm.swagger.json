@@ -434,6 +434,9 @@
         "power": {
           "type": "number",
           "format": "float"
+        },
+        "notificationSound": {
+          "type": "string"
         }
       }
     },
