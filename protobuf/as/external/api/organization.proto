@@ -206,6 +206,10 @@ message OrganizationUser {
 
 	// Email (only used on get and when adding a user to an organization).
 	string email = 4;
+	repeated int64 zones= 7 [json_name = "zones"];
+
+	string name = 8;
+	string phone_number = 9;
 }
 
 message OrganizationUserListItem {
