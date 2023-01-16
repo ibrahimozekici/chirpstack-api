@@ -22,8 +22,8 @@ geo:
 als:
 	protoc -I=../protobuf -I=../protobuf/als --go_out=plugins=grpc,paths=source_relative:. als/als.proto
 	
-ps:
-	protoc -I=../protobuf -I=../protobuf/ps --go_out=plugins=grpc,paths=source_relative:. ps/ps.proto
+# ps:
+# 	protoc -I=../protobuf -I=../protobuf/ps --go_out=plugins=grpc,paths=source_relative:. ps/ps.proto
 
 nc:
 	protoc -I=../protobuf -I=../protobuf/nc --go_out=plugins=grpc,paths=source_relative:. nc/nc.proto
@@ -80,3 +80,5 @@ as-external-api:
 	protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api --grpc-gateway_out=paths=source_relative,logtostderr=true:. as/external/api/alarm.proto
 	protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api --grpc-gateway_out=paths=source_relative,logtostderr=true:. as/external/api/zone.proto
 	protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api --grpc-gateway_out=paths=source_relative,logtostderr=true:. as/external/api/notification.proto
+	protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api --grpc-gateway_out=paths=source_relative,logtostderr=true:. as/external/api/payment.proto
+

@@ -2,10 +2,10 @@ syntax = "proto3";
 
 package ps;
 
-option go_package = "github.com/ibrahimozekici/chirpstack-api/go/v5/ps";
+option go_package = "github.com/ibrahimozekici/chirpstack-api/ps";
 option java_package = "io.chirpstack.api.ps";
 
-// import "google/api/annotations.proto";
+import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
