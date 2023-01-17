@@ -10,22 +10,121 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
 service PaymentService{
-    rpc CreateInvoice(CreateInvoiceRequest) returns (CreateInvoiceResponse) {
-        option(google.api.http) = {
+    // Create creates a new Iyzico payment URL.
+    rpc Create(CreateRequest) returns (CreateResponse) {
+        option (google.api.http) = {
             post: "/api/payment"
             body: "*"
         };
     }
+    
+    // CreateInvoice creates a new invoice.
+    rpc CreateInvoice(CreateInvoiceRequest) returns (CreateInvoiceResponse) {
+        option (google.api.http) = {
+            post: "/api/payment/createInvoice"
+            body: "*"
+        };
+    }
+    
+    // GetInvoice gets the invoice.
+    rpc GetInvoice(GetInvoiceRequest) returns (GetInvoiceResponse) {
+        option (google.api.http) = {
+            get: "/api/payment/getInvoice/{invoiceID}"
+        };
+    }
+
+    // ListInvoices lists the invoices of organization.
+    rpc ListInvoices(ListInvoicesRequest) returns (ListInvoicesResponse) {
+        option (google.api.http) = {
+            get: "/api/payment/listInvoices/{organizationID}"
+        };
+    }
+
+    // DeleteInvoice deletes the invoice.
+    rpc DeleteInvoice(DeleteInvoiceRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/payment/{invoiceID}"
+        };
+    }
+
+    // CreateAddress creates a new address.
+    rpc CreateAddress(CreateAddressRequest) returns (CreateAddressResponse) {
+        option (google.api.http) = {
+            post: "/api/payment/createAddress"
+            body: "*"
+        };
+    }
+
+    // GetAddress gets the address.
+    rpc GetAddress(GetAddressRequest) returns (GetAddressResponse) {
+        option (google.api.http) = {
+            get: "/api/payment/getAddress/{addressID}"
+        };
+    }
+
+    // ListAddresses lists the addresses of organization.
+    rpc ListAddresses(ListAddressesRequest) returns (ListAddressesResponse) {
+        option (google.api.http) = {
+            get: "/api/payment/listAddresses/{organizationID}"
+        };
+    }
+    
+    // DeleteAddress deletes the address.
+    rpc DeleteAddress(DeleteAddressRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/payment/{addressID}"
+        };
+    }   
+}
+
+
+message Address{
+    int64 id=1;
+    int64 organizationID=2;
+    string address=3;
+    string city=4;
+    string country=5;
 }
 
 message Invoice{
-	int64 id=1;
-    int64 customerID=2;
-    int64 organizationID=3;
+    int64 id=1;
+    string taxDepartment=2;
+    int64 identityNumber=3;
     google.protobuf.Timestamp invoiceDate=4;
     string invoiceNumber=5;
+    Address address=6;
+    int64 organizationID=7;
 }
 
+message BasketItem{
+    string id = 1;
+    string name = 2;
+    string category = 3;
+    string itemType = 4;
+    string price = 5;
+}
+
+message CreateRequest{
+    string locale = 1;
+    string price= 2;
+    string paidPrice= 3;
+    string currency= 4;
+    string id = 5;
+    string name = 6;
+    string surname = 7;
+    string email = 8;
+    string gsmNumber = 9;
+    string address = 10;
+    string city = 11;
+    string country = 12;
+    string ip = 13;
+    string identityNumber = 14;
+    repeated BasketItem basketItems = 15;
+}
+
+message CreateResponse{
+    string paymentURL = 1;
+}
 message CreateInvoiceRequest{
     Invoice invoice = 1;
 }
@@ -33,3 +132,52 @@ message CreateInvoiceRequest{
 message CreateInvoiceResponse{
     Invoice invoice = 1;
 }
+
+message DeleteInvoiceRequest{
+    int64 invoiceID = 1;
+}
+
+message GetInvoiceRequest{
+    int64 invoiceID = 1;
+}
+
+message GetInvoiceResponse{
+    Invoice invoice = 1;
+}
+
+message ListInvoicesRequest{
+    int64 organizationID = 1;
+}
+
+message ListInvoicesResponse{
+    repeated Invoice invoices = 1;
+}
+
+message CreateAddressRequest{
+    Address address = 1;
+}
+
+message CreateAddressResponse{
+    Address address = 1;
+}
+
+message DeleteAddressRequest{
+    int64 addressID = 1;
+}
+
+message GetAddressRequest{
+    int64 addressID = 1;
+}
+
+message GetAddressResponse{
+    Address address = 1;
+}
+
+message ListAddressesRequest{
+    int64 organizationID = 1;
+}
+
+message ListAddressesResponse{
+    repeated Address addresses = 1;
+}
+

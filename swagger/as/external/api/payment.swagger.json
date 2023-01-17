@@ -1,0 +1,461 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "as/external/api/payment.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/payment": {
+      "post": {
+        "summary": "Create creates a new Iyzico payment URL.",
+        "operationId": "Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiCreateResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PaymentService"
+        ]
+      }
+    },
+    "/api/payment/createAddress": {
+      "post": {
+        "summary": "CreateAddress creates a new address.",
+        "operationId": "CreateAddress",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiCreateAddressResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateAddressRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PaymentService"
+        ]
+      }
+    },
+    "/api/payment/createInvoice": {
+      "post": {
+        "summary": "CreateInvoice creates a new invoice.",
+        "operationId": "CreateInvoice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiCreateInvoiceResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateInvoiceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PaymentService"
+        ]
+      }
+    },
+    "/api/payment/getAddress/{addressID}": {
+      "get": {
+        "summary": "GetAddress gets the address.",
+        "operationId": "GetAddress",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetAddressResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "addressID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "PaymentService"
+        ]
+      }
+    },
+    "/api/payment/getInvoice/{invoiceID}": {
+      "get": {
+        "summary": "GetInvoice gets the invoice.",
+        "operationId": "GetInvoice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetInvoiceResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "invoiceID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "PaymentService"
+        ]
+      }
+    },
+    "/api/payment/listAddresses/{organizationID}": {
+      "get": {
+        "summary": "ListAddresses lists the addresses of organization.",
+        "operationId": "ListAddresses",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListAddressesResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "PaymentService"
+        ]
+      }
+    },
+    "/api/payment/listInvoices/{organizationID}": {
+      "get": {
+        "summary": "ListInvoices lists the invoices of organization.",
+        "operationId": "ListInvoices",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListInvoicesResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "PaymentService"
+        ]
+      }
+    },
+    "/api/payment/{addressID}": {
+      "delete": {
+        "summary": "DeleteAddress deletes the address.",
+        "operationId": "DeleteAddress",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "addressID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "PaymentService"
+        ]
+      }
+    },
+    "/api/payment/{invoiceID}": {
+      "delete": {
+        "summary": "DeleteInvoice deletes the invoice.",
+        "operationId": "DeleteInvoice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "invoiceID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "PaymentService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apiAddress": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "organizationID": {
+          "type": "string",
+          "format": "int64"
+        },
+        "address": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      }
+    },
+    "apiBasketItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "itemType": {
+          "type": "string"
+        },
+        "price": {
+          "type": "string"
+        }
+      }
+    },
+    "apiCreateAddressRequest": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/apiAddress"
+        }
+      }
+    },
+    "apiCreateAddressResponse": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/apiAddress"
+        }
+      }
+    },
+    "apiCreateInvoiceRequest": {
+      "type": "object",
+      "properties": {
+        "invoice": {
+          "$ref": "#/definitions/apiInvoice"
+        }
+      }
+    },
+    "apiCreateInvoiceResponse": {
+      "type": "object",
+      "properties": {
+        "invoice": {
+          "$ref": "#/definitions/apiInvoice"
+        }
+      }
+    },
+    "apiCreateRequest": {
+      "type": "object",
+      "properties": {
+        "locale": {
+          "type": "string"
+        },
+        "price": {
+          "type": "string"
+        },
+        "paidPrice": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "gsmNumber": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "identityNumber": {
+          "type": "string"
+        },
+        "basketItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiBasketItem"
+          }
+        }
+      }
+    },
+    "apiCreateResponse": {
+      "type": "object",
+      "properties": {
+        "paymentURL": {
+          "type": "string"
+        }
+      }
+    },
+    "apiGetAddressResponse": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/apiAddress"
+        }
+      }
+    },
+    "apiGetInvoiceResponse": {
+      "type": "object",
+      "properties": {
+        "invoice": {
+          "$ref": "#/definitions/apiInvoice"
+        }
+      }
+    },
+    "apiInvoice": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "taxDepartment": {
+          "type": "string"
+        },
+        "identityNumber": {
+          "type": "string",
+          "format": "int64"
+        },
+        "invoiceDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "invoiceNumber": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/apiAddress"
+        },
+        "organizationID": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiListAddressesResponse": {
+      "type": "object",
+      "properties": {
+        "addresses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAddress"
+          }
+        }
+      }
+    },
+    "apiListInvoicesResponse": {
+      "type": "object",
+      "properties": {
+        "invoices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiInvoice"
+          }
+        }
+      }
+    }
+  }
+}
