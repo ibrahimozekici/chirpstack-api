@@ -28,11 +28,28 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type Address struct {
-	Id                   int64    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	OrganizationID       int64    `protobuf:"varint,2,opt,name=organizationID,proto3" json:"organizationID,omitempty"`
-	Address              string   `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty"`
-	City                 string   `protobuf:"bytes,4,opt,name=city,proto3" json:"city,omitempty"`
-	Country              string   `protobuf:"bytes,5,opt,name=country,proto3" json:"country,omitempty"`
+	// ID of the address.
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	// Organization ID.
+	OrganizationID int64 `protobuf:"varint,2,opt,name=organizationID,proto3" json:"organizationID,omitempty"`
+	// Address of the organization.
+	Address string `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty"`
+	// City of the organization.
+	City string `protobuf:"bytes,4,opt,name=city,proto3" json:"city,omitempty"`
+	// Country of the organization.
+	Country string `protobuf:"bytes,5,opt,name=country,proto3" json:"country,omitempty"`
+	// Zip code of the organization.
+	ZipCode string `protobuf:"bytes,6,opt,name=zipCode,proto3" json:"zipCode,omitempty"`
+	// Street of the organization.
+	Street string `protobuf:"bytes,7,opt,name=street,proto3" json:"street,omitempty"`
+	// Apartment number of the organization.
+	ApartmentNumber string `protobuf:"bytes,8,opt,name=apartmentNumber,proto3" json:"apartmentNumber,omitempty"`
+	// House number of the organization.
+	HouseNumber string `protobuf:"bytes,9,opt,name=houseNumber,proto3" json:"houseNumber,omitempty"`
+	// District of the organization.
+	District string `protobuf:"bytes,10,opt,name=district,proto3" json:"district,omitempty"`
+	// Neighborhood of the organization.
+	Neighborhood         string   `protobuf:"bytes,11,opt,name=neighborhood,proto3" json:"neighborhood,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -98,17 +115,68 @@ func (m *Address) GetCountry() string {
 	return ""
 }
 
+func (m *Address) GetZipCode() string {
+	if m != nil {
+		return m.ZipCode
+	}
+	return ""
+}
+
+func (m *Address) GetStreet() string {
+	if m != nil {
+		return m.Street
+	}
+	return ""
+}
+
+func (m *Address) GetApartmentNumber() string {
+	if m != nil {
+		return m.ApartmentNumber
+	}
+	return ""
+}
+
+func (m *Address) GetHouseNumber() string {
+	if m != nil {
+		return m.HouseNumber
+	}
+	return ""
+}
+
+func (m *Address) GetDistrict() string {
+	if m != nil {
+		return m.District
+	}
+	return ""
+}
+
+func (m *Address) GetNeighborhood() string {
+	if m != nil {
+		return m.Neighborhood
+	}
+	return ""
+}
+
 type Invoice struct {
-	Id                   int64                `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	TaxDepartment        string               `protobuf:"bytes,2,opt,name=taxDepartment,proto3" json:"taxDepartment,omitempty"`
-	IdentityNumber       int64                `protobuf:"varint,3,opt,name=identityNumber,proto3" json:"identityNumber,omitempty"`
-	InvoiceDate          *timestamp.Timestamp `protobuf:"bytes,4,opt,name=invoiceDate,proto3" json:"invoiceDate,omitempty"`
-	InvoiceNumber        string               `protobuf:"bytes,5,opt,name=invoiceNumber,proto3" json:"invoiceNumber,omitempty"`
-	Address              *Address             `protobuf:"bytes,6,opt,name=address,proto3" json:"address,omitempty"`
-	OrganizationID       int64                `protobuf:"varint,7,opt,name=organizationID,proto3" json:"organizationID,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+	// ID of the invoice.
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	// Tax number of the organization.
+	TaxDepartment string `protobuf:"bytes,2,opt,name=taxDepartment,proto3" json:"taxDepartment,omitempty"`
+	// Identity number of the organization.
+	IdentityNumber string `protobuf:"bytes,3,opt,name=identityNumber,proto3" json:"identityNumber,omitempty"`
+	// Invoice date.
+	InvoiceDate *timestamp.Timestamp `protobuf:"bytes,4,opt,name=invoiceDate,proto3" json:"invoiceDate,omitempty"`
+	// Invoice number.
+	InvoiceNumber string `protobuf:"bytes,5,opt,name=invoiceNumber,proto3" json:"invoiceNumber,omitempty"`
+	// Address of the organization.
+	Address *Address `protobuf:"bytes,6,opt,name=address,proto3" json:"address,omitempty"`
+	// Organization ID.
+	OrganizationID int64 `protobuf:"varint,7,opt,name=organizationID,proto3" json:"organizationID,omitempty"`
+	// Ordered items.
+	BasketItems          []*BasketItem `protobuf:"bytes,8,rep,name=basketItems,proto3" json:"basketItems,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
 }
 
 func (m *Invoice) Reset()         { *m = Invoice{} }
@@ -150,11 +218,11 @@ func (m *Invoice) GetTaxDepartment() string {
 	return ""
 }
 
-func (m *Invoice) GetIdentityNumber() int64 {
+func (m *Invoice) GetIdentityNumber() string {
 	if m != nil {
 		return m.IdentityNumber
 	}
-	return 0
+	return ""
 }
 
 func (m *Invoice) GetInvoiceDate() *timestamp.Timestamp {
@@ -185,11 +253,23 @@ func (m *Invoice) GetOrganizationID() int64 {
 	return 0
 }
 
+func (m *Invoice) GetBasketItems() []*BasketItem {
+	if m != nil {
+		return m.BasketItems
+	}
+	return nil
+}
+
 type BasketItem struct {
-	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Category             string   `protobuf:"bytes,3,opt,name=category,proto3" json:"category,omitempty"`
-	ItemType             string   `protobuf:"bytes,4,opt,name=itemType,proto3" json:"itemType,omitempty"`
+	// ID of the basket item.
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// Name of the basket item.
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// Category of the basket item.
+	Category string `protobuf:"bytes,3,opt,name=category,proto3" json:"category,omitempty"`
+	// Type of the basket item.
+	ItemType string `protobuf:"bytes,4,opt,name=itemType,proto3" json:"itemType,omitempty"`
+	// Price of the basket item.
 	Price                string   `protobuf:"bytes,5,opt,name=price,proto3" json:"price,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -256,7 +336,7 @@ func (m *BasketItem) GetPrice() string {
 	return ""
 }
 
-type CreateRequest struct {
+type CreatePaymentFormRequest struct {
 	Locale               string        `protobuf:"bytes,1,opt,name=locale,proto3" json:"locale,omitempty"`
 	Price                string        `protobuf:"bytes,2,opt,name=price,proto3" json:"price,omitempty"`
 	PaidPrice            string        `protobuf:"bytes,3,opt,name=paidPrice,proto3" json:"paidPrice,omitempty"`
@@ -272,174 +352,183 @@ type CreateRequest struct {
 	Ip                   string        `protobuf:"bytes,13,opt,name=ip,proto3" json:"ip,omitempty"`
 	IdentityNumber       string        `protobuf:"bytes,14,opt,name=identityNumber,proto3" json:"identityNumber,omitempty"`
 	BasketItems          []*BasketItem `protobuf:"bytes,15,rep,name=basketItems,proto3" json:"basketItems,omitempty"`
+	ZipCode              string        `protobuf:"bytes,16,opt,name=zipCode,proto3" json:"zipCode,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
 	XXX_unrecognized     []byte        `json:"-"`
 	XXX_sizecache        int32         `json:"-"`
 }
 
-func (m *CreateRequest) Reset()         { *m = CreateRequest{} }
-func (m *CreateRequest) String() string { return proto.CompactTextString(m) }
-func (*CreateRequest) ProtoMessage()    {}
-func (*CreateRequest) Descriptor() ([]byte, []int) {
+func (m *CreatePaymentFormRequest) Reset()         { *m = CreatePaymentFormRequest{} }
+func (m *CreatePaymentFormRequest) String() string { return proto.CompactTextString(m) }
+func (*CreatePaymentFormRequest) ProtoMessage()    {}
+func (*CreatePaymentFormRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_7521b76996225ce4, []int{3}
 }
 
-func (m *CreateRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateRequest.Unmarshal(m, b)
+func (m *CreatePaymentFormRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreatePaymentFormRequest.Unmarshal(m, b)
 }
-func (m *CreateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateRequest.Marshal(b, m, deterministic)
+func (m *CreatePaymentFormRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreatePaymentFormRequest.Marshal(b, m, deterministic)
 }
-func (m *CreateRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateRequest.Merge(m, src)
+func (m *CreatePaymentFormRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreatePaymentFormRequest.Merge(m, src)
 }
-func (m *CreateRequest) XXX_Size() int {
-	return xxx_messageInfo_CreateRequest.Size(m)
+func (m *CreatePaymentFormRequest) XXX_Size() int {
+	return xxx_messageInfo_CreatePaymentFormRequest.Size(m)
 }
-func (m *CreateRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateRequest.DiscardUnknown(m)
+func (m *CreatePaymentFormRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreatePaymentFormRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CreateRequest proto.InternalMessageInfo
+var xxx_messageInfo_CreatePaymentFormRequest proto.InternalMessageInfo
 
-func (m *CreateRequest) GetLocale() string {
+func (m *CreatePaymentFormRequest) GetLocale() string {
 	if m != nil {
 		return m.Locale
 	}
 	return ""
 }
 
-func (m *CreateRequest) GetPrice() string {
+func (m *CreatePaymentFormRequest) GetPrice() string {
 	if m != nil {
 		return m.Price
 	}
 	return ""
 }
 
-func (m *CreateRequest) GetPaidPrice() string {
+func (m *CreatePaymentFormRequest) GetPaidPrice() string {
 	if m != nil {
 		return m.PaidPrice
 	}
 	return ""
 }
 
-func (m *CreateRequest) GetCurrency() string {
+func (m *CreatePaymentFormRequest) GetCurrency() string {
 	if m != nil {
 		return m.Currency
 	}
 	return ""
 }
 
-func (m *CreateRequest) GetId() string {
+func (m *CreatePaymentFormRequest) GetId() string {
 	if m != nil {
 		return m.Id
 	}
 	return ""
 }
 
-func (m *CreateRequest) GetName() string {
+func (m *CreatePaymentFormRequest) GetName() string {
 	if m != nil {
 		return m.Name
 	}
 	return ""
 }
 
-func (m *CreateRequest) GetSurname() string {
+func (m *CreatePaymentFormRequest) GetSurname() string {
 	if m != nil {
 		return m.Surname
 	}
 	return ""
 }
 
-func (m *CreateRequest) GetEmail() string {
+func (m *CreatePaymentFormRequest) GetEmail() string {
 	if m != nil {
 		return m.Email
 	}
 	return ""
 }
 
-func (m *CreateRequest) GetGsmNumber() string {
+func (m *CreatePaymentFormRequest) GetGsmNumber() string {
 	if m != nil {
 		return m.GsmNumber
 	}
 	return ""
 }
 
-func (m *CreateRequest) GetAddress() string {
+func (m *CreatePaymentFormRequest) GetAddress() string {
 	if m != nil {
 		return m.Address
 	}
 	return ""
 }
 
-func (m *CreateRequest) GetCity() string {
+func (m *CreatePaymentFormRequest) GetCity() string {
 	if m != nil {
 		return m.City
 	}
 	return ""
 }
 
-func (m *CreateRequest) GetCountry() string {
+func (m *CreatePaymentFormRequest) GetCountry() string {
 	if m != nil {
 		return m.Country
 	}
 	return ""
 }
 
-func (m *CreateRequest) GetIp() string {
+func (m *CreatePaymentFormRequest) GetIp() string {
 	if m != nil {
 		return m.Ip
 	}
 	return ""
 }
 
-func (m *CreateRequest) GetIdentityNumber() string {
+func (m *CreatePaymentFormRequest) GetIdentityNumber() string {
 	if m != nil {
 		return m.IdentityNumber
 	}
 	return ""
 }
 
-func (m *CreateRequest) GetBasketItems() []*BasketItem {
+func (m *CreatePaymentFormRequest) GetBasketItems() []*BasketItem {
 	if m != nil {
 		return m.BasketItems
 	}
 	return nil
 }
 
-type CreateResponse struct {
+func (m *CreatePaymentFormRequest) GetZipCode() string {
+	if m != nil {
+		return m.ZipCode
+	}
+	return ""
+}
+
+type CreatePaymentFormResponse struct {
+	// Payment URL.
 	PaymentURL           string   `protobuf:"bytes,1,opt,name=paymentURL,proto3" json:"paymentURL,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *CreateResponse) Reset()         { *m = CreateResponse{} }
-func (m *CreateResponse) String() string { return proto.CompactTextString(m) }
-func (*CreateResponse) ProtoMessage()    {}
-func (*CreateResponse) Descriptor() ([]byte, []int) {
+func (m *CreatePaymentFormResponse) Reset()         { *m = CreatePaymentFormResponse{} }
+func (m *CreatePaymentFormResponse) String() string { return proto.CompactTextString(m) }
+func (*CreatePaymentFormResponse) ProtoMessage()    {}
+func (*CreatePaymentFormResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_7521b76996225ce4, []int{4}
 }
 
-func (m *CreateResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateResponse.Unmarshal(m, b)
+func (m *CreatePaymentFormResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreatePaymentFormResponse.Unmarshal(m, b)
 }
-func (m *CreateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateResponse.Marshal(b, m, deterministic)
+func (m *CreatePaymentFormResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreatePaymentFormResponse.Marshal(b, m, deterministic)
 }
-func (m *CreateResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateResponse.Merge(m, src)
+func (m *CreatePaymentFormResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreatePaymentFormResponse.Merge(m, src)
 }
-func (m *CreateResponse) XXX_Size() int {
-	return xxx_messageInfo_CreateResponse.Size(m)
+func (m *CreatePaymentFormResponse) XXX_Size() int {
+	return xxx_messageInfo_CreatePaymentFormResponse.Size(m)
 }
-func (m *CreateResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateResponse.DiscardUnknown(m)
+func (m *CreatePaymentFormResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreatePaymentFormResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CreateResponse proto.InternalMessageInfo
+var xxx_messageInfo_CreatePaymentFormResponse proto.InternalMessageInfo
 
-func (m *CreateResponse) GetPaymentURL() string {
+func (m *CreatePaymentFormResponse) GetPaymentURL() string {
 	if m != nil {
 		return m.PaymentURL
 	}
@@ -447,6 +536,7 @@ func (m *CreateResponse) GetPaymentURL() string {
 }
 
 type CreateInvoiceRequest struct {
+	// Organization ID.
 	Invoice              *Invoice `protobuf:"bytes,1,opt,name=invoice,proto3" json:"invoice,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -486,6 +576,7 @@ func (m *CreateInvoiceRequest) GetInvoice() *Invoice {
 }
 
 type CreateInvoiceResponse struct {
+	// Invoice ID.
 	Invoice              *Invoice `protobuf:"bytes,1,opt,name=invoice,proto3" json:"invoice,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -524,46 +615,8 @@ func (m *CreateInvoiceResponse) GetInvoice() *Invoice {
 	return nil
 }
 
-type DeleteInvoiceRequest struct {
-	InvoiceID            int64    `protobuf:"varint,1,opt,name=invoiceID,proto3" json:"invoiceID,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *DeleteInvoiceRequest) Reset()         { *m = DeleteInvoiceRequest{} }
-func (m *DeleteInvoiceRequest) String() string { return proto.CompactTextString(m) }
-func (*DeleteInvoiceRequest) ProtoMessage()    {}
-func (*DeleteInvoiceRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7521b76996225ce4, []int{7}
-}
-
-func (m *DeleteInvoiceRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteInvoiceRequest.Unmarshal(m, b)
-}
-func (m *DeleteInvoiceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteInvoiceRequest.Marshal(b, m, deterministic)
-}
-func (m *DeleteInvoiceRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteInvoiceRequest.Merge(m, src)
-}
-func (m *DeleteInvoiceRequest) XXX_Size() int {
-	return xxx_messageInfo_DeleteInvoiceRequest.Size(m)
-}
-func (m *DeleteInvoiceRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteInvoiceRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeleteInvoiceRequest proto.InternalMessageInfo
-
-func (m *DeleteInvoiceRequest) GetInvoiceID() int64 {
-	if m != nil {
-		return m.InvoiceID
-	}
-	return 0
-}
-
 type GetInvoiceRequest struct {
+	// Invoice ID.
 	InvoiceID            int64    `protobuf:"varint,1,opt,name=invoiceID,proto3" json:"invoiceID,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -574,7 +627,7 @@ func (m *GetInvoiceRequest) Reset()         { *m = GetInvoiceRequest{} }
 func (m *GetInvoiceRequest) String() string { return proto.CompactTextString(m) }
 func (*GetInvoiceRequest) ProtoMessage()    {}
 func (*GetInvoiceRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7521b76996225ce4, []int{8}
+	return fileDescriptor_7521b76996225ce4, []int{7}
 }
 
 func (m *GetInvoiceRequest) XXX_Unmarshal(b []byte) error {
@@ -603,6 +656,7 @@ func (m *GetInvoiceRequest) GetInvoiceID() int64 {
 }
 
 type GetInvoiceResponse struct {
+	// Invoice.
 	Invoice              *Invoice `protobuf:"bytes,1,opt,name=invoice,proto3" json:"invoice,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -613,7 +667,7 @@ func (m *GetInvoiceResponse) Reset()         { *m = GetInvoiceResponse{} }
 func (m *GetInvoiceResponse) String() string { return proto.CompactTextString(m) }
 func (*GetInvoiceResponse) ProtoMessage()    {}
 func (*GetInvoiceResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7521b76996225ce4, []int{9}
+	return fileDescriptor_7521b76996225ce4, []int{8}
 }
 
 func (m *GetInvoiceResponse) XXX_Unmarshal(b []byte) error {
@@ -642,6 +696,7 @@ func (m *GetInvoiceResponse) GetInvoice() *Invoice {
 }
 
 type ListInvoicesRequest struct {
+	// Organization ID.
 	OrganizationID       int64    `protobuf:"varint,1,opt,name=organizationID,proto3" json:"organizationID,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -652,7 +707,7 @@ func (m *ListInvoicesRequest) Reset()         { *m = ListInvoicesRequest{} }
 func (m *ListInvoicesRequest) String() string { return proto.CompactTextString(m) }
 func (*ListInvoicesRequest) ProtoMessage()    {}
 func (*ListInvoicesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7521b76996225ce4, []int{10}
+	return fileDescriptor_7521b76996225ce4, []int{9}
 }
 
 func (m *ListInvoicesRequest) XXX_Unmarshal(b []byte) error {
@@ -681,6 +736,7 @@ func (m *ListInvoicesRequest) GetOrganizationID() int64 {
 }
 
 type ListInvoicesResponse struct {
+	// Invoices.
 	Invoices             []*Invoice `protobuf:"bytes,1,rep,name=invoices,proto3" json:"invoices,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
 	XXX_unrecognized     []byte     `json:"-"`
@@ -691,7 +747,7 @@ func (m *ListInvoicesResponse) Reset()         { *m = ListInvoicesResponse{} }
 func (m *ListInvoicesResponse) String() string { return proto.CompactTextString(m) }
 func (*ListInvoicesResponse) ProtoMessage()    {}
 func (*ListInvoicesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7521b76996225ce4, []int{11}
+	return fileDescriptor_7521b76996225ce4, []int{10}
 }
 
 func (m *ListInvoicesResponse) XXX_Unmarshal(b []byte) error {
@@ -720,6 +776,7 @@ func (m *ListInvoicesResponse) GetInvoices() []*Invoice {
 }
 
 type CreateAddressRequest struct {
+	// Organization address.
 	Address              *Address `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -730,7 +787,7 @@ func (m *CreateAddressRequest) Reset()         { *m = CreateAddressRequest{} }
 func (m *CreateAddressRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateAddressRequest) ProtoMessage()    {}
 func (*CreateAddressRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7521b76996225ce4, []int{12}
+	return fileDescriptor_7521b76996225ce4, []int{11}
 }
 
 func (m *CreateAddressRequest) XXX_Unmarshal(b []byte) error {
@@ -759,6 +816,7 @@ func (m *CreateAddressRequest) GetAddress() *Address {
 }
 
 type CreateAddressResponse struct {
+	// Organization address.
 	Address              *Address `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -769,7 +827,7 @@ func (m *CreateAddressResponse) Reset()         { *m = CreateAddressResponse{} }
 func (m *CreateAddressResponse) String() string { return proto.CompactTextString(m) }
 func (*CreateAddressResponse) ProtoMessage()    {}
 func (*CreateAddressResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7521b76996225ce4, []int{13}
+	return fileDescriptor_7521b76996225ce4, []int{12}
 }
 
 func (m *CreateAddressResponse) XXX_Unmarshal(b []byte) error {
@@ -798,6 +856,7 @@ func (m *CreateAddressResponse) GetAddress() *Address {
 }
 
 type DeleteAddressRequest struct {
+	// Organization address ID.
 	AddressID            int64    `protobuf:"varint,1,opt,name=addressID,proto3" json:"addressID,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -808,7 +867,7 @@ func (m *DeleteAddressRequest) Reset()         { *m = DeleteAddressRequest{} }
 func (m *DeleteAddressRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteAddressRequest) ProtoMessage()    {}
 func (*DeleteAddressRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7521b76996225ce4, []int{14}
+	return fileDescriptor_7521b76996225ce4, []int{13}
 }
 
 func (m *DeleteAddressRequest) XXX_Unmarshal(b []byte) error {
@@ -837,6 +896,7 @@ func (m *DeleteAddressRequest) GetAddressID() int64 {
 }
 
 type GetAddressRequest struct {
+	// Organization address ID.
 	AddressID            int64    `protobuf:"varint,1,opt,name=addressID,proto3" json:"addressID,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -847,7 +907,7 @@ func (m *GetAddressRequest) Reset()         { *m = GetAddressRequest{} }
 func (m *GetAddressRequest) String() string { return proto.CompactTextString(m) }
 func (*GetAddressRequest) ProtoMessage()    {}
 func (*GetAddressRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7521b76996225ce4, []int{15}
+	return fileDescriptor_7521b76996225ce4, []int{14}
 }
 
 func (m *GetAddressRequest) XXX_Unmarshal(b []byte) error {
@@ -876,6 +936,7 @@ func (m *GetAddressRequest) GetAddressID() int64 {
 }
 
 type GetAddressResponse struct {
+	// Organization address.
 	Address              *Address `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -886,7 +947,7 @@ func (m *GetAddressResponse) Reset()         { *m = GetAddressResponse{} }
 func (m *GetAddressResponse) String() string { return proto.CompactTextString(m) }
 func (*GetAddressResponse) ProtoMessage()    {}
 func (*GetAddressResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7521b76996225ce4, []int{16}
+	return fileDescriptor_7521b76996225ce4, []int{15}
 }
 
 func (m *GetAddressResponse) XXX_Unmarshal(b []byte) error {
@@ -914,78 +975,80 @@ func (m *GetAddressResponse) GetAddress() *Address {
 	return nil
 }
 
-type ListAddressesRequest struct {
+type ListOrganizationAddressesRequest struct {
+	// Organization ID.
 	OrganizationID       int64    `protobuf:"varint,1,opt,name=organizationID,proto3" json:"organizationID,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ListAddressesRequest) Reset()         { *m = ListAddressesRequest{} }
-func (m *ListAddressesRequest) String() string { return proto.CompactTextString(m) }
-func (*ListAddressesRequest) ProtoMessage()    {}
-func (*ListAddressesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7521b76996225ce4, []int{17}
+func (m *ListOrganizationAddressesRequest) Reset()         { *m = ListOrganizationAddressesRequest{} }
+func (m *ListOrganizationAddressesRequest) String() string { return proto.CompactTextString(m) }
+func (*ListOrganizationAddressesRequest) ProtoMessage()    {}
+func (*ListOrganizationAddressesRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7521b76996225ce4, []int{16}
 }
 
-func (m *ListAddressesRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListAddressesRequest.Unmarshal(m, b)
+func (m *ListOrganizationAddressesRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListOrganizationAddressesRequest.Unmarshal(m, b)
 }
-func (m *ListAddressesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListAddressesRequest.Marshal(b, m, deterministic)
+func (m *ListOrganizationAddressesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListOrganizationAddressesRequest.Marshal(b, m, deterministic)
 }
-func (m *ListAddressesRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListAddressesRequest.Merge(m, src)
+func (m *ListOrganizationAddressesRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListOrganizationAddressesRequest.Merge(m, src)
 }
-func (m *ListAddressesRequest) XXX_Size() int {
-	return xxx_messageInfo_ListAddressesRequest.Size(m)
+func (m *ListOrganizationAddressesRequest) XXX_Size() int {
+	return xxx_messageInfo_ListOrganizationAddressesRequest.Size(m)
 }
-func (m *ListAddressesRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListAddressesRequest.DiscardUnknown(m)
+func (m *ListOrganizationAddressesRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListOrganizationAddressesRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ListAddressesRequest proto.InternalMessageInfo
+var xxx_messageInfo_ListOrganizationAddressesRequest proto.InternalMessageInfo
 
-func (m *ListAddressesRequest) GetOrganizationID() int64 {
+func (m *ListOrganizationAddressesRequest) GetOrganizationID() int64 {
 	if m != nil {
 		return m.OrganizationID
 	}
 	return 0
 }
 
-type ListAddressesResponse struct {
+type ListOrganizationAddressesResponse struct {
+	// Organization addresses.
 	Addresses            []*Address `protobuf:"bytes,1,rep,name=addresses,proto3" json:"addresses,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
 	XXX_unrecognized     []byte     `json:"-"`
 	XXX_sizecache        int32      `json:"-"`
 }
 
-func (m *ListAddressesResponse) Reset()         { *m = ListAddressesResponse{} }
-func (m *ListAddressesResponse) String() string { return proto.CompactTextString(m) }
-func (*ListAddressesResponse) ProtoMessage()    {}
-func (*ListAddressesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7521b76996225ce4, []int{18}
+func (m *ListOrganizationAddressesResponse) Reset()         { *m = ListOrganizationAddressesResponse{} }
+func (m *ListOrganizationAddressesResponse) String() string { return proto.CompactTextString(m) }
+func (*ListOrganizationAddressesResponse) ProtoMessage()    {}
+func (*ListOrganizationAddressesResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7521b76996225ce4, []int{17}
 }
 
-func (m *ListAddressesResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListAddressesResponse.Unmarshal(m, b)
+func (m *ListOrganizationAddressesResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListOrganizationAddressesResponse.Unmarshal(m, b)
 }
-func (m *ListAddressesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListAddressesResponse.Marshal(b, m, deterministic)
+func (m *ListOrganizationAddressesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListOrganizationAddressesResponse.Marshal(b, m, deterministic)
 }
-func (m *ListAddressesResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListAddressesResponse.Merge(m, src)
+func (m *ListOrganizationAddressesResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListOrganizationAddressesResponse.Merge(m, src)
 }
-func (m *ListAddressesResponse) XXX_Size() int {
-	return xxx_messageInfo_ListAddressesResponse.Size(m)
+func (m *ListOrganizationAddressesResponse) XXX_Size() int {
+	return xxx_messageInfo_ListOrganizationAddressesResponse.Size(m)
 }
-func (m *ListAddressesResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListAddressesResponse.DiscardUnknown(m)
+func (m *ListOrganizationAddressesResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListOrganizationAddressesResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ListAddressesResponse proto.InternalMessageInfo
+var xxx_messageInfo_ListOrganizationAddressesResponse proto.InternalMessageInfo
 
-func (m *ListAddressesResponse) GetAddresses() []*Address {
+func (m *ListOrganizationAddressesResponse) GetAddresses() []*Address {
 	if m != nil {
 		return m.Addresses
 	}
@@ -996,11 +1059,10 @@ func init() {
 	proto.RegisterType((*Address)(nil), "api.Address")
 	proto.RegisterType((*Invoice)(nil), "api.Invoice")
 	proto.RegisterType((*BasketItem)(nil), "api.BasketItem")
-	proto.RegisterType((*CreateRequest)(nil), "api.CreateRequest")
-	proto.RegisterType((*CreateResponse)(nil), "api.CreateResponse")
+	proto.RegisterType((*CreatePaymentFormRequest)(nil), "api.CreatePaymentFormRequest")
+	proto.RegisterType((*CreatePaymentFormResponse)(nil), "api.CreatePaymentFormResponse")
 	proto.RegisterType((*CreateInvoiceRequest)(nil), "api.CreateInvoiceRequest")
 	proto.RegisterType((*CreateInvoiceResponse)(nil), "api.CreateInvoiceResponse")
-	proto.RegisterType((*DeleteInvoiceRequest)(nil), "api.DeleteInvoiceRequest")
 	proto.RegisterType((*GetInvoiceRequest)(nil), "api.GetInvoiceRequest")
 	proto.RegisterType((*GetInvoiceResponse)(nil), "api.GetInvoiceResponse")
 	proto.RegisterType((*ListInvoicesRequest)(nil), "api.ListInvoicesRequest")
@@ -1010,8 +1072,8 @@ func init() {
 	proto.RegisterType((*DeleteAddressRequest)(nil), "api.DeleteAddressRequest")
 	proto.RegisterType((*GetAddressRequest)(nil), "api.GetAddressRequest")
 	proto.RegisterType((*GetAddressResponse)(nil), "api.GetAddressResponse")
-	proto.RegisterType((*ListAddressesRequest)(nil), "api.ListAddressesRequest")
-	proto.RegisterType((*ListAddressesResponse)(nil), "api.ListAddressesResponse")
+	proto.RegisterType((*ListOrganizationAddressesRequest)(nil), "api.ListOrganizationAddressesRequest")
+	proto.RegisterType((*ListOrganizationAddressesResponse)(nil), "api.ListOrganizationAddressesResponse")
 }
 
 func init() {
@@ -1019,71 +1081,77 @@ func init() {
 }
 
 var fileDescriptor_7521b76996225ce4 = []byte{
-	// 1019 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x56, 0xdd, 0x6e, 0x1b, 0x45,
-	0x14, 0x96, 0xed, 0xc6, 0x8e, 0x8f, 0x63, 0x57, 0x9d, 0xa6, 0xc9, 0x76, 0x09, 0x34, 0x2c, 0x34,
-	0x8a, 0x52, 0xba, 0x4b, 0x53, 0xb8, 0x41, 0x25, 0x40, 0x6b, 0x84, 0x82, 0x2a, 0x54, 0x99, 0x72,
-	0xc3, 0xdd, 0x78, 0x3d, 0x38, 0x43, 0xbc, 0x3f, 0xec, 0x8e, 0x43, 0xdd, 0x28, 0x5c, 0x70, 0xc7,
-	0x35, 0x97, 0xf0, 0x56, 0xf0, 0x08, 0x3c, 0x08, 0xda, 0x99, 0x33, 0x3b, 0xfb, 0xa7, 0x50, 0x73,
-	0xe7, 0xf3, 0xb7, 0xdf, 0x37, 0xe7, 0x3b, 0x67, 0x3c, 0xf0, 0x36, 0x4d, 0x3d, 0xf6, 0x4a, 0xb0,
-	0x24, 0xa4, 0x0b, 0x8f, 0xc6, 0xdc, 0x8b, 0xe9, 0x2a, 0x60, 0xa1, 0x70, 0xe3, 0x24, 0x12, 0x11,
-	0xe9, 0xd0, 0x98, 0xdb, 0x7b, 0xf3, 0x28, 0x9a, 0x2f, 0x98, 0x0c, 0xd3, 0x30, 0x8c, 0x04, 0x15,
-	0x3c, 0x0a, 0x53, 0x95, 0x62, 0xbf, 0x85, 0x51, 0x69, 0x4d, 0x97, 0x3f, 0x78, 0x2c, 0x88, 0xc5,
-	0x0a, 0x83, 0xf7, 0xaa, 0x41, 0xc1, 0x03, 0x96, 0x0a, 0x1a, 0xc4, 0x2a, 0xc1, 0xf9, 0xad, 0x05,
-	0xbd, 0x2f, 0x66, 0xb3, 0x84, 0xa5, 0x29, 0x19, 0x41, 0x9b, 0xcf, 0xac, 0xd6, 0x7e, 0xeb, 0xb0,
-	0x33, 0x69, 0xf3, 0x19, 0x39, 0x80, 0x51, 0x94, 0xcc, 0x69, 0xc8, 0x5f, 0x4b, 0xc0, 0xd3, 0xb1,
-	0xd5, 0x96, 0xb1, 0x8a, 0x97, 0x58, 0xd0, 0xa3, 0xea, 0x13, 0x56, 0x67, 0xbf, 0x75, 0xd8, 0x9f,
-	0x68, 0x93, 0x10, 0xb8, 0xe1, 0x73, 0xb1, 0xb2, 0x6e, 0x48, 0xb7, 0xfc, 0x9d, 0x65, 0xfb, 0xd1,
-	0x32, 0x14, 0xc9, 0xca, 0xda, 0x50, 0xd9, 0x68, 0x3a, 0x7f, 0xb4, 0xa1, 0x77, 0x1a, 0x5e, 0x44,
-	0xdc, 0x67, 0x35, 0x2e, 0xef, 0xc3, 0x50, 0xd0, 0x57, 0x63, 0x16, 0xd3, 0x44, 0x64, 0xfd, 0x91,
-	0x54, 0xfa, 0x93, 0xb2, 0x33, 0x63, 0xcc, 0x67, 0x2c, 0x14, 0x5c, 0xac, 0xbe, 0x59, 0x06, 0x53,
-	0x96, 0x48, 0x42, 0x9d, 0x49, 0xc5, 0x4b, 0x9e, 0xc0, 0x80, 0x2b, 0xa0, 0x31, 0x15, 0x4c, 0xd2,
-	0x1b, 0x1c, 0xdb, 0xae, 0x6a, 0x96, 0xab, 0x9b, 0xe5, 0xbe, 0xd4, 0xcd, 0x9a, 0x14, 0xd3, 0x33,
-	0x2e, 0x68, 0x22, 0x88, 0x3a, 0x47, 0xd9, 0x49, 0x0e, 0x4c, 0x57, 0xba, 0xf2, 0xfb, 0x5b, 0x2e,
-	0x8d, 0xb9, 0x8b, 0xcd, 0x36, 0x3d, 0xaa, 0x77, 0xb9, 0xd7, 0xd4, 0x65, 0xe7, 0x17, 0x80, 0xa7,
-	0x34, 0x3d, 0x67, 0xe2, 0x54, 0xb0, 0xa0, 0xd0, 0x9f, 0xbe, 0xec, 0x0f, 0x81, 0x1b, 0x21, 0x0d,
-	0x18, 0xb6, 0x45, 0xfe, 0x26, 0x36, 0x6c, 0xfa, 0x54, 0xb0, 0x79, 0x94, 0xac, 0x50, 0x98, 0xdc,
-	0xce, 0x62, 0x5c, 0xb0, 0xe0, 0xe5, 0x2a, 0x66, 0xa8, 0x4e, 0x6e, 0x93, 0x6d, 0xd8, 0x88, 0x13,
-	0xee, 0x33, 0x3c, 0x97, 0x32, 0x9c, 0x3f, 0x3b, 0x30, 0x7c, 0x96, 0x30, 0x2a, 0xd8, 0x84, 0xfd,
-	0xb4, 0x64, 0xa9, 0x20, 0x3b, 0xd0, 0x5d, 0x44, 0x3e, 0x5d, 0x30, 0xe4, 0x81, 0x96, 0xa9, 0x6f,
-	0x17, 0xea, 0xc9, 0x1e, 0xf4, 0x63, 0xca, 0x67, 0x2f, 0x64, 0x44, 0xd1, 0x31, 0x0e, 0xc9, 0x75,
-	0x99, 0x24, 0x2c, 0xf4, 0xf5, 0xb4, 0xe4, 0x36, 0x9e, 0x75, 0xa3, 0x76, 0xd6, 0x6e, 0xe1, 0xac,
-	0x16, 0xf4, 0xd2, 0x65, 0x22, 0xdd, 0x3d, 0x35, 0x55, 0x68, 0x66, 0x6c, 0x58, 0x40, 0xf9, 0xc2,
-	0xda, 0x54, 0x6c, 0xa4, 0x91, 0xb1, 0x99, 0xa7, 0x01, 0xea, 0xd7, 0x57, 0x6c, 0x72, 0x47, 0x71,
-	0xa2, 0xa1, 0x79, 0xa2, 0x07, 0xcd, 0x13, 0xbd, 0x55, 0x9a, 0x68, 0xc9, 0x3c, 0xb6, 0x86, 0xc8,
-	0x3c, 0x6e, 0x98, 0xcf, 0x91, 0x8c, 0x55, 0xe7, 0xf3, 0x11, 0x0c, 0xa6, 0xb9, 0xd6, 0xa9, 0x75,
-	0x73, 0xbf, 0x73, 0x38, 0x38, 0xbe, 0x29, 0xe7, 0xc7, 0xcc, 0xc0, 0xa4, 0x98, 0xe3, 0x7c, 0x08,
-	0x23, 0xad, 0x4e, 0x1a, 0x47, 0x61, 0xca, 0xc8, 0x3b, 0x00, 0x78, 0x99, 0x7c, 0x37, 0x79, 0x8e,
-	0x12, 0x15, 0x3c, 0xce, 0x09, 0x6c, 0xab, 0x0a, 0xdc, 0x39, 0x2d, 0xeb, 0x01, 0xf4, 0x70, 0x92,
-	0x65, 0x91, 0x1e, 0x5c, 0x9d, 0xa5, 0x83, 0xce, 0x67, 0x70, 0xa7, 0x52, 0x8f, 0xc0, 0x6f, 0xfa,
-	0x81, 0x8f, 0x60, 0x7b, 0xcc, 0x16, 0xac, 0x46, 0x60, 0x0f, 0xfa, 0x98, 0x72, 0x3a, 0xc6, 0x2b,
-	0xc0, 0x38, 0x9c, 0x47, 0x70, 0xeb, 0x2b, 0x26, 0xd6, 0x2a, 0x79, 0x02, 0xa4, 0x58, 0xb2, 0x26,
-	0xcd, 0x4f, 0xe1, 0xf6, 0x73, 0x9e, 0xea, 0xf2, 0xd4, 0xb4, 0xa9, 0xba, 0xb7, 0xad, 0xc6, 0xbd,
-	0xfd, 0x1c, 0xb6, 0xcb, 0xe5, 0x08, 0x7f, 0x08, 0x9b, 0x88, 0x90, 0x5a, 0x2d, 0x29, 0x70, 0x19,
-	0x3f, 0x8f, 0x1a, 0xa1, 0xf4, 0xdd, 0x61, 0x84, 0xd2, 0x53, 0xda, 0xba, 0xe6, 0x86, 0x31, 0x42,
-	0xe5, 0xf5, 0xa6, 0x03, 0x6f, 0xf4, 0x81, 0x5c, 0xa8, 0x0a, 0x81, 0x3d, 0xe8, 0x63, 0x8a, 0xe9,
-	0x7a, 0xee, 0x40, 0xa1, 0xd6, 0x2a, 0x51, 0x42, 0xfd, 0x5f, 0x9a, 0x27, 0xaa, 0xd3, 0xe8, 0x5f,
-	0x5f, 0xa9, 0x67, 0x70, 0xa7, 0x52, 0x8f, 0x04, 0x8e, 0x72, 0xd2, 0x15, 0xad, 0x34, 0x05, 0x13,
-	0x3e, 0xfe, 0xbb, 0x07, 0xa3, 0x17, 0x6a, 0xc9, 0xbe, 0x65, 0xc9, 0x45, 0x76, 0xb7, 0x7d, 0x0d,
-	0x5d, 0xd5, 0x7f, 0x42, 0x64, 0x55, 0xe9, 0x16, 0xb5, 0x6f, 0x97, 0x7c, 0x0a, 0xd1, 0xd9, 0xfd,
-	0xf5, 0xaf, 0x7f, 0x7e, 0x6f, 0xdf, 0x72, 0xb6, 0x8a, 0x6f, 0x82, 0x4f, 0x5a, 0x47, 0x24, 0xd0,
-	0x97, 0xb0, 0xfe, 0xa3, 0xbc, 0x5b, 0x28, 0x2f, 0x2f, 0x85, 0x6d, 0x37, 0x85, 0x10, 0xe0, 0xbe,
-	0x04, 0xb8, 0xe7, 0xd8, 0x45, 0x00, 0xcf, 0x2f, 0xe6, 0x66, 0x70, 0x3f, 0x02, 0x98, 0xcd, 0x21,
-	0x3b, 0xf2, 0x83, 0xb5, 0xed, 0xb3, 0x77, 0x6b, 0x7e, 0x44, 0x79, 0x20, 0x51, 0xee, 0x93, 0xf7,
-	0x4a, 0x28, 0xf3, 0x3c, 0xd1, 0xbb, 0xcc, 0x97, 0xf4, 0x8a, 0xfc, 0x0c, 0x5b, 0xc5, 0x45, 0x21,
-	0x96, 0xfc, 0x6a, 0xc3, 0xea, 0xd9, 0x77, 0x1b, 0x22, 0x88, 0x78, 0x2c, 0x11, 0x3f, 0x20, 0x47,
-	0x25, 0xc4, 0x45, 0x21, 0xd5, 0xbb, 0x2c, 0xcb, 0x7e, 0x45, 0x66, 0x30, 0x2c, 0xdd, 0x43, 0xd8,
-	0xd3, 0xa6, 0xbb, 0xc9, 0xde, 0xa9, 0x3d, 0x12, 0xbe, 0xcc, 0x9e, 0x5b, 0xce, 0xbe, 0xc4, 0xb5,
-	0x8f, 0xac, 0x12, 0x6e, 0xf1, 0x78, 0xb9, 0x72, 0xfa, 0xb9, 0x55, 0x54, 0xae, 0xbc, 0x25, 0x25,
-	0xe5, 0x2a, 0xdb, 0x70, 0xad, 0x72, 0x98, 0x6b, 0x94, 0xd3, 0x58, 0xb9, 0x72, 0x15, 0xa0, 0xdd,
-	0x9a, 0xff, 0xbf, 0x94, 0xc3, 0x44, 0xef, 0x32, 0xdf, 0xda, 0x2b, 0x72, 0x09, 0xc3, 0xd2, 0xe2,
-	0x10, 0x23, 0x50, 0x75, 0x19, 0xf1, 0x68, 0x8d, 0x7b, 0xe6, 0x3c, 0x96, 0xa0, 0x0f, 0xc9, 0x83,
-	0x9a, 0x78, 0x79, 0xee, 0x35, 0xea, 0x95, 0xfb, 0xda, 0x74, 0x61, 0xad, 0xab, 0x9e, 0x39, 0xe2,
-	0x53, 0x1f, 0xde, 0xe5, 0x91, 0xeb, 0x9f, 0xf1, 0x24, 0x4e, 0x05, 0xf5, 0xcf, 0x25, 0x06, 0x4d,
-	0x5d, 0xfd, 0x76, 0xcf, 0xec, 0xef, 0x4f, 0xe6, 0x5c, 0x9c, 0x2d, 0xa7, 0xae, 0x1f, 0x05, 0x1e,
-	0x9f, 0x26, 0xf4, 0x8c, 0x07, 0xd1, 0x6b, 0x76, 0xce, 0x7d, 0xee, 0x99, 0xca, 0x87, 0x19, 0xc4,
-	0x3c, 0xf2, 0x2e, 0x3e, 0xf6, 0x2a, 0x6f, 0xff, 0x69, 0x57, 0xd2, 0x7a, 0xfc, 0x6f, 0x00, 0x00,
-	0x00, 0xff, 0xff, 0x6f, 0xb7, 0xaf, 0x12, 0x15, 0x0c, 0x00, 0x00,
+	// 1107 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x57, 0xcd, 0x72, 0x1b, 0x45,
+	0x10, 0x2e, 0xc9, 0xb1, 0x64, 0xb5, 0xfc, 0x43, 0x06, 0x63, 0xaf, 0x17, 0x27, 0x51, 0x16, 0xec,
+	0x72, 0x39, 0x44, 0x5b, 0x71, 0xe0, 0x02, 0x21, 0x40, 0x62, 0xa0, 0x4c, 0xa5, 0x48, 0x4a, 0x84,
+	0x0b, 0x27, 0x46, 0xab, 0x41, 0x1a, 0xac, 0xdd, 0x59, 0x66, 0x46, 0x26, 0xb2, 0xcb, 0x1c, 0x78,
+	0x05, 0x1e, 0x80, 0x33, 0x8f, 0xc1, 0x89, 0x1b, 0x17, 0x5e, 0x81, 0x07, 0xa1, 0x76, 0xb6, 0xf7,
+	0x7f, 0x6d, 0xc7, 0xdc, 0xd4, 0x3f, 0xd3, 0x5f, 0xcf, 0xd7, 0xfd, 0x4d, 0x69, 0xe1, 0x16, 0x55,
+	0x2e, 0x7b, 0xa5, 0x99, 0x0c, 0xe8, 0xd4, 0xa5, 0x21, 0x77, 0x43, 0x3a, 0xf7, 0x59, 0xa0, 0xfb,
+	0xa1, 0x14, 0x5a, 0x90, 0x05, 0x1a, 0x72, 0x7b, 0x7b, 0x2c, 0xc4, 0x78, 0xca, 0x4c, 0x98, 0x06,
+	0x81, 0xd0, 0x54, 0x73, 0x11, 0xa8, 0x38, 0xc5, 0x7e, 0x1b, 0xa3, 0xc6, 0x1a, 0xce, 0x7e, 0x70,
+	0x99, 0x1f, 0xea, 0x39, 0x06, 0xef, 0x94, 0x83, 0x9a, 0xfb, 0x4c, 0x69, 0xea, 0x87, 0x71, 0x82,
+	0xf3, 0x57, 0x13, 0xda, 0x9f, 0x8d, 0x46, 0x92, 0x29, 0x45, 0x56, 0xa1, 0xc9, 0x47, 0x56, 0xa3,
+	0xd7, 0xd8, 0x5b, 0x18, 0x34, 0xf9, 0x88, 0xec, 0xc2, 0xaa, 0x90, 0x63, 0x1a, 0xf0, 0x53, 0x03,
+	0x78, 0x74, 0x68, 0x35, 0x4d, 0xac, 0xe4, 0x25, 0x16, 0xb4, 0x69, 0x5c, 0xc2, 0x5a, 0xe8, 0x35,
+	0xf6, 0x3a, 0x83, 0xc4, 0x24, 0x04, 0x6e, 0x78, 0x5c, 0xcf, 0xad, 0x1b, 0xc6, 0x6d, 0x7e, 0x47,
+	0xd9, 0x9e, 0x98, 0x05, 0x5a, 0xce, 0xad, 0xc5, 0x38, 0x1b, 0xcd, 0x28, 0x72, 0xca, 0xc3, 0xa7,
+	0x62, 0xc4, 0xac, 0x56, 0x1c, 0x41, 0x93, 0x6c, 0x40, 0x4b, 0x69, 0xc9, 0x98, 0xb6, 0xda, 0x26,
+	0x80, 0x16, 0xd9, 0x83, 0x35, 0x1a, 0x52, 0xa9, 0x23, 0xc6, 0xbe, 0x9e, 0xf9, 0x43, 0x26, 0xad,
+	0x25, 0x93, 0x50, 0x76, 0x93, 0x1e, 0x74, 0x27, 0x62, 0xa6, 0x18, 0x66, 0x75, 0x4c, 0x56, 0xde,
+	0x45, 0x6c, 0x58, 0x1a, 0x71, 0xa5, 0x25, 0xf7, 0xb4, 0x05, 0x26, 0x9c, 0xda, 0xc4, 0x81, 0xe5,
+	0x80, 0xf1, 0xf1, 0x64, 0x28, 0xe4, 0x44, 0x88, 0x91, 0xd5, 0x35, 0xf1, 0x82, 0xcf, 0xf9, 0xbb,
+	0x09, 0xed, 0xa3, 0xe0, 0x44, 0x70, 0x8f, 0x55, 0x98, 0x7c, 0x17, 0x56, 0x34, 0x7d, 0x75, 0xc8,
+	0x92, 0xa6, 0x0c, 0x91, 0x9d, 0x41, 0xd1, 0x19, 0xf1, 0xcd, 0x47, 0x2c, 0xd0, 0x5c, 0xcf, 0xb1,
+	0xcd, 0x98, 0xce, 0x92, 0x97, 0x3c, 0x82, 0x2e, 0x8f, 0x81, 0x0e, 0xa9, 0x66, 0x86, 0xdc, 0xee,
+	0x81, 0xdd, 0x8f, 0x47, 0xdd, 0x4f, 0x46, 0xdd, 0x7f, 0x99, 0x8c, 0x7a, 0x90, 0x4f, 0x8f, 0x7a,
+	0x41, 0x13, 0x41, 0xe2, 0x29, 0x14, 0x9d, 0x64, 0x37, 0x9b, 0x69, 0xcb, 0xd4, 0x5f, 0xee, 0xd3,
+	0x90, 0xf7, 0x71, 0x55, 0xb2, 0x09, 0x57, 0x77, 0xa4, 0x5d, 0xbb, 0x23, 0x0f, 0xa0, 0x3b, 0xa4,
+	0xea, 0x98, 0xe9, 0x23, 0xcd, 0x7c, 0x65, 0x2d, 0xf5, 0x16, 0xf6, 0xba, 0x07, 0x6b, 0xa6, 0xe6,
+	0x93, 0xd4, 0x3f, 0xc8, 0xe7, 0x38, 0xbf, 0x00, 0x64, 0xa1, 0x1c, 0xa5, 0x1d, 0x43, 0x29, 0x81,
+	0x1b, 0x01, 0xf5, 0x19, 0x32, 0x69, 0x7e, 0x47, 0x23, 0xf4, 0xa8, 0x66, 0x63, 0x21, 0xe7, 0x48,
+	0x5d, 0x6a, 0x47, 0x31, 0xae, 0x99, 0xff, 0x72, 0x1e, 0x32, 0x5c, 0xc7, 0xd4, 0x26, 0xeb, 0xb0,
+	0x18, 0x4a, 0xee, 0x31, 0xa4, 0x22, 0x36, 0x9c, 0x3f, 0x17, 0xc0, 0x7a, 0x2a, 0x19, 0xd5, 0xec,
+	0x45, 0xac, 0xc9, 0x2f, 0x84, 0xf4, 0x07, 0xec, 0xa7, 0x19, 0x53, 0x3a, 0xda, 0xc8, 0xa9, 0xf0,
+	0xe8, 0x94, 0x61, 0x4b, 0x68, 0x65, 0xa5, 0x9a, 0xb9, 0x52, 0x64, 0x1b, 0x3a, 0x21, 0xe5, 0xa3,
+	0x17, 0x26, 0x12, 0x77, 0x96, 0x39, 0x4c, 0xdb, 0x33, 0x29, 0x59, 0xe0, 0x25, 0x4a, 0x49, 0x6d,
+	0xbc, 0xf6, 0x62, 0xe5, 0xda, 0xad, 0xdc, 0xb5, 0x2d, 0x68, 0xab, 0x99, 0x34, 0xee, 0x58, 0x1e,
+	0x89, 0x19, 0x75, 0xc3, 0x7c, 0xca, 0xa7, 0xa8, 0x8a, 0xd8, 0x88, 0xba, 0x19, 0x2b, 0xbf, 0xa0,
+	0x84, 0xcc, 0x91, 0x57, 0x33, 0xd4, 0xab, 0xb9, 0x5b, 0xaf, 0xe6, 0xe5, 0xa2, 0x9a, 0xa3, 0xce,
+	0x43, 0x6b, 0x05, 0x3b, 0x0f, 0x6b, 0xb6, 0x7b, 0xb5, 0x76, 0xbb, 0x4b, 0x9b, 0xb2, 0x76, 0xf5,
+	0xa6, 0xe4, 0x1f, 0x8e, 0x37, 0x0a, 0x0f, 0x87, 0xf3, 0x11, 0x6c, 0xd5, 0x8c, 0x50, 0x85, 0x22,
+	0x50, 0x8c, 0xdc, 0x06, 0xc0, 0xd7, 0xf6, 0xdb, 0xc1, 0x33, 0x9c, 0x63, 0xce, 0xe3, 0x3c, 0x86,
+	0xf5, 0xf8, 0x30, 0xca, 0x3a, 0x99, 0xfd, 0x2e, 0xb4, 0x51, 0x2c, 0xe6, 0x50, 0xa2, 0x8d, 0x24,
+	0x2b, 0x09, 0x3a, 0x9f, 0xc0, 0x5b, 0xa5, 0xf3, 0x08, 0xfc, 0xba, 0x05, 0x1e, 0xc0, 0xcd, 0x2f,
+	0x99, 0x2e, 0xa1, 0x6f, 0x43, 0x07, 0xe3, 0x47, 0x87, 0xf8, 0xc4, 0x64, 0x0e, 0xe7, 0x11, 0x90,
+	0xfc, 0x91, 0x6b, 0x02, 0x7e, 0x0c, 0x6f, 0x3e, 0xe3, 0x2a, 0x39, 0xae, 0xb2, 0x0b, 0x97, 0x45,
+	0xde, 0xa8, 0x13, 0xb9, 0xf3, 0x29, 0xac, 0x17, 0x8f, 0x23, 0xfc, 0x1e, 0x2c, 0x21, 0x82, 0xb2,
+	0x1a, 0x66, 0x9e, 0x45, 0xfc, 0x34, 0x9a, 0x51, 0x9e, 0x3c, 0x34, 0x19, 0xe5, 0xc9, 0x52, 0x36,
+	0x2e, 0x79, 0x8e, 0x32, 0xca, 0xd3, 0xf3, 0x19, 0x03, 0xaf, 0x55, 0xe0, 0x7d, 0x58, 0x3f, 0x64,
+	0x53, 0x56, 0x69, 0x60, 0x1b, 0x3a, 0x98, 0x92, 0xb1, 0x9e, 0x3a, 0x70, 0x50, 0xd7, 0x3a, 0x12,
+	0x0f, 0xea, 0xff, 0xb6, 0xf9, 0x15, 0xf4, 0x22, 0xa6, 0x9f, 0xe7, 0xf8, 0xc7, 0x9c, 0xeb, 0x4f,
+	0xed, 0x39, 0xdc, 0xbd, 0xa4, 0x16, 0x36, 0xb6, 0x9f, 0x5e, 0xa6, 0x34, 0xc3, 0xa4, 0xb5, 0x2c,
+	0x7c, 0xf0, 0x47, 0x1b, 0x56, 0x51, 0x6f, 0xdf, 0x30, 0x79, 0x12, 0x3d, 0x71, 0xdf, 0x43, 0x2b,
+	0x9e, 0x0b, 0xb9, 0x65, 0x4e, 0x5d, 0xf4, 0xae, 0xda, 0xb7, 0x2f, 0x0a, 0xc7, 0x7d, 0x38, 0x9b,
+	0xbf, 0xfe, 0xf3, 0xef, 0x6f, 0xcd, 0x9b, 0xce, 0x72, 0xfe, 0xcf, 0xd2, 0x87, 0x8d, 0x7d, 0xe2,
+	0xc3, 0x4a, 0x41, 0x6c, 0x64, 0x2b, 0x57, 0xa9, 0x28, 0x21, 0xdb, 0xae, 0x0b, 0x21, 0xc0, 0x8e,
+	0x01, 0xb8, 0xe3, 0xd8, 0x79, 0x00, 0xd7, 0xcb, 0xe7, 0x46, 0x70, 0x3f, 0x02, 0x64, 0x3a, 0x23,
+	0x1b, 0xa6, 0x60, 0x45, 0xab, 0xf6, 0x66, 0xc5, 0x8f, 0x28, 0xf7, 0x0c, 0xca, 0x0e, 0x79, 0xa7,
+	0x80, 0x32, 0x4e, 0x13, 0xdd, 0xb3, 0x54, 0xd2, 0xe7, 0xe4, 0x67, 0x58, 0xce, 0xcb, 0x8a, 0x58,
+	0xa6, 0x6a, 0x8d, 0x50, 0xed, 0xad, 0x9a, 0x08, 0x22, 0x1e, 0x18, 0xc4, 0xf7, 0xc8, 0x7e, 0x01,
+	0x71, 0x9a, 0x4b, 0x75, 0xcf, 0x8a, 0x8b, 0x71, 0x9e, 0x71, 0x9a, 0xfc, 0x43, 0xcc, 0x73, 0x5a,
+	0xdc, 0xf6, 0x02, 0xa7, 0xa5, 0xad, 0xbe, 0x94, 0x53, 0xcc, 0xcd, 0x38, 0x4d, 0xb0, 0x52, 0x4e,
+	0x4b, 0x40, 0x9b, 0x15, 0xff, 0x55, 0x9c, 0x62, 0xa2, 0x7b, 0x96, 0xaa, 0xef, 0x9c, 0xfc, 0xde,
+	0x80, 0xad, 0x0b, 0xb7, 0x9e, 0xec, 0xa4, 0x3c, 0x5e, 0xa6, 0x30, 0x7b, 0xf7, 0xaa, 0x34, 0xec,
+	0xec, 0xa1, 0xe9, 0xec, 0x3e, 0xb9, 0x57, 0xe1, 0x3e, 0xcd, 0xad, 0x92, 0x3f, 0x82, 0x95, 0xc2,
+	0x4b, 0x84, 0xe4, 0xd7, 0xbd, 0x4e, 0xf6, 0x46, 0xe5, 0xcf, 0xdf, 0xe7, 0xd1, 0x47, 0x80, 0xd3,
+	0x33, 0xc0, 0xf6, 0xbe, 0x55, 0x00, 0xce, 0xf1, 0xf0, 0xc4, 0x83, 0xbb, 0x5c, 0xf4, 0xbd, 0x09,
+	0x97, 0xa1, 0xd2, 0xd4, 0x3b, 0x36, 0x18, 0x54, 0xf5, 0x93, 0x6f, 0x92, 0xc8, 0xfe, 0xee, 0xf1,
+	0x98, 0xeb, 0xc9, 0x6c, 0xd8, 0xf7, 0x84, 0xef, 0xf2, 0xa1, 0xa4, 0x13, 0xee, 0x8b, 0x53, 0x76,
+	0xcc, 0x3d, 0xee, 0x66, 0x27, 0xef, 0x47, 0x10, 0x63, 0xe1, 0x9e, 0x7c, 0xe0, 0x96, 0xbe, 0x69,
+	0x86, 0x2d, 0xd3, 0xd6, 0xc3, 0xff, 0x02, 0x00, 0x00, 0xff, 0xff, 0x52, 0x3c, 0xe9, 0x0a, 0xed,
+	0x0c, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1098,22 +1166,20 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type PaymentServiceClient interface {
-	// Create creates a new Iyzico payment URL.
-	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
+	// Create generates a new Iyzico payment URL.
+	Create(ctx context.Context, in *CreatePaymentFormRequest, opts ...grpc.CallOption) (*CreatePaymentFormResponse, error)
 	// CreateInvoice creates a new invoice.
 	CreateInvoice(ctx context.Context, in *CreateInvoiceRequest, opts ...grpc.CallOption) (*CreateInvoiceResponse, error)
 	// GetInvoice gets the invoice.
 	GetInvoice(ctx context.Context, in *GetInvoiceRequest, opts ...grpc.CallOption) (*GetInvoiceResponse, error)
 	// ListInvoices lists the invoices of organization.
 	ListInvoices(ctx context.Context, in *ListInvoicesRequest, opts ...grpc.CallOption) (*ListInvoicesResponse, error)
-	// DeleteInvoice deletes the invoice.
-	DeleteInvoice(ctx context.Context, in *DeleteInvoiceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// CreateAddress creates a new address.
 	CreateAddress(ctx context.Context, in *CreateAddressRequest, opts ...grpc.CallOption) (*CreateAddressResponse, error)
 	// GetAddress gets the address.
 	GetAddress(ctx context.Context, in *GetAddressRequest, opts ...grpc.CallOption) (*GetAddressResponse, error)
 	// ListAddresses lists the addresses of organization.
-	ListAddresses(ctx context.Context, in *ListAddressesRequest, opts ...grpc.CallOption) (*ListAddressesResponse, error)
+	ListOrganizationAddresses(ctx context.Context, in *ListOrganizationAddressesRequest, opts ...grpc.CallOption) (*ListOrganizationAddressesResponse, error)
 	// DeleteAddress deletes the address.
 	DeleteAddress(ctx context.Context, in *DeleteAddressRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 }
@@ -1126,8 +1192,8 @@ func NewPaymentServiceClient(cc grpc.ClientConnInterface) PaymentServiceClient {
 	return &paymentServiceClient{cc}
 }
 
-func (c *paymentServiceClient) Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error) {
-	out := new(CreateResponse)
+func (c *paymentServiceClient) Create(ctx context.Context, in *CreatePaymentFormRequest, opts ...grpc.CallOption) (*CreatePaymentFormResponse, error) {
+	out := new(CreatePaymentFormResponse)
 	err := c.cc.Invoke(ctx, "/api.PaymentService/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1162,15 +1228,6 @@ func (c *paymentServiceClient) ListInvoices(ctx context.Context, in *ListInvoice
 	return out, nil
 }
 
-func (c *paymentServiceClient) DeleteInvoice(ctx context.Context, in *DeleteInvoiceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/api.PaymentService/DeleteInvoice", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *paymentServiceClient) CreateAddress(ctx context.Context, in *CreateAddressRequest, opts ...grpc.CallOption) (*CreateAddressResponse, error) {
 	out := new(CreateAddressResponse)
 	err := c.cc.Invoke(ctx, "/api.PaymentService/CreateAddress", in, out, opts...)
@@ -1189,9 +1246,9 @@ func (c *paymentServiceClient) GetAddress(ctx context.Context, in *GetAddressReq
 	return out, nil
 }
 
-func (c *paymentServiceClient) ListAddresses(ctx context.Context, in *ListAddressesRequest, opts ...grpc.CallOption) (*ListAddressesResponse, error) {
-	out := new(ListAddressesResponse)
-	err := c.cc.Invoke(ctx, "/api.PaymentService/ListAddresses", in, out, opts...)
+func (c *paymentServiceClient) ListOrganizationAddresses(ctx context.Context, in *ListOrganizationAddressesRequest, opts ...grpc.CallOption) (*ListOrganizationAddressesResponse, error) {
+	out := new(ListOrganizationAddressesResponse)
+	err := c.cc.Invoke(ctx, "/api.PaymentService/ListOrganizationAddresses", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1209,22 +1266,20 @@ func (c *paymentServiceClient) DeleteAddress(ctx context.Context, in *DeleteAddr
 
 // PaymentServiceServer is the server API for PaymentService service.
 type PaymentServiceServer interface {
-	// Create creates a new Iyzico payment URL.
-	Create(context.Context, *CreateRequest) (*CreateResponse, error)
+	// Create generates a new Iyzico payment URL.
+	Create(context.Context, *CreatePaymentFormRequest) (*CreatePaymentFormResponse, error)
 	// CreateInvoice creates a new invoice.
 	CreateInvoice(context.Context, *CreateInvoiceRequest) (*CreateInvoiceResponse, error)
 	// GetInvoice gets the invoice.
 	GetInvoice(context.Context, *GetInvoiceRequest) (*GetInvoiceResponse, error)
 	// ListInvoices lists the invoices of organization.
 	ListInvoices(context.Context, *ListInvoicesRequest) (*ListInvoicesResponse, error)
-	// DeleteInvoice deletes the invoice.
-	DeleteInvoice(context.Context, *DeleteInvoiceRequest) (*empty.Empty, error)
 	// CreateAddress creates a new address.
 	CreateAddress(context.Context, *CreateAddressRequest) (*CreateAddressResponse, error)
 	// GetAddress gets the address.
 	GetAddress(context.Context, *GetAddressRequest) (*GetAddressResponse, error)
 	// ListAddresses lists the addresses of organization.
-	ListAddresses(context.Context, *ListAddressesRequest) (*ListAddressesResponse, error)
+	ListOrganizationAddresses(context.Context, *ListOrganizationAddressesRequest) (*ListOrganizationAddressesResponse, error)
 	// DeleteAddress deletes the address.
 	DeleteAddress(context.Context, *DeleteAddressRequest) (*empty.Empty, error)
 }
@@ -1233,7 +1288,7 @@ type PaymentServiceServer interface {
 type UnimplementedPaymentServiceServer struct {
 }
 
-func (*UnimplementedPaymentServiceServer) Create(ctx context.Context, req *CreateRequest) (*CreateResponse, error) {
+func (*UnimplementedPaymentServiceServer) Create(ctx context.Context, req *CreatePaymentFormRequest) (*CreatePaymentFormResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
 func (*UnimplementedPaymentServiceServer) CreateInvoice(ctx context.Context, req *CreateInvoiceRequest) (*CreateInvoiceResponse, error) {
@@ -1245,17 +1300,14 @@ func (*UnimplementedPaymentServiceServer) GetInvoice(ctx context.Context, req *G
 func (*UnimplementedPaymentServiceServer) ListInvoices(ctx context.Context, req *ListInvoicesRequest) (*ListInvoicesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListInvoices not implemented")
 }
-func (*UnimplementedPaymentServiceServer) DeleteInvoice(ctx context.Context, req *DeleteInvoiceRequest) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteInvoice not implemented")
-}
 func (*UnimplementedPaymentServiceServer) CreateAddress(ctx context.Context, req *CreateAddressRequest) (*CreateAddressResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateAddress not implemented")
 }
 func (*UnimplementedPaymentServiceServer) GetAddress(ctx context.Context, req *GetAddressRequest) (*GetAddressResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAddress not implemented")
 }
-func (*UnimplementedPaymentServiceServer) ListAddresses(ctx context.Context, req *ListAddressesRequest) (*ListAddressesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListAddresses not implemented")
+func (*UnimplementedPaymentServiceServer) ListOrganizationAddresses(ctx context.Context, req *ListOrganizationAddressesRequest) (*ListOrganizationAddressesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationAddresses not implemented")
 }
 func (*UnimplementedPaymentServiceServer) DeleteAddress(ctx context.Context, req *DeleteAddressRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteAddress not implemented")
@@ -1266,7 +1318,7 @@ func RegisterPaymentServiceServer(s *grpc.Server, srv PaymentServiceServer) {
 }
 
 func _PaymentService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateRequest)
+	in := new(CreatePaymentFormRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1278,7 +1330,7 @@ func _PaymentService_Create_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: "/api.PaymentService/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentServiceServer).Create(ctx, req.(*CreateRequest))
+		return srv.(PaymentServiceServer).Create(ctx, req.(*CreatePaymentFormRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1337,24 +1389,6 @@ func _PaymentService_ListInvoices_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PaymentService_DeleteInvoice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteInvoiceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PaymentServiceServer).DeleteInvoice(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.PaymentService/DeleteInvoice",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentServiceServer).DeleteInvoice(ctx, req.(*DeleteInvoiceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _PaymentService_CreateAddress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateAddressRequest)
 	if err := dec(in); err != nil {
@@ -1391,20 +1425,20 @@ func _PaymentService_GetAddress_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PaymentService_ListAddresses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListAddressesRequest)
+func _PaymentService_ListOrganizationAddresses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOrganizationAddressesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PaymentServiceServer).ListAddresses(ctx, in)
+		return srv.(PaymentServiceServer).ListOrganizationAddresses(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.PaymentService/ListAddresses",
+		FullMethod: "/api.PaymentService/ListOrganizationAddresses",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentServiceServer).ListAddresses(ctx, req.(*ListAddressesRequest))
+		return srv.(PaymentServiceServer).ListOrganizationAddresses(ctx, req.(*ListOrganizationAddressesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1448,10 +1482,6 @@ var _PaymentService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _PaymentService_ListInvoices_Handler,
 		},
 		{
-			MethodName: "DeleteInvoice",
-			Handler:    _PaymentService_DeleteInvoice_Handler,
-		},
-		{
 			MethodName: "CreateAddress",
 			Handler:    _PaymentService_CreateAddress_Handler,
 		},
@@ -1460,8 +1490,8 @@ var _PaymentService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _PaymentService_GetAddress_Handler,
 		},
 		{
-			MethodName: "ListAddresses",
-			Handler:    _PaymentService_ListAddresses_Handler,
+			MethodName: "ListOrganizationAddresses",
+			Handler:    _PaymentService_ListOrganizationAddresses_Handler,
 		},
 		{
 			MethodName: "DeleteAddress",

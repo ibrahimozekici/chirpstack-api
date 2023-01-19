@@ -17,13 +17,13 @@
   "paths": {
     "/api/payment": {
       "post": {
-        "summary": "Create creates a new Iyzico payment URL.",
+        "summary": "Create generates a new Iyzico payment URL.",
         "operationId": "Create",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiCreateResponse"
+              "$ref": "#/definitions/apiCreatePaymentFormResponse"
             }
           }
         },
@@ -33,7 +33,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiCreateRequest"
+              "$ref": "#/definitions/apiCreatePaymentFormRequest"
             }
           }
         ],
@@ -111,6 +111,7 @@
         "parameters": [
           {
             "name": "addressID",
+            "description": "Organization address ID.",
             "in": "path",
             "required": true,
             "type": "string",
@@ -137,6 +138,7 @@
         "parameters": [
           {
             "name": "invoiceID",
+            "description": "Invoice ID.",
             "in": "path",
             "required": true,
             "type": "string",
@@ -151,18 +153,19 @@
     "/api/payment/listAddresses/{organizationID}": {
       "get": {
         "summary": "ListAddresses lists the addresses of organization.",
-        "operationId": "ListAddresses",
+        "operationId": "ListOrganizationAddresses",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiListAddressesResponse"
+              "$ref": "#/definitions/apiListOrganizationAddressesResponse"
             }
           }
         },
         "parameters": [
           {
             "name": "organizationID",
+            "description": "Organization ID.",
             "in": "path",
             "required": true,
             "type": "string",
@@ -189,6 +192,7 @@
         "parameters": [
           {
             "name": "organizationID",
+            "description": "Organization ID.",
             "in": "path",
             "required": true,
             "type": "string",
@@ -215,32 +219,7 @@
         "parameters": [
           {
             "name": "addressID",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "PaymentService"
-        ]
-      }
-    },
-    "/api/payment/{invoiceID}": {
-      "delete": {
-        "summary": "DeleteInvoice deletes the invoice.",
-        "operationId": "DeleteInvoice",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "invoiceID",
+            "description": "Organization address ID.",
             "in": "path",
             "required": true,
             "type": "string",
@@ -259,20 +238,49 @@
       "properties": {
         "id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "ID of the address."
         },
         "organizationID": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "Organization ID."
         },
         "address": {
-          "type": "string"
+          "type": "string",
+          "description": "Address of the organization."
         },
         "city": {
-          "type": "string"
+          "type": "string",
+          "description": "City of the organization."
         },
         "country": {
-          "type": "string"
+          "type": "string",
+          "description": "Country of the organization."
+        },
+        "zipCode": {
+          "type": "string",
+          "description": "Zip code of the organization."
+        },
+        "street": {
+          "type": "string",
+          "description": "Street of the organization."
+        },
+        "apartmentNumber": {
+          "type": "string",
+          "description": "Apartment number of the organization."
+        },
+        "houseNumber": {
+          "type": "string",
+          "description": "House number of the organization."
+        },
+        "district": {
+          "type": "string",
+          "description": "District of the organization."
+        },
+        "neighborhood": {
+          "type": "string",
+          "description": "Neighborhood of the organization."
         }
       }
     },
@@ -280,19 +288,25 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "format": "int64",
+          "description": "ID of the basket item."
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "description": "Name of the basket item."
         },
         "category": {
-          "type": "string"
+          "type": "string",
+          "description": "Category of the basket item."
         },
         "itemType": {
-          "type": "string"
+          "type": "string",
+          "description": "Type of the basket item."
         },
         "price": {
-          "type": "string"
+          "type": "string",
+          "description": "Price of the basket item."
         }
       }
     },
@@ -300,7 +314,8 @@
       "type": "object",
       "properties": {
         "address": {
-          "$ref": "#/definitions/apiAddress"
+          "$ref": "#/definitions/apiAddress",
+          "description": "Organization address."
         }
       }
     },
@@ -308,7 +323,8 @@
       "type": "object",
       "properties": {
         "address": {
-          "$ref": "#/definitions/apiAddress"
+          "$ref": "#/definitions/apiAddress",
+          "description": "Organization address."
         }
       }
     },
@@ -316,7 +332,8 @@
       "type": "object",
       "properties": {
         "invoice": {
-          "$ref": "#/definitions/apiInvoice"
+          "$ref": "#/definitions/apiInvoice",
+          "description": "Organization ID."
         }
       }
     },
@@ -324,11 +341,12 @@
       "type": "object",
       "properties": {
         "invoice": {
-          "$ref": "#/definitions/apiInvoice"
+          "$ref": "#/definitions/apiInvoice",
+          "description": "Invoice ID."
         }
       }
     },
-    "apiCreateRequest": {
+    "apiCreatePaymentFormRequest": {
       "type": "object",
       "properties": {
         "locale": {
@@ -378,14 +396,18 @@
           "items": {
             "$ref": "#/definitions/apiBasketItem"
           }
+        },
+        "zipCode": {
+          "type": "string"
         }
       }
     },
-    "apiCreateResponse": {
+    "apiCreatePaymentFormResponse": {
       "type": "object",
       "properties": {
         "paymentURL": {
-          "type": "string"
+          "type": "string",
+          "description": "Payment URL."
         }
       }
     },
@@ -393,7 +415,8 @@
       "type": "object",
       "properties": {
         "address": {
-          "$ref": "#/definitions/apiAddress"
+          "$ref": "#/definitions/apiAddress",
+          "description": "Organization address."
         }
       }
     },
@@ -401,7 +424,8 @@
       "type": "object",
       "properties": {
         "invoice": {
-          "$ref": "#/definitions/apiInvoice"
+          "$ref": "#/definitions/apiInvoice",
+          "description": "Invoice."
         }
       }
     },
@@ -410,39 +434,39 @@
       "properties": {
         "id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "ID of the invoice."
         },
         "taxDepartment": {
-          "type": "string"
+          "type": "string",
+          "description": "Tax number of the organization."
         },
         "identityNumber": {
           "type": "string",
-          "format": "int64"
+          "description": "Identity number of the organization."
         },
         "invoiceDate": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "description": "Invoice date."
         },
         "invoiceNumber": {
-          "type": "string"
+          "type": "string",
+          "description": "Invoice number."
         },
         "address": {
-          "$ref": "#/definitions/apiAddress"
+          "$ref": "#/definitions/apiAddress",
+          "description": "Address of the organization."
         },
         "organizationID": {
           "type": "string",
-          "format": "int64"
-        }
-      }
-    },
-    "apiListAddressesResponse": {
-      "type": "object",
-      "properties": {
-        "addresses": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiAddress"
-          }
+          "format": "int64",
+          "description": "Organization ID."
+        },
+        "itemID": {
+          "type": "string",
+          "format": "int64",
+          "description": "Ordered item ID."
         }
       }
     },
@@ -453,7 +477,20 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/apiInvoice"
-          }
+          },
+          "description": "Invoices."
+        }
+      }
+    },
+    "apiListOrganizationAddressesResponse": {
+      "type": "object",
+      "properties": {
+        "addresses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAddress"
+          },
+          "description": "Organization addresses."
         }
       }
     }

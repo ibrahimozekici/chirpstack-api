@@ -10,8 +10,8 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
 service PaymentService{
-    // Create creates a new Iyzico payment URL.
-    rpc Create(CreateRequest) returns (CreateResponse) {
+    // Create generates a new Iyzico payment URL.
+    rpc Create(CreatePaymentFormRequest) returns (CreatePaymentFormResponse) {
         option (google.api.http) = {
             post: "/api/payment"
             body: "*"
@@ -40,13 +40,6 @@ service PaymentService{
         };
     }
 
-    // DeleteInvoice deletes the invoice.
-    rpc DeleteInvoice(DeleteInvoiceRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            delete: "/api/payment/{invoiceID}"
-        };
-    }
-
     // CreateAddress creates a new address.
     rpc CreateAddress(CreateAddressRequest) returns (CreateAddressResponse) {
         option (google.api.http) = {
@@ -63,7 +56,7 @@ service PaymentService{
     }
 
     // ListAddresses lists the addresses of organization.
-    rpc ListAddresses(ListAddressesRequest) returns (ListAddressesResponse) {
+    rpc ListOrganizationAddresses(ListOrganizationAddressesRequest) returns (ListOrganizationAddressesResponse) {
         option (google.api.http) = {
             get: "/api/payment/listAddresses/{organizationID}"
         };
@@ -79,32 +72,63 @@ service PaymentService{
 
 
 message Address{
+    // ID of the address.
     int64 id=1;
+    // Organization ID.
     int64 organizationID=2;
+    // Address of the organization.
     string address=3;
+    // City of the organization.
     string city=4;
+    // Country of the organization.
     string country=5;
+    // Zip code of the organization.
+    string zipCode=6;
+    // Street of the organization.
+    string street=7;
+    // Apartment number of the organization.
+    string apartmentNumber=8;
+    // House number of the organization.
+    string houseNumber=9;
+    // District of the organization.
+    string district=10;
+    // Neighborhood of the organization.
+    string neighborhood=11;
 }
 
 message Invoice{
+    // ID of the invoice.
     int64 id=1;
+    // Tax number of the organization.
     string taxDepartment=2;
-    int64 identityNumber=3;
+    // Identity number of the organization.
+    string identityNumber=3;
+    // Invoice date.
     google.protobuf.Timestamp invoiceDate=4;
+    // Invoice number.
     string invoiceNumber=5;
+    // Address of the organization.
     Address address=6;
+    // Organization ID.
     int64 organizationID=7;
+    // Ordered item ID.
+    int64 itemID=8;
 }
 
 message BasketItem{
-    string id = 1;
+    // ID of the basket item.
+    int64 id = 1;
+    // Name of the basket item.
     string name = 2;
+    // Category of the basket item.
     string category = 3;
+    // Type of the basket item.
     string itemType = 4;
+    // Price of the basket item.
     string price = 5;
 }
 
-message CreateRequest{
+message CreatePaymentFormRequest{
     string locale = 1;
     string price= 2;
     string paidPrice= 3;
@@ -120,64 +144,75 @@ message CreateRequest{
     string ip = 13;
     string identityNumber = 14;
     repeated BasketItem basketItems = 15;
+    string zipCode = 16;
 }
 
-message CreateResponse{
+message CreatePaymentFormResponse{
+    // Payment URL.
     string paymentURL = 1;
 }
 message CreateInvoiceRequest{
+    // Organization ID.
     Invoice invoice = 1;
 }
 
 message CreateInvoiceResponse{
+    // Invoice ID.
     Invoice invoice = 1;
 }
 
-message DeleteInvoiceRequest{
-    int64 invoiceID = 1;
-}
-
 message GetInvoiceRequest{
+    // Invoice ID.
     int64 invoiceID = 1;
 }
 
 message GetInvoiceResponse{
+    // Invoice.
     Invoice invoice = 1;
 }
 
 message ListInvoicesRequest{
+    // Organization ID.
     int64 organizationID = 1;
 }
 
 message ListInvoicesResponse{
+    // Invoices.
     repeated Invoice invoices = 1;
 }
 
 message CreateAddressRequest{
+    // Organization address.
     Address address = 1;
 }
 
 message CreateAddressResponse{
+    // Organization address.
     Address address = 1;
 }
 
 message DeleteAddressRequest{
+    // Organization address ID.
     int64 addressID = 1;
 }
 
 message GetAddressRequest{
+    // Organization address ID.
     int64 addressID = 1;
 }
 
 message GetAddressResponse{
+    // Organization address.
     Address address = 1;
 }
 
-message ListAddressesRequest{
+message ListOrganizationAddressesRequest{
+    // Organization ID.
     int64 organizationID = 1;
 }
 
-message ListAddressesResponse{
+message ListOrganizationAddressesResponse{
+    // Organization addresses.
     repeated Address addresses = 1;
 }
 
