@@ -122,7 +122,7 @@ message Invoice{
     // Ordered item ID.
     int64 itemID=8;
     // Payment ID.
-    int64 paymentID=9;
+    string paymentID=9;
 }
 
 message BasketItem{

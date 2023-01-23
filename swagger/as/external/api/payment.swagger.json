@@ -477,7 +477,6 @@
         },
         "paymentID": {
           "type": "string",
-          "format": "int64",
           "description": "Payment ID."
         }
       }
