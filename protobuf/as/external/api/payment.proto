@@ -10,10 +10,18 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
 service PaymentService{
-    // Create generates a new Iyzico payment URL.
-    rpc Create(CreatePaymentFormRequest) returns (CreatePaymentFormResponse) {
+    // CreatePaymentForm generates a new Iyzico payment URL and token.
+    rpc CreatePaymentForm(CreatePaymentFormRequest) returns (CreatePaymentFormResponse) {
         option (google.api.http) = {
             post: "/api/payment"
+            body: "*"
+        };
+    }
+
+    // Create generates a new Iyzico payment URL.
+    rpc CreatePaymentResult(CreatePaymentResultRequest) returns (CreatePaymentResultResponse) {
+        option (google.api.http) = {
+            post: "/api/payment/result"
             body: "*"
         };
     }
@@ -41,29 +49,29 @@ service PaymentService{
     }
 
     // CreateAddress creates a new address.
-    rpc CreateAddress(CreateAddressRequest) returns (CreateAddressResponse) {
+    rpc CreateAddress(CreateOrganizationAddressRequest) returns (CreateOrganizationAddressResponse) {
         option (google.api.http) = {
-            post: "/api/payment/createAddress"
+            post: "/api/payment/createOrganizationAddress"
             body: "*"
         };
     }
 
     // GetAddress gets the address.
-    rpc GetAddress(GetAddressRequest) returns (GetAddressResponse) {
+    rpc GetAddress(GetOrganizationAddressRequest) returns (GetOrganizationAddressResponse) {
         option (google.api.http) = {
-            get: "/api/payment/getAddress/{addressID}"
+            get: "/api/payment/getOrganizationAddress/{addressID}"
         };
     }
 
     // ListAddresses lists the addresses of organization.
     rpc ListOrganizationAddresses(ListOrganizationAddressesRequest) returns (ListOrganizationAddressesResponse) {
         option (google.api.http) = {
-            get: "/api/payment/listAddresses/{organizationID}"
+            get: "/api/payment/listOrganizationAddresses/{organizationID}"
         };
     }
     
     // DeleteAddress deletes the address.
-    rpc DeleteAddress(DeleteAddressRequest) returns (google.protobuf.Empty) {
+    rpc DeleteAddress(DeleteOrganizationAddressRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             delete: "/api/payment/{addressID}"
         };
@@ -71,7 +79,7 @@ service PaymentService{
 }
 
 
-message Address{
+message OrganizationAddress{
     // ID of the address.
     int64 id=1;
     // Organization ID.
@@ -108,11 +116,13 @@ message Invoice{
     // Invoice number.
     string invoiceNumber=5;
     // Address of the organization.
-    Address address=6;
+    OrganizationAddress organizationAddress=6;
     // Organization ID.
     int64 organizationID=7;
     // Ordered item ID.
     int64 itemID=8;
+    // Payment ID.
+    int64 paymentID=9;
 }
 
 message BasketItem{
@@ -133,7 +143,7 @@ message CreatePaymentFormRequest{
     string price= 2;
     string paidPrice= 3;
     string currency= 4;
-    string id = 5;
+    string organization_id = 5;
     string name = 6;
     string surname = 7;
     string email = 8;
@@ -150,15 +160,32 @@ message CreatePaymentFormRequest{
 message CreatePaymentFormResponse{
     // Payment URL.
     string paymentURL = 1;
+    // Payment token.
+    string paymentToken = 2;
 }
+
+message CreatePaymentResultRequest{
+    // Payment token.
+    string paymentToken = 1;
+}
+
+message CreatePaymentResultResponse{
+    // callback url.
+    string callbackUrl = 1;
+    // Payment ID.
+    string paymentID = 2;
+}
+
 message CreateInvoiceRequest{
     // Organization ID.
     Invoice invoice = 1;
+    // Address ID.
+    int64 organizationAddressID = 2;
 }
 
 message CreateInvoiceResponse{
-    // Invoice ID.
-    Invoice invoice = 1;
+    // Invoice.
+    Invoice invoice = 1;    
 }
 
 message GetInvoiceRequest{
@@ -181,29 +208,29 @@ message ListInvoicesResponse{
     repeated Invoice invoices = 1;
 }
 
-message CreateAddressRequest{
+message CreateOrganizationAddressRequest{
     // Organization address.
-    Address address = 1;
+    OrganizationAddress address = 1;
 }
 
-message CreateAddressResponse{
+message CreateOrganizationAddressResponse{
     // Organization address.
-    Address address = 1;
+    OrganizationAddress address = 1;
 }
 
-message DeleteAddressRequest{
+message DeleteOrganizationAddressRequest{
     // Organization address ID.
     int64 addressID = 1;
 }
 
-message GetAddressRequest{
+message GetOrganizationAddressRequest{
     // Organization address ID.
     int64 addressID = 1;
 }
 
-message GetAddressResponse{
+message GetOrganizationAddressResponse{
     // Organization address.
-    Address address = 1;
+    OrganizationAddress address = 1;
 }
 
 message ListOrganizationAddressesRequest{
@@ -213,6 +240,6 @@ message ListOrganizationAddressesRequest{
 
 message ListOrganizationAddressesResponse{
     // Organization addresses.
-    repeated Address addresses = 1;
+    repeated OrganizationAddress addresses = 1;
 }
 
