@@ -72,7 +72,7 @@
     "/api/payment/createOrganizationAddress": {
       "post": {
         "summary": "CreateAddress creates a new address.",
-        "operationId": "CreateAddress",
+        "operationId": "CreateOrganizationAddress",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -126,7 +126,7 @@
     "/api/payment/getOrganizationAddress/{addressID}": {
       "get": {
         "summary": "GetAddress gets the address.",
-        "operationId": "GetAddress",
+        "operationId": "GetOrganizationAddress",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -234,7 +234,7 @@
     "/api/payment/{addressID}": {
       "delete": {
         "summary": "DeleteAddress deletes the address.",
-        "operationId": "DeleteAddress",
+        "operationId": "DeleteOrganizationAddress",
         "responses": {
           "200": {
             "description": "A successful response.",
