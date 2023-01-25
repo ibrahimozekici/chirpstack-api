@@ -1,0 +1,245 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/ibrahimozekici/chirpstack-api/go/v5/as/external/api";
+option java_package = "io.chirpstack.api.as.external.api";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+service PaymentService{
+    // CreatePaymentForm generates a new Iyzico payment URL and token.
+    rpc CreatePaymentForm(CreatePaymentFormRequest) returns (CreatePaymentFormResponse) {
+        option (google.api.http) = {
+            post: "/api/payment"
+            body: "*"
+        };
+    }
+
+    // Create generates a new Iyzico payment URL.
+    rpc CreatePaymentResult(CreatePaymentResultRequest) returns (CreatePaymentResultResponse) {
+        option (google.api.http) = {
+            post: "/api/payment/result"
+            body: "*"
+        };
+    }
+    
+    // CreateInvoice creates a new invoice.
+    rpc CreateInvoice(CreateInvoiceRequest) returns (CreateInvoiceResponse) {
+        option (google.api.http) = {
+            post: "/api/payment/createInvoice"
+            body: "*"
+        };
+    }
+    
+    // GetInvoice gets the invoice.
+    rpc GetInvoice(GetInvoiceRequest) returns (GetInvoiceResponse) {
+        option (google.api.http) = {
+            get: "/api/payment/getInvoice/{invoiceID}"
+        };
+    }
+
+    // ListInvoices lists the invoices of organization.
+    rpc ListInvoices(ListInvoicesRequest) returns (ListInvoicesResponse) {
+        option (google.api.http) = {
+            get: "/api/payment/listInvoices/{organizationID}"
+        };
+    }
+
+    // CreateAddress creates a new address.
+    rpc CreateOrganizationAddress(CreateOrganizationAddressRequest) returns (CreateOrganizationAddressResponse) {
+        option (google.api.http) = {
+            post: "/api/payment/createOrganizationAddress"
+            body: "*"
+        };
+    }
+
+    // GetAddress gets the address.
+    rpc GetOrganizationAddress(GetOrganizationAddressRequest) returns (GetOrganizationAddressResponse) {
+        option (google.api.http) = {
+            get: "/api/payment/getOrganizationAddress/{addressID}"
+        };
+    }
+
+    // ListAddresses lists the addresses of organization.
+    rpc ListOrganizationAddresses(ListOrganizationAddressesRequest) returns (ListOrganizationAddressesResponse) {
+        option (google.api.http) = {
+            get: "/api/payment/listOrganizationAddresses/{organizationID}"
+        };
+    }
+    
+    // DeleteAddress deletes the address.
+    rpc DeleteOrganizationAddress(DeleteOrganizationAddressRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/payment/{addressID}"
+        };
+    }   
+}
+
+
+message OrganizationAddress{
+    // ID of the address.
+    int64 id=1;
+    // Organization ID.
+    int64 organizationID=2;
+    // Address of the organization.
+    string address=3;
+    // City of the organization.
+    string city=4;
+    // Country of the organization.
+    string country=5;
+    // Zip code of the organization.
+    string zipCode=6;
+    // Street of the organization.
+    string street=7;
+    // Apartment number of the organization.
+    string apartmentNumber=8;
+    // House number of the organization.
+    string houseNumber=9;
+    // District of the organization.
+    string district=10;
+    // Neighborhood of the organization.
+    string neighborhood=11;
+}
+
+message Invoice{
+    // ID of the invoice.
+    int64 id=1;
+    // Tax number of the organization.
+    string taxDepartment=2;
+    // Identity number of the organization.
+    string identityNumber=3;
+    // Invoice date.
+    google.protobuf.Timestamp invoiceDate=4;
+    // Invoice number.
+    string invoiceNumber=5;
+    // Address of the organization.
+    OrganizationAddress organizationAddress=6;
+    // Organization ID.
+    int64 organizationID=7;
+    // Ordered item ID.
+    int64 itemID=8;
+    // Payment ID.
+    string paymentID=9;
+}
+
+message BasketItem{
+    // ID of the basket item.
+    int64 id = 1;
+    // Name of the basket item.
+    string name = 2;
+    // Category of the basket item.
+    string category = 3;
+    // Type of the basket item.
+    string itemType = 4;
+    // Price of the basket item.
+    string price = 5;
+}
+
+message CreatePaymentFormRequest{
+    string locale = 1;
+    string price= 2;
+    string paidPrice= 3;
+    string currency= 4;
+    string organization_id = 5;
+    string name = 6;
+    string surname = 7;
+    string email = 8;
+    string gsmNumber = 9;
+    string address = 10;
+    string city = 11;
+    string country = 12;
+    string ip = 13;
+    string identityNumber = 14;
+    repeated BasketItem basketItems = 15;
+    string zipCode = 16;
+}
+
+message CreatePaymentFormResponse{
+    // Payment URL.
+    string paymentURL = 1;
+    // Payment token.
+    string paymentToken = 2;
+}
+
+message CreatePaymentResultRequest{
+    // Payment token.
+    string paymentToken = 1;
+}
+
+message CreatePaymentResultResponse{
+    // callback url.
+    string callbackUrl = 1;
+    // Payment ID.
+    string paymentID = 2;
+}
+
+message CreateInvoiceRequest{
+    // Organization ID.
+    Invoice invoice = 1;
+    // Address ID.
+    int64 organizationAddressID = 2;
+}
+
+message CreateInvoiceResponse{
+    // Invoice.
+    Invoice invoice = 1;    
+}
+
+message GetInvoiceRequest{
+    // Invoice ID.
+    int64 invoiceID = 1;
+}
+
+message GetInvoiceResponse{
+    // Invoice.
+    Invoice invoice = 1;
+}
+
+message ListInvoicesRequest{
+    // Organization ID.
+    int64 organizationID = 1;
+}
+
+message ListInvoicesResponse{
+    // Invoices.
+    repeated Invoice invoices = 1;
+}
+
+message CreateOrganizationAddressRequest{
+    // Organization address.
+    OrganizationAddress address = 1;
+}
+
+message CreateOrganizationAddressResponse{
+    // Organization address.
+    OrganizationAddress address = 1;
+}
+
+message DeleteOrganizationAddressRequest{
+    // Organization address ID.
+    int64 addressID = 1;
+}
+
+message GetOrganizationAddressRequest{
+    // Organization address ID.
+    int64 addressID = 1;
+}
+
+message GetOrganizationAddressResponse{
+    // Organization address.
+    OrganizationAddress address = 1;
+}
+
+message ListOrganizationAddressesRequest{
+    // Organization ID.
+    int64 organizationID = 1;
+}
+
+message ListOrganizationAddressesResponse{
+    // Organization addresses.
+    repeated OrganizationAddress addresses = 1;
+}
+
