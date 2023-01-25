@@ -63,6 +63,25 @@ message ListDataResponse2 {
     repeated google.protobuf.Any result = 2;
 }
 
+message Uc300Response {
+     // Device EUI (HEX encoded).
+     string dev_eui = 1 [json_name = "devEUI"]; 
+
+     // name
+     string name = 2 [json_name = "name"];
+
+    google.protobuf.Timestamp submission_date = 3 [json_name = "submission_date"];
+
+    int64 adc_1 = 4;
+	int64 adc_2 = 5;
+	int64 adv_1 = 6;
+	int64 gpio_in_1 = 7;
+	int64 gpio_in_2 = 8;
+	int64 gpio_in_3 = 9;
+	int64 gpio_in_4 = 10;
+	int64 gpio_out_1 = 11;
+	int64 gpio_out_2 = 12;
+}
 message TemHumDateResponse {
      // Device EUI (HEX encoded).
      string dev_eui = 1 [json_name = "devEUI"]; 
