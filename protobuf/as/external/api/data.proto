@@ -72,15 +72,15 @@ message Uc300Response {
 
     google.protobuf.Timestamp submission_date = 3 [json_name = "submission_date"];
 
-    int64 adc_1 = 4;
-	int64 adc_2 = 5;
-	int64 adv_1 = 6;
-	int64 gpio_in_1 = 7;
-	int64 gpio_in_2 = 8;
-	int64 gpio_in_3 = 9;
-	int64 gpio_in_4 = 10;
-	int64 gpio_out_1 = 11;
-	int64 gpio_out_2 = 12;
+    string adc_1 = 4;
+	string adc_2 = 5;
+	string adv_1 = 6;
+	string gpio_in_1 = 7;
+	string gpio_in_2 = 8;
+	string gpio_in_3 = 9;
+	string gpio_in_4 = 10;
+	string gpio_out_1 = 11;
+	string gpio_out_2 = 12;
 }
 message TemHumDateResponse {
      // Device EUI (HEX encoded).

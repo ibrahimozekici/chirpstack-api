@@ -534,40 +534,31 @@
           "format": "int64"
         },
         "adc_1": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "adc_2": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "adv_1": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "gpio_in_1": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "gpio_in_2": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "gpio_in_3": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "gpio_in_4": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "gpio_out_1": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "gpio_out_2": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
