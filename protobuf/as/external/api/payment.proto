@@ -116,7 +116,7 @@ message Invoice{
     // Invoice number.
     string invoiceNumber=5;
     // Address of the organization.
-    OrganizationAddress organizationAddress=6;
+    string organizationAddress=6;
     // Organization ID.
     int64 organizationID=7;
     // Ordered item ID.

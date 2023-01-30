@@ -462,7 +462,7 @@
           "description": "Invoice number."
         },
         "organizationAddress": {
-          "$ref": "#/definitions/apiOrganizationAddress",
+          "type": "string",
           "description": "Address of the organization."
         },
         "organizationID": {
