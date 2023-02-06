@@ -71,7 +71,7 @@
     },
     "/api/payment/createOrganizationAddress": {
       "post": {
-        "summary": "CreateAddress creates a new address.",
+        "summary": "CreateOrganizationAddress creates a new address.",
         "operationId": "CreateOrganizationAddress",
         "responses": {
           "200": {
@@ -125,7 +125,7 @@
     },
     "/api/payment/getOrganizationAddress/{addressID}": {
       "get": {
-        "summary": "GetAddress gets the address.",
+        "summary": "GetOrganizationAddress gets the address.",
         "operationId": "GetOrganizationAddress",
         "responses": {
           "200": {
@@ -179,7 +179,7 @@
     },
     "/api/payment/listOrganizationAddresses/{organizationID}": {
       "get": {
-        "summary": "ListAddresses lists the addresses of organization.",
+        "summary": "ListOrganizationAddresses lists the addresses of organization.",
         "operationId": "ListOrganizationAddresses",
         "responses": {
           "200": {
@@ -233,7 +233,7 @@
     },
     "/api/payment/{addressID}": {
       "delete": {
-        "summary": "DeleteAddress deletes the address.",
+        "summary": "DeleteOrganizationAddress deletes the address.",
         "operationId": "DeleteOrganizationAddress",
         "responses": {
           "200": {
@@ -303,8 +303,9 @@
     "apiCreateInvoiceResponse": {
       "type": "object",
       "properties": {
-        "invoice": {
-          "$ref": "#/definitions/apiInvoice",
+        "invoiceID": {
+          "type": "string",
+          "format": "int64",
           "description": "Invoice."
         }
       }
@@ -321,8 +322,9 @@
     "apiCreateOrganizationAddressResponse": {
       "type": "object",
       "properties": {
-        "address": {
-          "$ref": "#/definitions/apiOrganizationAddress",
+        "addressID": {
+          "type": "string",
+          "format": "int64",
           "description": "Organization address."
         }
       }

@@ -48,7 +48,7 @@ service PaymentService{
         };
     }
 
-    // CreateAddress creates a new address.
+    // CreateOrganizationAddress creates a new address.
     rpc CreateOrganizationAddress(CreateOrganizationAddressRequest) returns (CreateOrganizationAddressResponse) {
         option (google.api.http) = {
             post: "/api/payment/createOrganizationAddress"
@@ -56,21 +56,21 @@ service PaymentService{
         };
     }
 
-    // GetAddress gets the address.
+    // GetOrganizationAddress gets the address.
     rpc GetOrganizationAddress(GetOrganizationAddressRequest) returns (GetOrganizationAddressResponse) {
         option (google.api.http) = {
             get: "/api/payment/getOrganizationAddress/{addressID}"
         };
     }
 
-    // ListAddresses lists the addresses of organization.
+    // ListOrganizationAddresses lists the addresses of organization.
     rpc ListOrganizationAddresses(ListOrganizationAddressesRequest) returns (ListOrganizationAddressesResponse) {
         option (google.api.http) = {
             get: "/api/payment/listOrganizationAddresses/{organizationID}"
         };
     }
     
-    // DeleteAddress deletes the address.
+    // DeleteOrganizationAddress deletes the address.
     rpc DeleteOrganizationAddress(DeleteOrganizationAddressRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             delete: "/api/payment/{addressID}"
@@ -185,7 +185,7 @@ message CreateInvoiceRequest{
 
 message CreateInvoiceResponse{
     // Invoice.
-    Invoice invoice = 1;    
+    int64 invoiceID = 1;    
 }
 
 message GetInvoiceRequest{
@@ -215,7 +215,7 @@ message CreateOrganizationAddressRequest{
 
 message CreateOrganizationAddressResponse{
     // Organization address.
-    OrganizationAddress address = 1;
+    int64 addressID = 1;
 }
 
 message DeleteOrganizationAddressRequest{
