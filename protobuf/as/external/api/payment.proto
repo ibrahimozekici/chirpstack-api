@@ -70,7 +70,7 @@ service PaymentService{
         };
     }
 
-    rpc UpdateOrganizationAddress(UpdateOrganizationAddressRequest) returns (UpdateOrganizationAddressResponse) {
+    rpc UpdateOrganizationAddress(UpdateOrganizationAddressRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             put: "/api/payment/updateOrganizationAddress"
             body: "*"
@@ -109,6 +109,8 @@ message OrganizationAddress{
     string district=10;
     // Neighborhood of the organization.
     string neighborhood=11;
+    // Set to false to disable the address.
+    bool isActive=12;
 }
 
 message Invoice{
@@ -228,11 +230,6 @@ message CreateOrganizationAddressResponse{
 message UpdateOrganizationAddressRequest{
     // Organization address.
     OrganizationAddress address = 1;
-}
-
-message UpdateOrganizationAddressResponse{
-    // Organization address.
-    int64 addressID = 1;
 }
 
 message DeleteOrganizationAddressRequest{

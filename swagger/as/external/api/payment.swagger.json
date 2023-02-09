@@ -238,7 +238,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiUpdateOrganizationAddressResponse"
+              "properties": {}
             }
           }
         },
@@ -581,6 +581,11 @@
         "neighborhood": {
           "type": "string",
           "description": "Neighborhood of the organization."
+        },
+        "isActive": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Set to false to disable the address."
         }
       }
     },
@@ -589,16 +594,6 @@
       "properties": {
         "address": {
           "$ref": "#/definitions/apiOrganizationAddress",
-          "description": "Organization address."
-        }
-      }
-    },
-    "apiUpdateOrganizationAddressResponse": {
-      "type": "object",
-      "properties": {
-        "addressID": {
-          "type": "string",
-          "format": "int64",
           "description": "Organization address."
         }
       }
