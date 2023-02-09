@@ -231,6 +231,32 @@
         ]
       }
     },
+    "/api/payment/updateOrganizationAddress": {
+      "put": {
+        "operationId": "UpdateOrganizationAddress",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiUpdateOrganizationAddressResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiUpdateOrganizationAddressRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PaymentService"
+        ]
+      }
+    },
     "/api/payment/{addressID}": {
       "delete": {
         "summary": "DeleteOrganizationAddress deletes the address.",
@@ -555,6 +581,25 @@
         "neighborhood": {
           "type": "string",
           "description": "Neighborhood of the organization."
+        }
+      }
+    },
+    "apiUpdateOrganizationAddressRequest": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/apiOrganizationAddress",
+          "description": "Organization address."
+        }
+      }
+    },
+    "apiUpdateOrganizationAddressResponse": {
+      "type": "object",
+      "properties": {
+        "addressID": {
+          "type": "string",
+          "format": "int64",
+          "description": "Organization address."
         }
       }
     }

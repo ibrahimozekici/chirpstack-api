@@ -69,6 +69,13 @@ service PaymentService{
             get: "/api/payment/listOrganizationAddresses/{organizationID}"
         };
     }
+
+    rpc UpdateOrganizationAddress(UpdateOrganizationAddressRequest) returns (UpdateOrganizationAddressResponse) {
+        option (google.api.http) = {
+            put: "/api/payment/updateOrganizationAddress"
+            body: "*"
+        };
+    }
     
     // DeleteOrganizationAddress deletes the address.
     rpc DeleteOrganizationAddress(DeleteOrganizationAddressRequest) returns (google.protobuf.Empty) {
@@ -214,6 +221,16 @@ message CreateOrganizationAddressRequest{
 }
 
 message CreateOrganizationAddressResponse{
+    // Organization address.
+    int64 addressID = 1;
+}
+
+message UpdateOrganizationAddressRequest{
+    // Organization address.
+    OrganizationAddress address = 1;
+}
+
+message UpdateOrganizationAddressResponse{
     // Organization address.
     int64 addressID = 1;
 }
