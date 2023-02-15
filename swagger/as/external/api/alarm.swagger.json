@@ -738,6 +738,9 @@
         "pressure": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "notification_sound": {
+          "type": "string"
         }
       }
     },

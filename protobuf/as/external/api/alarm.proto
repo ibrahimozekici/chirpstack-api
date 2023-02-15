@@ -238,6 +238,7 @@ message ListOrganizationAlarmResponse {
      bool is_timer_active = 19 [json_name = "is_timer_active"];
     int64 timer_value = 20 [json_name = "timer_value"];
     bool pressure = 21 [json_name = "pressure"];
+    string notification_sound = 22[json_name = "notification_sound"];
 }
 message UpdateAlarmRequest {
     // Alarm object to update.

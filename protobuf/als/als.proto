@@ -84,6 +84,7 @@ message OrganizationAlarm{
 	string userName = 22;
 	repeated AlarmDateTime alarmDateTime = 23;
 	bool pressure = 24;
+	string notification_sound = 25;
 }
 
 message AlarmWithDates{
