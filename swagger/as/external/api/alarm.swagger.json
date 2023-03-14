@@ -89,6 +89,33 @@
         ]
       }
     },
+    "/api/alarm/createDoorTime": {
+      "post": {
+        "summary": "CreateDoorTime CreateDoorTime",
+        "operationId": "CreateDoorTime",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiCreateDoorTimeResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateDoorTimeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
     "/api/alarm/createMultiple": {
       "post": {
         "summary": "Create creates the alarm",
@@ -541,6 +568,90 @@
           "items": {
             "$ref": "#/definitions/apiAlarm"
           }
+        }
+      }
+    },
+    "apiCreateDoorTimeRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Alarm id."
+        },
+        "devEUI": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "sms": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "email": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "notification": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "user_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "submission_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "is_active": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "time": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiCreateDoorTimeResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Alarm id."
+        },
+        "devEUI": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "sms": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "email": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "notification": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "user_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "submission_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "is_active": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "time": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

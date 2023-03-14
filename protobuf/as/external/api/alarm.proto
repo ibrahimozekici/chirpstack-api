@@ -17,6 +17,7 @@ service AlarmService {
             body: "*"
         };
     }
+  
     // Get return the alarm
     rpc Get(GetAlarmRequest) returns (GetAlarmResponse) {
         option (google.api.http) = {
@@ -80,6 +81,14 @@ service AlarmService {
     rpc DeleteZoneAlarms(DeleteMultipleZoneAlarmRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/api/alarm/deleteZoneAlarms"
+            body: "*"
+        };
+    }
+
+    // CreateDoorTime CreateDoorTime
+    rpc CreateDoorTime(CreateDoorTimeRequest) returns (CreateDoorTimeResponse) {
+        option (google.api.http) = {
+            post: "/api/alarm/createDoorTime"
             body: "*"
         };
     }
@@ -148,7 +157,51 @@ message AlarmDateTime {
 message CreateAlarmResponse {
     repeated Alarm alarm = 1;
 }
+message CreateDoorTimeRequest {
+    // Alarm id.
+    int64 id = 1;
+     
+    // Device EUI (HEX encoded).
+    string dev_eui = 2 [json_name = "devEUI"]; 
 
+    bool sms = 3 [json_name = "sms"];
+
+    bool email = 4 [json_name = "email"];
+
+    bool notification = 5 [json_name = "notification"];
+
+    int64 user_id = 6 [json_name = "user_id"];
+
+    google.protobuf.Timestamp submission_date = 7 [json_name = "submission_date"];
+
+    bool is_active = 8 [json_name = "is_active"];
+
+    int64 time = 9 [json_name = "time"];
+
+}
+
+message CreateDoorTimeResponse {
+    // Alarm id.
+    int64 id = 1;
+     
+    // Device EUI (HEX encoded).
+    string dev_eui = 2 [json_name = "devEUI"]; 
+
+    bool sms = 3 [json_name = "sms"];
+
+    bool email = 4 [json_name = "email"];
+
+    bool notification = 5 [json_name = "notification"];
+
+    int64 user_id = 6 [json_name = "user_id"];
+
+    google.protobuf.Timestamp submission_date = 7 [json_name = "submission_date"];
+
+    bool is_active = 8 [json_name = "is_active"];
+
+    int64 time = 9 [json_name = "time"];
+
+}
 message CreateAlarmRequest {
     repeated Alarm create_alarm = 1;
 }
