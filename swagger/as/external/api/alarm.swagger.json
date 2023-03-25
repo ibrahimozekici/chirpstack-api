@@ -143,6 +143,32 @@
         ]
       }
     },
+    "/api/alarm/createMultipleDoorAlarm": {
+      "post": {
+        "operationId": "CreateMultipleDoorAlarm",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateMultipleDoorAlarmRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
     "/api/alarm/delete": {
       "post": {
         "summary": "Delete deletes the alarm matching the given alarm_id.",
@@ -162,6 +188,32 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/apiDeleteAlarmRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
+    "/api/alarm/deleteDoorAlarm": {
+      "post": {
+        "operationId": "DeleteDoorAlarm",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiDeleteDoorAlarmRequest"
             }
           }
         ],
@@ -244,6 +296,55 @@
             "schema": {
               "$ref": "#/definitions/apiDeleteMultipleZoneAlarmRequest"
             }
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
+    "/api/alarm/listDoorAlarm": {
+      "get": {
+        "operationId": "ListDoorAlarm",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListDoorAlarmResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "Max number of devices to return in the result-set.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "description": "Offset in the result-set (for pagination).",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "devEUI",
+            "description": "Device EUI (HEX encoded).",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "description": "Offset in the result-set (for pagination).",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -673,6 +774,24 @@
         }
       }
     },
+    "apiCreateMultipleDoorAlarmRequest": {
+      "type": "object",
+      "properties": {
+        "createAlarm": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiCreateDoorTimeRequest"
+          }
+        },
+        "userIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        }
+      }
+    },
     "apiDeleteAlarmRequest": {
       "type": "object",
       "properties": {
@@ -685,6 +804,18 @@
         },
         "ipAddress": {
           "type": "string"
+        }
+      }
+    },
+    "apiDeleteDoorAlarmRequest": {
+      "type": "object",
+      "properties": {
+        "alarmID": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Alarm Id (HEX encoded)."
         }
       }
     },
@@ -755,6 +886,23 @@
           "items": {
             "$ref": "#/definitions/apiAlarmLogs"
           }
+        }
+      }
+    },
+    "apiListDoorAlarmResponse": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "type": "string",
+          "format": "int64",
+          "description": "Total number of devices available within the result-set."
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiCreateDoorTimeResponse"
+          },
+          "description": "Devices within this result-set."
         }
       }
     },

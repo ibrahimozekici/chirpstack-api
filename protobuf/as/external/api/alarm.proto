@@ -92,6 +92,23 @@ service AlarmService {
             body: "*"
         };
     }
+    rpc ListDoorAlarm(ListDoorAlarmRequest) returns (ListDoorAlarmResponse) {
+        option (google.api.http) = {
+            get: "/api/alarm/listDoorAlarm"
+        }; 
+    }
+    rpc DeleteDoorAlarm(DeleteDoorAlarmRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/alarm/deleteDoorAlarm"
+            body: "*"
+        };
+    }
+    rpc CreateMultipleDoorAlarm(CreateMultipleDoorAlarmRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/alarm/createMultipleDoorAlarm"
+            body: "*"
+        };
+    }
 }
 
 message Alarm {
@@ -210,6 +227,10 @@ message CreateMultipleAlarmRequest {
     repeated Alarm create_alarm = 1;
     repeated int64 userIds = 2;
 }
+message CreateMultipleDoorAlarmRequest {
+    repeated CreateDoorTimeRequest create_alarm = 1;
+    repeated int64 userIds = 2;
+}
 message CreateAlarmMultipleResponse {
     repeated Alarm alarm = 1;
     repeated int64 userIds = 2;
@@ -232,6 +253,10 @@ message DeleteAlarmRequest {
     string ip_address = 2;
 }
 
+message DeleteDoorAlarmRequest {
+    // Alarm Id (HEX encoded).
+    repeated string alarm_id = 1 [json_name = "alarmID"];
+}
 message ListOrganizationAlarmRequest2 {
 
 	int64 organization_id = 1 [json_name = "organizationID"];
@@ -300,6 +325,26 @@ message UpdateAlarmRequest {
     string alarm_id = 2 [json_name = "alarmID"]; 
 }
 
+message ListDoorAlarmRequest {
+    // Max number of devices to return in the result-set.
+    int64 limit = 1;
+
+    // Offset in the result-set (for pagination).
+    int64 offset = 2;
+
+    // Device EUI (HEX encoded).
+    string dev_eui = 3 [json_name = "devEUI"];
+
+    // Offset in the result-set (for pagination).
+    int64 userId = 4;
+}
+message ListDoorAlarmResponse {
+    // Total number of devices available within the result-set.
+    int64 total_count = 1;
+
+    // Devices within this result-set.
+    repeated CreateDoorTimeResponse result = 2;
+}
 message ListAlarmRequest {
     // Max number of devices to return in the result-set.
     int64 limit = 1;
