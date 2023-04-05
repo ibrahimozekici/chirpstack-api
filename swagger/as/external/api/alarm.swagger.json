@@ -352,6 +352,30 @@
         ]
       }
     },
+    "/api/alarm/listDoorAlarm2/{dev_eui}": {
+      "get": {
+        "operationId": "ListDoorAlarm2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListDoorAlarmResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dev_eui",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
     "/api/alarm/listOrganizationAlarms/{organization_id}": {
       "get": {
         "operationId": "ListAllOrganizationAlarms",

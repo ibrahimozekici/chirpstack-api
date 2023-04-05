@@ -97,6 +97,11 @@ service AlarmService {
             get: "/api/alarm/listDoorAlarm"
         }; 
     }
+    rpc ListDoorAlarm2(ListDoorAlarmRequest2) returns (ListDoorAlarmResponse) {
+        option (google.api.http) = {
+            get: "/api/alarm/listDoorAlarm2/{dev_eui}"
+        }; 
+    }
     rpc DeleteDoorAlarm(DeleteDoorAlarmRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/api/alarm/deleteDoorAlarm"
@@ -337,6 +342,11 @@ message ListDoorAlarmRequest {
 
     // Offset in the result-set (for pagination).
     int64 userId = 4;
+}
+
+message ListDoorAlarmRequest2 {
+    string dev_eui = 1 [json_name = "devEUI"];
+
 }
 message ListDoorAlarmResponse {
     // Total number of devices available within the result-set.
