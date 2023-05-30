@@ -59,13 +59,6 @@ service UserService {
 		};
 	}
 	
-	rpc RenewToken(Token) returns (TokenResponse) {
-		option(google.api.http) = {
-			post: "/api/users/RenewToken"
-			body: "*"
-		};
-	}
-
 }
 
 message User {
@@ -243,10 +236,3 @@ message UpdateUserPasswordRequest {
 	string password = 2;
 }
 
-message Token {
-	string jwt = 1;
-}
-
-message TokenResponse {
-	string jwt = 1;
-}

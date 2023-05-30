@@ -86,6 +86,13 @@ service InternalService {
             get: "/api/internal/gateways/summary"
         };
     }
+
+    rpc RenewToken(Token) returns (TokenResponse) {
+		option(google.api.http) = {
+			post: "/api/users/RenewToken"
+			body: "*"
+		};
+	}
 }
 
 message APIKey {
@@ -482,4 +489,11 @@ message GetGatewaysSummaryResponse {
 
     // Never seen count.
     uint32 never_seen_count = 3;
+}
+message Token {
+	string jwt = 1;
+}
+
+message TokenResponse {
+	string jwt = 1;
 }
