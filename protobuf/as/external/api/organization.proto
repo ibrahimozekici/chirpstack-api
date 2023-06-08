@@ -109,6 +109,9 @@ message Organization {
 	// Max. device count for organization.
 	// When set to 0, the organization can have unlimited devices.
 	uint32 max_device_count = 6;
+
+	bool license_payment = 7;
+	bool pro_license = 8;
 }
 
 message OrganizationListItem {
@@ -129,6 +132,9 @@ message OrganizationListItem {
 
 	// Last update timestamp.
 	google.protobuf.Timestamp updated_at = 6;
+
+	bool license_payment = 7;
+	bool pro_license = 8;
 }
 
 message GetOrganizationRequest {

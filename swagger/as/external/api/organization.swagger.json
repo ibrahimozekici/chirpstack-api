@@ -489,6 +489,14 @@
           "type": "integer",
           "format": "int64",
           "description": "Max. device count for organization.\nWhen set to 0, the organization can have unlimited devices."
+        },
+        "licensePayment": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "proLicense": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -522,6 +530,14 @@
           "type": "string",
           "format": "date-time",
           "description": "Last update timestamp."
+        },
+        "licensePayment": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "proLicense": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
