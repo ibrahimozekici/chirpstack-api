@@ -92,6 +92,8 @@ message ZoneDevice {
      repeated ZoneData data = 12 [json_name = "data"];
 
      repeated ZoneDeviceProfile device_profile_name = 13 [json_name= "device_profile_name"];
+
+     int64 device_type = 14 [json_name = "device_type"];
 }
 message ZoneDeviceProfile {
     string name = 1 [json_name = "name"];

@@ -624,6 +624,10 @@
           "items": {
             "$ref": "#/definitions/apiZoneDeviceProfile"
           }
+        },
+        "device_type": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
