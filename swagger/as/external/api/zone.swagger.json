@@ -302,6 +302,12 @@
         "contentType": {
           "type": "string",
           "format": "int64"
+        },
+        "usernames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },

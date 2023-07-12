@@ -218,6 +218,8 @@ message GetZonesItem {
     repeated ZoneDevice devices = 5 [json_name = "devices"];
 
     int64 contentType = 6 [json_name = "contentType"];
+
+    repeated string usernames = 7 [json_name = "usernames"];
 }
 message CreateZoneRequest {
     // Zone object to create
