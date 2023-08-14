@@ -65,6 +65,8 @@ message Automation {
     int64 user_id = 8;
 
     int64 organization_id = 9;
+
+    int64 sensor_type = 10;
 }
 
 message CreateAutomationRequest {

@@ -190,6 +190,10 @@
         "organizationId": {
           "type": "string",
           "format": "int64"
+        },
+        "sensorType": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
