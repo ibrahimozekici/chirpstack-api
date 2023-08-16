@@ -69,7 +69,7 @@ message Automation {
     int64 sender_device_type = 10;
     int64 receiver_device_type = 11;
     string sender_device_name = 12;
-    string sender_receiver_name = 13;
+    string receiver_device_name = 13;
 }
 
 message CreateAutomationRequest {

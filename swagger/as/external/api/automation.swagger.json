@@ -202,7 +202,7 @@
         "senderDeviceName": {
           "type": "string"
         },
-        "senderReceiverName": {
+        "receiverDeviceName": {
           "type": "string"
         }
       }
