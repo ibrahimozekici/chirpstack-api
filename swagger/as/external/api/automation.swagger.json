@@ -191,7 +191,7 @@
           "type": "string",
           "format": "int64"
         },
-        "sensorType": {
+        "deviceType": {
           "type": "string",
           "format": "int64"
         }
