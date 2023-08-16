@@ -191,9 +191,19 @@
           "type": "string",
           "format": "int64"
         },
-        "deviceType": {
+        "senderDeviceType": {
           "type": "string",
           "format": "int64"
+        },
+        "receiverDeviceType": {
+          "type": "string",
+          "format": "int64"
+        },
+        "senderDeviceName": {
+          "type": "string"
+        },
+        "senderReceiverName": {
+          "type": "string"
         }
       }
     },
