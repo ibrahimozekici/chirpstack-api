@@ -204,6 +204,10 @@ message Device {
     int64 organization_id = 16 [json_name = "organizationId"];
 
     int64 zone_id = 17 [json_name = "zoneId"];
+
+    double temperature_calibration = 18 [json_name = "temperatureCalibration"];
+
+    double humadity_calibration = 19 [json_name = "humadityCalibration"];
 }
 
 message DeviceListItem {

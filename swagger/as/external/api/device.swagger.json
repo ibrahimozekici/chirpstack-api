@@ -759,6 +759,14 @@
         "zoneId": {
           "type": "string",
           "format": "int64"
+        },
+        "temperatureCalibration": {
+          "type": "number",
+          "format": "double"
+        },
+        "humadityCalibration": {
+          "type": "number",
+          "format": "double"
         }
       }
     },
