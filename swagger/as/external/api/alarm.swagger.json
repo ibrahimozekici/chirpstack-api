@@ -1021,6 +1021,13 @@
         },
         "notification_sound": {
           "type": "string"
+        },
+        "user_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
         }
       }
     },

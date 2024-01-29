@@ -319,7 +319,9 @@ message ListOrganizationAlarmResponse {
     int64 timer_value = 20 [json_name = "timer_value"];
     bool pressure = 21 [json_name = "pressure"];
     string notification_sound = 22[json_name = "notification_sound"];
+    repeated int64 user_ids = 23[json_name = "user_ids"];
 }
+
 message UpdateAlarmRequest {
     // Alarm object to update.
     Alarm alarm = 1;
