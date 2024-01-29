@@ -138,8 +138,11 @@
           "title": "Notification Sender Id"
         },
         "receiverId": {
-          "type": "string",
-          "format": "int64",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          },
           "title": "Notification Receiver Id"
         },
         "message": {
