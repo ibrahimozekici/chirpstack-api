@@ -589,6 +589,13 @@
         },
         "notificationSound": {
           "type": "string"
+        },
+        "userIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
         }
       }
     },
@@ -784,17 +791,7 @@
       "type": "object",
       "properties": {
         "createAlarm": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiAlarm"
-          }
-        },
-        "userIds": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "int64"
-          }
+          "$ref": "#/definitions/apiAlarm"
         }
       }
     },

@@ -147,11 +147,8 @@ message Alarm {
    int64 zone_category = 17 [json_name = "zone_category"];
    int64 cold_room_time = 18  [json_name = "cold_room_time"];
    int64 cold_room_frecuancy = 19  [json_name = "cold_room_frecuancy"];
-
    bool notification = 20 [json_name = "notification"];
-
-    repeated AlarmDateTime alarm_date_time = 21  [json_name = "alarm_date_time"];
-
+   repeated AlarmDateTime alarm_date_time = 21  [json_name = "alarm_date_time"];
     bool is_timer_active = 22 [json_name = "is_timer_active"];
     int64 timer_value = 23 [json_name = "timer_value"];
     bool pressure = 24 [json_name = "pressure"];
@@ -162,6 +159,7 @@ message Alarm {
 	float power_sum = 29;
     float power = 30;
     string notification_sound = 31;
+    repeated int64 user_ids = 32;
 }
 
 message AlarmDateTime {
@@ -229,8 +227,7 @@ message CreateAlarmRequest {
 }
 
 message CreateMultipleAlarmRequest {
-    repeated Alarm create_alarm = 1;
-    repeated int64 userIds = 2;
+    Alarm create_alarm = 1;
 }
 message CreateMultipleDoorAlarmRequest {
     repeated CreateDoorTimeRequest create_alarm = 1;
