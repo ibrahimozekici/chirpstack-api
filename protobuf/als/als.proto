@@ -72,7 +72,7 @@ message OrganizationAlarm{
 	bool ec = 10;
 	bool door = 11;
 	bool wLeak = 12;
-	int64 userID = 13;
+	repeated int64 userID = 13;
 	string ipAddress = 14;
 	bool isTimeLimitActive = 15;
 	float alarmStartTime = 16;
