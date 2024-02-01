@@ -89,6 +89,82 @@
         ]
       }
     },
+    "/api/alarm/alarmAutomation": {
+      "get": {
+        "operationId": "ListAlarmAutomation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "alarmId",
+            "description": "Gateway ID (HEX encoded).",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      },
+      "post": {
+        "operationId": "CreateAlarmAutomation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateAlarmAutomationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
+    "/api/alarm/alarmAutomation/{id}": {
+      "get": {
+        "operationId": "GetAlarmAutomation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Gateway ID (HEX encoded).",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
     "/api/alarm/createDoorTime": {
       "post": {
         "summary": "CreateDoorTime CreateDoorTime",
@@ -599,6 +675,46 @@
         }
       }
     },
+    "apiAlarmAutomation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "alarm_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "receiver_sensor": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "is_active": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "user_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "receiver_device_type": {
+          "type": "string",
+          "format": "int64"
+        },
+        "receiver_device_name": {
+          "type": "string"
+        }
+      }
+    },
     "apiAlarmDateTime": {
       "type": "object",
       "properties": {
@@ -678,6 +794,15 @@
         "submissionDate": {
           "type": "string",
           "format": "date-time"
+        }
+      }
+    },
+    "apiCreateAlarmAutomationRequest": {
+      "type": "object",
+      "properties": {
+        "alarmAutomation": {
+          "$ref": "#/definitions/apiAlarmAutomation",
+          "description": "Gateway ID (HEX encoded)."
         }
       }
     },

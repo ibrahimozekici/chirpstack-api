@@ -114,8 +114,56 @@ service AlarmService {
             body: "*"
         };
     }
-}
+    rpc CreateAlarmAutomation(CreateAlarmAutomationRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/alarm/alarmAutomation"
+            body: "*"
+        };
+    }
+    rpc GetAlarmAutomation(GetAlarmAutomationRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/alarm/alarmAutomation/{id}"
+        };
+    }
 
+    rpc ListAlarmAutomation(ListAlarmAutomationRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/alarm/alarmAutomation"
+        };
+    }
+}
+message AlarmAutomation {
+    int64 id = 1 [json_name = "id"];
+    int64 alarm_id = 2 [json_name = "alarm_id"];
+    string receiver_sensor = 3 [json_name = "receiver_sensor"];
+    string action = 4 [json_name = "action"];
+    string created_at = 5 [json_name = "created_at"];
+    string updated_at = 6 [json_name = "updated_at"];
+    bool is_active = 7 [json_name = "is_active"];
+    int64 user_id = 8 [json_name = "user_id"];
+    int64 receiver_device_type = 9 [json_name = "receiver_device_type"];
+    string receiver_device_name = 10 [json_name = "receiver_device_name"];
+}
+message GetAlarmAutomationRequest {
+	// Gateway ID (HEX encoded).
+	int64 id = 1;
+}
+message GetAlarmAutomationResponse {
+	// Gateway ID (HEX encoded).
+	AlarmAutomation result = 1;
+}
+message ListAlarmAutomationRequest {
+	// Gateway ID (HEX encoded).
+	int64 alarm_id = 1;
+}
+message ListAlarmAutomationResponse {
+	// Gateway ID (HEX encoded).
+	repeated AlarmAutomation result = 1;
+}
+message CreateAlarmAutomationRequest {
+	// Gateway ID (HEX encoded).
+	AlarmAutomation alarm_automation = 1;
+}
 message Alarm {
 
     // Alarm id.
