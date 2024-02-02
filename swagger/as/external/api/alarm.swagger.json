@@ -96,7 +96,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "properties": {}
+              "$ref": "#/definitions/apiListAlarmAutomationResponse"
             }
           }
         },
@@ -146,7 +146,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "properties": {}
+              "$ref": "#/definitions/apiGetAlarmAutomationResponse"
             }
           }
         },
@@ -1003,12 +1003,33 @@
         }
       }
     },
+    "apiGetAlarmAutomationResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/apiAlarmAutomation",
+          "description": "Gateway ID (HEX encoded)."
+        }
+      }
+    },
     "apiGetAlarmResponse": {
       "type": "object",
       "properties": {
         "alarm": {
           "$ref": "#/definitions/apiAlarm",
           "title": "Alarm object"
+        }
+      }
+    },
+    "apiListAlarmAutomationResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAlarmAutomation"
+          },
+          "description": "Gateway ID (HEX encoded)."
         }
       }
     },
