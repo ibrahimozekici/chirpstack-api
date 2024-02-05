@@ -120,11 +120,12 @@ service AlarmService {
             body: "*"
         };
     }
-    rpc ListAlarmAutomation(ListAlarmAutomationRequest) returns (ListAlarmAutomationResponse) {
+    rpc GetAlarmAutomation(GetAlarmAutomationRequest) returns (GetAlarmAutomationResponse) {
         option (google.api.http) = {
             get: "/api/alarm/alarmAutomation/{alarm_id}"
         };
     }
+
     rpc DeleteAlarmAutomation(DeleteAlarmAutomationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             delete: "/api/alarm/alarmAutomation/{id}"
@@ -149,11 +150,11 @@ message GetAlarmAutomationRequest {
 }
 message DeleteAlarmAutomationRequest {
 	// Gateway ID (HEX encoded).
-	int64 id = 1;
+	int64 alarm_id = 1;
 }
 message GetAlarmAutomationResponse {
 	// Gateway ID (HEX encoded).
-	AlarmAutomation result = 1;
+	repeated AlarmAutomation result = 1;
 }
 message ListAlarmAutomationRequest {
 	// Gateway ID (HEX encoded).
