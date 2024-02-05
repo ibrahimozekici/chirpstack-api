@@ -154,7 +154,7 @@ message GetAlarmAutomationResponse {
 }
 message ListAlarmAutomationRequest {
 	// Gateway ID (HEX encoded).
-	int64 alarm_id = 1;
+	int64 alarm_id = 1 [json_name = "alarmId"];
 }
 message ListAlarmAutomationResponse {
 	// Gateway ID (HEX encoded).
