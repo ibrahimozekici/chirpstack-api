@@ -669,8 +669,8 @@ func local_request_AlarmService_CreateAlarmAutomation_0(ctx context.Context, mar
 
 }
 
-func request_AlarmService_ListAlarmAutomation_0(ctx context.Context, marshaler runtime.Marshaler, client AlarmServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListAlarmAutomationRequest
+func request_AlarmService_GetAlarmAutomation_0(ctx context.Context, marshaler runtime.Marshaler, client AlarmServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetAlarmAutomationRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -691,13 +691,13 @@ func request_AlarmService_ListAlarmAutomation_0(ctx context.Context, marshaler r
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "alarm_id", err)
 	}
 
-	msg, err := client.ListAlarmAutomation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetAlarmAutomation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_AlarmService_ListAlarmAutomation_0(ctx context.Context, marshaler runtime.Marshaler, server AlarmServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListAlarmAutomationRequest
+func local_request_AlarmService_GetAlarmAutomation_0(ctx context.Context, marshaler runtime.Marshaler, server AlarmServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetAlarmAutomationRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -718,7 +718,7 @@ func local_request_AlarmService_ListAlarmAutomation_0(ctx context.Context, marsh
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "alarm_id", err)
 	}
 
-	msg, err := server.ListAlarmAutomation(ctx, &protoReq)
+	msg, err := server.GetAlarmAutomation(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -1102,7 +1102,7 @@ func RegisterAlarmServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 
 	})
 
-	mux.Handle("GET", pattern_AlarmService_ListAlarmAutomation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_AlarmService_GetAlarmAutomation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -1111,14 +1111,14 @@ func RegisterAlarmServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AlarmService_ListAlarmAutomation_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AlarmService_GetAlarmAutomation_0(rctx, inboundMarshaler, server, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AlarmService_ListAlarmAutomation_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AlarmService_GetAlarmAutomation_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1503,7 +1503,7 @@ func RegisterAlarmServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 
 	})
 
-	mux.Handle("GET", pattern_AlarmService_ListAlarmAutomation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_AlarmService_GetAlarmAutomation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -1512,14 +1512,14 @@ func RegisterAlarmServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AlarmService_ListAlarmAutomation_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AlarmService_GetAlarmAutomation_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AlarmService_ListAlarmAutomation_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AlarmService_GetAlarmAutomation_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1579,7 +1579,7 @@ var (
 
 	pattern_AlarmService_CreateAlarmAutomation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "alarm", "alarmAutomation"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_AlarmService_ListAlarmAutomation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "alarm", "alarmAutomation", "alarm_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_AlarmService_GetAlarmAutomation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "alarm", "alarmAutomation", "alarm_id"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_AlarmService_DeleteAlarmAutomation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "alarm", "alarmAutomation", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 )
@@ -1617,7 +1617,7 @@ var (
 
 	forward_AlarmService_CreateAlarmAutomation_0 = runtime.ForwardResponseMessage
 
-	forward_AlarmService_ListAlarmAutomation_0 = runtime.ForwardResponseMessage
+	forward_AlarmService_GetAlarmAutomation_0 = runtime.ForwardResponseMessage
 
 	forward_AlarmService_DeleteAlarmAutomation_0 = runtime.ForwardResponseMessage
 )

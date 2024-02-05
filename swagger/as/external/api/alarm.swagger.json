@@ -117,12 +117,12 @@
     },
     "/api/alarm/alarmAutomation/{alarm_id}": {
       "get": {
-        "operationId": "ListAlarmAutomation",
+        "operationId": "GetAlarmAutomation",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiListAlarmAutomationResponse"
+              "$ref": "#/definitions/apiGetAlarmAutomationResponse"
             }
           }
         },
@@ -1005,16 +1005,7 @@
         }
       }
     },
-    "apiGetAlarmResponse": {
-      "type": "object",
-      "properties": {
-        "alarm": {
-          "$ref": "#/definitions/apiAlarm",
-          "title": "Alarm object"
-        }
-      }
-    },
-    "apiListAlarmAutomationResponse": {
+    "apiGetAlarmAutomationResponse": {
       "type": "object",
       "properties": {
         "result": {
@@ -1023,6 +1014,15 @@
             "$ref": "#/definitions/apiAlarmAutomation"
           },
           "description": "Gateway ID (HEX encoded)."
+        }
+      }
+    },
+    "apiGetAlarmResponse": {
+      "type": "object",
+      "properties": {
+        "alarm": {
+          "$ref": "#/definitions/apiAlarm",
+          "title": "Alarm object"
         }
       }
     },

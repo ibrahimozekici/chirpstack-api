@@ -146,11 +146,11 @@ message AlarmAutomation {
 }
 message GetAlarmAutomationRequest {
 	// Gateway ID (HEX encoded).
-	int64 id = 1;
+	int64 alarm_id = 1;
 }
 message DeleteAlarmAutomationRequest {
 	// Gateway ID (HEX encoded).
-	int64 alarm_id = 1;
+	int64 id = 1;
 }
 message GetAlarmAutomationResponse {
 	// Gateway ID (HEX encoded).
