@@ -90,30 +90,6 @@
       }
     },
     "/api/alarm/alarmAutomation": {
-      "get": {
-        "operationId": "ListAlarmAutomation",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiListAlarmAutomationResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "alarmId",
-            "description": "Gateway ID (HEX encoded).",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "AlarmService"
-        ]
-      },
       "post": {
         "operationId": "CreateAlarmAutomation",
         "responses": {
@@ -139,6 +115,32 @@
         ]
       }
     },
+    "/api/alarm/alarmAutomation/{alarm_id}": {
+      "get": {
+        "operationId": "ListAlarmAutomation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListAlarmAutomationResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "alarm_id",
+            "description": "Gateway ID (HEX encoded).",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
     "/api/alarm/alarmAutomation/{id}": {
       "get": {
         "operationId": "GetAlarmAutomation",
@@ -147,6 +149,30 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetAlarmAutomationResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Gateway ID (HEX encoded).",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteAlarmAutomation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
             }
           }
         },
