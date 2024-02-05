@@ -120,12 +120,6 @@ service AlarmService {
             body: "*"
         };
     }
-    rpc GetAlarmAutomation(GetAlarmAutomationRequest) returns (GetAlarmAutomationResponse) {
-        option (google.api.http) = {
-            get: "/api/alarm/alarmAutomation/{id}"
-        };
-    }
-
     rpc ListAlarmAutomation(ListAlarmAutomationRequest) returns (ListAlarmAutomationResponse) {
         option (google.api.http) = {
             get: "/api/alarm/alarmAutomation/{alarm_id}"
