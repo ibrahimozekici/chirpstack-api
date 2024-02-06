@@ -131,6 +131,12 @@ service AlarmService {
             delete: "/api/alarm/alarmAutomation/{id}"
         };
     }
+
+    rpc UpdateAlarmAutomation(UpdateAlarmAutomationRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            put: "/api/alarm/alarmAutomation/{id}"
+        };
+    }
 }
 message AlarmAutomation {
     int64 id = 1 [json_name = "id"];
@@ -149,6 +155,10 @@ message GetAlarmAutomationRequest {
 	int64 alarm_id = 1;
 }
 message DeleteAlarmAutomationRequest {
+	// Gateway ID (HEX encoded).
+	int64 id = 1;
+}
+message UpdateAlarmAutomationRequest {
 	// Gateway ID (HEX encoded).
 	int64 id = 1;
 }
