@@ -184,6 +184,14 @@
             "required": true,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiUpdateAlarmAutomationRequest"
+            }
           }
         ],
         "tags": [
@@ -1207,6 +1215,19 @@
           "items": {
             "$ref": "#/definitions/apiListOrganizationAlarmResponse"
           }
+        }
+      }
+    },
+    "apiUpdateAlarmAutomationRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Gateway ID (HEX encoded)."
+        },
+        "automation": {
+          "$ref": "#/definitions/apiAlarmAutomation"
         }
       }
     },
