@@ -950,7 +950,10 @@
       "type": "object",
       "properties": {
         "createAlarm": {
-          "$ref": "#/definitions/apiAlarm"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAlarm"
+          }
         }
       }
     },

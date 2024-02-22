@@ -291,7 +291,7 @@ message CreateAlarmRequest {
 }
 
 message CreateMultipleAlarmRequest {
-    Alarm create_alarm = 1;
+    repeated Alarm create_alarm = 1;
 }
 message CreateMultipleDoorAlarmRequest {
     repeated CreateDoorTimeRequest create_alarm = 1;
