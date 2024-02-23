@@ -48,7 +48,7 @@ message Alarm{
 	bool isActive = 19;
 	int64 coldRoomTime = 20;
 	int64 coldRoomFreq = 21;
-	repeated AlarmDateTime alarm_date_time = 22;
+	AlarmDateTime alarm_date_time = 22;
 	bool pressure = 23;
 	float power = 24;
 	float current = 25;
@@ -82,7 +82,7 @@ message OrganizationAlarm{
 	string zoneName = 20;
 	string deviceName = 21;
 	string userName = 22;
-	repeated AlarmDateTime alarmDateTime = 23;
+	AlarmDateTime alarmDateTime = 23;
 	bool pressure = 24;
 	string notification_sound = 25;
 }
@@ -126,7 +126,7 @@ message AlarmDateTime {
 
     int64 alarm_id = 2;
 
-    int64 alarm_day = 3;
+    repeated int64 alarm_day = 3;
 
     float alarm_start_time = 4;
 

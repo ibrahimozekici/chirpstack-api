@@ -656,10 +656,7 @@
           "format": "boolean"
         },
         "alarm_date_time": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiAlarmDateTime"
-          }
+          "$ref": "#/definitions/apiAlarmDateTime"
         },
         "is_timer_active": {
           "type": "boolean",
@@ -760,9 +757,12 @@
           "type": "string",
           "format": "int64"
         },
-        "alarm_day": {
-          "type": "string",
-          "format": "int64"
+        "alarm_days": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
         },
         "alarm_start_time": {
           "type": "number",
@@ -1172,10 +1172,7 @@
           "format": "boolean"
         },
         "alarm_date_time": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiAlarmDateTime"
-          }
+          "$ref": "#/definitions/apiAlarmDateTime"
         },
         "username": {
           "type": "string",
