@@ -212,7 +212,7 @@ message Alarm {
    int64 cold_room_time = 18  [json_name = "cold_room_time"];
    int64 cold_room_frecuancy = 19  [json_name = "cold_room_frecuancy"];
    bool notification = 20 [json_name = "notification"];
-    AlarmDateTime alarm_date_time = 21  [json_name = "alarm_date_time"];
+   repeated AlarmDateTime alarm_date_time = 21  [json_name = "alarm_date_time"];
     bool is_timer_active = 22 [json_name = "is_timer_active"];
     int64 timer_value = 23 [json_name = "timer_value"];
     bool pressure = 24 [json_name = "pressure"];
@@ -231,7 +231,7 @@ message AlarmDateTime {
 
     int64 alarm_id = 2 [json_name = "alarm_id"];
 
-    repeated int64 alarm_days = 3 [json_name = "alarm_days"];
+    int64 alarm_day = 3 [json_name = "alarm_day"];
 
     float alarm_start_time = 4[json_name = "alarm_start_time"];
 
@@ -374,7 +374,7 @@ message ListOrganizationAlarmResponse {
  
     bool notification = 16 [json_name = "notification"];
  
-    AlarmDateTime alarm_date_time = 17  [json_name = "alarm_date_time"];
+    repeated AlarmDateTime alarm_date_time = 17  [json_name = "alarm_date_time"];
 
      // Device EUI (HEX encoded).
      string username = 18 [json_name = "username"];

@@ -322,6 +322,13 @@
         "Switch8": {
           "type": "string",
           "format": "int64"
+        },
+        "distance": {
+          "type": "string",
+          "format": "int64"
+        },
+        "position": {
+          "type": "string"
         }
       }
     },

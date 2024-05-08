@@ -184,6 +184,8 @@ message ZoneData {
         string gpio_in_4 = 46 [json_name = "gpio_in_4"];
         string gpio_out_1 = 47 [json_name = "gpio_out_1"];
         string gpio_out_2 = 48 [json_name = "gpio_out_2"];
+        int64 distance = 49 [json_name = "distance"];
+        string position = 50 [json_name = "position"];
 }
 message Zone {
     // Zone ID 

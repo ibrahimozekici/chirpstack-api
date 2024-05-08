@@ -565,6 +565,13 @@
         },
         "gpio_out_2": {
           "type": "string"
+        },
+        "distance": {
+          "type": "string",
+          "format": "int64"
+        },
+        "position": {
+          "type": "string"
         }
       }
     },
