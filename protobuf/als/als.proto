@@ -82,7 +82,7 @@ message OrganizationAlarm{
 	string zoneName = 20;
 	string deviceName = 21;
 	string userName = 22;
-	AlarmDateTime alarmDateTime = 23;
+	repeated AlarmDateTime alarmDateTime = 23;
 	bool pressure = 24;
 	string notification_sound = 25;
 }
@@ -126,7 +126,7 @@ message AlarmDateTime {
 
     int64 alarm_id = 2;
 
-    repeated int64 alarm_day = 3;
+    int64 alarm_day = 3;
 
     float alarm_start_time = 4;
 
