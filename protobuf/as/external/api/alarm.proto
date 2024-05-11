@@ -224,6 +224,7 @@ message Alarm {
     float power = 30;
     string notification_sound = 31;
     repeated int64 user_ids = 32;
+    int64 distance = 33;
 }
 
 message AlarmDateTime {
