@@ -385,6 +385,7 @@ message ListOrganizationAlarmResponse {
     bool pressure = 21 [json_name = "pressure"];
     string notification_sound = 22[json_name = "notification_sound"];
     repeated int64 user_ids = 23[json_name = "user_ids"];
+    bool distance = 24 [json_name = "distance"];
 }
 
 message UpdateAlarmRequest {

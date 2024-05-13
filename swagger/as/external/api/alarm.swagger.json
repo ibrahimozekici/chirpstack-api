@@ -1206,6 +1206,10 @@
             "type": "string",
             "format": "int64"
           }
+        },
+        "distance": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
