@@ -708,8 +708,8 @@
           }
         },
         "distance": {
-          "type": "string",
-          "format": "int64"
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
