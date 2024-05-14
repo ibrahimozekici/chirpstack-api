@@ -117,6 +117,22 @@ message SoilSensorResponse {
     google.protobuf.Timestamp submission_date = 8 [json_name = "submission_date"];
 }
 
+message EM400MUDSensorResponse {
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"]; 
+
+    // name
+    string name = 2 [json_name = "name"];
+    
+    // water_SOIL of the device.
+    int64 distance = 5 [json_name = "distance"];
+
+    // temp_SOIL of the device.
+    float air_temperature = 6 [json_name = "Air_Temperature"];
+
+    google.protobuf.Timestamp submission_date = 8 [json_name = "submission_date"];
+}
+
 message WaterLeekSensorResponse {
     // Device EUI (HEX encoded).
     string dev_eui = 1 [json_name = "devEUI"]; 
