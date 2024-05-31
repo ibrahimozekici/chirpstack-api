@@ -70,6 +70,8 @@ message Automation {
     int64 receiver_device_type = 11;
     string sender_device_name = 12;
     string receiver_device_name = 13;
+    string trigger_type = 14;
+    google.protobuf.Timestamp trigger_time = 15;
 }
 
 message CreateAutomationRequest {

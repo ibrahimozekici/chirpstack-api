@@ -204,6 +204,13 @@
         },
         "receiverDeviceName": {
           "type": "string"
+        },
+        "triggerType": {
+          "type": "string"
+        },
+        "triggerTime": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
