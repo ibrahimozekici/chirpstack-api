@@ -1037,6 +1037,13 @@
           "items": {
             "$ref": "#/definitions/apiDAlarm"
           }
+        },
+        "variables": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Variables (user defined).\nThese variables can be used together with integrations to store tokens /\nsecrets that must be configured per device. These variables are not\nexposed in the event payloads."
         }
       }
     },

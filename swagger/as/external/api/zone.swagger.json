@@ -649,6 +649,13 @@
         "humadityCalibration": {
           "type": "number",
           "format": "double"
+        },
+        "variables": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "New field for custom attributes\nVariables (user defined).\nThese variables can be used together with integrations to store tokens /\nsecrets that must be configured per device. These variables are not\nexposed in the event payloads."
         }
       }
     },

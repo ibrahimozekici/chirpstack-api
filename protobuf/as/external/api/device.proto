@@ -12,6 +12,7 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 import "common/common.proto";
 import "as/external/api/frameLog.proto";
+import "google/protobuf/struct.proto";  // Importing the Struct type
 
 
 // DeviceService is the service managing the devices.
@@ -208,6 +209,9 @@ message Device {
     double temperature_calibration = 18 [json_name = "temperatureCalibration"];
 
     double humadity_calibration = 19 [json_name = "humadityCalibration"];
+
+    // New field for custom attributes
+    // google.protobuf.Struct custom_attributes = 20  [json_name = "custom_attributes"];
 }
 
 message DeviceListItem {
@@ -266,6 +270,15 @@ message DeviceListItem {
     int64 organization_id = 17 [json_name = "organizationId"];
 
     repeated DAlarm alarms  = 18;
+
+      // Variables (user defined).
+    // These variables can be used together with integrations to store tokens /
+    // secrets that must be configured per device. These variables are not
+    // exposed in the event payloads.
+    map<string, string> variables = 19 [json_name = "variables"];
+
+    // New field for custom attributes
+   // google.protobuf.Struct custom_attributes = 19  [json_name = "custom_attributes"];
 }
 
 message Dalarms {
