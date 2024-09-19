@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package ad;
+
+service AnomalyDetection {
+    // This RPC triggers the anomaly detection process.
+    rpc TriggerDetection (AnomalyRequest) returns (AnomalyResponse);
+}
+
+// The request message containing the sensor ID and temperature.
+message AnomalyRequest {
+    string dev_eui = 1;
+    float temperature = 2;
+}
+
+// The response message containing the result of the anomaly detection.
+message AnomalyResponse {
+    string result = 1;
+}
