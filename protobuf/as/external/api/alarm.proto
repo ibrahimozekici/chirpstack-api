@@ -263,6 +263,8 @@ message CreateDoorTimeRequest {
 
     int64 time = 9 [json_name = "time"];
 
+    int64 organization_id = 10[json_name = "organization_id"];
+
 }
 
 message CreateDoorTimeResponse {
@@ -385,6 +387,7 @@ message ListOrganizationAlarmResponse {
     string notification_sound = 22[json_name = "notification_sound"];
     repeated int64 user_ids = 23[json_name = "user_ids"];
     bool distance = 24 [json_name = "distance"];
+    int64 time = 25 [json_name = "time"];
 }
 
 message UpdateAlarmRequest {

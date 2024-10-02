@@ -908,6 +908,10 @@
         "time": {
           "type": "string",
           "format": "int64"
+        },
+        "organization_id": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -1209,6 +1213,10 @@
         "distance": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "time": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

@@ -87,6 +87,7 @@ message OrganizationAlarm{
 	bool pressure = 24;
 	string notification_sound = 25;
 	bool distance = 26;
+	int64 time = 27;
 }
 
 message AlarmWithDates{
