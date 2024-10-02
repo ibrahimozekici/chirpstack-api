@@ -975,13 +975,6 @@
           "items": {
             "$ref": "#/definitions/apiCreateDoorTimeRequest"
           }
-        },
-        "userIds": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "int64"
-          }
         }
       }
     },

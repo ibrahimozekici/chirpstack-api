@@ -296,7 +296,6 @@ message CreateMultipleAlarmRequest {
 }
 message CreateMultipleDoorAlarmRequest {
     repeated CreateDoorTimeRequest create_alarm = 1;
-    repeated int64 userIds = 2;
 }
 message CreateAlarmMultipleResponse {
     repeated Alarm alarm = 1;
