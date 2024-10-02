@@ -255,7 +255,7 @@ message CreateDoorTimeRequest {
 
     bool notification = 5 [json_name = "notification"];
 
-    int64 user_id = 6 [json_name = "user_id"];
+    repeated int64 user_id = 6 [json_name = "user_id"];
 
     google.protobuf.Timestamp submission_date = 7 [json_name = "submission_date"];
 
@@ -278,7 +278,7 @@ message CreateDoorTimeResponse {
 
     bool notification = 5 [json_name = "notification"];
 
-    int64 user_id = 6 [json_name = "user_id"];
+    repeated int64 user_id = 6 [json_name = "user_id"];
 
     google.protobuf.Timestamp submission_date = 7 [json_name = "submission_date"];
 

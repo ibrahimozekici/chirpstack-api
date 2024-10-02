@@ -891,8 +891,11 @@
           "format": "boolean"
         },
         "user_id": {
-          "type": "string",
-          "format": "int64"
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
         },
         "submission_date": {
           "type": "string",
@@ -933,8 +936,11 @@
           "format": "boolean"
         },
         "user_id": {
-          "type": "string",
-          "format": "int64"
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
         },
         "submission_date": {
           "type": "string",
