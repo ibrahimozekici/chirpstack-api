@@ -265,6 +265,9 @@ message CreateDoorTimeRequest {
 
     int64 organization_id = 10[json_name = "organization_id"];
 
+    repeated AlarmDateTime alarm_date_time = 11  [json_name = "alarm_date_time"];
+    bool is_time_scheduled = 12 [json_name = "is_time_scheduled"];
+
 }
 
 message CreateDoorTimeResponse {

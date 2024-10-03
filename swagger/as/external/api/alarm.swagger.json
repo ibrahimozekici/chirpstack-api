@@ -912,6 +912,16 @@
         "organization_id": {
           "type": "string",
           "format": "int64"
+        },
+        "alarm_date_time": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAlarmDateTime"
+          }
+        },
+        "is_time_scheduled": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
