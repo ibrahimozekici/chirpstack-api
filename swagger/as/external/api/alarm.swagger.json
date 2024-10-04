@@ -710,6 +710,10 @@
         "distance": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "time": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

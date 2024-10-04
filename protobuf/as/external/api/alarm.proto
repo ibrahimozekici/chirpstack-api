@@ -225,6 +225,7 @@ message Alarm {
     string notification_sound = 31;
     repeated int64 user_ids = 32;
     bool distance = 33;
+    int64 time = 34;
 }
 
 message AlarmDateTime {
