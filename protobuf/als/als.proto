@@ -58,6 +58,7 @@ message Alarm{
 	float power_sum = 29;
 	string notification_sound = 30;
 	bool distance = 31;
+	int64 time = 32;
 }
 
 message OrganizationAlarm{
@@ -115,6 +116,7 @@ message AlarmWithDates{
 	int64 alarmEndTime = 22;
 	bool pressure = 23;
 	bool distance = 24;
+	int64 time = 25;
 }
 
 message AlarmDateFilter{
