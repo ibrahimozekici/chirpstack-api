@@ -611,12 +611,12 @@
           "format": "int64",
           "title": "data time"
         },
-        "device_lat": {
+        "latitude": {
           "type": "number",
           "format": "double",
           "title": "device lat value"
         },
-        "device_lng": {
+        "longitude": {
           "type": "number",
           "format": "double",
           "title": "device lng value"

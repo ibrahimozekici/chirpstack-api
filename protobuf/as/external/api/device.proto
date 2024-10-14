@@ -193,9 +193,9 @@ message Device {
 
     int64 data_time = 11 [json_name = "dataTime"];	
     // Device lat value	
-    double lat = 12;	
+    double latitude = 12;	
     // Device lng value	
-    double lng = 13;
+    double longitude = 13;
 
     // Device Profile Name
     string device_profile_name = 14 [json_name = "deviceProfileName"];
@@ -261,9 +261,9 @@ message DeviceListItem {
     // data time	
     int64 data_time = 13 [json_name = "dataTime"];	
     // device lat value	
-    double lat = 14;	
+    double latitude = 14;	
     // device lng value	
-    double lng = 15;
+    double longitude = 15;
 
     int64 device_type = 16 [json_name = "deviceType"];
 

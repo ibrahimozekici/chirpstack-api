@@ -82,10 +82,10 @@ message ZoneDevice {
     int64 device_data_time = 8 [json_name = "device_data_time"];
 
     // device lat value
-    double device_lat = 9 [json_name = "device_lat"];
+    double latitude = 9 [json_name = "latitude"];
 
     // device lng value
-    double device_lng = 10 [json_name = "device_lng"];
+    double longitude = 10 [json_name = "longitude"];
 
     int64 device_application_id = 11 [json_name = "device_application_id"];
 
