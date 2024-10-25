@@ -98,6 +98,21 @@ message TemHumDateResponse {
      google.protobuf.Timestamp submission_date = 8 [json_name = "submission_date"];
 }
 
+message LTC2LBResponse {
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"]; 
+
+    // name
+    string name = 2 [json_name = "name"];
+    
+    // temp_SHT of the device.
+    float temperature1 = 3 [json_name = "temperature1"];
+
+    // hum_SHT.
+    float temperature2 = 4 [json_name = "temperature2"];
+
+    google.protobuf.Timestamp submission_date = 8 [json_name = "submission_date"];
+}
 message SoilSensorResponse {
     // Device EUI (HEX encoded).
     string dev_eui = 1 [json_name = "devEUI"]; 
