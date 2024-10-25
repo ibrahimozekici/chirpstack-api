@@ -572,6 +572,14 @@
         },
         "position": {
           "type": "string"
+        },
+        "temperature1": {
+          "type": "number",
+          "format": "float"
+        },
+        "temperature2": {
+          "type": "number",
+          "format": "float"
         }
       }
     },
