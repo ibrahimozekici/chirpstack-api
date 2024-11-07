@@ -393,6 +393,7 @@ message ListOrganizationAlarmResponse {
     repeated int64 user_ids = 23[json_name = "user_ids"];
     bool distance = 24 [json_name = "distance"];
     int64 time = 25 [json_name = "time"];
+    bool is_active = 26 [json_name = "is_active"];
 }
 
 message UpdateAlarmRequest {

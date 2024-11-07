@@ -1235,6 +1235,10 @@
         "time": {
           "type": "string",
           "format": "int64"
+        },
+        "is_active": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
