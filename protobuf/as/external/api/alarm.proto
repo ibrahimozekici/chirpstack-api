@@ -226,6 +226,7 @@ message Alarm {
     repeated int64 user_ids = 32;
     bool distance = 33;
     int64 time = 34;
+    bool is_active = 35;
 }
 
 message AlarmDateTime {

@@ -714,6 +714,10 @@
         "time": {
           "type": "string",
           "format": "int64"
+        },
+        "isActive": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
