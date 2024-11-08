@@ -45,7 +45,7 @@ message Alarm{
 	float alarmStartTime = 16;
 	float alarmStopTime = 17;
 	int64 zoneCategoryID = 18;
-	bool isActive = 19;
+	bool is_active = 19;
 	int64 coldRoomTime = 20;
 	int64 coldRoomFreq = 21;
 	repeated AlarmDateTime alarm_date_time = 22;
