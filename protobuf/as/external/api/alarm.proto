@@ -227,6 +227,7 @@ message Alarm {
     bool distance = 33;
     int64 time = 34;
     bool is_active = 35;
+    int64 defrost_time = 36;
 }
 
 message AlarmDateTime {
@@ -394,6 +395,7 @@ message ListOrganizationAlarmResponse {
     bool distance = 24 [json_name = "distance"];
     int64 time = 25 [json_name = "time"];
     bool is_active = 26 [json_name = "is_active"];
+    int64 defrost_time = 27 [json_name = "defrost_time"];
 }
 
 message UpdateAlarmRequest {

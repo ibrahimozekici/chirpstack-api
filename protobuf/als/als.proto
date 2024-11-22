@@ -59,6 +59,7 @@ message Alarm{
 	string notification_sound = 30;
 	bool distance = 31;
 	int64 time = 32;
+	int64 defrost_time = 33;
 }
 
 message OrganizationAlarm{
@@ -89,6 +90,7 @@ message OrganizationAlarm{
 	string notification_sound = 25;
 	bool distance = 26;
 	int64 time = 27;
+	int64 defrost_time = 28;
 }
 
 message AlarmWithDates{
@@ -117,6 +119,7 @@ message AlarmWithDates{
 	bool pressure = 23;
 	bool distance = 24;
 	int64 time = 25;
+	int64 defrost_time = 26;
 }
 
 message AlarmDateFilter{

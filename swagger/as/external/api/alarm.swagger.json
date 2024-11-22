@@ -718,6 +718,10 @@
         "isActive": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "defrostTime": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -1239,6 +1243,10 @@
         "is_active": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "defrost_time": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
