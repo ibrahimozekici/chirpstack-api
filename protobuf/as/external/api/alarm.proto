@@ -396,6 +396,7 @@ message ListOrganizationAlarmResponse {
     int64 time = 25 [json_name = "time"];
     bool is_active = 26 [json_name = "is_active"];
     int64 defrost_time = 27 [json_name = "defrost_time"];
+    int64 zone_category = 28 [json_name = "zone_category"];
 }
 
 message UpdateAlarmRequest {

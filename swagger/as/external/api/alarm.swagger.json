@@ -1247,6 +1247,10 @@
         "defrost_time": {
           "type": "string",
           "format": "int64"
+        },
+        "zone_category": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
