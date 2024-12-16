@@ -93,6 +93,7 @@ message GetAutomationResponse {
 message ListAutomationRequest {
     int64 user_id = 1;
     string dev_eui = 2;
+    int64 organization_id = 3;
 }
 
 message ListAutomationResponse {
