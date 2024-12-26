@@ -104,7 +104,10 @@ message ZoneDevice {
     // These variables can be used together with integrations to store tokens /
     // secrets that must be configured per device. These variables are not
     // exposed in the event payloads.
-    map<string, string> variables = 17 [json_name = "variables"];;
+    map<string, string> variables = 17 [json_name = "variables"];
+
+    // Tags to filter on.
+    map<string, string> tags = 18 [json_name = "tags"];
 }
 message ZoneDeviceProfile {
     string name = 1 [json_name = "name"];
