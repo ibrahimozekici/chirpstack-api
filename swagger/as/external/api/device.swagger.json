@@ -1044,6 +1044,13 @@
             "type": "string"
           },
           "description": "Variables (user defined).\nThese variables can be used together with integrations to store tokens /\nsecrets that must be configured per device. These variables are not\nexposed in the event payloads."
+        },
+        "tags": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "New field for custom attributes\ngoogle.protobuf.Struct custom_attributes = 19  [json_name = \"custom_attributes\"];"
         }
       }
     },
