@@ -1051,6 +1051,9 @@
             "type": "string"
           },
           "title": "New field for custom attributes\ngoogle.protobuf.Struct custom_attributes = 19  [json_name = \"custom_attributes\"];"
+        },
+        "zone_name": {
+          "type": "string"
         }
       }
     },

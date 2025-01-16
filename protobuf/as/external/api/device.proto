@@ -280,6 +280,8 @@ message DeviceListItem {
     // New field for custom attributes
    // google.protobuf.Struct custom_attributes = 19  [json_name = "custom_attributes"];
    map<string, string> tags = 20 [json_name = "tags"];
+
+   string zone_name = 21 [json_name = "zone_name"];
 }
 
 message Dalarms {
