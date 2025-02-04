@@ -1,0 +1,919 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "as/external/api/kitchen.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/kitchen/defrostLog": {
+      "get": {
+        "operationId": "GetDefrostLogList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetDefrostLogListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      },
+      "post": {
+        "operationId": "CreateDefrostLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateDefrostLogRequest"
+            }
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
+    "/api/kitchen/department/{departmentID}/activities": {
+      "get": {
+        "operationId": "GetActivityListForDepartment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetActivityListForDepartmentResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "departmentID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
+    "/api/kitchen/departments": {
+      "get": {
+        "operationId": "GetDepartmentList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetDepartmentListResponse"
+            }
+          }
+        },
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
+    "/api/kitchen/frostLog": {
+      "get": {
+        "operationId": "GetFrostLogList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetFrostLogListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      },
+      "post": {
+        "operationId": "CreateFrostLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateFrostLogRequest"
+            }
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
+    "/api/kitchen/ingredients": {
+      "get": {
+        "operationId": "GetIngredientList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetIngredientListResponse"
+            }
+          }
+        },
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
+    "/api/kitchen/recipeLog": {
+      "get": {
+        "operationId": "GetRecipeLogList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetRecipeLogListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      },
+      "post": {
+        "operationId": "CreateRecipeLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateRecipeLogRequest"
+            }
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
+    "/api/kitchen/recipes": {
+      "get": {
+        "operationId": "GetRecipeList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetRecipeListResponse"
+            }
+          }
+        },
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
+    "/api/kitchen/sanitizeLog": {
+      "get": {
+        "operationId": "GetSanitizeLogList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetSanitizeLogListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      },
+      "post": {
+        "operationId": "CreateSanitizeLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateSanitizeLogRequest"
+            }
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
+    "/api/kitchen/user/{id}": {
+      "get": {
+        "operationId": "GetKitchenUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetKitchenUserResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
+    "/api/kitchen/user/{userID}/departments": {
+      "get": {
+        "operationId": "GetDepartmentListForUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetDepartmentListForUserResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apiActivityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "apiCreateDefrostLogRequest": {
+      "type": "object",
+      "properties": {
+        "ingredient": {
+          "$ref": "#/definitions/apiIngredientItem"
+        },
+        "startTemperature": {
+          "type": "number",
+          "format": "float"
+        },
+        "expireDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "coldWater": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "coldRoom": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "waterTemperature": {
+          "type": "number",
+          "format": "float"
+        },
+        "waterTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "finishDateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endTemperature": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "apiCreateFrostLogRequest": {
+      "type": "object",
+      "properties": {
+        "ingredient": {
+          "$ref": "#/definitions/apiIngredientItem"
+        },
+        "productionDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expirationDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "vacuum": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "vacuumDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "vacuumP30Test": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "userItem": {
+          "$ref": "#/definitions/apiUserItem"
+        },
+        "submissionDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "quantity": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "apiCreateRecipeLogRequest": {
+      "type": "object",
+      "properties": {
+        "recipe": {
+          "$ref": "#/definitions/apiRecipeItem"
+        },
+        "prepStartTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "prepEndTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "cookHeat": {
+          "type": "string",
+          "format": "int64"
+        },
+        "coolStartTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "coolEndTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "coolHeat": {
+          "type": "string",
+          "format": "int64"
+        },
+        "user": {
+          "$ref": "#/definitions/apiUserItem"
+        },
+        "recycledIngredients": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "format": "int64"
+          },
+          "title": "Ingredient id - quantity map"
+        }
+      }
+    },
+    "apiCreateSanitizeLogRequest": {
+      "type": "object",
+      "properties": {
+        "ingredient": {
+          "$ref": "#/definitions/apiIngredientItem"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "preWashTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "chlorinePPM": {
+          "type": "string",
+          "format": "int64"
+        },
+        "sanitizeTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "washTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "osoneWash": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "user": {
+          "$ref": "#/definitions/apiUserItem"
+        },
+        "submissionDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "quantity": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "apiDefrostLogItem": {
+      "type": "object",
+      "properties": {
+        "ingredient": {
+          "$ref": "#/definitions/apiIngredientItem"
+        },
+        "startTemperature": {
+          "type": "number",
+          "format": "float"
+        },
+        "expireDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "coldWater": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "coldRoom": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "waterTemperature": {
+          "type": "number",
+          "format": "float"
+        },
+        "waterTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "finishDateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endTemperature": {
+          "type": "number",
+          "format": "float"
+        },
+        "submissionDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "quantity": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "apiDepartmentItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "activities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiActivityItem"
+          }
+        }
+      }
+    },
+    "apiGetActivityListForDepartmentResponse": {
+      "type": "object",
+      "properties": {
+        "activityItem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiActivityItem"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiGetDefrostLogListResponse": {
+      "type": "object",
+      "properties": {
+        "defrostLogItemList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiDefrostLogItem"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiGetDepartmentListForUserResponse": {
+      "type": "object",
+      "properties": {
+        "departmentItem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiDepartmentItem"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiGetDepartmentListResponse": {
+      "type": "object",
+      "properties": {
+        "departmentItem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiDepartmentItem"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiGetFrostLogListResponse": {
+      "type": "object",
+      "properties": {
+        "frostLogItemList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiRecipeLogItem"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiGetIngredientListResponse": {
+      "type": "object",
+      "properties": {
+        "ingredientItem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiIngredientItem"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiGetKitchenUserResponse": {
+      "type": "object",
+      "properties": {
+        "userItem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiUserItem"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiGetRecipeListResponse": {
+      "type": "object",
+      "properties": {
+        "recipeItem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiRecipeItem"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiGetRecipeLogListResponse": {
+      "type": "object",
+      "properties": {
+        "recipeLogItemList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiRecipeLogItem"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiGetSanitizeLogListResponse": {
+      "type": "object",
+      "properties": {
+        "sanitizeLogItemList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiSanitizeLogItem"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiIngredientItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "recycle": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "apiRecipeItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "ingredientQuantity": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "format": "int64"
+          },
+          "title": "Ingredient id - quantity map"
+        }
+      }
+    },
+    "apiRecipeLogItem": {
+      "type": "object",
+      "properties": {
+        "recipe": {
+          "$ref": "#/definitions/apiRecipeItem"
+        },
+        "prepStartTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "prepEndTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "cookHeat": {
+          "type": "string",
+          "format": "int64"
+        },
+        "coolStartTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "coolEndTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "coolHeat": {
+          "type": "string",
+          "format": "int64"
+        },
+        "user": {
+          "$ref": "#/definitions/apiUserItem"
+        },
+        "recycledIngredients": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "format": "int64"
+          },
+          "title": "Ingredient id - quantity map"
+        },
+        "submissionDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "quantity": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "apiSanitizeLogItem": {
+      "type": "object",
+      "properties": {
+        "ingredient": {
+          "$ref": "#/definitions/apiIngredientItem"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "preWashTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "chlorinePPM": {
+          "type": "string",
+          "format": "int64"
+        },
+        "sanitizeTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "washTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "osoneWash": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "user": {
+          "$ref": "#/definitions/apiUserItem"
+        },
+        "submissionDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "quantity": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "apiUserItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name of the user"
+        },
+        "department": {
+          "$ref": "#/definitions/apiDepartmentItem",
+          "title": "Department of the user"
+        }
+      }
+    }
+  }
+}
