@@ -16,12 +16,6 @@ service KitchenService {
         };
     }
 
-    rpc GetActivity(GetActivityRequest) returns (GetActivityResponse) {
-        option (google.api.http) = {
-            get: "/api/kitchen/activity/{id}"
-        };
-    }
-
     rpc GetDepartmentListForUser(GetDepartmentListForUserRequest) returns (GetDepartmentListForUserResponse) {
         option (google.api.http) = {
             get: "/api/kitchen/user/{id}/departments"
@@ -248,12 +242,12 @@ message CreateRecipeLogRequest {
     map<int64, int64> recycledIngredients = 9;
 }
 
-message GetRecipeLogsRequest {
+message GetRecipeLogListRequest {
     google.protobuf.Timestamp start_date = 1;
     google.protobuf.Timestamp end_date = 2;
 }
 
-message GetRecipeLogsResponse {
+message GetRecipeLogListResponse {
     repeated RecipeLogItem recipeLogItemList = 1;
     int64 count = 2;
 }
@@ -270,12 +264,12 @@ message CreateDefrostLogRequest {
     float endTemperature = 9;
 }
 
-message GetDefrostLogsRequest {
+message GetDefrostLogListRequest {
     google.protobuf.Timestamp start_date = 1;
     google.protobuf.Timestamp end_date = 2;
 }
 
-message GetDefrostLogsResponse {
+message GetDefrostLogListResponse {
     repeated DefrostLogItem defrostLogItemList = 1;
     int64 count = 2;
 }
@@ -292,12 +286,12 @@ message CreateFrostLogRequest {
     float quantity = 9;
 }
 
-message GetFrostLogsRequest {
+message GetFrostLogListRequest {
     google.protobuf.Timestamp start_date = 1;
     google.protobuf.Timestamp end_date = 2;
 }
 
-message GetFrostLogsResponse {
+message GetFrostLogListResponse {
     repeated RecipeLogItem frostLogItemList = 1;
     int64 count = 2;
 }
@@ -317,12 +311,12 @@ message CreateSanitizeLogRequest {
 }
 
 
-message GetSanitizeLogsRequest {
+message GetSanitizeLogListRequest {
     google.protobuf.Timestamp start_date = 1;
     google.protobuf.Timestamp end_date = 2;
 }
 
-message GetSanitizeLogsResponse {
+message GetSanitizeLogListResponse {
     repeated SanitizeLogItem sanitizeLogItemList = 1;
     int64 count = 2;
 }
