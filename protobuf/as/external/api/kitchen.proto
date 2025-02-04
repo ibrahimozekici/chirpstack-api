@@ -189,6 +189,7 @@ message SanitizeLogItem {
 }
 
 message GetKitchenUserRequest {
+    int64 id = 1;
 }
 
 message GetKitchenUserResponse {
