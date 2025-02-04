@@ -1,0 +1,335 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/ibrahimozekici/chirpstack-api/go/v5/as/external/api";
+option java_package = "io.chirpstack.api.as.external.api";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service KitchenService {
+    rpc GetKitchenUser(GetKitchenUserRequest) returns (GetKitchenUserResponse) {
+        option (google.api.http) = {
+            get: "/api/kitchen/user/{id}"
+        };
+    }
+
+    rpc GetActivity(GetActivityRequest) returns (GetActivityResponse) {
+        option (google.api.http) = {
+            get: "/api/kitchen/activity/{id}"
+        };
+    }
+
+    rpc GetDepartmentListForUser(GetDepartmentListForUserRequest) returns (GetDepartmentListForUserResponse) {
+        option (google.api.http) = {
+            get: "/api/kitchen/user/{id}/departments"
+        };
+    }
+
+    rpc GetDepartmentList(GetDepartmentListRequest) returns (GetDepartmentListResponse) {
+        option (google.api.http) = {
+            get: "/api/kitchen/departments"
+        };
+    }
+
+    rpc GetActivityListForDepartment(GetActivityListForDepartmentRequest) returns (GetActivityListForDepartmentResponse) {
+        option (google.api.http) = {
+            get: "/api/kitchen/department/{id}/activities"
+        };
+    }
+
+    rpc GetRecipeList(GetRecipeListRequest) returns (GetRecipeListResponse) {
+        option (google.api.http) = {
+            get: "/api/kitchen/recipes"
+        };
+    }
+
+    rpc GetIngredientList(GetIngredientListRequest) returns (GetIngredientListResponse) {
+        option (google.api.http) = {
+            get: "/api/kitchen/ingredients"
+        };
+    }
+
+    rpc CreateRecipeLog(CreateRecipeLogRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/kitchen/recipeLog"
+            body: "*"
+        };
+    }
+
+
+    rpc CreateDefrostLog(CreateDefrostLogRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/kitchen/defrostLog"
+            body: "*"
+        };
+    }
+
+    rpc CreateFrostLog(CreateFrostLogRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/kitchen/frostLog"
+            body: "*"
+        };
+    }
+
+    rpc CreateSanitizeLog(CreateSanitizeLogRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/kitchen/sanitizeLog"
+            body: "*"
+        };
+    }
+
+    rpc GetRecipeLogList(GetRecipeLogListRequest) returns (GetRecipeLogListResponse) {
+        option (google.api.http) = {
+            get: "/api/kitchen/recipeLog"
+        };
+    }
+    rpc GetDefrostLogList(GetDefrostLogListRequest) returns (GetDefrostLogListResponse) {
+        option (google.api.http) = {
+            get: "/api/kitchen/defrostLog"
+        };
+    }
+    rpc GetFrostLogList(GetFrostLogListRequest) returns (GetFrostLogListResponse) {
+        option (google.api.http) = {
+            get: "/api/kitchen/frostLog"
+        };
+    }
+    rpc GetSanitizeLogList(GetSanitizeLogListRequest) returns (GetSanitizeLogListResponse) {
+        option (google.api.http) = {
+            get: "/api/kitchen/sanitizeLog"
+        };
+    }
+}
+
+message UserItem {
+    int64 id= 1;
+
+    // Name of the user
+    string name = 2 [json_name = "name"];
+
+    // Department of the user
+    DepartmentItem department = 3;
+}
+
+message DepartmentItem {
+    int64 id = 1;
+    string name = 2;
+    repeated ActivityItem activities = 3;
+}
+
+message ActivityItem {
+    int64 id = 1;
+    string name = 2;
+}
+
+message IngredientItem {
+    int64 id = 1;
+    string name = 2;
+    string unit = 3;
+    bool recycle = 4;
+}
+
+message RecipeItem {
+    int64 id= 1;
+    string name = 2;
+
+    // Ingredient id - quantity map
+    map<int64, int64> ingredientQuantity = 3;
+}
+
+message RecipeLogItem {
+    RecipeItem recipe= 1;
+    google.protobuf.Timestamp prepStartTime = 2;
+    google.protobuf.Timestamp prepEndTime = 3;
+    int64 cookHeat = 4;
+    google.protobuf.Timestamp coolStartTime = 5;
+    google.protobuf.Timestamp coolEndTime = 6;
+    int64 coolHeat = 7;
+    UserItem user = 8;
+    // Ingredient id - quantity map
+    map<int64, int64> recycledIngredients = 9;
+    google.protobuf.Timestamp submissionDate = 10;
+    float quantity = 11;
+}
+
+message DefrostLogItem {
+    IngredientItem ingredient= 1;
+    float startTemperature = 2;
+    google.protobuf.Timestamp expire_date=3;
+    bool cold_water = 4;
+    bool cold_room = 5;
+    float waterTemperature = 6;
+    google.protobuf.Timestamp waterTime = 7;
+    google.protobuf.Timestamp finishDateTime = 8;
+    float endTemperature = 9;
+    google.protobuf.Timestamp submissionDate = 10;
+    float quantity = 11;
+}
+
+message FrostLogItem {
+    IngredientItem ingredient= 1;
+    google.protobuf.Timestamp productionDate = 2;
+    google.protobuf.Timestamp expirationDate = 3;
+    bool vacuum = 4;
+    google.protobuf.Timestamp vacuumDate = 5;
+    bool vacuumP30Test = 6;
+    UserItem userItem = 7;
+    google.protobuf.Timestamp submissionDate = 8;
+    float quantity = 9;
+}
+
+message SanitizeLogItem {
+    IngredientItem ingredient= 1;
+    google.protobuf.Timestamp date = 2;
+    google.protobuf.Timestamp preWashTime = 3;
+    int64 chlorinePPM = 4;
+    google.protobuf.Timestamp sanitizeTime = 5;
+    google.protobuf.Timestamp washTime = 7;
+    google.protobuf.Timestamp endTime = 8;
+    bool osoneWash =9;
+    UserItem user = 10;
+    google.protobuf.Timestamp submissionDate = 11;
+    float quantity = 12;
+}
+
+message GetKitchenUserRequest {
+}
+
+message GetKitchenUserResponse {
+    repeated UserItem userItem = 1;
+    int64 count = 2;
+}
+
+message GetActivityListForDepartmentRequest {
+    int64 DepartmentID = 1;
+}
+
+message GetActivityListForDepartmentResponse {
+    repeated ActivityItem activityItem = 1;
+    int64 count = 2;
+}
+
+message GetDepartmentListForUserRequest {
+    int64 userID = 1;
+}
+
+message GetDepartmentListForUserResponse {
+    repeated DepartmentItem departmentItem = 1;
+    int64 count = 2;
+}
+
+message GetDepartmentListRequest {
+}
+
+message GetDepartmentListResponse {
+    repeated DepartmentItem departmentItem = 1;
+    int64 count = 2;
+}
+
+message GetRecipeListRequest {}
+
+message GetRecipeListResponse {
+    repeated RecipeItem recipeItem = 1;
+    int64 count = 2;
+}
+
+message CreateRecipeLogRequest {
+    RecipeItem recipe= 1;
+    google.protobuf.Timestamp prepStartTime = 2;
+    google.protobuf.Timestamp prepEndTime = 3;
+    int64 cookHeat = 4;
+    google.protobuf.Timestamp coolStartTime = 5;
+    google.protobuf.Timestamp coolEndTime = 6;
+    int64 coolHeat = 7;
+    UserItem user = 8;
+    // Ingredient id - quantity map
+    map<int64, int64> recycledIngredients = 9;
+}
+
+message GetRecipeLogsRequest {
+    google.protobuf.Timestamp start_date = 1;
+    google.protobuf.Timestamp end_date = 2;
+}
+
+message GetRecipeLogsResponse {
+    repeated RecipeLogItem recipeLogItemList = 1;
+    int64 count = 2;
+}
+
+message CreateDefrostLogRequest {
+    IngredientItem ingredient= 1;
+    float startTemperature = 2;
+    google.protobuf.Timestamp expire_date=3;
+    bool cold_water = 4;
+    bool cold_room = 5;
+    float waterTemperature = 6;
+    google.protobuf.Timestamp waterTime = 7;
+    google.protobuf.Timestamp finishDateTime = 8;
+    float endTemperature = 9;
+}
+
+message GetDefrostLogsRequest {
+    google.protobuf.Timestamp start_date = 1;
+    google.protobuf.Timestamp end_date = 2;
+}
+
+message GetDefrostLogsResponse {
+    repeated DefrostLogItem defrostLogItemList = 1;
+    int64 count = 2;
+}
+
+message CreateFrostLogRequest {
+    IngredientItem ingredient= 1;
+    google.protobuf.Timestamp productionDate = 2;
+    google.protobuf.Timestamp expirationDate = 3;
+    bool vacuum = 4;
+    google.protobuf.Timestamp vacuumDate = 5;
+    bool vacuumP30Test = 6;
+    UserItem userItem = 7;
+    google.protobuf.Timestamp submissionDate = 8;
+    float quantity = 9;
+}
+
+message GetFrostLogsRequest {
+    google.protobuf.Timestamp start_date = 1;
+    google.protobuf.Timestamp end_date = 2;
+}
+
+message GetFrostLogsResponse {
+    repeated RecipeLogItem frostLogItemList = 1;
+    int64 count = 2;
+}
+
+message CreateSanitizeLogRequest {
+    IngredientItem ingredient= 1;
+    google.protobuf.Timestamp date = 2;
+    google.protobuf.Timestamp preWashTime = 3;
+    int64 chlorinePPM = 4;
+    google.protobuf.Timestamp sanitizeTime = 5;
+    google.protobuf.Timestamp washTime = 7;
+    google.protobuf.Timestamp endTime = 8;
+    bool osoneWash =9;
+    UserItem user = 10;
+    google.protobuf.Timestamp submissionDate = 11;
+    float quantity = 12;
+}
+
+
+message GetSanitizeLogsRequest {
+    google.protobuf.Timestamp start_date = 1;
+    google.protobuf.Timestamp end_date = 2;
+}
+
+message GetSanitizeLogsResponse {
+    repeated SanitizeLogItem sanitizeLogItemList = 1;
+    int64 count = 2;
+}
+
+message GetIngredientListRequest {}
+
+message GetIngredientListResponse {
+    repeated IngredientItem ingredientItem = 1;
+    int64 count = 2;
+}
