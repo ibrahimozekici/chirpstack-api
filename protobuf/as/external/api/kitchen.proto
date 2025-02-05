@@ -40,6 +40,12 @@ service KitchenService {
         };
     }
 
+    rpc GetRecipeIngredients(GetRecipeIngredientsRequest) returns (GetRecipeIngredientsResponse) {
+        option (google.api.http) = {
+            get: "/api/kitchen/recipeIngredients"
+        };
+    }
+
     rpc GetIngredientList(GetIngredientListRequest) returns (GetIngredientListResponse) {
         option (google.api.http) = {
             get: "/api/kitchen/ingredients"
@@ -125,6 +131,11 @@ message RecipeItem {
     string name = 2;
 }
 
+message RecipeIngredientItem {
+    int64 recipe_id = 1;
+    int64 ingredient_id = 2;
+    float quantity = 3;
+}
 message RecipeLogItem {
     int64 recipe_id = 1;
     google.protobuf.Timestamp prep_start_time = 2;
@@ -219,6 +230,14 @@ message GetRecipeListRequest {}
 message GetRecipeListResponse {
     repeated RecipeItem recipe_item = 1;
     int64 count = 2;
+}
+
+message GetRecipeIngredientsRequest {
+    int64 recipe_id = 1;
+}
+
+message GetRecipeIngredientsResponse {
+    repeated RecipeIngredientItem recipe_ingredients = 1;
 }
 
 message CreateRecipeLogRequest {
