@@ -145,7 +145,6 @@ message RecipeLogItem {
     // Ingredient id - quantity map
     map<int64, int64> recycledIngredients = 9;
     google.protobuf.Timestamp submissionDate = 10;
-    float quantity = 11;
 }
 
 message DefrostLogItem {
@@ -241,6 +240,7 @@ message CreateRecipeLogRequest {
     UserItem user = 8;
     // Ingredient id - quantity map
     map<int64, int64> recycledIngredients = 9;
+    google.protobuf.Timestamp submissionDate = 10;
 }
 
 message GetRecipeLogListRequest {
@@ -263,6 +263,7 @@ message CreateDefrostLogRequest {
     google.protobuf.Timestamp waterTime = 7;
     google.protobuf.Timestamp finishDateTime = 8;
     float endTemperature = 9;
+    float quantity = 10;
 }
 
 message GetDefrostLogListRequest {
@@ -293,7 +294,7 @@ message GetFrostLogListRequest {
 }
 
 message GetFrostLogListResponse {
-    repeated RecipeLogItem frostLogItemList = 1;
+    repeated FrostLogItem frostLogItemList = 1;
     int64 count = 2;
 }
 
