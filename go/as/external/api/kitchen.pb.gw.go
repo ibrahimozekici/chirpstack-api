@@ -35,24 +35,6 @@ func request_KitchenService_GetKitchenUser_0(ctx context.Context, marshaler runt
 	var protoReq GetKitchenUserRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
-	}
-
-	protoReq.Id, err = runtime.Int64(val)
-
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
-	}
-
 	msg, err := client.GetKitchenUser(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
@@ -61,24 +43,6 @@ func request_KitchenService_GetKitchenUser_0(ctx context.Context, marshaler runt
 func local_request_KitchenService_GetKitchenUser_0(ctx context.Context, marshaler runtime.Marshaler, server KitchenServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetKitchenUserRequest
 	var metadata runtime.ServerMetadata
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
-	}
-
-	protoReq.Id, err = runtime.Int64(val)
-
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
-	}
 
 	msg, err := server.GetKitchenUser(ctx, &protoReq)
 	return msg, metadata, err
@@ -96,15 +60,15 @@ func request_KitchenService_GetDepartmentListForUser_0(ctx context.Context, mars
 		_   = err
 	)
 
-	val, ok = pathParams["userID"]
+	val, ok = pathParams["user_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "userID")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "user_id")
 	}
 
-	protoReq.UserID, err = runtime.Int64(val)
+	protoReq.UserId, err = runtime.Int64(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "userID", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "user_id", err)
 	}
 
 	msg, err := client.GetDepartmentListForUser(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -123,15 +87,15 @@ func local_request_KitchenService_GetDepartmentListForUser_0(ctx context.Context
 		_   = err
 	)
 
-	val, ok = pathParams["userID"]
+	val, ok = pathParams["user_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "userID")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "user_id")
 	}
 
-	protoReq.UserID, err = runtime.Int64(val)
+	protoReq.UserId, err = runtime.Int64(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "userID", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "user_id", err)
 	}
 
 	msg, err := server.GetDepartmentListForUser(ctx, &protoReq)
@@ -168,15 +132,15 @@ func request_KitchenService_GetActivityListForDepartment_0(ctx context.Context, 
 		_   = err
 	)
 
-	val, ok = pathParams["departmentID"]
+	val, ok = pathParams["department_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "departmentID")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "department_id")
 	}
 
-	protoReq.DepartmentID, err = runtime.Int64(val)
+	protoReq.DepartmentId, err = runtime.Int64(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "departmentID", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "department_id", err)
 	}
 
 	msg, err := client.GetActivityListForDepartment(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -195,15 +159,15 @@ func local_request_KitchenService_GetActivityListForDepartment_0(ctx context.Con
 		_   = err
 	)
 
-	val, ok = pathParams["departmentID"]
+	val, ok = pathParams["department_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "departmentID")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "department_id")
 	}
 
-	protoReq.DepartmentID, err = runtime.Int64(val)
+	protoReq.DepartmentId, err = runtime.Int64(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "departmentID", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "department_id", err)
 	}
 
 	msg, err := server.GetActivityListForDepartment(ctx, &protoReq)
@@ -225,6 +189,39 @@ func local_request_KitchenService_GetRecipeList_0(ctx context.Context, marshaler
 	var metadata runtime.ServerMetadata
 
 	msg, err := server.GetRecipeList(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+var (
+	filter_KitchenService_GetRecipeIngredients_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_KitchenService_GetRecipeIngredients_0(ctx context.Context, marshaler runtime.Marshaler, client KitchenServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetRecipeIngredientsRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_KitchenService_GetRecipeIngredients_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetRecipeIngredients(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_KitchenService_GetRecipeIngredients_0(ctx context.Context, marshaler runtime.Marshaler, server KitchenServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetRecipeIngredientsRequest
+	var metadata runtime.ServerMetadata
+
+	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_KitchenService_GetRecipeIngredients_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.GetRecipeIngredients(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -620,6 +617,26 @@ func RegisterKitchenServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 
 	})
 
+	mux.Handle("GET", pattern_KitchenService_GetRecipeIngredients_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_KitchenService_GetRecipeIngredients_0(rctx, inboundMarshaler, server, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_KitchenService_GetRecipeIngredients_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("GET", pattern_KitchenService_GetIngredientList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -941,6 +958,26 @@ func RegisterKitchenServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 
 	})
 
+	mux.Handle("GET", pattern_KitchenService_GetRecipeIngredients_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_KitchenService_GetRecipeIngredients_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_KitchenService_GetRecipeIngredients_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("GET", pattern_KitchenService_GetIngredientList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1125,15 +1162,17 @@ func RegisterKitchenServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 }
 
 var (
-	pattern_KitchenService_GetKitchenUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "kitchen", "user", "id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_KitchenService_GetKitchenUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "user"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_KitchenService_GetDepartmentListForUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "kitchen", "user", "userID", "departments"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_KitchenService_GetDepartmentListForUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "kitchen", "user", "user_id", "departments"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_KitchenService_GetDepartmentList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "departments"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_KitchenService_GetActivityListForDepartment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "kitchen", "department", "departmentID", "activities"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_KitchenService_GetActivityListForDepartment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "kitchen", "department", "department_id", "activities"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_KitchenService_GetRecipeList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "recipes"}, "", runtime.AssumeColonVerbOpt(true)))
+
+	pattern_KitchenService_GetRecipeIngredients_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "recipeIngredients"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_KitchenService_GetIngredientList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "ingredients"}, "", runtime.AssumeColonVerbOpt(true)))
 
@@ -1164,6 +1203,8 @@ var (
 	forward_KitchenService_GetActivityListForDepartment_0 = runtime.ForwardResponseMessage
 
 	forward_KitchenService_GetRecipeList_0 = runtime.ForwardResponseMessage
+
+	forward_KitchenService_GetRecipeIngredients_0 = runtime.ForwardResponseMessage
 
 	forward_KitchenService_GetIngredientList_0 = runtime.ForwardResponseMessage
 

@@ -28,14 +28,12 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type UserItem struct {
-	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	// Name of the user
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// Department of the user
-	Department           *DepartmentItem `protobuf:"bytes,3,opt,name=department,proto3" json:"department,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
-	XXX_unrecognized     []byte          `json:"-"`
-	XXX_sizecache        int32           `json:"-"`
+	Id                   int64    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	DepartmentId         int64    `protobuf:"varint,3,opt,name=department_id,json=departmentId,proto3" json:"department_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *UserItem) Reset()         { *m = UserItem{} }
@@ -77,20 +75,20 @@ func (m *UserItem) GetName() string {
 	return ""
 }
 
-func (m *UserItem) GetDepartment() *DepartmentItem {
+func (m *UserItem) GetDepartmentId() int64 {
 	if m != nil {
-		return m.Department
+		return m.DepartmentId
 	}
-	return nil
+	return 0
 }
 
 type DepartmentItem struct {
-	Id                   int64           `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name                 string          `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Activities           []*ActivityItem `protobuf:"bytes,3,rep,name=activities,proto3" json:"activities,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
-	XXX_unrecognized     []byte          `json:"-"`
-	XXX_sizecache        int32           `json:"-"`
+	Id                   int64    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	ActivityIds          []int64  `protobuf:"varint,3,rep,packed,name=activity_ids,json=activityIds,proto3" json:"activity_ids,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *DepartmentItem) Reset()         { *m = DepartmentItem{} }
@@ -132,9 +130,9 @@ func (m *DepartmentItem) GetName() string {
 	return ""
 }
 
-func (m *DepartmentItem) GetActivities() []*ActivityItem {
+func (m *DepartmentItem) GetActivityIds() []int64 {
 	if m != nil {
-		return m.Activities
+		return m.ActivityIds
 	}
 	return nil
 }
@@ -250,13 +248,11 @@ func (m *IngredientItem) GetRecycle() bool {
 }
 
 type RecipeItem struct {
-	Id   int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// Ingredient id - quantity map
-	IngredientQuantity   map[int64]int64 `protobuf:"bytes,3,rep,name=ingredientQuantity,proto3" json:"ingredientQuantity,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
-	XXX_unrecognized     []byte          `json:"-"`
-	XXX_sizecache        int32           `json:"-"`
+	Id                   int64    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *RecipeItem) Reset()         { *m = RecipeItem{} }
@@ -298,25 +294,73 @@ func (m *RecipeItem) GetName() string {
 	return ""
 }
 
-func (m *RecipeItem) GetIngredientQuantity() map[int64]int64 {
+type RecipeIngredientItem struct {
+	RecipeId             int64    `protobuf:"varint,1,opt,name=recipe_id,json=recipeId,proto3" json:"recipe_id,omitempty"`
+	IngredientId         int64    `protobuf:"varint,2,opt,name=ingredient_id,json=ingredientId,proto3" json:"ingredient_id,omitempty"`
+	Quantity             float32  `protobuf:"fixed32,3,opt,name=quantity,proto3" json:"quantity,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *RecipeIngredientItem) Reset()         { *m = RecipeIngredientItem{} }
+func (m *RecipeIngredientItem) String() string { return proto.CompactTextString(m) }
+func (*RecipeIngredientItem) ProtoMessage()    {}
+func (*RecipeIngredientItem) Descriptor() ([]byte, []int) {
+	return fileDescriptor_baa1b9958bde2ece, []int{5}
+}
+
+func (m *RecipeIngredientItem) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RecipeIngredientItem.Unmarshal(m, b)
+}
+func (m *RecipeIngredientItem) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RecipeIngredientItem.Marshal(b, m, deterministic)
+}
+func (m *RecipeIngredientItem) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RecipeIngredientItem.Merge(m, src)
+}
+func (m *RecipeIngredientItem) XXX_Size() int {
+	return xxx_messageInfo_RecipeIngredientItem.Size(m)
+}
+func (m *RecipeIngredientItem) XXX_DiscardUnknown() {
+	xxx_messageInfo_RecipeIngredientItem.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RecipeIngredientItem proto.InternalMessageInfo
+
+func (m *RecipeIngredientItem) GetRecipeId() int64 {
 	if m != nil {
-		return m.IngredientQuantity
+		return m.RecipeId
 	}
-	return nil
+	return 0
+}
+
+func (m *RecipeIngredientItem) GetIngredientId() int64 {
+	if m != nil {
+		return m.IngredientId
+	}
+	return 0
+}
+
+func (m *RecipeIngredientItem) GetQuantity() float32 {
+	if m != nil {
+		return m.Quantity
+	}
+	return 0
 }
 
 type RecipeLogItem struct {
-	Recipe        *RecipeItem          `protobuf:"bytes,1,opt,name=recipe,proto3" json:"recipe,omitempty"`
-	PrepStartTime *timestamp.Timestamp `protobuf:"bytes,2,opt,name=prepStartTime,proto3" json:"prepStartTime,omitempty"`
-	PrepEndTime   *timestamp.Timestamp `protobuf:"bytes,3,opt,name=prepEndTime,proto3" json:"prepEndTime,omitempty"`
-	CookHeat      int64                `protobuf:"varint,4,opt,name=cookHeat,proto3" json:"cookHeat,omitempty"`
-	CoolStartTime *timestamp.Timestamp `protobuf:"bytes,5,opt,name=coolStartTime,proto3" json:"coolStartTime,omitempty"`
-	CoolEndTime   *timestamp.Timestamp `protobuf:"bytes,6,opt,name=coolEndTime,proto3" json:"coolEndTime,omitempty"`
-	CoolHeat      int64                `protobuf:"varint,7,opt,name=coolHeat,proto3" json:"coolHeat,omitempty"`
-	User          *UserItem            `protobuf:"bytes,8,opt,name=user,proto3" json:"user,omitempty"`
-	// Ingredient id - quantity map
-	RecycledIngredients  map[int64]int64      `protobuf:"bytes,9,rep,name=recycledIngredients,proto3" json:"recycledIngredients,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
-	SubmissionDate       *timestamp.Timestamp `protobuf:"bytes,10,opt,name=submissionDate,proto3" json:"submissionDate,omitempty"`
+	RecipeId             int64                `protobuf:"varint,1,opt,name=recipe_id,json=recipeId,proto3" json:"recipe_id,omitempty"`
+	PrepStartTime        *timestamp.Timestamp `protobuf:"bytes,2,opt,name=prep_start_time,json=prepStartTime,proto3" json:"prep_start_time,omitempty"`
+	PrepEndTime          *timestamp.Timestamp `protobuf:"bytes,3,opt,name=prep_end_time,json=prepEndTime,proto3" json:"prep_end_time,omitempty"`
+	CookHeat             int64                `protobuf:"varint,4,opt,name=cook_heat,json=cookHeat,proto3" json:"cook_heat,omitempty"`
+	CoolStartTime        *timestamp.Timestamp `protobuf:"bytes,5,opt,name=cool_start_time,json=coolStartTime,proto3" json:"cool_start_time,omitempty"`
+	CoolEndTime          *timestamp.Timestamp `protobuf:"bytes,6,opt,name=cool_end_time,json=coolEndTime,proto3" json:"cool_end_time,omitempty"`
+	CoolHeat             int64                `protobuf:"varint,7,opt,name=cool_heat,json=coolHeat,proto3" json:"cool_heat,omitempty"`
+	UserId               int64                `protobuf:"varint,8,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	IngredientQuantity   map[int64]int64      `protobuf:"bytes,9,rep,name=ingredient_quantity,json=ingredientQuantity,proto3" json:"ingredient_quantity,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
+	RecycledIngredients  map[int64]int64      `protobuf:"bytes,10,rep,name=recycled_ingredients,json=recycledIngredients,proto3" json:"recycled_ingredients,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
+	SubmissionDate       *timestamp.Timestamp `protobuf:"bytes,11,opt,name=submission_date,json=submissionDate,proto3" json:"submission_date,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
 	XXX_sizecache        int32                `json:"-"`
@@ -326,7 +370,7 @@ func (m *RecipeLogItem) Reset()         { *m = RecipeLogItem{} }
 func (m *RecipeLogItem) String() string { return proto.CompactTextString(m) }
 func (*RecipeLogItem) ProtoMessage()    {}
 func (*RecipeLogItem) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{5}
+	return fileDescriptor_baa1b9958bde2ece, []int{6}
 }
 
 func (m *RecipeLogItem) XXX_Unmarshal(b []byte) error {
@@ -347,11 +391,11 @@ func (m *RecipeLogItem) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_RecipeLogItem proto.InternalMessageInfo
 
-func (m *RecipeLogItem) GetRecipe() *RecipeItem {
+func (m *RecipeLogItem) GetRecipeId() int64 {
 	if m != nil {
-		return m.Recipe
+		return m.RecipeId
 	}
-	return nil
+	return 0
 }
 
 func (m *RecipeLogItem) GetPrepStartTime() *timestamp.Timestamp {
@@ -396,9 +440,16 @@ func (m *RecipeLogItem) GetCoolHeat() int64 {
 	return 0
 }
 
-func (m *RecipeLogItem) GetUser() *UserItem {
+func (m *RecipeLogItem) GetUserId() int64 {
 	if m != nil {
-		return m.User
+		return m.UserId
+	}
+	return 0
+}
+
+func (m *RecipeLogItem) GetIngredientQuantity() map[int64]int64 {
+	if m != nil {
+		return m.IngredientQuantity
 	}
 	return nil
 }
@@ -418,17 +469,18 @@ func (m *RecipeLogItem) GetSubmissionDate() *timestamp.Timestamp {
 }
 
 type DefrostLogItem struct {
-	Ingredient           *IngredientItem      `protobuf:"bytes,1,opt,name=ingredient,proto3" json:"ingredient,omitempty"`
-	StartTemperature     float32              `protobuf:"fixed32,2,opt,name=startTemperature,proto3" json:"startTemperature,omitempty"`
+	IngredientId         int64                `protobuf:"varint,1,opt,name=ingredient_id,json=ingredientId,proto3" json:"ingredient_id,omitempty"`
+	StartTemperature     float32              `protobuf:"fixed32,2,opt,name=start_temperature,json=startTemperature,proto3" json:"start_temperature,omitempty"`
 	ExpireDate           *timestamp.Timestamp `protobuf:"bytes,3,opt,name=expire_date,json=expireDate,proto3" json:"expire_date,omitempty"`
 	ColdWater            bool                 `protobuf:"varint,4,opt,name=cold_water,json=coldWater,proto3" json:"cold_water,omitempty"`
 	ColdRoom             bool                 `protobuf:"varint,5,opt,name=cold_room,json=coldRoom,proto3" json:"cold_room,omitempty"`
-	WaterTemperature     float32              `protobuf:"fixed32,6,opt,name=waterTemperature,proto3" json:"waterTemperature,omitempty"`
-	WaterTime            *timestamp.Timestamp `protobuf:"bytes,7,opt,name=waterTime,proto3" json:"waterTime,omitempty"`
-	FinishDateTime       *timestamp.Timestamp `protobuf:"bytes,8,opt,name=finishDateTime,proto3" json:"finishDateTime,omitempty"`
-	EndTemperature       float32              `protobuf:"fixed32,9,opt,name=endTemperature,proto3" json:"endTemperature,omitempty"`
-	SubmissionDate       *timestamp.Timestamp `protobuf:"bytes,10,opt,name=submissionDate,proto3" json:"submissionDate,omitempty"`
+	WaterTemperature     float32              `protobuf:"fixed32,6,opt,name=water_temperature,json=waterTemperature,proto3" json:"water_temperature,omitempty"`
+	WaterTime            *timestamp.Timestamp `protobuf:"bytes,7,opt,name=water_time,json=waterTime,proto3" json:"water_time,omitempty"`
+	FinishDateTime       *timestamp.Timestamp `protobuf:"bytes,8,opt,name=finish_date_time,json=finishDateTime,proto3" json:"finish_date_time,omitempty"`
+	EndTemperature       float32              `protobuf:"fixed32,9,opt,name=end_temperature,json=endTemperature,proto3" json:"end_temperature,omitempty"`
+	SubmissionDate       *timestamp.Timestamp `protobuf:"bytes,10,opt,name=submission_date,json=submissionDate,proto3" json:"submission_date,omitempty"`
 	Quantity             float32              `protobuf:"fixed32,11,opt,name=quantity,proto3" json:"quantity,omitempty"`
+	UserId               int64                `protobuf:"varint,12,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
 	XXX_sizecache        int32                `json:"-"`
@@ -438,7 +490,7 @@ func (m *DefrostLogItem) Reset()         { *m = DefrostLogItem{} }
 func (m *DefrostLogItem) String() string { return proto.CompactTextString(m) }
 func (*DefrostLogItem) ProtoMessage()    {}
 func (*DefrostLogItem) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{6}
+	return fileDescriptor_baa1b9958bde2ece, []int{7}
 }
 
 func (m *DefrostLogItem) XXX_Unmarshal(b []byte) error {
@@ -459,11 +511,11 @@ func (m *DefrostLogItem) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_DefrostLogItem proto.InternalMessageInfo
 
-func (m *DefrostLogItem) GetIngredient() *IngredientItem {
+func (m *DefrostLogItem) GetIngredientId() int64 {
 	if m != nil {
-		return m.Ingredient
+		return m.IngredientId
 	}
-	return nil
+	return 0
 }
 
 func (m *DefrostLogItem) GetStartTemperature() float32 {
@@ -536,15 +588,22 @@ func (m *DefrostLogItem) GetQuantity() float32 {
 	return 0
 }
 
+func (m *DefrostLogItem) GetUserId() int64 {
+	if m != nil {
+		return m.UserId
+	}
+	return 0
+}
+
 type FrostLogItem struct {
-	Ingredient           *IngredientItem      `protobuf:"bytes,1,opt,name=ingredient,proto3" json:"ingredient,omitempty"`
-	ProductionDate       *timestamp.Timestamp `protobuf:"bytes,2,opt,name=productionDate,proto3" json:"productionDate,omitempty"`
-	ExpirationDate       *timestamp.Timestamp `protobuf:"bytes,3,opt,name=expirationDate,proto3" json:"expirationDate,omitempty"`
+	IngredientId         int64                `protobuf:"varint,1,opt,name=ingredient_id,json=ingredientId,proto3" json:"ingredient_id,omitempty"`
+	ProductionDate       *timestamp.Timestamp `protobuf:"bytes,2,opt,name=production_date,json=productionDate,proto3" json:"production_date,omitempty"`
+	ExpirationDate       *timestamp.Timestamp `protobuf:"bytes,3,opt,name=expiration_date,json=expirationDate,proto3" json:"expiration_date,omitempty"`
 	Vacuum               bool                 `protobuf:"varint,4,opt,name=vacuum,proto3" json:"vacuum,omitempty"`
-	VacuumDate           *timestamp.Timestamp `protobuf:"bytes,5,opt,name=vacuumDate,proto3" json:"vacuumDate,omitempty"`
-	VacuumP30Test        bool                 `protobuf:"varint,6,opt,name=vacuumP30Test,proto3" json:"vacuumP30Test,omitempty"`
-	UserItem             *UserItem            `protobuf:"bytes,7,opt,name=userItem,proto3" json:"userItem,omitempty"`
-	SubmissionDate       *timestamp.Timestamp `protobuf:"bytes,8,opt,name=submissionDate,proto3" json:"submissionDate,omitempty"`
+	VacuumDate           *timestamp.Timestamp `protobuf:"bytes,5,opt,name=vacuum_date,json=vacuumDate,proto3" json:"vacuum_date,omitempty"`
+	VacuumP30Test        bool                 `protobuf:"varint,6,opt,name=vacuum_p30_test,json=vacuumP30Test,proto3" json:"vacuum_p30_test,omitempty"`
+	UserId               int64                `protobuf:"varint,7,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	SubmissionDate       *timestamp.Timestamp `protobuf:"bytes,8,opt,name=submission_date,json=submissionDate,proto3" json:"submission_date,omitempty"`
 	Quantity             float32              `protobuf:"fixed32,9,opt,name=quantity,proto3" json:"quantity,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
@@ -555,7 +614,7 @@ func (m *FrostLogItem) Reset()         { *m = FrostLogItem{} }
 func (m *FrostLogItem) String() string { return proto.CompactTextString(m) }
 func (*FrostLogItem) ProtoMessage()    {}
 func (*FrostLogItem) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{7}
+	return fileDescriptor_baa1b9958bde2ece, []int{8}
 }
 
 func (m *FrostLogItem) XXX_Unmarshal(b []byte) error {
@@ -576,11 +635,11 @@ func (m *FrostLogItem) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_FrostLogItem proto.InternalMessageInfo
 
-func (m *FrostLogItem) GetIngredient() *IngredientItem {
+func (m *FrostLogItem) GetIngredientId() int64 {
 	if m != nil {
-		return m.Ingredient
+		return m.IngredientId
 	}
-	return nil
+	return 0
 }
 
 func (m *FrostLogItem) GetProductionDate() *timestamp.Timestamp {
@@ -618,11 +677,11 @@ func (m *FrostLogItem) GetVacuumP30Test() bool {
 	return false
 }
 
-func (m *FrostLogItem) GetUserItem() *UserItem {
+func (m *FrostLogItem) GetUserId() int64 {
 	if m != nil {
-		return m.UserItem
+		return m.UserId
 	}
-	return nil
+	return 0
 }
 
 func (m *FrostLogItem) GetSubmissionDate() *timestamp.Timestamp {
@@ -640,16 +699,16 @@ func (m *FrostLogItem) GetQuantity() float32 {
 }
 
 type SanitizeLogItem struct {
-	Ingredient           *IngredientItem      `protobuf:"bytes,1,opt,name=ingredient,proto3" json:"ingredient,omitempty"`
+	IngredientId         int64                `protobuf:"varint,1,opt,name=ingredient_id,json=ingredientId,proto3" json:"ingredient_id,omitempty"`
 	Date                 *timestamp.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
-	PreWashTime          *timestamp.Timestamp `protobuf:"bytes,3,opt,name=preWashTime,proto3" json:"preWashTime,omitempty"`
-	ChlorinePPM          int64                `protobuf:"varint,4,opt,name=chlorinePPM,proto3" json:"chlorinePPM,omitempty"`
-	SanitizeTime         *timestamp.Timestamp `protobuf:"bytes,5,opt,name=sanitizeTime,proto3" json:"sanitizeTime,omitempty"`
-	WashTime             *timestamp.Timestamp `protobuf:"bytes,7,opt,name=washTime,proto3" json:"washTime,omitempty"`
-	EndTime              *timestamp.Timestamp `protobuf:"bytes,8,opt,name=endTime,proto3" json:"endTime,omitempty"`
-	OsoneWash            bool                 `protobuf:"varint,9,opt,name=osoneWash,proto3" json:"osoneWash,omitempty"`
-	User                 *UserItem            `protobuf:"bytes,10,opt,name=user,proto3" json:"user,omitempty"`
-	SubmissionDate       *timestamp.Timestamp `protobuf:"bytes,11,opt,name=submissionDate,proto3" json:"submissionDate,omitempty"`
+	PreWashTime          *timestamp.Timestamp `protobuf:"bytes,3,opt,name=pre_wash_time,json=preWashTime,proto3" json:"pre_wash_time,omitempty"`
+	ChlorinePpm          int64                `protobuf:"varint,4,opt,name=chlorine_ppm,json=chlorinePpm,proto3" json:"chlorine_ppm,omitempty"`
+	SanitizeTime         *timestamp.Timestamp `protobuf:"bytes,5,opt,name=sanitize_time,json=sanitizeTime,proto3" json:"sanitize_time,omitempty"`
+	WashTime             *timestamp.Timestamp `protobuf:"bytes,7,opt,name=wash_time,json=washTime,proto3" json:"wash_time,omitempty"`
+	EndTime              *timestamp.Timestamp `protobuf:"bytes,8,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty"`
+	OsoneWash            bool                 `protobuf:"varint,9,opt,name=osone_wash,json=osoneWash,proto3" json:"osone_wash,omitempty"`
+	UserId               int64                `protobuf:"varint,10,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	SubmissionDate       *timestamp.Timestamp `protobuf:"bytes,11,opt,name=submission_date,json=submissionDate,proto3" json:"submission_date,omitempty"`
 	Quantity             float32              `protobuf:"fixed32,12,opt,name=quantity,proto3" json:"quantity,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
@@ -660,7 +719,7 @@ func (m *SanitizeLogItem) Reset()         { *m = SanitizeLogItem{} }
 func (m *SanitizeLogItem) String() string { return proto.CompactTextString(m) }
 func (*SanitizeLogItem) ProtoMessage()    {}
 func (*SanitizeLogItem) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{8}
+	return fileDescriptor_baa1b9958bde2ece, []int{9}
 }
 
 func (m *SanitizeLogItem) XXX_Unmarshal(b []byte) error {
@@ -681,11 +740,11 @@ func (m *SanitizeLogItem) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_SanitizeLogItem proto.InternalMessageInfo
 
-func (m *SanitizeLogItem) GetIngredient() *IngredientItem {
+func (m *SanitizeLogItem) GetIngredientId() int64 {
 	if m != nil {
-		return m.Ingredient
+		return m.IngredientId
 	}
-	return nil
+	return 0
 }
 
 func (m *SanitizeLogItem) GetDate() *timestamp.Timestamp {
@@ -702,9 +761,9 @@ func (m *SanitizeLogItem) GetPreWashTime() *timestamp.Timestamp {
 	return nil
 }
 
-func (m *SanitizeLogItem) GetChlorinePPM() int64 {
+func (m *SanitizeLogItem) GetChlorinePpm() int64 {
 	if m != nil {
-		return m.ChlorinePPM
+		return m.ChlorinePpm
 	}
 	return 0
 }
@@ -737,11 +796,11 @@ func (m *SanitizeLogItem) GetOsoneWash() bool {
 	return false
 }
 
-func (m *SanitizeLogItem) GetUser() *UserItem {
+func (m *SanitizeLogItem) GetUserId() int64 {
 	if m != nil {
-		return m.User
+		return m.UserId
 	}
-	return nil
+	return 0
 }
 
 func (m *SanitizeLogItem) GetSubmissionDate() *timestamp.Timestamp {
@@ -759,7 +818,6 @@ func (m *SanitizeLogItem) GetQuantity() float32 {
 }
 
 type GetKitchenUserRequest struct {
-	Id                   int64    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -769,7 +827,7 @@ func (m *GetKitchenUserRequest) Reset()         { *m = GetKitchenUserRequest{} }
 func (m *GetKitchenUserRequest) String() string { return proto.CompactTextString(m) }
 func (*GetKitchenUserRequest) ProtoMessage()    {}
 func (*GetKitchenUserRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{9}
+	return fileDescriptor_baa1b9958bde2ece, []int{10}
 }
 
 func (m *GetKitchenUserRequest) XXX_Unmarshal(b []byte) error {
@@ -790,15 +848,8 @@ func (m *GetKitchenUserRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetKitchenUserRequest proto.InternalMessageInfo
 
-func (m *GetKitchenUserRequest) GetId() int64 {
-	if m != nil {
-		return m.Id
-	}
-	return 0
-}
-
 type GetKitchenUserResponse struct {
-	UserItem             []*UserItem `protobuf:"bytes,1,rep,name=userItem,proto3" json:"userItem,omitempty"`
+	UserItem             []*UserItem `protobuf:"bytes,1,rep,name=user_item,json=userItem,proto3" json:"user_item,omitempty"`
 	Count                int64       `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
 	XXX_unrecognized     []byte      `json:"-"`
@@ -809,7 +860,7 @@ func (m *GetKitchenUserResponse) Reset()         { *m = GetKitchenUserResponse{}
 func (m *GetKitchenUserResponse) String() string { return proto.CompactTextString(m) }
 func (*GetKitchenUserResponse) ProtoMessage()    {}
 func (*GetKitchenUserResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{10}
+	return fileDescriptor_baa1b9958bde2ece, []int{11}
 }
 
 func (m *GetKitchenUserResponse) XXX_Unmarshal(b []byte) error {
@@ -845,7 +896,7 @@ func (m *GetKitchenUserResponse) GetCount() int64 {
 }
 
 type GetActivityListForDepartmentRequest struct {
-	DepartmentID         int64    `protobuf:"varint,1,opt,name=departmentID,proto3" json:"departmentID,omitempty"`
+	DepartmentId         int64    `protobuf:"varint,1,opt,name=department_id,json=departmentId,proto3" json:"department_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -855,7 +906,7 @@ func (m *GetActivityListForDepartmentRequest) Reset()         { *m = GetActivity
 func (m *GetActivityListForDepartmentRequest) String() string { return proto.CompactTextString(m) }
 func (*GetActivityListForDepartmentRequest) ProtoMessage()    {}
 func (*GetActivityListForDepartmentRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{11}
+	return fileDescriptor_baa1b9958bde2ece, []int{12}
 }
 
 func (m *GetActivityListForDepartmentRequest) XXX_Unmarshal(b []byte) error {
@@ -876,15 +927,15 @@ func (m *GetActivityListForDepartmentRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetActivityListForDepartmentRequest proto.InternalMessageInfo
 
-func (m *GetActivityListForDepartmentRequest) GetDepartmentID() int64 {
+func (m *GetActivityListForDepartmentRequest) GetDepartmentId() int64 {
 	if m != nil {
-		return m.DepartmentID
+		return m.DepartmentId
 	}
 	return 0
 }
 
 type GetActivityListForDepartmentResponse struct {
-	ActivityItem         []*ActivityItem `protobuf:"bytes,1,rep,name=activityItem,proto3" json:"activityItem,omitempty"`
+	ActivityItem         []*ActivityItem `protobuf:"bytes,1,rep,name=activity_item,json=activityItem,proto3" json:"activity_item,omitempty"`
 	Count                int64           `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
 	XXX_unrecognized     []byte          `json:"-"`
@@ -895,7 +946,7 @@ func (m *GetActivityListForDepartmentResponse) Reset()         { *m = GetActivit
 func (m *GetActivityListForDepartmentResponse) String() string { return proto.CompactTextString(m) }
 func (*GetActivityListForDepartmentResponse) ProtoMessage()    {}
 func (*GetActivityListForDepartmentResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{12}
+	return fileDescriptor_baa1b9958bde2ece, []int{13}
 }
 
 func (m *GetActivityListForDepartmentResponse) XXX_Unmarshal(b []byte) error {
@@ -931,7 +982,7 @@ func (m *GetActivityListForDepartmentResponse) GetCount() int64 {
 }
 
 type GetDepartmentListForUserRequest struct {
-	UserID               int64    `protobuf:"varint,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	UserId               int64    `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -941,7 +992,7 @@ func (m *GetDepartmentListForUserRequest) Reset()         { *m = GetDepartmentLi
 func (m *GetDepartmentListForUserRequest) String() string { return proto.CompactTextString(m) }
 func (*GetDepartmentListForUserRequest) ProtoMessage()    {}
 func (*GetDepartmentListForUserRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{13}
+	return fileDescriptor_baa1b9958bde2ece, []int{14}
 }
 
 func (m *GetDepartmentListForUserRequest) XXX_Unmarshal(b []byte) error {
@@ -962,15 +1013,15 @@ func (m *GetDepartmentListForUserRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetDepartmentListForUserRequest proto.InternalMessageInfo
 
-func (m *GetDepartmentListForUserRequest) GetUserID() int64 {
+func (m *GetDepartmentListForUserRequest) GetUserId() int64 {
 	if m != nil {
-		return m.UserID
+		return m.UserId
 	}
 	return 0
 }
 
 type GetDepartmentListForUserResponse struct {
-	DepartmentItem       []*DepartmentItem `protobuf:"bytes,1,rep,name=departmentItem,proto3" json:"departmentItem,omitempty"`
+	DepartmentItem       []*DepartmentItem `protobuf:"bytes,1,rep,name=department_item,json=departmentItem,proto3" json:"department_item,omitempty"`
 	Count                int64             `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
 	XXX_unrecognized     []byte            `json:"-"`
@@ -981,7 +1032,7 @@ func (m *GetDepartmentListForUserResponse) Reset()         { *m = GetDepartmentL
 func (m *GetDepartmentListForUserResponse) String() string { return proto.CompactTextString(m) }
 func (*GetDepartmentListForUserResponse) ProtoMessage()    {}
 func (*GetDepartmentListForUserResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{14}
+	return fileDescriptor_baa1b9958bde2ece, []int{15}
 }
 
 func (m *GetDepartmentListForUserResponse) XXX_Unmarshal(b []byte) error {
@@ -1026,7 +1077,7 @@ func (m *GetDepartmentListRequest) Reset()         { *m = GetDepartmentListReque
 func (m *GetDepartmentListRequest) String() string { return proto.CompactTextString(m) }
 func (*GetDepartmentListRequest) ProtoMessage()    {}
 func (*GetDepartmentListRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{15}
+	return fileDescriptor_baa1b9958bde2ece, []int{16}
 }
 
 func (m *GetDepartmentListRequest) XXX_Unmarshal(b []byte) error {
@@ -1048,7 +1099,7 @@ func (m *GetDepartmentListRequest) XXX_DiscardUnknown() {
 var xxx_messageInfo_GetDepartmentListRequest proto.InternalMessageInfo
 
 type GetDepartmentListResponse struct {
-	DepartmentItem       []*DepartmentItem `protobuf:"bytes,1,rep,name=departmentItem,proto3" json:"departmentItem,omitempty"`
+	DepartmentItem       []*DepartmentItem `protobuf:"bytes,1,rep,name=department_item,json=departmentItem,proto3" json:"department_item,omitempty"`
 	Count                int64             `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
 	XXX_unrecognized     []byte            `json:"-"`
@@ -1059,7 +1110,7 @@ func (m *GetDepartmentListResponse) Reset()         { *m = GetDepartmentListResp
 func (m *GetDepartmentListResponse) String() string { return proto.CompactTextString(m) }
 func (*GetDepartmentListResponse) ProtoMessage()    {}
 func (*GetDepartmentListResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{16}
+	return fileDescriptor_baa1b9958bde2ece, []int{17}
 }
 
 func (m *GetDepartmentListResponse) XXX_Unmarshal(b []byte) error {
@@ -1104,7 +1155,7 @@ func (m *GetRecipeListRequest) Reset()         { *m = GetRecipeListRequest{} }
 func (m *GetRecipeListRequest) String() string { return proto.CompactTextString(m) }
 func (*GetRecipeListRequest) ProtoMessage()    {}
 func (*GetRecipeListRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{17}
+	return fileDescriptor_baa1b9958bde2ece, []int{18}
 }
 
 func (m *GetRecipeListRequest) XXX_Unmarshal(b []byte) error {
@@ -1126,7 +1177,7 @@ func (m *GetRecipeListRequest) XXX_DiscardUnknown() {
 var xxx_messageInfo_GetRecipeListRequest proto.InternalMessageInfo
 
 type GetRecipeListResponse struct {
-	RecipeItem           []*RecipeItem `protobuf:"bytes,1,rep,name=recipeItem,proto3" json:"recipeItem,omitempty"`
+	RecipeItem           []*RecipeItem `protobuf:"bytes,1,rep,name=recipe_item,json=recipeItem,proto3" json:"recipe_item,omitempty"`
 	Count                int64         `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
 	XXX_unrecognized     []byte        `json:"-"`
@@ -1137,7 +1188,7 @@ func (m *GetRecipeListResponse) Reset()         { *m = GetRecipeListResponse{} }
 func (m *GetRecipeListResponse) String() string { return proto.CompactTextString(m) }
 func (*GetRecipeListResponse) ProtoMessage()    {}
 func (*GetRecipeListResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{18}
+	return fileDescriptor_baa1b9958bde2ece, []int{19}
 }
 
 func (m *GetRecipeListResponse) XXX_Unmarshal(b []byte) error {
@@ -1172,18 +1223,95 @@ func (m *GetRecipeListResponse) GetCount() int64 {
 	return 0
 }
 
+type GetRecipeIngredientsRequest struct {
+	RecipeId             int64    `protobuf:"varint,1,opt,name=recipe_id,json=recipeId,proto3" json:"recipe_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetRecipeIngredientsRequest) Reset()         { *m = GetRecipeIngredientsRequest{} }
+func (m *GetRecipeIngredientsRequest) String() string { return proto.CompactTextString(m) }
+func (*GetRecipeIngredientsRequest) ProtoMessage()    {}
+func (*GetRecipeIngredientsRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_baa1b9958bde2ece, []int{20}
+}
+
+func (m *GetRecipeIngredientsRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetRecipeIngredientsRequest.Unmarshal(m, b)
+}
+func (m *GetRecipeIngredientsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetRecipeIngredientsRequest.Marshal(b, m, deterministic)
+}
+func (m *GetRecipeIngredientsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetRecipeIngredientsRequest.Merge(m, src)
+}
+func (m *GetRecipeIngredientsRequest) XXX_Size() int {
+	return xxx_messageInfo_GetRecipeIngredientsRequest.Size(m)
+}
+func (m *GetRecipeIngredientsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetRecipeIngredientsRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetRecipeIngredientsRequest proto.InternalMessageInfo
+
+func (m *GetRecipeIngredientsRequest) GetRecipeId() int64 {
+	if m != nil {
+		return m.RecipeId
+	}
+	return 0
+}
+
+type GetRecipeIngredientsResponse struct {
+	RecipeIngredients    []*RecipeIngredientItem `protobuf:"bytes,1,rep,name=recipe_ingredients,json=recipeIngredients,proto3" json:"recipe_ingredients,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
+	XXX_unrecognized     []byte                  `json:"-"`
+	XXX_sizecache        int32                   `json:"-"`
+}
+
+func (m *GetRecipeIngredientsResponse) Reset()         { *m = GetRecipeIngredientsResponse{} }
+func (m *GetRecipeIngredientsResponse) String() string { return proto.CompactTextString(m) }
+func (*GetRecipeIngredientsResponse) ProtoMessage()    {}
+func (*GetRecipeIngredientsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_baa1b9958bde2ece, []int{21}
+}
+
+func (m *GetRecipeIngredientsResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetRecipeIngredientsResponse.Unmarshal(m, b)
+}
+func (m *GetRecipeIngredientsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetRecipeIngredientsResponse.Marshal(b, m, deterministic)
+}
+func (m *GetRecipeIngredientsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetRecipeIngredientsResponse.Merge(m, src)
+}
+func (m *GetRecipeIngredientsResponse) XXX_Size() int {
+	return xxx_messageInfo_GetRecipeIngredientsResponse.Size(m)
+}
+func (m *GetRecipeIngredientsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetRecipeIngredientsResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetRecipeIngredientsResponse proto.InternalMessageInfo
+
+func (m *GetRecipeIngredientsResponse) GetRecipeIngredients() []*RecipeIngredientItem {
+	if m != nil {
+		return m.RecipeIngredients
+	}
+	return nil
+}
+
 type CreateRecipeLogRequest struct {
-	Recipe        *RecipeItem          `protobuf:"bytes,1,opt,name=recipe,proto3" json:"recipe,omitempty"`
-	PrepStartTime *timestamp.Timestamp `protobuf:"bytes,2,opt,name=prepStartTime,proto3" json:"prepStartTime,omitempty"`
-	PrepEndTime   *timestamp.Timestamp `protobuf:"bytes,3,opt,name=prepEndTime,proto3" json:"prepEndTime,omitempty"`
-	CookHeat      int64                `protobuf:"varint,4,opt,name=cookHeat,proto3" json:"cookHeat,omitempty"`
-	CoolStartTime *timestamp.Timestamp `protobuf:"bytes,5,opt,name=coolStartTime,proto3" json:"coolStartTime,omitempty"`
-	CoolEndTime   *timestamp.Timestamp `protobuf:"bytes,6,opt,name=coolEndTime,proto3" json:"coolEndTime,omitempty"`
-	CoolHeat      int64                `protobuf:"varint,7,opt,name=coolHeat,proto3" json:"coolHeat,omitempty"`
-	User          *UserItem            `protobuf:"bytes,8,opt,name=user,proto3" json:"user,omitempty"`
-	// Ingredient id - quantity map
-	RecycledIngredients  map[int64]int64      `protobuf:"bytes,9,rep,name=recycledIngredients,proto3" json:"recycledIngredients,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
-	SubmissionDate       *timestamp.Timestamp `protobuf:"bytes,10,opt,name=submissionDate,proto3" json:"submissionDate,omitempty"`
+	RecipeId             int64                `protobuf:"varint,1,opt,name=recipe_id,json=recipeId,proto3" json:"recipe_id,omitempty"`
+	PrepStartTime        *timestamp.Timestamp `protobuf:"bytes,2,opt,name=prep_start_time,json=prepStartTime,proto3" json:"prep_start_time,omitempty"`
+	PrepEndTime          *timestamp.Timestamp `protobuf:"bytes,3,opt,name=prep_end_time,json=prepEndTime,proto3" json:"prep_end_time,omitempty"`
+	CookHeat             int64                `protobuf:"varint,4,opt,name=cook_heat,json=cookHeat,proto3" json:"cook_heat,omitempty"`
+	CoolStartTime        *timestamp.Timestamp `protobuf:"bytes,5,opt,name=cool_start_time,json=coolStartTime,proto3" json:"cool_start_time,omitempty"`
+	CoolEndTime          *timestamp.Timestamp `protobuf:"bytes,6,opt,name=cool_end_time,json=coolEndTime,proto3" json:"cool_end_time,omitempty"`
+	CoolHeat             int64                `protobuf:"varint,7,opt,name=cool_heat,json=coolHeat,proto3" json:"cool_heat,omitempty"`
+	UserId               int64                `protobuf:"varint,8,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	RecycledIngredients  map[int64]int64      `protobuf:"bytes,9,rep,name=recycled_ingredients,json=recycledIngredients,proto3" json:"recycled_ingredients,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
+	SubmissionDate       *timestamp.Timestamp `protobuf:"bytes,10,opt,name=submission_date,json=submissionDate,proto3" json:"submission_date,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
 	XXX_sizecache        int32                `json:"-"`
@@ -1193,7 +1321,7 @@ func (m *CreateRecipeLogRequest) Reset()         { *m = CreateRecipeLogRequest{}
 func (m *CreateRecipeLogRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateRecipeLogRequest) ProtoMessage()    {}
 func (*CreateRecipeLogRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{19}
+	return fileDescriptor_baa1b9958bde2ece, []int{22}
 }
 
 func (m *CreateRecipeLogRequest) XXX_Unmarshal(b []byte) error {
@@ -1214,11 +1342,11 @@ func (m *CreateRecipeLogRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CreateRecipeLogRequest proto.InternalMessageInfo
 
-func (m *CreateRecipeLogRequest) GetRecipe() *RecipeItem {
+func (m *CreateRecipeLogRequest) GetRecipeId() int64 {
 	if m != nil {
-		return m.Recipe
+		return m.RecipeId
 	}
-	return nil
+	return 0
 }
 
 func (m *CreateRecipeLogRequest) GetPrepStartTime() *timestamp.Timestamp {
@@ -1263,11 +1391,11 @@ func (m *CreateRecipeLogRequest) GetCoolHeat() int64 {
 	return 0
 }
 
-func (m *CreateRecipeLogRequest) GetUser() *UserItem {
+func (m *CreateRecipeLogRequest) GetUserId() int64 {
 	if m != nil {
-		return m.User
+		return m.UserId
 	}
-	return nil
+	return 0
 }
 
 func (m *CreateRecipeLogRequest) GetRecycledIngredients() map[int64]int64 {
@@ -1296,7 +1424,7 @@ func (m *GetRecipeLogListRequest) Reset()         { *m = GetRecipeLogListRequest
 func (m *GetRecipeLogListRequest) String() string { return proto.CompactTextString(m) }
 func (*GetRecipeLogListRequest) ProtoMessage()    {}
 func (*GetRecipeLogListRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{20}
+	return fileDescriptor_baa1b9958bde2ece, []int{23}
 }
 
 func (m *GetRecipeLogListRequest) XXX_Unmarshal(b []byte) error {
@@ -1332,7 +1460,7 @@ func (m *GetRecipeLogListRequest) GetEndDate() *timestamp.Timestamp {
 }
 
 type GetRecipeLogListResponse struct {
-	RecipeLogItemList    []*RecipeLogItem `protobuf:"bytes,1,rep,name=recipeLogItemList,proto3" json:"recipeLogItemList,omitempty"`
+	RecipeLogItemList    []*RecipeLogItem `protobuf:"bytes,1,rep,name=recipe_log_item_list,json=recipeLogItemList,proto3" json:"recipe_log_item_list,omitempty"`
 	Count                int64            `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
 	XXX_unrecognized     []byte           `json:"-"`
@@ -1343,7 +1471,7 @@ func (m *GetRecipeLogListResponse) Reset()         { *m = GetRecipeLogListRespon
 func (m *GetRecipeLogListResponse) String() string { return proto.CompactTextString(m) }
 func (*GetRecipeLogListResponse) ProtoMessage()    {}
 func (*GetRecipeLogListResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{21}
+	return fileDescriptor_baa1b9958bde2ece, []int{24}
 }
 
 func (m *GetRecipeLogListResponse) XXX_Unmarshal(b []byte) error {
@@ -1379,15 +1507,15 @@ func (m *GetRecipeLogListResponse) GetCount() int64 {
 }
 
 type CreateDefrostLogRequest struct {
-	Ingredient           *IngredientItem      `protobuf:"bytes,1,opt,name=ingredient,proto3" json:"ingredient,omitempty"`
-	StartTemperature     float32              `protobuf:"fixed32,2,opt,name=startTemperature,proto3" json:"startTemperature,omitempty"`
+	IngredientId         int64                `protobuf:"varint,1,opt,name=ingredient_id,json=ingredientId,proto3" json:"ingredient_id,omitempty"`
+	StartTemperature     float32              `protobuf:"fixed32,2,opt,name=start_temperature,json=startTemperature,proto3" json:"start_temperature,omitempty"`
 	ExpireDate           *timestamp.Timestamp `protobuf:"bytes,3,opt,name=expire_date,json=expireDate,proto3" json:"expire_date,omitempty"`
 	ColdWater            bool                 `protobuf:"varint,4,opt,name=cold_water,json=coldWater,proto3" json:"cold_water,omitempty"`
 	ColdRoom             bool                 `protobuf:"varint,5,opt,name=cold_room,json=coldRoom,proto3" json:"cold_room,omitempty"`
-	WaterTemperature     float32              `protobuf:"fixed32,6,opt,name=waterTemperature,proto3" json:"waterTemperature,omitempty"`
-	WaterTime            *timestamp.Timestamp `protobuf:"bytes,7,opt,name=waterTime,proto3" json:"waterTime,omitempty"`
-	FinishDateTime       *timestamp.Timestamp `protobuf:"bytes,8,opt,name=finishDateTime,proto3" json:"finishDateTime,omitempty"`
-	EndTemperature       float32              `protobuf:"fixed32,9,opt,name=endTemperature,proto3" json:"endTemperature,omitempty"`
+	WaterTemperature     float32              `protobuf:"fixed32,6,opt,name=water_temperature,json=waterTemperature,proto3" json:"water_temperature,omitempty"`
+	WaterTime            *timestamp.Timestamp `protobuf:"bytes,7,opt,name=water_time,json=waterTime,proto3" json:"water_time,omitempty"`
+	FinishDateTime       *timestamp.Timestamp `protobuf:"bytes,8,opt,name=finish_date_time,json=finishDateTime,proto3" json:"finish_date_time,omitempty"`
+	EndTemperature       float32              `protobuf:"fixed32,9,opt,name=end_temperature,json=endTemperature,proto3" json:"end_temperature,omitempty"`
 	Quantity             float32              `protobuf:"fixed32,10,opt,name=quantity,proto3" json:"quantity,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
@@ -1398,7 +1526,7 @@ func (m *CreateDefrostLogRequest) Reset()         { *m = CreateDefrostLogRequest
 func (m *CreateDefrostLogRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateDefrostLogRequest) ProtoMessage()    {}
 func (*CreateDefrostLogRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{22}
+	return fileDescriptor_baa1b9958bde2ece, []int{25}
 }
 
 func (m *CreateDefrostLogRequest) XXX_Unmarshal(b []byte) error {
@@ -1419,11 +1547,11 @@ func (m *CreateDefrostLogRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CreateDefrostLogRequest proto.InternalMessageInfo
 
-func (m *CreateDefrostLogRequest) GetIngredient() *IngredientItem {
+func (m *CreateDefrostLogRequest) GetIngredientId() int64 {
 	if m != nil {
-		return m.Ingredient
+		return m.IngredientId
 	}
-	return nil
+	return 0
 }
 
 func (m *CreateDefrostLogRequest) GetStartTemperature() float32 {
@@ -1501,7 +1629,7 @@ func (m *GetDefrostLogListRequest) Reset()         { *m = GetDefrostLogListReque
 func (m *GetDefrostLogListRequest) String() string { return proto.CompactTextString(m) }
 func (*GetDefrostLogListRequest) ProtoMessage()    {}
 func (*GetDefrostLogListRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{23}
+	return fileDescriptor_baa1b9958bde2ece, []int{26}
 }
 
 func (m *GetDefrostLogListRequest) XXX_Unmarshal(b []byte) error {
@@ -1537,7 +1665,7 @@ func (m *GetDefrostLogListRequest) GetEndDate() *timestamp.Timestamp {
 }
 
 type GetDefrostLogListResponse struct {
-	DefrostLogItemList   []*DefrostLogItem `protobuf:"bytes,1,rep,name=defrostLogItemList,proto3" json:"defrostLogItemList,omitempty"`
+	DefrostLogItemList   []*DefrostLogItem `protobuf:"bytes,1,rep,name=defrost_log_item_list,json=defrostLogItemList,proto3" json:"defrost_log_item_list,omitempty"`
 	Count                int64             `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
 	XXX_unrecognized     []byte            `json:"-"`
@@ -1548,7 +1676,7 @@ func (m *GetDefrostLogListResponse) Reset()         { *m = GetDefrostLogListResp
 func (m *GetDefrostLogListResponse) String() string { return proto.CompactTextString(m) }
 func (*GetDefrostLogListResponse) ProtoMessage()    {}
 func (*GetDefrostLogListResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{24}
+	return fileDescriptor_baa1b9958bde2ece, []int{27}
 }
 
 func (m *GetDefrostLogListResponse) XXX_Unmarshal(b []byte) error {
@@ -1584,14 +1712,14 @@ func (m *GetDefrostLogListResponse) GetCount() int64 {
 }
 
 type CreateFrostLogRequest struct {
-	Ingredient           *IngredientItem      `protobuf:"bytes,1,opt,name=ingredient,proto3" json:"ingredient,omitempty"`
-	ProductionDate       *timestamp.Timestamp `protobuf:"bytes,2,opt,name=productionDate,proto3" json:"productionDate,omitempty"`
-	ExpirationDate       *timestamp.Timestamp `protobuf:"bytes,3,opt,name=expirationDate,proto3" json:"expirationDate,omitempty"`
+	IngredientId         int64                `protobuf:"varint,1,opt,name=ingredient_id,json=ingredientId,proto3" json:"ingredient_id,omitempty"`
+	ProductionDate       *timestamp.Timestamp `protobuf:"bytes,2,opt,name=production_date,json=productionDate,proto3" json:"production_date,omitempty"`
+	ExpirationDate       *timestamp.Timestamp `protobuf:"bytes,3,opt,name=expiration_date,json=expirationDate,proto3" json:"expiration_date,omitempty"`
 	Vacuum               bool                 `protobuf:"varint,4,opt,name=vacuum,proto3" json:"vacuum,omitempty"`
-	VacuumDate           *timestamp.Timestamp `protobuf:"bytes,5,opt,name=vacuumDate,proto3" json:"vacuumDate,omitempty"`
-	VacuumP30Test        bool                 `protobuf:"varint,6,opt,name=vacuumP30Test,proto3" json:"vacuumP30Test,omitempty"`
-	UserItem             *UserItem            `protobuf:"bytes,7,opt,name=userItem,proto3" json:"userItem,omitempty"`
-	SubmissionDate       *timestamp.Timestamp `protobuf:"bytes,8,opt,name=submissionDate,proto3" json:"submissionDate,omitempty"`
+	VacuumDate           *timestamp.Timestamp `protobuf:"bytes,5,opt,name=vacuum_date,json=vacuumDate,proto3" json:"vacuum_date,omitempty"`
+	VacuumP30Test        bool                 `protobuf:"varint,6,opt,name=vacuum_p30_test,json=vacuumP30Test,proto3" json:"vacuum_p30_test,omitempty"`
+	UserId               int64                `protobuf:"varint,7,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	SubmissionDate       *timestamp.Timestamp `protobuf:"bytes,8,opt,name=submission_date,json=submissionDate,proto3" json:"submission_date,omitempty"`
 	Quantity             float32              `protobuf:"fixed32,9,opt,name=quantity,proto3" json:"quantity,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
@@ -1602,7 +1730,7 @@ func (m *CreateFrostLogRequest) Reset()         { *m = CreateFrostLogRequest{} }
 func (m *CreateFrostLogRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateFrostLogRequest) ProtoMessage()    {}
 func (*CreateFrostLogRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{25}
+	return fileDescriptor_baa1b9958bde2ece, []int{28}
 }
 
 func (m *CreateFrostLogRequest) XXX_Unmarshal(b []byte) error {
@@ -1623,11 +1751,11 @@ func (m *CreateFrostLogRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CreateFrostLogRequest proto.InternalMessageInfo
 
-func (m *CreateFrostLogRequest) GetIngredient() *IngredientItem {
+func (m *CreateFrostLogRequest) GetIngredientId() int64 {
 	if m != nil {
-		return m.Ingredient
+		return m.IngredientId
 	}
-	return nil
+	return 0
 }
 
 func (m *CreateFrostLogRequest) GetProductionDate() *timestamp.Timestamp {
@@ -1665,11 +1793,11 @@ func (m *CreateFrostLogRequest) GetVacuumP30Test() bool {
 	return false
 }
 
-func (m *CreateFrostLogRequest) GetUserItem() *UserItem {
+func (m *CreateFrostLogRequest) GetUserId() int64 {
 	if m != nil {
-		return m.UserItem
+		return m.UserId
 	}
-	return nil
+	return 0
 }
 
 func (m *CreateFrostLogRequest) GetSubmissionDate() *timestamp.Timestamp {
@@ -1698,7 +1826,7 @@ func (m *GetFrostLogListRequest) Reset()         { *m = GetFrostLogListRequest{}
 func (m *GetFrostLogListRequest) String() string { return proto.CompactTextString(m) }
 func (*GetFrostLogListRequest) ProtoMessage()    {}
 func (*GetFrostLogListRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{26}
+	return fileDescriptor_baa1b9958bde2ece, []int{29}
 }
 
 func (m *GetFrostLogListRequest) XXX_Unmarshal(b []byte) error {
@@ -1734,18 +1862,18 @@ func (m *GetFrostLogListRequest) GetEndDate() *timestamp.Timestamp {
 }
 
 type GetFrostLogListResponse struct {
-	FrostLogItemList     []*FrostLogItem `protobuf:"bytes,1,rep,name=frostLogItemList,proto3" json:"frostLogItemList,omitempty"`
-	Count                int64           `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
-	XXX_unrecognized     []byte          `json:"-"`
-	XXX_sizecache        int32           `json:"-"`
+	FrostLogItemIds      []int64  `protobuf:"varint,1,rep,packed,name=frost_log_item_ids,json=frostLogItemIds,proto3" json:"frost_log_item_ids,omitempty"`
+	Count                int64    `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *GetFrostLogListResponse) Reset()         { *m = GetFrostLogListResponse{} }
 func (m *GetFrostLogListResponse) String() string { return proto.CompactTextString(m) }
 func (*GetFrostLogListResponse) ProtoMessage()    {}
 func (*GetFrostLogListResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{27}
+	return fileDescriptor_baa1b9958bde2ece, []int{30}
 }
 
 func (m *GetFrostLogListResponse) XXX_Unmarshal(b []byte) error {
@@ -1766,9 +1894,9 @@ func (m *GetFrostLogListResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetFrostLogListResponse proto.InternalMessageInfo
 
-func (m *GetFrostLogListResponse) GetFrostLogItemList() []*FrostLogItem {
+func (m *GetFrostLogListResponse) GetFrostLogItemIds() []int64 {
 	if m != nil {
-		return m.FrostLogItemList
+		return m.FrostLogItemIds
 	}
 	return nil
 }
@@ -1781,16 +1909,16 @@ func (m *GetFrostLogListResponse) GetCount() int64 {
 }
 
 type CreateSanitizeLogRequest struct {
-	Ingredient           *IngredientItem      `protobuf:"bytes,1,opt,name=ingredient,proto3" json:"ingredient,omitempty"`
+	IngredientId         int64                `protobuf:"varint,1,opt,name=ingredient_id,json=ingredientId,proto3" json:"ingredient_id,omitempty"`
 	Date                 *timestamp.Timestamp `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
-	PreWashTime          *timestamp.Timestamp `protobuf:"bytes,3,opt,name=preWashTime,proto3" json:"preWashTime,omitempty"`
-	ChlorinePPM          int64                `protobuf:"varint,4,opt,name=chlorinePPM,proto3" json:"chlorinePPM,omitempty"`
-	SanitizeTime         *timestamp.Timestamp `protobuf:"bytes,5,opt,name=sanitizeTime,proto3" json:"sanitizeTime,omitempty"`
-	WashTime             *timestamp.Timestamp `protobuf:"bytes,7,opt,name=washTime,proto3" json:"washTime,omitempty"`
-	EndTime              *timestamp.Timestamp `protobuf:"bytes,8,opt,name=endTime,proto3" json:"endTime,omitempty"`
-	OsoneWash            bool                 `protobuf:"varint,9,opt,name=osoneWash,proto3" json:"osoneWash,omitempty"`
-	User                 *UserItem            `protobuf:"bytes,10,opt,name=user,proto3" json:"user,omitempty"`
-	SubmissionDate       *timestamp.Timestamp `protobuf:"bytes,11,opt,name=submissionDate,proto3" json:"submissionDate,omitempty"`
+	PreWashTime          *timestamp.Timestamp `protobuf:"bytes,3,opt,name=pre_wash_time,json=preWashTime,proto3" json:"pre_wash_time,omitempty"`
+	ChlorinePpm          int64                `protobuf:"varint,4,opt,name=chlorine_ppm,json=chlorinePpm,proto3" json:"chlorine_ppm,omitempty"`
+	SanitizeTime         *timestamp.Timestamp `protobuf:"bytes,5,opt,name=sanitize_time,json=sanitizeTime,proto3" json:"sanitize_time,omitempty"`
+	WashTime             *timestamp.Timestamp `protobuf:"bytes,7,opt,name=wash_time,json=washTime,proto3" json:"wash_time,omitempty"`
+	EndTime              *timestamp.Timestamp `protobuf:"bytes,8,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty"`
+	OsoneWash            bool                 `protobuf:"varint,9,opt,name=osone_wash,json=osoneWash,proto3" json:"osone_wash,omitempty"`
+	UserId               int64                `protobuf:"varint,10,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	SubmissionDate       *timestamp.Timestamp `protobuf:"bytes,11,opt,name=submission_date,json=submissionDate,proto3" json:"submission_date,omitempty"`
 	Quantity             float32              `protobuf:"fixed32,12,opt,name=quantity,proto3" json:"quantity,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
@@ -1801,7 +1929,7 @@ func (m *CreateSanitizeLogRequest) Reset()         { *m = CreateSanitizeLogReque
 func (m *CreateSanitizeLogRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateSanitizeLogRequest) ProtoMessage()    {}
 func (*CreateSanitizeLogRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{28}
+	return fileDescriptor_baa1b9958bde2ece, []int{31}
 }
 
 func (m *CreateSanitizeLogRequest) XXX_Unmarshal(b []byte) error {
@@ -1822,11 +1950,11 @@ func (m *CreateSanitizeLogRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CreateSanitizeLogRequest proto.InternalMessageInfo
 
-func (m *CreateSanitizeLogRequest) GetIngredient() *IngredientItem {
+func (m *CreateSanitizeLogRequest) GetIngredientId() int64 {
 	if m != nil {
-		return m.Ingredient
+		return m.IngredientId
 	}
-	return nil
+	return 0
 }
 
 func (m *CreateSanitizeLogRequest) GetDate() *timestamp.Timestamp {
@@ -1843,9 +1971,9 @@ func (m *CreateSanitizeLogRequest) GetPreWashTime() *timestamp.Timestamp {
 	return nil
 }
 
-func (m *CreateSanitizeLogRequest) GetChlorinePPM() int64 {
+func (m *CreateSanitizeLogRequest) GetChlorinePpm() int64 {
 	if m != nil {
-		return m.ChlorinePPM
+		return m.ChlorinePpm
 	}
 	return 0
 }
@@ -1878,11 +2006,11 @@ func (m *CreateSanitizeLogRequest) GetOsoneWash() bool {
 	return false
 }
 
-func (m *CreateSanitizeLogRequest) GetUser() *UserItem {
+func (m *CreateSanitizeLogRequest) GetUserId() int64 {
 	if m != nil {
-		return m.User
+		return m.UserId
 	}
-	return nil
+	return 0
 }
 
 func (m *CreateSanitizeLogRequest) GetSubmissionDate() *timestamp.Timestamp {
@@ -1911,7 +2039,7 @@ func (m *GetSanitizeLogListRequest) Reset()         { *m = GetSanitizeLogListReq
 func (m *GetSanitizeLogListRequest) String() string { return proto.CompactTextString(m) }
 func (*GetSanitizeLogListRequest) ProtoMessage()    {}
 func (*GetSanitizeLogListRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{29}
+	return fileDescriptor_baa1b9958bde2ece, []int{32}
 }
 
 func (m *GetSanitizeLogListRequest) XXX_Unmarshal(b []byte) error {
@@ -1947,18 +2075,18 @@ func (m *GetSanitizeLogListRequest) GetEndDate() *timestamp.Timestamp {
 }
 
 type GetSanitizeLogListResponse struct {
-	SanitizeLogItemList  []*SanitizeLogItem `protobuf:"bytes,1,rep,name=sanitizeLogItemList,proto3" json:"sanitizeLogItemList,omitempty"`
-	Count                int64              `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
-	XXX_unrecognized     []byte             `json:"-"`
-	XXX_sizecache        int32              `json:"-"`
+	SanitizeLogItemIds   []int64  `protobuf:"varint,1,rep,packed,name=sanitize_log_item_ids,json=sanitizeLogItemIds,proto3" json:"sanitize_log_item_ids,omitempty"`
+	Count                int64    `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *GetSanitizeLogListResponse) Reset()         { *m = GetSanitizeLogListResponse{} }
 func (m *GetSanitizeLogListResponse) String() string { return proto.CompactTextString(m) }
 func (*GetSanitizeLogListResponse) ProtoMessage()    {}
 func (*GetSanitizeLogListResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{30}
+	return fileDescriptor_baa1b9958bde2ece, []int{33}
 }
 
 func (m *GetSanitizeLogListResponse) XXX_Unmarshal(b []byte) error {
@@ -1979,9 +2107,9 @@ func (m *GetSanitizeLogListResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetSanitizeLogListResponse proto.InternalMessageInfo
 
-func (m *GetSanitizeLogListResponse) GetSanitizeLogItemList() []*SanitizeLogItem {
+func (m *GetSanitizeLogListResponse) GetSanitizeLogItemIds() []int64 {
 	if m != nil {
-		return m.SanitizeLogItemList
+		return m.SanitizeLogItemIds
 	}
 	return nil
 }
@@ -2003,7 +2131,7 @@ func (m *GetIngredientListRequest) Reset()         { *m = GetIngredientListReque
 func (m *GetIngredientListRequest) String() string { return proto.CompactTextString(m) }
 func (*GetIngredientListRequest) ProtoMessage()    {}
 func (*GetIngredientListRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{31}
+	return fileDescriptor_baa1b9958bde2ece, []int{34}
 }
 
 func (m *GetIngredientListRequest) XXX_Unmarshal(b []byte) error {
@@ -2025,18 +2153,18 @@ func (m *GetIngredientListRequest) XXX_DiscardUnknown() {
 var xxx_messageInfo_GetIngredientListRequest proto.InternalMessageInfo
 
 type GetIngredientListResponse struct {
-	IngredientItem       []*IngredientItem `protobuf:"bytes,1,rep,name=ingredientItem,proto3" json:"ingredientItem,omitempty"`
-	Count                int64             `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
-	XXX_unrecognized     []byte            `json:"-"`
-	XXX_sizecache        int32             `json:"-"`
+	IngredientItemIds    []int64  `protobuf:"varint,1,rep,packed,name=ingredient_item_ids,json=ingredientItemIds,proto3" json:"ingredient_item_ids,omitempty"`
+	Count                int64    `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *GetIngredientListResponse) Reset()         { *m = GetIngredientListResponse{} }
 func (m *GetIngredientListResponse) String() string { return proto.CompactTextString(m) }
 func (*GetIngredientListResponse) ProtoMessage()    {}
 func (*GetIngredientListResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_baa1b9958bde2ece, []int{32}
+	return fileDescriptor_baa1b9958bde2ece, []int{35}
 }
 
 func (m *GetIngredientListResponse) XXX_Unmarshal(b []byte) error {
@@ -2057,9 +2185,9 @@ func (m *GetIngredientListResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetIngredientListResponse proto.InternalMessageInfo
 
-func (m *GetIngredientListResponse) GetIngredientItem() []*IngredientItem {
+func (m *GetIngredientListResponse) GetIngredientItemIds() []int64 {
 	if m != nil {
-		return m.IngredientItem
+		return m.IngredientItemIds
 	}
 	return nil
 }
@@ -2077,8 +2205,9 @@ func init() {
 	proto.RegisterType((*ActivityItem)(nil), "api.ActivityItem")
 	proto.RegisterType((*IngredientItem)(nil), "api.IngredientItem")
 	proto.RegisterType((*RecipeItem)(nil), "api.RecipeItem")
-	proto.RegisterMapType((map[int64]int64)(nil), "api.RecipeItem.IngredientQuantityEntry")
+	proto.RegisterType((*RecipeIngredientItem)(nil), "api.RecipeIngredientItem")
 	proto.RegisterType((*RecipeLogItem)(nil), "api.RecipeLogItem")
+	proto.RegisterMapType((map[int64]int64)(nil), "api.RecipeLogItem.IngredientQuantityEntry")
 	proto.RegisterMapType((map[int64]int64)(nil), "api.RecipeLogItem.RecycledIngredientsEntry")
 	proto.RegisterType((*DefrostLogItem)(nil), "api.DefrostLogItem")
 	proto.RegisterType((*FrostLogItem)(nil), "api.FrostLogItem")
@@ -2093,6 +2222,8 @@ func init() {
 	proto.RegisterType((*GetDepartmentListResponse)(nil), "api.GetDepartmentListResponse")
 	proto.RegisterType((*GetRecipeListRequest)(nil), "api.GetRecipeListRequest")
 	proto.RegisterType((*GetRecipeListResponse)(nil), "api.GetRecipeListResponse")
+	proto.RegisterType((*GetRecipeIngredientsRequest)(nil), "api.GetRecipeIngredientsRequest")
+	proto.RegisterType((*GetRecipeIngredientsResponse)(nil), "api.GetRecipeIngredientsResponse")
 	proto.RegisterType((*CreateRecipeLogRequest)(nil), "api.CreateRecipeLogRequest")
 	proto.RegisterMapType((map[int64]int64)(nil), "api.CreateRecipeLogRequest.RecycledIngredientsEntry")
 	proto.RegisterType((*GetRecipeLogListRequest)(nil), "api.GetRecipeLogListRequest")
@@ -2115,123 +2246,134 @@ func init() {
 }
 
 var fileDescriptor_baa1b9958bde2ece = []byte{
-	// 1844 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xec, 0x5a, 0xdd, 0x6f, 0x13, 0xc7,
-	0x16, 0xd7, 0xc6, 0x4e, 0x62, 0x1f, 0x27, 0x4e, 0x32, 0x04, 0xc7, 0x6c, 0x12, 0x62, 0x16, 0x2e,
-	0x04, 0xae, 0xae, 0x7d, 0x49, 0xa0, 0xe2, 0xa3, 0x45, 0x14, 0x48, 0xd2, 0xa8, 0x54, 0xa2, 0x0b,
-	0x15, 0x6a, 0xa5, 0x36, 0xda, 0xec, 0x4e, 0x9c, 0x51, 0xec, 0x9d, 0x65, 0x77, 0x1c, 0x08, 0x88,
-	0x97, 0x3e, 0xf6, 0x43, 0xaa, 0x54, 0xa9, 0x7d, 0xe9, 0x6b, 0x5f, 0xf9, 0x5b, 0x90, 0xfa, 0xd4,
-	0xc7, 0x4a, 0xfd, 0x3b, 0xaa, 0x6a, 0x67, 0x67, 0xbd, 0xb3, 0xeb, 0x5d, 0xdb, 0x28, 0x54, 0x40,
-	0x95, 0x37, 0xcf, 0xcc, 0x99, 0x39, 0xbf, 0x99, 0xf3, 0x3b, 0x5f, 0x9b, 0xc0, 0xa2, 0xe1, 0x35,
-	0xf0, 0x13, 0x86, 0x5d, 0xdb, 0x68, 0x35, 0x0c, 0x87, 0x34, 0xf6, 0x08, 0x33, 0x77, 0xb1, 0x5d,
-	0x77, 0x5c, 0xca, 0x28, 0xca, 0x19, 0x0e, 0x51, 0x17, 0x9a, 0x94, 0x36, 0x5b, 0x98, 0x2f, 0x1b,
-	0xb6, 0x4d, 0x99, 0xc1, 0x08, 0xb5, 0xbd, 0x40, 0x44, 0x5d, 0x12, 0xab, 0x7c, 0xb4, 0xdd, 0xd9,
-	0x69, 0x30, 0xd2, 0xc6, 0x1e, 0x33, 0xda, 0x8e, 0x10, 0x98, 0x4f, 0x0a, 0xe0, 0xb6, 0xc3, 0x0e,
-	0x82, 0x45, 0xcd, 0x84, 0xc2, 0x67, 0x1e, 0x76, 0x37, 0x19, 0x6e, 0xa3, 0x32, 0x8c, 0x10, 0xab,
-	0xaa, 0xd4, 0x94, 0xe5, 0x9c, 0x3e, 0x42, 0x2c, 0x84, 0x20, 0x6f, 0x1b, 0x6d, 0x5c, 0x1d, 0xa9,
-	0x29, 0xcb, 0x45, 0x9d, 0xff, 0x46, 0xab, 0x00, 0x16, 0x76, 0x0c, 0x97, 0xb5, 0xb1, 0xcd, 0xaa,
-	0xb9, 0x9a, 0xb2, 0x5c, 0x5a, 0x39, 0x56, 0x37, 0x1c, 0x52, 0xbf, 0xd3, 0x9d, 0xf6, 0x0f, 0xd3,
-	0x25, 0x31, 0xad, 0x09, 0xe5, 0xf8, 0xea, 0x50, 0xaa, 0x2e, 0x02, 0x18, 0x26, 0x23, 0xfb, 0x84,
-	0x11, 0xec, 0x55, 0x73, 0xb5, 0xdc, 0x72, 0x69, 0x65, 0x86, 0xab, 0xfa, 0x30, 0x98, 0x3e, 0x08,
-	0x14, 0x45, 0x42, 0xda, 0x0a, 0x4c, 0xc8, 0x6b, 0xc3, 0xa8, 0xd1, 0xb6, 0xa1, 0xbc, 0x69, 0x37,
-	0x5d, 0x6c, 0x91, 0x57, 0x01, 0x87, 0x20, 0xdf, 0xb1, 0x49, 0xf0, 0x02, 0x45, 0x9d, 0xff, 0x46,
-	0x55, 0x18, 0x77, 0xb1, 0x79, 0x60, 0xb6, 0x70, 0x35, 0x5f, 0x53, 0x96, 0x0b, 0x7a, 0x38, 0xd4,
-	0x5e, 0x2a, 0x00, 0x3a, 0x36, 0x89, 0x83, 0x87, 0x56, 0xf0, 0x10, 0x10, 0xe9, 0xc2, 0xfa, 0xb4,
-	0x63, 0xd8, 0x8c, 0xb0, 0x03, 0xf1, 0x0a, 0xe7, 0xf8, 0x2b, 0x44, 0x07, 0xd6, 0x37, 0x7b, 0x24,
-	0xd7, 0x6c, 0xe6, 0x1e, 0xe8, 0x29, 0x47, 0xa8, 0x6b, 0x30, 0x97, 0x21, 0x8e, 0xa6, 0x21, 0xb7,
-	0x87, 0x0f, 0x04, 0x30, 0xff, 0x27, 0x9a, 0x85, 0xd1, 0x7d, 0xa3, 0xd5, 0x09, 0xa0, 0xe5, 0xf4,
-	0x60, 0x70, 0x6d, 0xe4, 0x8a, 0xa2, 0xfd, 0x95, 0x87, 0xc9, 0x00, 0xc1, 0x5d, 0xda, 0xe4, 0xb7,
-	0x3a, 0x07, 0x63, 0x2e, 0x9f, 0xe0, 0x07, 0x94, 0x56, 0xa6, 0x12, 0x28, 0x75, 0xb1, 0x8c, 0x6e,
-	0xc2, 0xa4, 0xe3, 0x62, 0xe7, 0x3e, 0x33, 0x5c, 0xf6, 0x80, 0x88, 0x7b, 0x97, 0x56, 0xd4, 0x7a,
-	0x40, 0xd4, 0x7a, 0x48, 0xd4, 0xfa, 0x83, 0x90, 0xc9, 0x7a, 0x7c, 0x03, 0x7a, 0x1f, 0x4a, 0xfe,
-	0xc4, 0x9a, 0x6d, 0xf1, 0xfd, 0xb9, 0x81, 0xfb, 0x65, 0x71, 0xa4, 0x42, 0xc1, 0xa4, 0x74, 0xef,
-	0x23, 0x6c, 0x30, 0x6e, 0xa8, 0x9c, 0xde, 0x1d, 0xfb, 0xd8, 0x4c, 0x4a, 0x5b, 0x11, 0xb6, 0xd1,
-	0xc1, 0xd8, 0x62, 0x1b, 0x7c, 0x6c, 0xfe, 0x44, 0x88, 0x6d, 0x6c, 0x30, 0x36, 0x49, 0x5c, 0x60,
-	0x6b, 0x71, 0x6c, 0xe3, 0x5d, 0x6c, 0x7c, 0x8c, 0x4e, 0x41, 0xbe, 0xe3, 0x61, 0xb7, 0x5a, 0xe0,
-	0x47, 0x4e, 0xf2, 0xe7, 0x0d, 0x9d, 0x57, 0xe7, 0x4b, 0xe8, 0x4b, 0x38, 0x26, 0x38, 0x67, 0x45,
-	0x46, 0xf6, 0xaa, 0x45, 0x4e, 0x9b, 0xff, 0x4a, 0x06, 0x11, 0x46, 0xf3, 0x47, 0x49, 0xe9, 0x80,
-	0x3a, 0x69, 0xe7, 0xa0, 0x5b, 0x50, 0xf6, 0x3a, 0xdb, 0x6d, 0xe2, 0x79, 0x84, 0xda, 0x77, 0x0c,
-	0x86, 0xab, 0x30, 0xf0, 0x7a, 0x89, 0x1d, 0xea, 0x3a, 0x54, 0xb3, 0x94, 0xbe, 0x12, 0x01, 0x7f,
-	0xc9, 0xfb, 0x51, 0x65, 0xc7, 0xa5, 0x1e, 0x0b, 0x19, 0xb8, 0x0a, 0x10, 0x11, 0x5e, 0xb0, 0x30,
-	0x08, 0x4e, 0x71, 0x0f, 0xd7, 0x25, 0x31, 0x74, 0x01, 0xa6, 0x3d, 0x6e, 0x3c, 0xdc, 0x76, 0xb0,
-	0x6b, 0xb0, 0x8e, 0x1b, 0x28, 0x1b, 0xd1, 0x7b, 0xe6, 0xd1, 0x75, 0x28, 0xe1, 0x27, 0x0e, 0x71,
-	0xf1, 0x96, 0xe5, 0x5f, 0x7e, 0x30, 0xef, 0x20, 0x10, 0xf7, 0x2f, 0x8e, 0x16, 0x01, 0x4c, 0xda,
-	0xb2, 0xb6, 0x1e, 0x1b, 0x0c, 0xbb, 0x22, 0x42, 0x14, 0xfd, 0x99, 0x87, 0xfe, 0x04, 0x9a, 0x07,
-	0x3e, 0xd8, 0x72, 0x29, 0x6d, 0x73, 0xd6, 0x15, 0x7c, 0xd3, 0xb7, 0x2c, 0x9d, 0xd2, 0xb6, 0x0f,
-	0x92, 0x6f, 0x93, 0x41, 0x8e, 0x05, 0x20, 0x93, 0xf3, 0xe8, 0x0a, 0x14, 0x83, 0x39, 0x9f, 0x7e,
-	0xe3, 0x03, 0x21, 0x46, 0xc2, 0xbe, 0x79, 0x77, 0x88, 0x4d, 0xbc, 0x5d, 0x1f, 0x2f, 0xdf, 0x5e,
-	0x18, 0x6c, 0xde, 0xf8, 0x0e, 0x74, 0x16, 0xca, 0xd8, 0xb6, 0x64, 0x9c, 0x45, 0x8e, 0x33, 0x31,
-	0xfb, 0x3a, 0xa8, 0xe4, 0x3b, 0xcb, 0xa3, 0x30, 0x32, 0x96, 0xb8, 0x96, 0xee, 0x58, 0x7b, 0x99,
-	0x83, 0x89, 0xf5, 0x43, 0x93, 0xe3, 0x16, 0x94, 0x1d, 0x97, 0x5a, 0x1d, 0x93, 0x85, 0x28, 0x07,
-	0xc7, 0xaa, 0xc4, 0x0e, 0xff, 0x0c, 0xce, 0x02, 0xa3, 0x7b, 0xc6, 0x60, 0xde, 0x24, 0x76, 0xa0,
-	0x0a, 0x8c, 0xed, 0x1b, 0x66, 0xa7, 0xd3, 0x16, 0xbc, 0x11, 0x23, 0x74, 0x0d, 0x20, 0xf8, 0xc5,
-	0xcf, 0x1d, 0x1c, 0xab, 0x24, 0x69, 0x74, 0x06, 0x26, 0x83, 0xd1, 0xbd, 0xd5, 0xff, 0x3f, 0xc0,
-	0x1e, 0xe3, 0x84, 0x2a, 0xe8, 0xf1, 0x49, 0x74, 0x1e, 0x0a, 0x1d, 0x11, 0x63, 0x04, 0x99, 0x12,
-	0x81, 0xa7, 0xbb, 0x9c, 0x62, 0xd2, 0xc2, 0xa1, 0x4c, 0x5a, 0x4c, 0x98, 0xf4, 0xd7, 0x3c, 0x4c,
-	0xdd, 0x37, 0x6c, 0xc2, 0xc8, 0x53, 0x7c, 0x28, 0xab, 0xd6, 0x21, 0x6f, 0x0d, 0x67, 0x4b, 0x2e,
-	0x27, 0xd2, 0xcd, 0x43, 0xc3, 0xdb, 0x7d, 0x85, 0x74, 0x13, 0x8a, 0xa3, 0x1a, 0x94, 0xcc, 0xdd,
-	0x16, 0x75, 0x89, 0x8d, 0xef, 0xdd, 0xfb, 0x44, 0x64, 0x1c, 0x79, 0x0a, 0xdd, 0x80, 0x09, 0x4f,
-	0xdc, 0x6b, 0xc8, 0x9c, 0x13, 0x93, 0x47, 0xef, 0x41, 0xe1, 0x71, 0x08, 0x6e, 0xb0, 0xc3, 0x77,
-	0x65, 0xd1, 0x25, 0x18, 0xc7, 0x22, 0x4d, 0x0d, 0xb6, 0x54, 0x28, 0x8a, 0x16, 0xa0, 0x48, 0x3d,
-	0x6a, 0xf3, 0x0b, 0x72, 0x1b, 0x15, 0xf4, 0x68, 0xa2, 0x9b, 0xa4, 0x20, 0x3b, 0x49, 0xf5, 0xf2,
-	0xa4, 0x74, 0x28, 0x9e, 0x4c, 0x24, 0x78, 0x72, 0x0e, 0x8e, 0x6f, 0x60, 0xf6, 0x71, 0x50, 0x48,
-	0xfb, 0xba, 0x75, 0xfc, 0xa8, 0xe3, 0x73, 0x39, 0x51, 0x77, 0x69, 0x9f, 0x43, 0x25, 0x29, 0xe8,
-	0x39, 0xd4, 0xf6, 0x70, 0x8c, 0xf5, 0x0a, 0x4f, 0x9e, 0x99, 0xac, 0x9f, 0x85, 0x51, 0x93, 0x76,
-	0x6c, 0x16, 0x66, 0x28, 0x3e, 0xd0, 0x36, 0xe1, 0xf4, 0x06, 0x66, 0x61, 0x31, 0x7a, 0x97, 0x78,
-	0x6c, 0x9d, 0xba, 0x51, 0x11, 0x1c, 0x22, 0xd2, 0x60, 0x22, 0xaa, 0x93, 0x37, 0xef, 0x08, 0x6c,
-	0xb1, 0x39, 0xcd, 0x83, 0x33, 0xfd, 0x8f, 0x12, 0x98, 0x2f, 0xc3, 0x84, 0x21, 0x15, 0xbf, 0x02,
-	0x77, 0x4a, 0xc5, 0x1c, 0x13, 0xcb, 0xc0, 0x7f, 0x15, 0x96, 0x36, 0x30, 0x8b, 0xb4, 0x08, 0xb5,
-	0xf2, 0x6b, 0x56, 0x60, 0x8c, 0x3f, 0x42, 0x88, 0x5a, 0x8c, 0xb4, 0x0e, 0xd4, 0xb2, 0xb7, 0x0a,
-	0xac, 0xd7, 0xa1, 0x6c, 0xc5, 0x3a, 0x02, 0x81, 0x36, 0xb5, 0x95, 0x48, 0x88, 0x66, 0x20, 0x56,
-	0xa1, 0xda, 0xa3, 0x56, 0x40, 0xd5, 0x6c, 0x38, 0x91, 0xb2, 0xf6, 0xcf, 0x61, 0xa9, 0xc0, 0xec,
-	0x06, 0x66, 0xa2, 0xd2, 0x92, 0x70, 0x7c, 0xc5, 0x99, 0x29, 0xcf, 0x0b, 0x0c, 0x0d, 0x00, 0xb7,
-	0x5b, 0x28, 0x0b, 0xfd, 0x3d, 0xf5, 0xb3, 0x24, 0x92, 0xa1, 0xf7, 0x87, 0x51, 0xa8, 0xdc, 0x76,
-	0xb1, 0xc1, 0x70, 0xb7, 0xca, 0x0b, 0xad, 0x75, 0x54, 0x9d, 0xbf, 0xf9, 0xea, 0x7c, 0xa7, 0x5f,
-	0x75, 0x7e, 0x89, 0xef, 0x48, 0xb7, 0xde, 0x3b, 0x5c, 0xa6, 0x7f, 0xab, 0xc0, 0x5c, 0xc4, 0x79,
-	0xda, 0x94, 0xdc, 0x01, 0x5d, 0x05, 0xe0, 0x25, 0x76, 0x50, 0x4d, 0x2b, 0x83, 0x4b, 0x55, 0x2e,
-	0xcd, 0xe3, 0xff, 0x65, 0x28, 0x60, 0xdb, 0xda, 0x1a, 0x32, 0x8d, 0xfb, 0xb9, 0xcb, 0xdf, 0xa6,
-	0xb9, 0x3c, 0x48, 0x24, 0xc0, 0x08, 0x1f, 0xbc, 0x09, 0x33, 0xae, 0xdc, 0x1b, 0xf9, 0x8b, 0xc2,
-	0x15, 0x51, 0x6f, 0xe7, 0xa4, 0xf7, 0x0a, 0x67, 0x38, 0xe5, 0x1f, 0x39, 0x98, 0x0b, 0xcc, 0x1a,
-	0xb5, 0x2b, 0xe1, 0x0b, 0x1c, 0x75, 0x2c, 0xef, 0x4e, 0xc7, 0x22, 0x97, 0x1c, 0x90, 0x28, 0x39,
-	0xbe, 0x53, 0x44, 0xf6, 0x09, 0x0d, 0xfc, 0x66, 0x69, 0xbe, 0x2f, 0xf2, 0x5d, 0x1c, 0x8d, 0xe0,
-	0xf9, 0x6d, 0x40, 0x56, 0xac, 0x6f, 0x96, 0x88, 0x1e, 0xe6, 0x3c, 0x79, 0x59, 0x4f, 0x11, 0xcf,
-	0xa0, 0xfa, 0xef, 0x39, 0x38, 0x1e, 0x50, 0x7d, 0xfd, 0x75, 0x10, 0xfd, 0xa8, 0xfb, 0x7a, 0x8b,
-	0xba, 0xaf, 0x6f, 0x14, 0x5e, 0x2d, 0xaf, 0xbf, 0x15, 0x04, 0xb7, 0x79, 0x52, 0x59, 0x4f, 0xa3,
-	0xf7, 0x07, 0x30, 0x9d, 0x41, 0xee, 0xa0, 0x14, 0x96, 0x3f, 0x0a, 0xe8, 0xd3, 0x43, 0x12, 0xfb,
-	0x45, 0x1e, 0xaa, 0x01, 0xb1, 0xa5, 0x06, 0xf4, 0x50, 0xdc, 0x3e, 0xea, 0x41, 0xff, 0xd5, 0x3d,
-	0xe8, 0xf7, 0x0a, 0x0f, 0xc1, 0x12, 0x5b, 0xde, 0xac, 0xc3, 0x3c, 0x05, 0x35, 0x0d, 0x8e, 0xf0,
-	0x99, 0x75, 0x38, 0xe6, 0xc5, 0x3f, 0xac, 0x48, 0x6e, 0x33, 0xcb, 0xdf, 0x2f, 0xf1, 0xe1, 0x45,
-	0x4f, 0xdb, 0xd0, 0xb7, 0x33, 0x8b, 0x7c, 0xa1, 0xb7, 0x33, 0x4b, 0xae, 0x45, 0x9d, 0x19, 0x89,
-	0x79, 0x50, 0x2c, 0x4b, 0x25, 0x9c, 0x2b, 0x21, 0x9a, 0x8e, 0x65, 0xe5, 0xa7, 0x49, 0x28, 0x8b,
-	0x86, 0xff, 0x3e, 0x76, 0xf7, 0x89, 0x89, 0x11, 0x81, 0x72, 0xfc, 0x2b, 0x00, 0x52, 0xf9, 0xf9,
-	0xa9, 0xdf, 0x10, 0xd4, 0xf9, 0xd4, 0xb5, 0x00, 0xb0, 0x76, 0xf2, 0xeb, 0xdf, 0xfe, 0xfc, 0x71,
-	0xa4, 0x8a, 0x2a, 0xf2, 0x9f, 0xf2, 0x1a, 0x3e, 0xe1, 0x1a, 0xcf, 0x88, 0xf5, 0x1c, 0xfd, 0xac,
-	0xa4, 0x34, 0xa9, 0xa2, 0x37, 0x46, 0x67, 0xc2, 0x93, 0xfb, 0x75, 0xdd, 0xea, 0x7f, 0x06, 0x48,
-	0x09, 0x24, 0x75, 0x8e, 0x64, 0x19, 0x9d, 0x4d, 0x41, 0x12, 0xf4, 0xe9, 0xcf, 0x1b, 0x51, 0x2b,
-	0xeb, 0x21, 0x06, 0x33, 0x3d, 0x67, 0xa2, 0xc5, 0x74, 0x5d, 0x21, 0x94, 0x93, 0x59, 0xcb, 0x02,
-	0x43, 0x8d, 0x63, 0x50, 0x51, 0x35, 0x86, 0x41, 0xd6, 0xfa, 0x42, 0x81, 0x85, 0x7e, 0xdf, 0x36,
-	0xd0, 0x72, 0xa8, 0x62, 0xd0, 0x97, 0x14, 0xf5, 0xfc, 0x10, 0x92, 0x02, 0xd7, 0x55, 0x8e, 0x6b,
-	0x15, 0x5d, 0xcc, 0xc0, 0xd5, 0x78, 0x26, 0x7f, 0x7f, 0x79, 0xde, 0x88, 0xfe, 0xc0, 0x88, 0x2c,
-	0x98, 0x8c, 0x35, 0xf0, 0xe8, 0x44, 0xa8, 0xb6, 0xa7, 0xd9, 0x57, 0xd5, 0xb4, 0x25, 0x01, 0x61,
-	0x81, 0x43, 0xa8, 0xa0, 0xd9, 0x18, 0x84, 0xa0, 0xa3, 0x08, 0x8d, 0x11, 0x77, 0x8a, 0xc8, 0x18,
-	0xa9, 0x8e, 0x14, 0x19, 0x23, 0xdd, 0x97, 0x32, 0x8c, 0x41, 0xa4, 0xae, 0x91, 0xc0, 0x54, 0xa2,
-	0xfb, 0x44, 0xf3, 0x7d, 0x7a, 0x52, 0xb5, 0xd2, 0x13, 0x77, 0xd6, 0xda, 0x0e, 0x3b, 0xd0, 0x4e,
-	0x71, 0x4d, 0xf3, 0x5a, 0x25, 0xe5, 0x6e, 0x77, 0x69, 0xf3, 0x9a, 0x72, 0x01, 0xb5, 0x60, 0x3a,
-	0xd9, 0x11, 0xa1, 0x05, 0x49, 0x57, 0x4f, 0xa3, 0x94, 0xa9, 0x4c, 0xe3, 0xca, 0x16, 0xb4, 0xb9,
-	0x84, 0x2d, 0xc3, 0xfd, 0xbe, 0xb6, 0x1d, 0x28, 0xc7, 0x8b, 0x52, 0xe1, 0xe0, 0xa9, 0x95, 0x6a,
-	0xa6, 0x26, 0xf1, 0x80, 0xda, 0xf1, 0x98, 0x26, 0x59, 0x0f, 0x85, 0x99, 0x9e, 0x1a, 0x41, 0x98,
-	0x2d, 0xab, 0x76, 0xc8, 0xd4, 0x76, 0x9a, 0x6b, 0x5b, 0xd4, 0xe2, 0xe6, 0x92, 0x62, 0x6e, 0xa0,
-	0x70, 0x3a, 0xd9, 0xcd, 0x8a, 0x67, 0xcc, 0xe8, 0xb8, 0xd5, 0xc5, 0x8c, 0xd5, 0xbe, 0xf1, 0xab,
-	0x6b, 0x3a, 0xe4, 0x89, 0x28, 0x21, 0xf7, 0x15, 0x72, 0x94, 0x48, 0xe9, 0x7e, 0xe4, 0x28, 0x91,
-	0xd6, 0x8e, 0x68, 0x4b, 0x5c, 0xe7, 0x09, 0x94, 0x65, 0x41, 0xb4, 0x07, 0x53, 0x89, 0x5a, 0x0f,
-	0x75, 0x83, 0x70, 0x4a, 0x35, 0xaa, 0x2e, 0xa4, 0x2f, 0x0a, 0x75, 0x8b, 0x5c, 0xdd, 0x1c, 0x4a,
-	0x37, 0x23, 0x7a, 0x0c, 0xa8, 0x37, 0x4f, 0xa2, 0xee, 0x1d, 0xd2, 0xf3, 0xb9, 0xba, 0x94, 0xb9,
-	0xde, 0xd7, 0xfb, 0x24, 0x73, 0xde, 0x32, 0xe1, 0x14, 0xa1, 0x75, 0x73, 0x97, 0xb8, 0x8e, 0xc7,
-	0x0c, 0x73, 0x8f, 0x9f, 0x68, 0x78, 0xf5, 0xf0, 0x9f, 0x43, 0xfc, 0xf1, 0x17, 0x37, 0x9a, 0x84,
-	0xed, 0x76, 0xb6, 0xeb, 0x26, 0x6d, 0x37, 0xc8, 0xb6, 0x6b, 0xec, 0x92, 0x36, 0x7d, 0x8a, 0xf7,
-	0x88, 0x49, 0x1a, 0xd1, 0xce, 0xff, 0xf9, 0x2a, 0x9a, 0xb4, 0xb1, 0x7f, 0xb9, 0x91, 0xf8, 0xe7,
-	0x92, 0xed, 0x31, 0xce, 0xb2, 0xd5, 0xbf, 0x03, 0x00, 0x00, 0xff, 0xff, 0x72, 0x43, 0xe6, 0x72,
-	0x76, 0x22, 0x00, 0x00,
+	// 2025 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xec, 0x5a, 0x5b, 0x6f, 0x1b, 0xc7,
+	0x15, 0xc6, 0x8a, 0xb2, 0x44, 0x1e, 0x4a, 0xa4, 0x34, 0xd6, 0x85, 0x5a, 0x49, 0x36, 0xb5, 0x4e,
+	0x13, 0xc5, 0x46, 0x49, 0x57, 0x4e, 0x7a, 0x71, 0x8b, 0x14, 0x8d, 0x6c, 0x39, 0x6a, 0xfd, 0x90,
+	0xae, 0x5d, 0x18, 0x48, 0x8b, 0x12, 0xab, 0xdd, 0x31, 0x39, 0x10, 0xb9, 0xb3, 0xd9, 0x19, 0xca,
+	0x51, 0x82, 0xbc, 0xb4, 0x40, 0x1f, 0x7a, 0x79, 0xca, 0x4b, 0x0a, 0xf4, 0x27, 0x14, 0xe8, 0x4b,
+	0x5f, 0xfb, 0x2b, 0xfa, 0xd0, 0x3f, 0xd0, 0x1f, 0x52, 0xcc, 0x65, 0xb9, 0xb3, 0xe4, 0xae, 0x56,
+	0xaa, 0x1b, 0xd8, 0x28, 0xfc, 0xc6, 0xb9, 0x9d, 0xf3, 0xed, 0x9c, 0xef, 0xcc, 0x9c, 0x6f, 0x24,
+	0xd8, 0xf5, 0x58, 0x17, 0x7f, 0xc6, 0x71, 0x1c, 0x7a, 0xc3, 0xae, 0x17, 0x91, 0xee, 0x29, 0xe1,
+	0xfe, 0x00, 0x87, 0x9d, 0x28, 0xa6, 0x9c, 0xa2, 0x8a, 0x17, 0x11, 0x7b, 0xa7, 0x4f, 0x69, 0x7f,
+	0x88, 0xe5, 0xb0, 0x17, 0x86, 0x94, 0x7b, 0x9c, 0xd0, 0x90, 0xa9, 0x29, 0xf6, 0x4d, 0x3d, 0x2a,
+	0x5b, 0x27, 0xe3, 0xe7, 0x5d, 0x4e, 0x46, 0x98, 0x71, 0x6f, 0x14, 0xe9, 0x09, 0xdb, 0xd3, 0x13,
+	0xf0, 0x28, 0xe2, 0xe7, 0x6a, 0xd0, 0x79, 0x02, 0xd5, 0x5f, 0x30, 0x1c, 0x1f, 0x73, 0x3c, 0x42,
+	0x0d, 0x98, 0x23, 0x41, 0xcb, 0x6a, 0x5b, 0xfb, 0x15, 0x77, 0x8e, 0x04, 0x08, 0xc1, 0x7c, 0xe8,
+	0x8d, 0x70, 0x6b, 0xae, 0x6d, 0xed, 0xd7, 0x5c, 0xf9, 0x1b, 0xdd, 0x82, 0xe5, 0x00, 0x47, 0x5e,
+	0xcc, 0x47, 0x38, 0xe4, 0x3d, 0x12, 0xb4, 0x2a, 0x72, 0xfa, 0x52, 0xda, 0x79, 0x1c, 0x38, 0xcf,
+	0xa0, 0xf1, 0x20, 0x6d, 0x5f, 0xd6, 0xf4, 0x1e, 0x2c, 0x79, 0x3e, 0x27, 0x67, 0x84, 0x9f, 0xf7,
+	0x48, 0xc0, 0x5a, 0x95, 0x76, 0x65, 0xbf, 0xe2, 0xd6, 0x93, 0xbe, 0xe3, 0x80, 0x39, 0x07, 0xb0,
+	0xf4, 0x93, 0xa4, 0x79, 0x49, 0xb3, 0xce, 0x09, 0x34, 0x8e, 0xc3, 0x7e, 0x8c, 0x03, 0x72, 0x15,
+	0x30, 0x08, 0xe6, 0xc7, 0x21, 0xe1, 0xf2, 0xf3, 0x6a, 0xae, 0xfc, 0x8d, 0x5a, 0xb0, 0x18, 0x63,
+	0xff, 0xdc, 0x1f, 0xe2, 0xd6, 0x7c, 0xdb, 0xda, 0xaf, 0xba, 0x49, 0xd3, 0xb9, 0x0b, 0xe0, 0x62,
+	0x9f, 0x44, 0xf8, 0xd2, 0xa8, 0x38, 0xac, 0xe9, 0x15, 0x59, 0x6c, 0xdb, 0x50, 0x8b, 0x65, 0x7f,
+	0x6f, 0x62, 0xa2, 0xaa, 0x3a, 0x8e, 0x03, 0xb1, 0xf9, 0x64, 0x32, 0x5d, 0x4c, 0x98, 0x53, 0x9b,
+	0x9f, 0x76, 0x1e, 0x07, 0xc8, 0x86, 0xea, 0xa7, 0x63, 0x2f, 0xe4, 0x84, 0x9f, 0x4b, 0xf4, 0x73,
+	0xee, 0xa4, 0xed, 0x7c, 0xbd, 0x00, 0xcb, 0xca, 0xed, 0x63, 0xda, 0x2f, 0xf7, 0xf7, 0x21, 0x34,
+	0xa3, 0x18, 0x47, 0x3d, 0xc6, 0xbd, 0x98, 0xf7, 0x04, 0xaf, 0xa4, 0xc7, 0xfa, 0x81, 0xdd, 0x51,
+	0x9c, 0xea, 0x24, 0x9c, 0xea, 0x3c, 0x4d, 0x48, 0xe7, 0x2e, 0x8b, 0x25, 0x4f, 0xc4, 0x0a, 0xd1,
+	0x87, 0x3e, 0x00, 0xd9, 0xd1, 0xc3, 0x61, 0xa0, 0x2c, 0x54, 0x4a, 0x2d, 0xd4, 0xc5, 0x82, 0x87,
+	0x61, 0x20, 0xd7, 0x6f, 0x43, 0xcd, 0xa7, 0xf4, 0xb4, 0x37, 0xc0, 0x1e, 0x97, 0xdb, 0x5e, 0x71,
+	0xab, 0xa2, 0xe3, 0x23, 0xec, 0x71, 0x01, 0xd0, 0xa7, 0x74, 0x68, 0x02, 0xbc, 0x56, 0x0e, 0x50,
+	0x2c, 0xc9, 0x00, 0x94, 0x36, 0x26, 0x00, 0x17, 0xca, 0x01, 0x8a, 0x05, 0x59, 0x80, 0x43, 0x05,
+	0x70, 0x71, 0x02, 0x70, 0x28, 0x01, 0x6e, 0xc2, 0xe2, 0x98, 0xe1, 0x58, 0x6c, 0x6e, 0x55, 0x0e,
+	0x2d, 0x88, 0xe6, 0x71, 0x80, 0x7e, 0x09, 0xd7, 0x8d, 0x50, 0x4e, 0x02, 0x56, 0x6b, 0x57, 0xf6,
+	0xeb, 0x07, 0xb7, 0x3b, 0x5e, 0x44, 0x3a, 0x99, 0x40, 0x75, 0x52, 0x9e, 0xfc, 0x5c, 0x4f, 0x7e,
+	0x18, 0xf2, 0xf8, 0xdc, 0x45, 0x64, 0x66, 0x00, 0xfd, 0x1a, 0xd6, 0x34, 0x33, 0x83, 0x5e, 0x3a,
+	0xcc, 0x5a, 0x20, 0xad, 0xdf, 0xc9, 0xb1, 0xee, 0xea, 0xe9, 0xa9, 0x17, 0xa6, 0xcc, 0x5f, 0x8f,
+	0x67, 0x47, 0xd0, 0x21, 0x34, 0xd9, 0xf8, 0x64, 0x44, 0x18, 0x23, 0x34, 0xec, 0x05, 0x1e, 0xc7,
+	0xad, 0x7a, 0xe9, 0xa6, 0x35, 0xd2, 0x25, 0x0f, 0x3c, 0x8e, 0xed, 0x87, 0xb0, 0x59, 0xf0, 0x4d,
+	0x68, 0x05, 0x2a, 0xa7, 0xf8, 0x5c, 0xd3, 0x51, 0xfc, 0x44, 0x6b, 0x70, 0xed, 0xcc, 0x1b, 0x8e,
+	0xb1, 0x66, 0xbc, 0x6a, 0xdc, 0x9f, 0xfb, 0xbe, 0x65, 0x1f, 0x41, 0xab, 0x08, 0xfc, 0x55, 0xec,
+	0x38, 0x7f, 0x9d, 0x17, 0x87, 0xd6, 0xf3, 0x98, 0x32, 0x9e, 0xe4, 0xc6, 0x4c, 0xba, 0x59, 0x39,
+	0xe9, 0x76, 0x07, 0x56, 0x35, 0xfb, 0xf0, 0x28, 0xc2, 0xb1, 0xc7, 0xc7, 0xb1, 0xb2, 0x3e, 0xe7,
+	0xae, 0xc8, 0x81, 0xa7, 0x69, 0x3f, 0xfa, 0x21, 0xd4, 0xf1, 0x67, 0x11, 0x89, 0xb1, 0xda, 0xb4,
+	0xf2, 0x54, 0x00, 0x35, 0x5d, 0x6c, 0x18, 0xda, 0x05, 0xf0, 0xe9, 0x30, 0xe8, 0xbd, 0xf0, 0x38,
+	0x8e, 0xf5, 0x09, 0x54, 0x13, 0x3d, 0xcf, 0x44, 0x87, 0xe2, 0xe1, 0x30, 0xe8, 0xc5, 0x94, 0x8e,
+	0x64, 0x16, 0x54, 0x05, 0x0f, 0x87, 0x81, 0x4b, 0xe9, 0x48, 0xa0, 0x94, 0xcb, 0x32, 0x28, 0x17,
+	0x14, 0x4a, 0x39, 0x60, 0xa2, 0xfc, 0x01, 0x80, 0x9e, 0x2c, 0xd2, 0x61, 0xb1, 0x14, 0x64, 0x4d,
+	0x59, 0x10, 0xc9, 0xf0, 0x00, 0x56, 0x9e, 0x93, 0x90, 0xb0, 0x81, 0xfc, 0x40, 0x65, 0xa0, 0x5a,
+	0x4e, 0x0d, 0xb5, 0x46, 0x7c, 0xa5, 0xb4, 0xf2, 0x0e, 0x34, 0x65, 0x36, 0x1a, 0x58, 0x6b, 0x12,
+	0x6b, 0x03, 0x87, 0x81, 0x89, 0x34, 0x87, 0x88, 0x70, 0x55, 0x22, 0x66, 0x0e, 0xcc, 0x7a, 0xf6,
+	0xc0, 0x34, 0xf3, 0x77, 0xc9, 0xcc, 0x5f, 0xe7, 0xef, 0x15, 0x58, 0x3a, 0xba, 0x32, 0x59, 0x0e,
+	0xc5, 0x81, 0x4a, 0x83, 0xb1, 0xcf, 0x27, 0x78, 0xcb, 0x0f, 0xd4, 0x46, 0xba, 0x44, 0xe2, 0x3d,
+	0x84, 0xa6, 0x64, 0x85, 0x97, 0x1a, 0x29, 0x27, 0x52, 0x23, 0x5d, 0x22, 0x8d, 0x6c, 0xc0, 0xc2,
+	0x99, 0xe7, 0x8f, 0xc7, 0x23, 0x4d, 0x24, 0xdd, 0x12, 0x0c, 0x55, 0xbf, 0x94, 0xe1, 0xf2, 0xd3,
+	0x14, 0xd4, 0x74, 0x69, 0xf4, 0x6d, 0x68, 0xea, 0xc5, 0xd1, 0xbd, 0xbb, 0x3d, 0x8e, 0x19, 0x97,
+	0x1c, 0xab, 0xba, 0xcb, 0xaa, 0xfb, 0xe3, 0x7b, 0x77, 0x9f, 0x62, 0x96, 0x39, 0x15, 0x17, 0x33,
+	0xa7, 0x62, 0x4e, 0x3c, 0xab, 0x2f, 0x15, 0xcf, 0xda, 0xd4, 0x05, 0xf8, 0xd5, 0x3c, 0x34, 0x9f,
+	0x78, 0x21, 0xe1, 0xe4, 0x73, 0x7c, 0xa5, 0xc8, 0x75, 0x60, 0xfe, 0x92, 0xe1, 0x92, 0xf3, 0xf4,
+	0xb5, 0xd7, 0x7b, 0xe1, 0xb1, 0xc1, 0x55, 0xae, 0xbd, 0x67, 0x1e, 0x1b, 0xc8, 0x14, 0xd8, 0x83,
+	0x25, 0x7f, 0x30, 0xa4, 0x31, 0x09, 0x71, 0x2f, 0x8a, 0x46, 0xfa, 0xe6, 0xab, 0x27, 0x7d, 0x1f,
+	0x47, 0x23, 0xf4, 0x63, 0x58, 0x66, 0xfa, 0x53, 0x2e, 0x7b, 0xf5, 0x2d, 0x25, 0x0b, 0xa4, 0x8f,
+	0xef, 0x41, 0x2d, 0xc5, 0x57, 0x9e, 0xe6, 0xd5, 0x17, 0x09, 0xb8, 0xf7, 0xa1, 0x3a, 0xb9, 0x2d,
+	0xcb, 0xe3, 0xb3, 0x88, 0xf5, 0x4d, 0xb9, 0x0b, 0x40, 0x19, 0x0d, 0xd5, 0xae, 0xc8, 0xd0, 0x54,
+	0xdd, 0x9a, 0xec, 0x11, 0x9f, 0x6d, 0xb2, 0x02, 0xca, 0x58, 0x51, 0x7f, 0x29, 0x56, 0x2c, 0x4d,
+	0xb1, 0x62, 0x13, 0xd6, 0x1f, 0x61, 0xfe, 0x33, 0x55, 0x79, 0x8b, 0x72, 0xd8, 0xc5, 0x9f, 0x8e,
+	0x31, 0xe3, 0xce, 0x27, 0xb0, 0x31, 0x3d, 0xc0, 0x22, 0x1a, 0x32, 0x8c, 0x6e, 0x43, 0x4d, 0x81,
+	0xe5, 0x78, 0xd4, 0xb2, 0xe4, 0xbd, 0xba, 0x2c, 0xef, 0xd5, 0xa4, 0x9a, 0x76, 0xab, 0xe3, 0xa4,
+	0xae, 0x5e, 0x83, 0x6b, 0x3e, 0x1d, 0x87, 0x3c, 0xb9, 0x74, 0x64, 0xc3, 0xf9, 0x29, 0xdc, 0x7a,
+	0x84, 0x79, 0x52, 0xce, 0x3e, 0x26, 0x8c, 0x1f, 0xd1, 0x38, 0x2d, 0x9b, 0x35, 0x84, 0xd9, 0x82,
+	0xdb, 0xca, 0x29, 0xb8, 0x39, 0xbc, 0x75, 0xb1, 0x2d, 0x8d, 0xfa, 0xbb, 0xb0, 0x9c, 0x96, 0xd8,
+	0x29, 0xf2, 0x55, 0x89, 0xdc, 0xac, 0xac, 0xdd, 0x49, 0x29, 0x7e, 0xc1, 0x17, 0xdc, 0x87, 0x9b,
+	0x8f, 0x30, 0x4f, 0xdd, 0x68, 0xbf, 0xc6, 0x06, 0x9a, 0x31, 0xb5, 0x32, 0xe7, 0xe7, 0x19, 0xb4,
+	0x8b, 0xd7, 0x6a, 0xb4, 0x3f, 0x82, 0xa6, 0xf9, 0xe9, 0x29, 0xde, 0xeb, 0x12, 0x6f, 0x56, 0x62,
+	0xb8, 0x8d, 0x20, 0x2b, 0x39, 0xf2, 0x31, 0xdb, 0xd0, 0x9a, 0xf1, 0x9b, 0x44, 0x9b, 0xc2, 0x56,
+	0xce, 0xd8, 0x37, 0x08, 0x66, 0x03, 0xd6, 0x1e, 0x61, 0xae, 0x2b, 0x31, 0x03, 0x48, 0x4f, 0xf2,
+	0xd1, 0xec, 0xd7, 0x20, 0xee, 0x42, 0x3d, 0xa9, 0xd6, 0x53, 0x00, 0x4d, 0xa3, 0x9e, 0x93, 0xce,
+	0x21, 0x4e, 0xb5, 0x48, 0x51, 0xe4, 0xb6, 0x27, 0x0e, 0x8c, 0xaa, 0x29, 0x89, 0xda, 0x45, 0xa2,
+	0xc0, 0x19, 0xc0, 0x4e, 0xfe, 0x5a, 0x8d, 0xf1, 0x23, 0x40, 0xc9, 0x62, 0xa3, 0xf4, 0x54, 0x50,
+	0xb7, 0x4c, 0xa8, 0x19, 0xe1, 0xe3, 0xae, 0xc6, 0xd3, 0x16, 0x9d, 0xdf, 0x5d, 0x83, 0x8d, 0xc3,
+	0x18, 0x7b, 0x1c, 0x4f, 0x8a, 0xd5, 0xcb, 0x20, 0x7c, 0x23, 0x5b, 0xbe, 0x39, 0xd9, 0xd2, 0x2f,
+	0x50, 0x16, 0x4a, 0xb7, 0xbc, 0x27, 0xc3, 0x9b, 0x1f, 0xb2, 0x97, 0x97, 0x18, 0x57, 0xae, 0xec,
+	0xfe, 0x67, 0xda, 0xe0, 0x0f, 0x16, 0x6c, 0xa6, 0x09, 0x49, 0xfb, 0x46, 0xae, 0x8a, 0x62, 0x59,
+	0x85, 0x51, 0x62, 0xb4, 0xca, 0x8b, 0x65, 0x39, 0x5b, 0x5e, 0x49, 0xfa, 0x1a, 0xbd, 0x64, 0x5d,
+	0x21, 0xae, 0x51, 0xb1, 0xcc, 0x19, 0xcb, 0x23, 0x6c, 0x0a, 0x8c, 0x4e, 0xbe, 0x43, 0x19, 0x1f,
+	0x91, 0x17, 0x43, 0xda, 0x97, 0x87, 0x44, 0x6f, 0x48, 0x18, 0xd7, 0xe9, 0x87, 0x66, 0x95, 0x5f,
+	0x92, 0x77, 0xba, 0x29, 0x8c, 0x15, 0x9c, 0x19, 0xff, 0xaa, 0xc0, 0xa6, 0x0a, 0x6d, 0x2a, 0x93,
+	0x8c, 0x4b, 0xea, 0x8d, 0x52, 0x7a, 0xad, 0x95, 0x92, 0x59, 0xfe, 0xc0, 0x54, 0xf9, 0xf3, 0x47,
+	0x4b, 0x5f, 0x8a, 0x49, 0x58, 0x5f, 0x2d, 0xbf, 0xcf, 0xf5, 0x35, 0x9c, 0x45, 0xa3, 0x09, 0x7e,
+	0x04, 0xeb, 0x81, 0x1a, 0xc9, 0x65, 0x78, 0x72, 0x19, 0x9b, 0x3a, 0xde, 0x45, 0x41, 0xa6, 0x7d,
+	0x01, 0xc7, 0xff, 0x51, 0x81, 0x75, 0xc5, 0xf1, 0xa3, 0xff, 0x86, 0xe1, 0x6f, 0xe4, 0xdd, 0x2b,
+	0x96, 0x77, 0xbf, 0xb7, 0x64, 0xc1, 0x7e, 0xf4, 0x5a, 0xf0, 0xf8, 0x57, 0xf2, 0xd2, 0x38, 0xca,
+	0x63, 0xf1, 0x1d, 0x40, 0x53, 0x1c, 0x26, 0x81, 0xaa, 0x91, 0x2a, 0x6e, 0xd3, 0xe4, 0xea, 0x71,
+	0xc0, 0x0a, 0xa8, 0xfa, 0x97, 0x79, 0x68, 0x29, 0xaa, 0x1a, 0x7a, 0xf6, 0x4a, 0x6c, 0x7d, 0x23,
+	0x69, 0xff, 0x8f, 0x25, 0xed, 0x9f, 0x2c, 0x79, 0x8a, 0x1a, 0xdc, 0x78, 0xb5, 0xc9, 0x80, 0xc1,
+	0xce, 0x83, 0xa3, 0xf3, 0xe1, 0x3b, 0xb0, 0x3e, 0x89, 0x7b, 0x4e, 0x4a, 0x20, 0x96, 0x7d, 0xb2,
+	0x29, 0xce, 0x0a, 0x25, 0xef, 0xd2, 0x62, 0xcf, 0x54, 0x55, 0x9e, 0xdc, 0x91, 0xe9, 0x31, 0x8d,
+	0xa0, 0x93, 0x79, 0x8f, 0x9f, 0xf2, 0xbf, 0x4a, 0x32, 0x5a, 0xa5, 0xd0, 0xfd, 0xc1, 0x9f, 0x1b,
+	0xd0, 0xd0, 0xaf, 0x05, 0x4f, 0x70, 0x7c, 0x46, 0x7c, 0x8c, 0x02, 0x68, 0x64, 0x9f, 0x10, 0x90,
+	0x2d, 0xef, 0xa8, 0xdc, 0x07, 0x07, 0x7b, 0x3b, 0x77, 0x4c, 0x61, 0x74, 0xb6, 0x7e, 0xf3, 0xcf,
+	0x7f, 0x7f, 0x35, 0x77, 0x1d, 0xad, 0x9a, 0x7f, 0x28, 0xec, 0x0a, 0x46, 0xa1, 0xaf, 0xad, 0x1c,
+	0x5d, 0xab, 0xf5, 0x34, 0x7a, 0x2b, 0x31, 0x7a, 0x91, 0x54, 0xb7, 0xbf, 0x55, 0x32, 0x4b, 0x83,
+	0xe8, 0x4a, 0x10, 0xef, 0xa2, 0x77, 0x66, 0x40, 0x74, 0xbf, 0xd0, 0x5c, 0xff, 0xb2, 0x9b, 0xaa,
+	0x5f, 0x86, 0x38, 0xac, 0xce, 0x18, 0x45, 0xbb, 0xf9, 0xce, 0x12, 0x2c, 0x37, 0x8a, 0x86, 0x35,
+	0x88, 0xb6, 0x04, 0x61, 0xa3, 0x56, 0x06, 0x84, 0xe9, 0xf5, 0x6f, 0x96, 0x94, 0xa9, 0x85, 0x4f,
+	0x22, 0x68, 0x3f, 0x71, 0x51, 0xf6, 0x02, 0x63, 0xbf, 0x7b, 0x89, 0x99, 0x1a, 0xd7, 0x7d, 0x89,
+	0xeb, 0x3d, 0x74, 0x50, 0x80, 0xab, 0xfb, 0x45, 0xe6, 0x2d, 0xe7, 0xcb, 0xae, 0x7e, 0x65, 0x21,
+	0x98, 0xa1, 0x00, 0x96, 0x33, 0xa2, 0x1f, 0x6d, 0x25, 0x7e, 0x67, 0x1e, 0x08, 0x6c, 0x3b, 0x6f,
+	0x48, 0x63, 0xd8, 0x91, 0x18, 0x36, 0xd0, 0x5a, 0x06, 0x83, 0xaa, 0xf2, 0x19, 0xfa, 0xad, 0x65,
+	0xbc, 0x39, 0x98, 0x82, 0xab, 0x9d, 0x35, 0x39, 0xfb, 0x2a, 0x60, 0xef, 0x5d, 0x30, 0x43, 0xfb,
+	0x7e, 0x5b, 0xfa, 0x6e, 0xa3, 0x1b, 0x39, 0xbe, 0x4d, 0x67, 0x8a, 0x13, 0xd9, 0x54, 0x4c, 0x39,
+	0x91, 0x9b, 0xbe, 0x29, 0x27, 0xf2, 0x33, 0xb8, 0x80, 0x13, 0x86, 0x48, 0x45, 0x04, 0x9a, 0x53,
+	0xda, 0x14, 0x6d, 0x5f, 0xa0, 0x58, 0xed, 0x8d, 0x99, 0x83, 0xed, 0xe1, 0x28, 0xe2, 0xe7, 0xce,
+	0x9e, 0xf4, 0xb4, 0xed, 0x6c, 0xe4, 0x7c, 0xe5, 0x63, 0xda, 0xbf, 0x6f, 0xdd, 0x46, 0x43, 0x58,
+	0x99, 0xd6, 0x4a, 0x68, 0xc7, 0xf0, 0x35, 0x23, 0xa1, 0x0a, 0x9d, 0x39, 0xd2, 0xd9, 0x8e, 0xb3,
+	0x39, 0x45, 0xa9, 0x64, 0xbd, 0xf0, 0xf6, 0x1c, 0x1a, 0xd9, 0xaa, 0x55, 0x9f, 0x31, 0xb9, 0xa5,
+	0x6c, 0xa1, 0x27, 0xbd, 0x81, 0xce, 0x7a, 0xc6, 0x93, 0xe9, 0x87, 0xc2, 0xea, 0x4c, 0xc9, 0xa1,
+	0xc3, 0x56, 0x54, 0x8a, 0x14, 0x7a, 0xbb, 0x25, 0xbd, 0xed, 0x3a, 0xd9, 0x70, 0x19, 0x07, 0xbd,
+	0x72, 0xb8, 0x32, 0x2d, 0x75, 0xf5, 0x36, 0x16, 0xc8, 0x71, 0x7b, 0xb7, 0x60, 0x54, 0x93, 0xe4,
+	0x86, 0xf4, 0xda, 0x42, 0x05, 0xa1, 0x43, 0x4c, 0x1f, 0x56, 0xa6, 0xf6, 0x30, 0x0f, 0xab, 0x1c,
+	0x85, 0x64, 0x1e, 0x56, 0x79, 0x92, 0xc5, 0xb9, 0x29, 0x7d, 0x6e, 0xa1, 0xa2, 0x08, 0xa2, 0x53,
+	0x68, 0x4e, 0x15, 0x8a, 0x68, 0x72, 0x0f, 0xe4, 0x94, 0xb2, 0xf6, 0x4e, 0xfe, 0xa0, 0x76, 0xb7,
+	0x2b, 0xdd, 0x6d, 0xa2, 0xfc, 0x30, 0xa2, 0x17, 0x80, 0x66, 0x2f, 0x62, 0x34, 0xf9, 0x86, 0xfc,
+	0x82, 0xc1, 0xbe, 0x59, 0x38, 0x7e, 0x61, 0xf6, 0x19, 0xe1, 0xfc, 0xd0, 0x87, 0x3d, 0x42, 0x3b,
+	0xfe, 0x80, 0xc4, 0x11, 0xe3, 0x9e, 0x7f, 0x2a, 0x2d, 0x7a, 0xac, 0x93, 0xfc, 0xf7, 0x8b, 0x68,
+	0x7f, 0xf2, 0x41, 0x9f, 0xf0, 0xc1, 0xf8, 0xa4, 0xe3, 0xd3, 0x51, 0x97, 0x9c, 0xc4, 0xde, 0x80,
+	0x8c, 0xe8, 0xe7, 0xf8, 0x94, 0xf8, 0xa4, 0x9b, 0xae, 0xfc, 0xb6, 0x70, 0xd1, 0xa7, 0xdd, 0xb3,
+	0xf7, 0xbb, 0x53, 0xff, 0x3d, 0x73, 0xb2, 0x20, 0x59, 0x76, 0xef, 0x3f, 0x01, 0x00, 0x00, 0xff,
+	0xff, 0x3c, 0x87, 0x39, 0xa8, 0x57, 0x23, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -2251,6 +2393,7 @@ type KitchenServiceClient interface {
 	GetDepartmentList(ctx context.Context, in *GetDepartmentListRequest, opts ...grpc.CallOption) (*GetDepartmentListResponse, error)
 	GetActivityListForDepartment(ctx context.Context, in *GetActivityListForDepartmentRequest, opts ...grpc.CallOption) (*GetActivityListForDepartmentResponse, error)
 	GetRecipeList(ctx context.Context, in *GetRecipeListRequest, opts ...grpc.CallOption) (*GetRecipeListResponse, error)
+	GetRecipeIngredients(ctx context.Context, in *GetRecipeIngredientsRequest, opts ...grpc.CallOption) (*GetRecipeIngredientsResponse, error)
 	GetIngredientList(ctx context.Context, in *GetIngredientListRequest, opts ...grpc.CallOption) (*GetIngredientListResponse, error)
 	CreateRecipeLog(ctx context.Context, in *CreateRecipeLogRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	CreateDefrostLog(ctx context.Context, in *CreateDefrostLogRequest, opts ...grpc.CallOption) (*empty.Empty, error)
@@ -2309,6 +2452,15 @@ func (c *kitchenServiceClient) GetActivityListForDepartment(ctx context.Context,
 func (c *kitchenServiceClient) GetRecipeList(ctx context.Context, in *GetRecipeListRequest, opts ...grpc.CallOption) (*GetRecipeListResponse, error) {
 	out := new(GetRecipeListResponse)
 	err := c.cc.Invoke(ctx, "/api.KitchenService/GetRecipeList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *kitchenServiceClient) GetRecipeIngredients(ctx context.Context, in *GetRecipeIngredientsRequest, opts ...grpc.CallOption) (*GetRecipeIngredientsResponse, error) {
+	out := new(GetRecipeIngredientsResponse)
+	err := c.cc.Invoke(ctx, "/api.KitchenService/GetRecipeIngredients", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2403,6 +2555,7 @@ type KitchenServiceServer interface {
 	GetDepartmentList(context.Context, *GetDepartmentListRequest) (*GetDepartmentListResponse, error)
 	GetActivityListForDepartment(context.Context, *GetActivityListForDepartmentRequest) (*GetActivityListForDepartmentResponse, error)
 	GetRecipeList(context.Context, *GetRecipeListRequest) (*GetRecipeListResponse, error)
+	GetRecipeIngredients(context.Context, *GetRecipeIngredientsRequest) (*GetRecipeIngredientsResponse, error)
 	GetIngredientList(context.Context, *GetIngredientListRequest) (*GetIngredientListResponse, error)
 	CreateRecipeLog(context.Context, *CreateRecipeLogRequest) (*empty.Empty, error)
 	CreateDefrostLog(context.Context, *CreateDefrostLogRequest) (*empty.Empty, error)
@@ -2432,6 +2585,9 @@ func (*UnimplementedKitchenServiceServer) GetActivityListForDepartment(ctx conte
 }
 func (*UnimplementedKitchenServiceServer) GetRecipeList(ctx context.Context, req *GetRecipeListRequest) (*GetRecipeListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRecipeList not implemented")
+}
+func (*UnimplementedKitchenServiceServer) GetRecipeIngredients(ctx context.Context, req *GetRecipeIngredientsRequest) (*GetRecipeIngredientsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRecipeIngredients not implemented")
 }
 func (*UnimplementedKitchenServiceServer) GetIngredientList(ctx context.Context, req *GetIngredientListRequest) (*GetIngredientListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetIngredientList not implemented")
@@ -2551,6 +2707,24 @@ func _KitchenService_GetRecipeList_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KitchenServiceServer).GetRecipeList(ctx, req.(*GetRecipeListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _KitchenService_GetRecipeIngredients_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRecipeIngredientsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KitchenServiceServer).GetRecipeIngredients(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.KitchenService/GetRecipeIngredients",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KitchenServiceServer).GetRecipeIngredients(ctx, req.(*GetRecipeIngredientsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2740,6 +2914,10 @@ var _KitchenService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetRecipeList",
 			Handler:    _KitchenService_GetRecipeList_Handler,
+		},
+		{
+			MethodName: "GetRecipeIngredients",
+			Handler:    _KitchenService_GetRecipeIngredients_Handler,
 		},
 		{
 			MethodName: "GetIngredientList",

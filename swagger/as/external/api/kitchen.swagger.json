@@ -71,7 +71,7 @@
         ]
       }
     },
-    "/api/kitchen/department/{departmentID}/activities": {
+    "/api/kitchen/department/{department_id}/activities": {
       "get": {
         "operationId": "GetActivityListForDepartment",
         "responses": {
@@ -84,7 +84,7 @@
         },
         "parameters": [
           {
-            "name": "departmentID",
+            "name": "department_id",
             "in": "path",
             "required": true,
             "type": "string",
@@ -179,6 +179,31 @@
             }
           }
         },
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
+    "/api/kitchen/recipeIngredients": {
+      "get": {
+        "operationId": "GetRecipeIngredients",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetRecipeIngredientsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "recipeId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
         "tags": [
           "KitchenService"
         ]
@@ -312,7 +337,7 @@
         ]
       }
     },
-    "/api/kitchen/user/{id}": {
+    "/api/kitchen/user": {
       "get": {
         "operationId": "GetKitchenUser",
         "responses": {
@@ -323,21 +348,12 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
         "tags": [
           "KitchenService"
         ]
       }
     },
-    "/api/kitchen/user/{userID}/departments": {
+    "/api/kitchen/user/{user_id}/departments": {
       "get": {
         "operationId": "GetDepartmentListForUser",
         "responses": {
@@ -350,7 +366,7 @@
         },
         "parameters": [
           {
-            "name": "userID",
+            "name": "user_id",
             "in": "path",
             "required": true,
             "type": "string",
@@ -379,8 +395,9 @@
     "apiCreateDefrostLogRequest": {
       "type": "object",
       "properties": {
-        "ingredient": {
-          "$ref": "#/definitions/apiIngredientItem"
+        "ingredientId": {
+          "type": "string",
+          "format": "int64"
         },
         "startTemperature": {
           "type": "number",
@@ -413,14 +430,19 @@
         "endTemperature": {
           "type": "number",
           "format": "float"
+        },
+        "quantity": {
+          "type": "number",
+          "format": "float"
         }
       }
     },
     "apiCreateFrostLogRequest": {
       "type": "object",
       "properties": {
-        "ingredient": {
-          "$ref": "#/definitions/apiIngredientItem"
+        "ingredientId": {
+          "type": "string",
+          "format": "int64"
         },
         "productionDate": {
           "type": "string",
@@ -442,8 +464,9 @@
           "type": "boolean",
           "format": "boolean"
         },
-        "userItem": {
-          "$ref": "#/definitions/apiUserItem"
+        "userId": {
+          "type": "string",
+          "format": "int64"
         },
         "submissionDate": {
           "type": "string",
@@ -458,8 +481,9 @@
     "apiCreateRecipeLogRequest": {
       "type": "object",
       "properties": {
-        "recipe": {
-          "$ref": "#/definitions/apiRecipeItem"
+        "recipeId": {
+          "type": "string",
+          "format": "int64"
         },
         "prepStartTime": {
           "type": "string",
@@ -485,24 +509,29 @@
           "type": "string",
           "format": "int64"
         },
-        "user": {
-          "$ref": "#/definitions/apiUserItem"
+        "userId": {
+          "type": "string",
+          "format": "int64"
         },
         "recycledIngredients": {
           "type": "object",
           "additionalProperties": {
             "type": "string",
             "format": "int64"
-          },
-          "title": "Ingredient id - quantity map"
+          }
+        },
+        "submissionDate": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
     "apiCreateSanitizeLogRequest": {
       "type": "object",
       "properties": {
-        "ingredient": {
-          "$ref": "#/definitions/apiIngredientItem"
+        "ingredientId": {
+          "type": "string",
+          "format": "int64"
         },
         "date": {
           "type": "string",
@@ -512,7 +541,7 @@
           "type": "string",
           "format": "date-time"
         },
-        "chlorinePPM": {
+        "chlorinePpm": {
           "type": "string",
           "format": "int64"
         },
@@ -532,8 +561,9 @@
           "type": "boolean",
           "format": "boolean"
         },
-        "user": {
-          "$ref": "#/definitions/apiUserItem"
+        "userId": {
+          "type": "string",
+          "format": "int64"
         },
         "submissionDate": {
           "type": "string",
@@ -548,8 +578,9 @@
     "apiDefrostLogItem": {
       "type": "object",
       "properties": {
-        "ingredient": {
-          "$ref": "#/definitions/apiIngredientItem"
+        "ingredientId": {
+          "type": "string",
+          "format": "int64"
         },
         "startTemperature": {
           "type": "number",
@@ -590,6 +621,10 @@
         "quantity": {
           "type": "number",
           "format": "float"
+        },
+        "userId": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -603,10 +638,11 @@
         "name": {
           "type": "string"
         },
-        "activities": {
+        "activityIds": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/apiActivityItem"
+            "type": "string",
+            "format": "int64"
           }
         }
       }
@@ -674,10 +710,11 @@
     "apiGetFrostLogListResponse": {
       "type": "object",
       "properties": {
-        "frostLogItemList": {
+        "frostLogItemIds": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/apiRecipeLogItem"
+            "type": "string",
+            "format": "int64"
           }
         },
         "count": {
@@ -689,10 +726,11 @@
     "apiGetIngredientListResponse": {
       "type": "object",
       "properties": {
-        "ingredientItem": {
+        "ingredientItemIds": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/apiIngredientItem"
+            "type": "string",
+            "format": "int64"
           }
         },
         "count": {
@@ -713,6 +751,17 @@
         "count": {
           "type": "string",
           "format": "int64"
+        }
+      }
+    },
+    "apiGetRecipeIngredientsResponse": {
+      "type": "object",
+      "properties": {
+        "recipeIngredients": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiRecipeIngredientItem"
+          }
         }
       }
     },
@@ -749,10 +798,11 @@
     "apiGetSanitizeLogListResponse": {
       "type": "object",
       "properties": {
-        "sanitizeLogItemList": {
+        "sanitizeLogItemIds": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/apiSanitizeLogItem"
+            "type": "string",
+            "format": "int64"
           }
         },
         "count": {
@@ -761,22 +811,20 @@
         }
       }
     },
-    "apiIngredientItem": {
+    "apiRecipeIngredientItem": {
       "type": "object",
       "properties": {
-        "id": {
+        "recipeId": {
           "type": "string",
           "format": "int64"
         },
-        "name": {
-          "type": "string"
+        "ingredientId": {
+          "type": "string",
+          "format": "int64"
         },
-        "unit": {
-          "type": "string"
-        },
-        "recycle": {
-          "type": "boolean",
-          "format": "boolean"
+        "quantity": {
+          "type": "number",
+          "format": "float"
         }
       }
     },
@@ -789,22 +837,15 @@
         },
         "name": {
           "type": "string"
-        },
-        "ingredientQuantity": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string",
-            "format": "int64"
-          },
-          "title": "Ingredient id - quantity map"
         }
       }
     },
     "apiRecipeLogItem": {
       "type": "object",
       "properties": {
-        "recipe": {
-          "$ref": "#/definitions/apiRecipeItem"
+        "recipeId": {
+          "type": "string",
+          "format": "int64"
         },
         "prepStartTime": {
           "type": "string",
@@ -830,71 +871,27 @@
           "type": "string",
           "format": "int64"
         },
-        "user": {
-          "$ref": "#/definitions/apiUserItem"
+        "userId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ingredientQuantity": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "format": "int64"
+          }
         },
         "recycledIngredients": {
           "type": "object",
           "additionalProperties": {
             "type": "string",
             "format": "int64"
-          },
-          "title": "Ingredient id - quantity map"
+          }
         },
         "submissionDate": {
           "type": "string",
           "format": "date-time"
-        },
-        "quantity": {
-          "type": "number",
-          "format": "float"
-        }
-      }
-    },
-    "apiSanitizeLogItem": {
-      "type": "object",
-      "properties": {
-        "ingredient": {
-          "$ref": "#/definitions/apiIngredientItem"
-        },
-        "date": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "preWashTime": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "chlorinePPM": {
-          "type": "string",
-          "format": "int64"
-        },
-        "sanitizeTime": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "washTime": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "endTime": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "osoneWash": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "user": {
-          "$ref": "#/definitions/apiUserItem"
-        },
-        "submissionDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "quantity": {
-          "type": "number",
-          "format": "float"
         }
       }
     },
@@ -906,12 +903,11 @@
           "format": "int64"
         },
         "name": {
-          "type": "string",
-          "title": "Name of the user"
+          "type": "string"
         },
-        "department": {
-          "$ref": "#/definitions/apiDepartmentItem",
-          "title": "Department of the user"
+        "departmentId": {
+          "type": "string",
+          "format": "int64"
         }
       }
     }

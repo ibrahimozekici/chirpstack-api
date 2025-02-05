@@ -18,7 +18,7 @@ service KitchenService {
 
     rpc GetDepartmentListForUser(GetDepartmentListForUserRequest) returns (GetDepartmentListForUserResponse) {
         option (google.api.http) = {
-            get: "/api/kitchen/user/{userID}/departments"
+            get: "/api/kitchen/user/{user_id}/departments"
         };
     }
 
@@ -30,7 +30,7 @@ service KitchenService {
 
     rpc GetActivityListForDepartment(GetActivityListForDepartmentRequest) returns (GetActivityListForDepartmentResponse) {
         option (google.api.http) = {
-            get: "/api/kitchen/department/{departmentID}/activities"
+            get: "/api/kitchen/department/{department_id}/activities"
         };
     }
 
