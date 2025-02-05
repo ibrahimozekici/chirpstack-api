@@ -12,7 +12,7 @@ import "google/protobuf/empty.proto";
 service KitchenService {
     rpc GetKitchenUser(GetKitchenUserRequest) returns (GetKitchenUserResponse) {
         option (google.api.http) = {
-            get: "/api/kitchen/user/{id}"
+            get: "/api/kitchen/user"
         };
     }
 
@@ -52,7 +52,6 @@ service KitchenService {
             body: "*"
         };
     }
-
 
     rpc CreateDefrostLog(CreateDefrostLogRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
@@ -98,19 +97,15 @@ service KitchenService {
 }
 
 message UserItem {
-    int64 id= 1;
-
-    // Name of the user
+    int64 id = 1;
     string name = 2 [json_name = "name"];
-
-    // Department of the user
-    DepartmentItem department = 3;
+    int64 department_id = 3;
 }
 
 message DepartmentItem {
     int64 id = 1;
     string name = 2;
-    repeated ActivityItem activities = 3;
+    repeated int64 activity_ids = 3;
 }
 
 message ActivityItem {
@@ -126,91 +121,88 @@ message IngredientItem {
 }
 
 message RecipeItem {
-    int64 id= 1;
+    int64 id = 1;
     string name = 2;
-
-    // Ingredient id - quantity map
-    map<int64, int64> ingredientQuantity = 3;
+    map<int64, int64> ingredient_quantity = 3;
 }
 
 message RecipeLogItem {
-    RecipeItem recipe= 1;
-    google.protobuf.Timestamp prepStartTime = 2;
-    google.protobuf.Timestamp prepEndTime = 3;
-    int64 cookHeat = 4;
-    google.protobuf.Timestamp coolStartTime = 5;
-    google.protobuf.Timestamp coolEndTime = 6;
-    int64 coolHeat = 7;
-    UserItem user = 8;
-    // Ingredient id - quantity map
-    map<int64, int64> recycledIngredients = 9;
-    google.protobuf.Timestamp submissionDate = 10;
+    int64 recipe_id = 1;
+    google.protobuf.Timestamp prep_start_time = 2;
+    google.protobuf.Timestamp prep_end_time = 3;
+    int64 cook_heat = 4;
+    google.protobuf.Timestamp cool_start_time = 5;
+    google.protobuf.Timestamp cool_end_time = 6;
+    int64 cool_heat = 7;
+    int64 user_id = 8;
+    map<int64, int64> recycled_ingredients = 9;
+    google.protobuf.Timestamp submission_date = 10;
 }
 
 message DefrostLogItem {
-    IngredientItem ingredient= 1;
-    float startTemperature = 2;
-    google.protobuf.Timestamp expire_date=3;
+    int64 ingredient_id = 1;
+    float start_temperature = 2;
+    google.protobuf.Timestamp expire_date = 3;
     bool cold_water = 4;
     bool cold_room = 5;
-    float waterTemperature = 6;
-    google.protobuf.Timestamp waterTime = 7;
-    google.protobuf.Timestamp finishDateTime = 8;
-    float endTemperature = 9;
-    google.protobuf.Timestamp submissionDate = 10;
+    float water_temperature = 6;
+    google.protobuf.Timestamp water_time = 7;
+    google.protobuf.Timestamp finish_date_time = 8;
+    float end_temperature = 9;
+    google.protobuf.Timestamp submission_date = 10;
     float quantity = 11;
+    int64 user_id = 12;
 }
 
 message FrostLogItem {
-    IngredientItem ingredient= 1;
-    google.protobuf.Timestamp productionDate = 2;
-    google.protobuf.Timestamp expirationDate = 3;
+    int64 ingredient_id = 1;
+    google.protobuf.Timestamp production_date = 2;
+    google.protobuf.Timestamp expiration_date = 3;
     bool vacuum = 4;
-    google.protobuf.Timestamp vacuumDate = 5;
-    bool vacuumP30Test = 6;
-    UserItem userItem = 7;
-    google.protobuf.Timestamp submissionDate = 8;
+    google.protobuf.Timestamp vacuum_date = 5;
+    bool vacuum_p30_test = 6;
+    int64 user_id = 7;
+    google.protobuf.Timestamp submission_date = 8;
     float quantity = 9;
 }
 
 message SanitizeLogItem {
-    IngredientItem ingredient= 1;
+    int64 ingredient_id = 1;
     google.protobuf.Timestamp date = 2;
-    google.protobuf.Timestamp preWashTime = 3;
-    int64 chlorinePPM = 4;
-    google.protobuf.Timestamp sanitizeTime = 5;
-    google.protobuf.Timestamp washTime = 7;
-    google.protobuf.Timestamp endTime = 8;
-    bool osoneWash =9;
-    UserItem user = 10;
-    google.protobuf.Timestamp submissionDate = 11;
+    google.protobuf.Timestamp pre_wash_time = 3;
+    int64 chlorine_ppm = 4;
+    google.protobuf.Timestamp sanitize_time = 5;
+    google.protobuf.Timestamp wash_time = 7;
+    google.protobuf.Timestamp end_time = 8;
+    bool osone_wash = 9;
+    int64 user_id = 10;
+    google.protobuf.Timestamp submission_date = 11;
     float quantity = 12;
 }
 
 message GetKitchenUserRequest {
-    int64 id = 1;
 }
 
 message GetKitchenUserResponse {
-    repeated UserItem userItem = 1;
+    repeated UserItem user_item = 1;
     int64 count = 2;
 }
 
 message GetActivityListForDepartmentRequest {
-    int64 departmentID = 1;
+    int64 department_id = 1;
 }
 
 message GetActivityListForDepartmentResponse {
-    repeated ActivityItem activityItem = 1;
+    repeated ActivityItem activity_item = 1;
     int64 count = 2;
 }
 
 message GetDepartmentListForUserRequest {
-    int64 userID = 1;
+    int64 user_id = 1;
 }
 
 message GetDepartmentListForUserResponse {
-    repeated DepartmentItem departmentItem = 1;
+    repeated DepartmentItem department_item = 1;
     int64 count = 2;
 }
 
@@ -218,29 +210,28 @@ message GetDepartmentListRequest {
 }
 
 message GetDepartmentListResponse {
-    repeated DepartmentItem departmentItem = 1;
+    repeated DepartmentItem department_item = 1;
     int64 count = 2;
 }
 
 message GetRecipeListRequest {}
 
 message GetRecipeListResponse {
-    repeated RecipeItem recipeItem = 1;
+    repeated RecipeItem recipe_item = 1;
     int64 count = 2;
 }
 
 message CreateRecipeLogRequest {
-    RecipeItem recipe= 1;
-    google.protobuf.Timestamp prepStartTime = 2;
-    google.protobuf.Timestamp prepEndTime = 3;
-    int64 cookHeat = 4;
-    google.protobuf.Timestamp coolStartTime = 5;
-    google.protobuf.Timestamp coolEndTime = 6;
-    int64 coolHeat = 7;
-    UserItem user = 8;
-    // Ingredient id - quantity map
-    map<int64, int64> recycledIngredients = 9;
-    google.protobuf.Timestamp submissionDate = 10;
+    int64 recipe_id = 1;
+    google.protobuf.Timestamp prep_start_time = 2;
+    google.protobuf.Timestamp prep_end_time = 3;
+    int64 cook_heat = 4;
+    google.protobuf.Timestamp cool_start_time = 5;
+    google.protobuf.Timestamp cool_end_time = 6;
+    int64 cool_heat = 7;
+    int64 user_id = 8;
+    map<int64, int64> recycled_ingredients = 9;
+    google.protobuf.Timestamp submission_date = 10;
 }
 
 message GetRecipeLogListRequest {
@@ -249,20 +240,20 @@ message GetRecipeLogListRequest {
 }
 
 message GetRecipeLogListResponse {
-    repeated RecipeLogItem recipeLogItemList = 1;
+    repeated RecipeLogItem recipe_log_item_list = 1;
     int64 count = 2;
 }
 
 message CreateDefrostLogRequest {
-    IngredientItem ingredient= 1;
-    float startTemperature = 2;
-    google.protobuf.Timestamp expire_date=3;
+    int64 ingredient_id = 1;
+    float start_temperature = 2;
+    google.protobuf.Timestamp expire_date = 3;
     bool cold_water = 4;
     bool cold_room = 5;
-    float waterTemperature = 6;
-    google.protobuf.Timestamp waterTime = 7;
-    google.protobuf.Timestamp finishDateTime = 8;
-    float endTemperature = 9;
+    float water_temperature = 6;
+    google.protobuf.Timestamp water_time = 7;
+    google.protobuf.Timestamp finish_date_time = 8;
+    float end_temperature = 9;
     float quantity = 10;
 }
 
@@ -272,19 +263,19 @@ message GetDefrostLogListRequest {
 }
 
 message GetDefrostLogListResponse {
-    repeated DefrostLogItem defrostLogItemList = 1;
+    repeated DefrostLogItem defrost_log_item_list = 1;
     int64 count = 2;
 }
 
 message CreateFrostLogRequest {
-    IngredientItem ingredient= 1;
-    google.protobuf.Timestamp productionDate = 2;
-    google.protobuf.Timestamp expirationDate = 3;
+    int64 ingredient_id = 1;
+    google.protobuf.Timestamp production_date = 2;
+    google.protobuf.Timestamp expiration_date = 3;
     bool vacuum = 4;
-    google.protobuf.Timestamp vacuumDate = 5;
-    bool vacuumP30Test = 6;
-    UserItem userItem = 7;
-    google.protobuf.Timestamp submissionDate = 8;
+    google.protobuf.Timestamp vacuum_date = 5;
+    bool vacuum_p30_test = 6;
+    int64 user_id = 7;
+    google.protobuf.Timestamp submission_date = 8;
     float quantity = 9;
 }
 
@@ -294,24 +285,23 @@ message GetFrostLogListRequest {
 }
 
 message GetFrostLogListResponse {
-    repeated FrostLogItem frostLogItemList = 1;
+    repeated int64 frost_log_item_ids = 1;
     int64 count = 2;
 }
 
 message CreateSanitizeLogRequest {
-    IngredientItem ingredient= 1;
+    int64 ingredient_id = 1;
     google.protobuf.Timestamp date = 2;
-    google.protobuf.Timestamp preWashTime = 3;
-    int64 chlorinePPM = 4;
-    google.protobuf.Timestamp sanitizeTime = 5;
-    google.protobuf.Timestamp washTime = 7;
-    google.protobuf.Timestamp endTime = 8;
-    bool osoneWash =9;
-    UserItem user = 10;
-    google.protobuf.Timestamp submissionDate = 11;
+    google.protobuf.Timestamp pre_wash_time = 3;
+    int64 chlorine_ppm = 4;
+    google.protobuf.Timestamp sanitize_time = 5;
+    google.protobuf.Timestamp wash_time = 7;
+    google.protobuf.Timestamp end_time = 8;
+    bool osone_wash = 9;
+    int64 user_id = 10;
+    google.protobuf.Timestamp submission_date = 11;
     float quantity = 12;
 }
-
 
 message GetSanitizeLogListRequest {
     google.protobuf.Timestamp start_date = 1;
@@ -319,13 +309,13 @@ message GetSanitizeLogListRequest {
 }
 
 message GetSanitizeLogListResponse {
-    repeated SanitizeLogItem sanitizeLogItemList = 1;
+    repeated int64 sanitize_log_item_ids = 1;
     int64 count = 2;
 }
 
 message GetIngredientListRequest {}
 
 message GetIngredientListResponse {
-    repeated IngredientItem ingredientItem = 1;
+    repeated int64 ingredient_item_ids = 1;
     int64 count = 2;
 }
