@@ -123,7 +123,6 @@ message IngredientItem {
 message RecipeItem {
     int64 id = 1;
     string name = 2;
-    map<int64, int64> ingredient_quantity = 3;
 }
 
 message RecipeLogItem {
@@ -135,8 +134,9 @@ message RecipeLogItem {
     google.protobuf.Timestamp cool_end_time = 6;
     int64 cool_heat = 7;
     int64 user_id = 8;
-    map<int64, int64> recycled_ingredients = 9;
-    google.protobuf.Timestamp submission_date = 10;
+    map<int64, int64> ingredient_quantity = 9;
+    map<int64, int64> recycled_ingredients = 10;
+    google.protobuf.Timestamp submission_date = 11;
 }
 
 message DefrostLogItem {
