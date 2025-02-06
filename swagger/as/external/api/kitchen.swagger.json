@@ -578,9 +578,8 @@
     "apiDefrostLogItem": {
       "type": "object",
       "properties": {
-        "ingredientId": {
-          "type": "string",
-          "format": "int64"
+        "ingredient": {
+          "$ref": "#/definitions/apiIngredientItem"
         },
         "startTemperature": {
           "type": "number",
@@ -622,9 +621,8 @@
           "type": "number",
           "format": "float"
         },
-        "userId": {
-          "type": "string",
-          "format": "int64"
+        "user": {
+          "$ref": "#/definitions/apiKitchenUserItem"
         }
       }
     },
@@ -638,11 +636,10 @@
         "name": {
           "type": "string"
         },
-        "activityIds": {
+        "activities": {
           "type": "array",
           "items": {
-            "type": "string",
-            "format": "int64"
+            "$ref": "#/definitions/apiActivityItem"
           }
         }
       }
@@ -745,7 +742,7 @@
         "userItem": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/apiUserItem"
+            "$ref": "#/definitions/apiKitchenUserItem"
           }
         },
         "count": {
@@ -811,16 +808,45 @@
         }
       }
     },
-    "apiRecipeIngredientItem": {
+    "apiIngredientItem": {
       "type": "object",
       "properties": {
-        "recipeId": {
+        "id": {
           "type": "string",
           "format": "int64"
         },
-        "ingredientId": {
+        "name": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "recycle": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "apiKitchenUserItem": {
+      "type": "object",
+      "properties": {
+        "id": {
           "type": "string",
           "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "department": {
+          "$ref": "#/definitions/apiDepartmentItem"
+        }
+      }
+    },
+    "apiRecipeIngredientItem": {
+      "type": "object",
+      "properties": {
+        "ingredientItem": {
+          "$ref": "#/definitions/apiIngredientItem"
         },
         "quantity": {
           "type": "number",
@@ -843,9 +869,8 @@
     "apiRecipeLogItem": {
       "type": "object",
       "properties": {
-        "recipeId": {
-          "type": "string",
-          "format": "int64"
+        "recipe": {
+          "$ref": "#/definitions/apiRecipeItem"
         },
         "prepStartTime": {
           "type": "string",
@@ -871,43 +896,24 @@
           "type": "string",
           "format": "int64"
         },
-        "userId": {
-          "type": "string",
-          "format": "int64"
+        "kitchenUserItem": {
+          "$ref": "#/definitions/apiKitchenUserItem"
         },
-        "ingredientQuantity": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string",
-            "format": "int64"
+        "recipeIngredients": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiRecipeIngredientItem"
           }
         },
-        "recycledIngredients": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string",
-            "format": "int64"
+        "recycleIngredients": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiRecipeIngredientItem"
           }
         },
         "submissionDate": {
           "type": "string",
           "format": "date-time"
-        }
-      }
-    },
-    "apiUserItem": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64"
-        },
-        "name": {
-          "type": "string"
-        },
-        "departmentId": {
-          "type": "string",
-          "format": "int64"
         }
       }
     }
