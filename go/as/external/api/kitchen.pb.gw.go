@@ -175,6 +175,60 @@ func local_request_KitchenService_GetActivityListForDepartment_0(ctx context.Con
 
 }
 
+func request_KitchenService_GetActivitiesForUser_0(ctx context.Context, marshaler runtime.Marshaler, client KitchenServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetActivitiesForUserRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["user_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "user_id")
+	}
+
+	protoReq.UserId, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "user_id", err)
+	}
+
+	msg, err := client.GetActivitiesForUser(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_KitchenService_GetActivitiesForUser_0(ctx context.Context, marshaler runtime.Marshaler, server KitchenServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetActivitiesForUserRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["user_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "user_id")
+	}
+
+	protoReq.UserId, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "user_id", err)
+	}
+
+	msg, err := server.GetActivitiesForUser(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
 func request_KitchenService_GetRecipeList_0(ctx context.Context, marshaler runtime.Marshaler, client KitchenServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetRecipeListRequest
 	var metadata runtime.ServerMetadata
@@ -193,19 +247,26 @@ func local_request_KitchenService_GetRecipeList_0(ctx context.Context, marshaler
 
 }
 
-var (
-	filter_KitchenService_GetRecipeIngredients_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
 func request_KitchenService_GetRecipeIngredients_0(ctx context.Context, marshaler runtime.Marshaler, client KitchenServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetRecipeIngredientsRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["recipe_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "recipe_id")
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_KitchenService_GetRecipeIngredients_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+
+	protoReq.RecipeId, err = runtime.Int64(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "recipe_id", err)
 	}
 
 	msg, err := client.GetRecipeIngredients(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -217,8 +278,22 @@ func local_request_KitchenService_GetRecipeIngredients_0(ctx context.Context, ma
 	var protoReq GetRecipeIngredientsRequest
 	var metadata runtime.ServerMetadata
 
-	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_KitchenService_GetRecipeIngredients_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["recipe_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "recipe_id")
+	}
+
+	protoReq.RecipeId, err = runtime.Int64(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "recipe_id", err)
 	}
 
 	msg, err := server.GetRecipeIngredients(ctx, &protoReq)
@@ -597,6 +672,26 @@ func RegisterKitchenServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 
 	})
 
+	mux.Handle("GET", pattern_KitchenService_GetActivitiesForUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_KitchenService_GetActivitiesForUser_0(rctx, inboundMarshaler, server, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_KitchenService_GetActivitiesForUser_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("GET", pattern_KitchenService_GetRecipeList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -938,6 +1033,26 @@ func RegisterKitchenServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 
 	})
 
+	mux.Handle("GET", pattern_KitchenService_GetActivitiesForUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_KitchenService_GetActivitiesForUser_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_KitchenService_GetActivitiesForUser_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("GET", pattern_KitchenService_GetRecipeList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1170,27 +1285,29 @@ var (
 
 	pattern_KitchenService_GetActivityListForDepartment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "kitchen", "department", "department_id", "activities"}, "", runtime.AssumeColonVerbOpt(true)))
 
+	pattern_KitchenService_GetActivitiesForUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "kitchen", "user", "user_id", "activities"}, "", runtime.AssumeColonVerbOpt(true)))
+
 	pattern_KitchenService_GetRecipeList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "recipes"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_KitchenService_GetRecipeIngredients_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "recipeIngredients"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_KitchenService_GetRecipeIngredients_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "kitchen", "recipe_id", "recipe_ingredients"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_KitchenService_GetIngredientList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "ingredients"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_KitchenService_CreateRecipeLog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "recipeLog"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_KitchenService_CreateRecipeLog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "recipe_log"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_KitchenService_CreateDefrostLog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "defrostLog"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_KitchenService_CreateDefrostLog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "defrost_log"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_KitchenService_CreateFrostLog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "frostLog"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_KitchenService_CreateFrostLog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "frost_log"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_KitchenService_CreateSanitizeLog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "sanitizeLog"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_KitchenService_CreateSanitizeLog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "sanitize_log"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_KitchenService_GetRecipeLogList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "recipeLog"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_KitchenService_GetRecipeLogList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "recipe_log"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_KitchenService_GetDefrostLogList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "defrostLog"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_KitchenService_GetDefrostLogList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "defrost_log"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_KitchenService_GetFrostLogList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "frostLog"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_KitchenService_GetFrostLogList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "frost_log"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_KitchenService_GetSanitizeLogList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "sanitizeLog"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_KitchenService_GetSanitizeLogList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "kitchen", "sanitize_log"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (
@@ -1201,6 +1318,8 @@ var (
 	forward_KitchenService_GetDepartmentList_0 = runtime.ForwardResponseMessage
 
 	forward_KitchenService_GetActivityListForDepartment_0 = runtime.ForwardResponseMessage
+
+	forward_KitchenService_GetActivitiesForUser_0 = runtime.ForwardResponseMessage
 
 	forward_KitchenService_GetRecipeList_0 = runtime.ForwardResponseMessage
 

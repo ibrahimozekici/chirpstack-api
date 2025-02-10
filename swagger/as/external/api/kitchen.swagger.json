@@ -15,8 +15,9 @@
     "application/json"
   ],
   "paths": {
-    "/api/kitchen/defrostLog": {
+    "/api/kitchen/defrost_log": {
       "get": {
+        "summary": "GetDefrostLogList retrieves a list of defrost logs within a specified date range.",
         "operationId": "GetDefrostLogList",
         "responses": {
           "200": {
@@ -47,6 +48,7 @@
         ]
       },
       "post": {
+        "summary": "CreateDefrostLog creates a new defrost log entry.",
         "operationId": "CreateDefrostLog",
         "responses": {
           "200": {
@@ -73,6 +75,7 @@
     },
     "/api/kitchen/department/{department_id}/activities": {
       "get": {
+        "summary": "GetActivityListForDepartment retrieves a list of activities for a specific department.",
         "operationId": "GetActivityListForDepartment",
         "responses": {
           "200": {
@@ -98,6 +101,7 @@
     },
     "/api/kitchen/departments": {
       "get": {
+        "summary": "GetDepartmentList retrieves a list of all departments.",
         "operationId": "GetDepartmentList",
         "responses": {
           "200": {
@@ -112,8 +116,9 @@
         ]
       }
     },
-    "/api/kitchen/frostLog": {
+    "/api/kitchen/frost_log": {
       "get": {
+        "summary": "GetFrostLogList retrieves a list of frost logs within a specified date range.",
         "operationId": "GetFrostLogList",
         "responses": {
           "200": {
@@ -144,6 +149,7 @@
         ]
       },
       "post": {
+        "summary": "CreateFrostLog creates a new frost log entry.",
         "operationId": "CreateFrostLog",
         "responses": {
           "200": {
@@ -170,6 +176,7 @@
     },
     "/api/kitchen/ingredients": {
       "get": {
+        "summary": "GetIngredientList retrieves a list of all ingredients.",
         "operationId": "GetIngredientList",
         "responses": {
           "200": {
@@ -184,33 +191,9 @@
         ]
       }
     },
-    "/api/kitchen/recipeIngredients": {
+    "/api/kitchen/recipe_log": {
       "get": {
-        "operationId": "GetRecipeIngredients",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiGetRecipeIngredientsResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "recipeId",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "KitchenService"
-        ]
-      }
-    },
-    "/api/kitchen/recipeLog": {
-      "get": {
+        "summary": "GetRecipeLogList retrieves a list of recipe logs within a specified date range.",
         "operationId": "GetRecipeLogList",
         "responses": {
           "200": {
@@ -241,6 +224,7 @@
         ]
       },
       "post": {
+        "summary": "CreateRecipeLog creates a new recipe log entry.",
         "operationId": "CreateRecipeLog",
         "responses": {
           "200": {
@@ -267,6 +251,7 @@
     },
     "/api/kitchen/recipes": {
       "get": {
+        "summary": "GetRecipeList retrieves a list of all recipes.",
         "operationId": "GetRecipeList",
         "responses": {
           "200": {
@@ -281,8 +266,9 @@
         ]
       }
     },
-    "/api/kitchen/sanitizeLog": {
+    "/api/kitchen/sanitize_log": {
       "get": {
+        "summary": "GetSanitizeLogList retrieves a list of sanitize logs within a specified date range.",
         "operationId": "GetSanitizeLogList",
         "responses": {
           "200": {
@@ -313,6 +299,7 @@
         ]
       },
       "post": {
+        "summary": "CreateSanitizeLog creates a new sanitize log entry.",
         "operationId": "CreateSanitizeLog",
         "responses": {
           "200": {
@@ -339,6 +326,7 @@
     },
     "/api/kitchen/user": {
       "get": {
+        "summary": "GetKitchenUser retrieves a list of kitchen users.",
         "operationId": "GetKitchenUser",
         "responses": {
           "200": {
@@ -353,8 +341,34 @@
         ]
       }
     },
+    "/api/kitchen/user/{user_id}/activities": {
+      "get": {
+        "summary": "GetActivitiesForUser retrieves a list of activities for a specific user.",
+        "operationId": "GetActivitiesForUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetActivitiesForUserResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
     "/api/kitchen/user/{user_id}/departments": {
       "get": {
+        "summary": "GetDepartmentListForUser retrieves a list of departments for a specific user.",
         "operationId": "GetDepartmentListForUser",
         "responses": {
           "200": {
@@ -367,6 +381,32 @@
         "parameters": [
           {
             "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
+    "/api/kitchen/{recipe_id}/recipe_ingredients": {
+      "get": {
+        "summary": "GetRecipeIngredients retrieves a list of ingredients for a specific recipe.",
+        "operationId": "GetRecipeIngredients",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetRecipeIngredientsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "recipe_id",
             "in": "path",
             "required": true,
             "type": "string",
@@ -390,7 +430,8 @@
         "name": {
           "type": "string"
         }
-      }
+      },
+      "description": "ActivityItem represents an activity."
     },
     "apiCreateDefrostLogRequest": {
       "type": "object",
@@ -435,7 +476,8 @@
           "type": "number",
           "format": "float"
         }
-      }
+      },
+      "description": "CreateDefrostLogRequest is the request message for CreateDefrostLog RPC."
     },
     "apiCreateFrostLogRequest": {
       "type": "object",
@@ -476,7 +518,8 @@
           "type": "number",
           "format": "float"
         }
-      }
+      },
+      "description": "CreateFrostLogRequest is the request message for CreateFrostLog RPC."
     },
     "apiCreateRecipeLogRequest": {
       "type": "object",
@@ -514,17 +557,17 @@
           "format": "int64"
         },
         "recycledIngredients": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string",
-            "format": "int64"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiRecipeIngredientItem"
           }
         },
         "submissionDate": {
           "type": "string",
           "format": "date-time"
         }
-      }
+      },
+      "description": "CreateRecipeLogRequest is the request message for CreateRecipeLog RPC."
     },
     "apiCreateSanitizeLogRequest": {
       "type": "object",
@@ -573,7 +616,8 @@
           "type": "number",
           "format": "float"
         }
-      }
+      },
+      "description": "CreateSanitizeLogRequest is the request message for CreateSanitizeLog RPC."
     },
     "apiDefrostLogItem": {
       "type": "object",
@@ -624,7 +668,8 @@
         "user": {
           "$ref": "#/definitions/apiKitchenUserItem"
         }
-      }
+      },
+      "description": "DefrostLogItem represents a log entry for defrosting an ingredient."
     },
     "apiDepartmentItem": {
       "type": "object",
@@ -642,7 +687,64 @@
             "$ref": "#/definitions/apiActivityItem"
           }
         }
-      }
+      },
+      "description": "DepartmentItem represents a department with associated activities."
+    },
+    "apiFrostLogItem": {
+      "type": "object",
+      "properties": {
+        "ingredient": {
+          "$ref": "#/definitions/apiIngredientItem"
+        },
+        "productionDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expirationDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "vacuum": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "vacuumDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "vacuumP30Test": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "user": {
+          "$ref": "#/definitions/apiKitchenUserItem"
+        },
+        "submissionDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "quantity": {
+          "type": "number",
+          "format": "float"
+        }
+      },
+      "description": "FrostLogItem represents a log entry for freezing an ingredient."
+    },
+    "apiGetActivitiesForUserResponse": {
+      "type": "object",
+      "properties": {
+        "activities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiActivityItem"
+          }
+        },
+        "totalCount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "description": "GetActivitiesForUserResponse is the response message for GetActivitiesForUser RPC."
     },
     "apiGetActivityListForDepartmentResponse": {
       "type": "object",
@@ -657,7 +759,8 @@
           "type": "string",
           "format": "int64"
         }
-      }
+      },
+      "description": "GetActivityListForDepartmentResponse is the response message for GetActivityListForDepartment RPC."
     },
     "apiGetDefrostLogListResponse": {
       "type": "object",
@@ -672,7 +775,8 @@
           "type": "string",
           "format": "int64"
         }
-      }
+      },
+      "description": "GetDefrostLogListResponse is the response message for GetDefrostLogList RPC."
     },
     "apiGetDepartmentListForUserResponse": {
       "type": "object",
@@ -687,7 +791,8 @@
           "type": "string",
           "format": "int64"
         }
-      }
+      },
+      "description": "GetDepartmentListForUserResponse is the response message for GetDepartmentListForUser RPC."
     },
     "apiGetDepartmentListResponse": {
       "type": "object",
@@ -702,39 +807,40 @@
           "type": "string",
           "format": "int64"
         }
-      }
+      },
+      "description": "GetDepartmentListResponse is the response message for GetDepartmentList RPC."
     },
     "apiGetFrostLogListResponse": {
       "type": "object",
       "properties": {
-        "frostLogItemIds": {
+        "frostLogItemList": {
           "type": "array",
           "items": {
-            "type": "string",
-            "format": "int64"
+            "$ref": "#/definitions/apiFrostLogItem"
           }
         },
         "count": {
           "type": "string",
           "format": "int64"
         }
-      }
+      },
+      "description": "GetFrostLogListResponse is the response message for GetFrostLogList RPC."
     },
     "apiGetIngredientListResponse": {
       "type": "object",
       "properties": {
-        "ingredientItemIds": {
+        "ingredientItemList": {
           "type": "array",
           "items": {
-            "type": "string",
-            "format": "int64"
+            "$ref": "#/definitions/apiIngredientItem"
           }
         },
         "count": {
           "type": "string",
           "format": "int64"
         }
-      }
+      },
+      "description": "GetIngredientListResponse is the response message for GetIngredientList RPC."
     },
     "apiGetKitchenUserResponse": {
       "type": "object",
@@ -749,7 +855,8 @@
           "type": "string",
           "format": "int64"
         }
-      }
+      },
+      "description": "GetKitchenUserResponse is the response message for GetKitchenUser RPC."
     },
     "apiGetRecipeIngredientsResponse": {
       "type": "object",
@@ -760,7 +867,8 @@
             "$ref": "#/definitions/apiRecipeIngredientItem"
           }
         }
-      }
+      },
+      "description": "GetRecipeIngredientsResponse is the response message for GetRecipeIngredients RPC."
     },
     "apiGetRecipeListResponse": {
       "type": "object",
@@ -775,7 +883,8 @@
           "type": "string",
           "format": "int64"
         }
-      }
+      },
+      "description": "GetRecipeListResponse is the response message for GetRecipeList RPC."
     },
     "apiGetRecipeLogListResponse": {
       "type": "object",
@@ -790,23 +899,24 @@
           "type": "string",
           "format": "int64"
         }
-      }
+      },
+      "description": "GetRecipeLogListResponse is the response message for GetRecipeLogList RPC."
     },
     "apiGetSanitizeLogListResponse": {
       "type": "object",
       "properties": {
-        "sanitizeLogItemIds": {
+        "sanitizeLogItemList": {
           "type": "array",
           "items": {
-            "type": "string",
-            "format": "int64"
+            "$ref": "#/definitions/apiSanitizeLogItem"
           }
         },
         "count": {
           "type": "string",
           "format": "int64"
         }
-      }
+      },
+      "description": "GetSanitizeLogListResponse is the response message for GetSanitizeLogList RPC."
     },
     "apiIngredientItem": {
       "type": "object",
@@ -825,7 +935,8 @@
           "type": "boolean",
           "format": "boolean"
         }
-      }
+      },
+      "description": "IngredientItem represents an ingredient with its properties."
     },
     "apiKitchenUserItem": {
       "type": "object",
@@ -837,22 +948,27 @@
         "name": {
           "type": "string"
         },
-        "department": {
-          "$ref": "#/definitions/apiDepartmentItem"
+        "userDepartments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiDepartmentItem"
+          }
         }
-      }
+      },
+      "description": "KitchenUserItem represents a kitchen user with associated departments."
     },
     "apiRecipeIngredientItem": {
       "type": "object",
       "properties": {
-        "ingredientItem": {
+        "ingredient": {
           "$ref": "#/definitions/apiIngredientItem"
         },
         "quantity": {
           "type": "number",
           "format": "float"
         }
-      }
+      },
+      "description": "RecipeIngredientItem represents an ingredient used in a recipe with its quantity."
     },
     "apiRecipeItem": {
       "type": "object",
@@ -864,7 +980,8 @@
         "name": {
           "type": "string"
         }
-      }
+      },
+      "description": "RecipeItem represents a recipe."
     },
     "apiRecipeLogItem": {
       "type": "object",
@@ -896,7 +1013,7 @@
           "type": "string",
           "format": "int64"
         },
-        "kitchenUserItem": {
+        "kitchenUser": {
           "$ref": "#/definitions/apiKitchenUserItem"
         },
         "recipeIngredients": {
@@ -915,7 +1032,56 @@
           "type": "string",
           "format": "date-time"
         }
-      }
+      },
+      "description": "RecipeLogItem represents a log entry for a recipe."
+    },
+    "apiSanitizeLogItem": {
+      "type": "object",
+      "properties": {
+        "ingredient": {
+          "$ref": "#/definitions/apiIngredientItem"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "preWashTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "chlorinePpm": {
+          "type": "string",
+          "format": "int64"
+        },
+        "sanitizeTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "washTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "osoneWash": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "user": {
+          "$ref": "#/definitions/apiKitchenUserItem"
+        },
+        "submissionDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "quantity": {
+          "type": "number",
+          "format": "float"
+        }
+      },
+      "description": "SanitizeLogItem represents a log entry for sanitizing an ingredient."
     }
   }
 }
