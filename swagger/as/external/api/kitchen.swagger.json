@@ -570,6 +570,12 @@
         "submissionDate": {
           "type": "string",
           "format": "date-time"
+        },
+        "recipeIngredients": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiRecipeIngredientItem"
+          }
         }
       },
       "description": "CreateRecipeLogRequest is the request message for CreateRecipeLog RPC."

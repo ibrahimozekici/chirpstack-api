@@ -311,6 +311,7 @@ message CreateRecipeLogRequest {
     int64 user_id = 8;
     repeated RecipeIngredientItem recycled_ingredients = 9;
     google.protobuf.Timestamp submission_date = 10;
+    repeated RecipeIngredientItem recipe_ingredients = 11;
 }
 
 // GetRecipeLogListRequest is the request message for GetRecipeLogList RPC.
