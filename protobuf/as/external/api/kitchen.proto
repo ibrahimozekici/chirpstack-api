@@ -173,10 +173,10 @@ message RecipeLogItem {
     RecipeItem recipe = 1 [json_name = "recipe"];
     google.protobuf.Timestamp prep_start_time = 2 [json_name = "prepStartTime"];
     google.protobuf.Timestamp prep_end_time = 3 [json_name = "prepEndTime"];
-    int64 cook_heat = 4 [json_name = "cookHeat"];
+    float cook_heat = 4 [json_name = "cookHeat"];
     google.protobuf.Timestamp cool_start_time = 5 [json_name = "coolStartTime"];
     google.protobuf.Timestamp cool_end_time = 6 [json_name = "coolEndTime"];
-    int64 cool_heat = 7 [json_name = "coolHeat"];
+    float cool_heat = 7 [json_name = "coolHeat"];
     KitchenUserItem kitchen_user = 8 [json_name = "kitchenUser"];
     repeated RecipeIngredientItem recipe_ingredients = 9 [json_name = "recipeIngredients"];
     repeated RecipeIngredientItem recycle_ingredients = 10 [json_name = "recycleIngredients"];
@@ -304,10 +304,10 @@ message CreateRecipeLogRequest {
     int64 recipe_id = 1;
     google.protobuf.Timestamp prep_start_time = 2;
     google.protobuf.Timestamp prep_end_time = 3;
-    int64 cook_heat = 4;
+    float cook_heat = 4;
     google.protobuf.Timestamp cool_start_time = 5;
     google.protobuf.Timestamp cool_end_time = 6;
-    int64 cool_heat = 7;
+    float cool_heat = 7;
     int64 user_id = 8;
     repeated RecipeIngredientItem recycled_ingredients = 9;
     google.protobuf.Timestamp submission_date = 10;

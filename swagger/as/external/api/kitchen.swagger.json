@@ -542,8 +542,8 @@
           "format": "date-time"
         },
         "cookHeat": {
-          "type": "string",
-          "format": "int64"
+          "type": "number",
+          "format": "float"
         },
         "coolStartTime": {
           "type": "string",
@@ -554,8 +554,8 @@
           "format": "date-time"
         },
         "coolHeat": {
-          "type": "string",
-          "format": "int64"
+          "type": "number",
+          "format": "float"
         },
         "userId": {
           "type": "string",
@@ -1009,8 +1009,8 @@
           "format": "date-time"
         },
         "cookHeat": {
-          "type": "string",
-          "format": "int64"
+          "type": "number",
+          "format": "float"
         },
         "coolStartTime": {
           "type": "string",
@@ -1021,8 +1021,8 @@
           "format": "date-time"
         },
         "coolHeat": {
-          "type": "string",
-          "format": "int64"
+          "type": "number",
+          "format": "float"
         },
         "kitchenUser": {
           "$ref": "#/definitions/apiKitchenUserItem"
