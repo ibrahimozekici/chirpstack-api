@@ -358,7 +358,8 @@
             "name": "user_id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -475,6 +476,10 @@
         "quantity": {
           "type": "number",
           "format": "float"
+        },
+        "userId": {
+          "type": "string",
+          "format": "int64"
         }
       },
       "description": "CreateDefrostLogRequest is the request message for CreateDefrostLog RPC."
@@ -600,7 +605,7 @@
           "type": "string",
           "format": "date-time"
         },
-        "osoneWash": {
+        "ozoneWash": {
           "type": "boolean",
           "format": "boolean"
         },
@@ -1065,7 +1070,7 @@
           "type": "string",
           "format": "date-time"
         },
-        "osoneWash": {
+        "ozoneWash": {
           "type": "boolean",
           "format": "boolean"
         },

@@ -221,7 +221,7 @@ message SanitizeLogItem {
     google.protobuf.Timestamp sanitize_time = 5 [json_name = "sanitizeTime"];
     google.protobuf.Timestamp wash_time = 7 [json_name = "washTime"];
     google.protobuf.Timestamp end_time = 8 [json_name = "endTime"];
-    bool osone_wash = 9 [json_name = "osoneWash"];
+    bool ozone_wash = 9 [json_name = "ozoneWash"];
     KitchenUserItem user = 10 [json_name = "user"];
     google.protobuf.Timestamp submission_date = 11 [json_name = "submissionDate"];
     float quantity = 12 [json_name = "quantity"];
@@ -261,7 +261,7 @@ message GetDepartmentListForUserResponse {
 
 // GetActivitiesForUserRequest is the request message for GetActivitiesForUser RPC.
 message GetActivitiesForUserRequest {
-    string user_id = 1;  // The ID of the user whose activities are being requested
+    int64 user_id = 1;  // The ID of the user whose activities are being requested
 }
 
 // GetActivitiesForUserResponse is the response message for GetActivitiesForUser RPC.
@@ -337,6 +337,7 @@ message CreateDefrostLogRequest {
     google.protobuf.Timestamp finish_date_time = 8;
     float end_temperature = 9;
     float quantity = 10;
+    int64 user_id = 11;
 }
 
 // GetDefrostLogListRequest is the request message for GetDefrostLogList RPC.
@@ -385,7 +386,7 @@ message CreateSanitizeLogRequest {
     google.protobuf.Timestamp sanitize_time = 5;
     google.protobuf.Timestamp wash_time = 7;
     google.protobuf.Timestamp end_time = 8;
-    bool osone_wash = 9;
+    bool ozone_wash = 9;
     int64 user_id = 10;
     google.protobuf.Timestamp submission_date = 11;
     float quantity = 12;

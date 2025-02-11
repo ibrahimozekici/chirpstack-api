@@ -191,7 +191,7 @@ func request_KitchenService_GetActivitiesForUser_0(ctx context.Context, marshale
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "user_id")
 	}
 
-	protoReq.UserId, err = runtime.String(val)
+	protoReq.UserId, err = runtime.Int64(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "user_id", err)
@@ -218,7 +218,7 @@ func local_request_KitchenService_GetActivitiesForUser_0(ctx context.Context, ma
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "user_id")
 	}
 
-	protoReq.UserId, err = runtime.String(val)
+	protoReq.UserId, err = runtime.Int64(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "user_id", err)
