@@ -480,6 +480,13 @@
         "userId": {
           "type": "string",
           "format": "int64"
+        },
+        "startDateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "batchNo": {
+          "type": "string"
         }
       },
       "description": "CreateDefrostLogRequest is the request message for CreateDefrostLog RPC."
