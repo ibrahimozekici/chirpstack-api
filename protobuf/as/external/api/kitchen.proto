@@ -197,6 +197,8 @@ message DefrostLogItem {
     google.protobuf.Timestamp submission_date = 10 [json_name = "submissionDate"];
     float quantity = 11 [json_name = "quantity"];
     KitchenUserItem user = 12 [json_name = "user"];
+    string batch_no = 13 [json_name = "batchNo"];
+    google.protobuf.Timestamp start_date_time = 14 [json_name = "startDateTime"];
 }
 
 // FrostLogItem represents a log entry for freezing an ingredient.

@@ -678,6 +678,13 @@
         },
         "user": {
           "$ref": "#/definitions/apiKitchenUserItem"
+        },
+        "batchNo": {
+          "type": "string"
+        },
+        "startDateTime": {
+          "type": "string",
+          "format": "date-time"
         }
       },
       "description": "DefrostLogItem represents a log entry for defrosting an ingredient."
