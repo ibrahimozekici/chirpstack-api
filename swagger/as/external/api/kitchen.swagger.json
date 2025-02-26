@@ -41,6 +41,13 @@
             "required": false,
             "type": "string",
             "format": "date-time"
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -92,6 +99,13 @@
             "required": true,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -111,6 +125,15 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
         "tags": [
           "KitchenService"
         ]
@@ -142,6 +165,13 @@
             "required": false,
             "type": "string",
             "format": "date-time"
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -186,6 +216,15 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
         "tags": [
           "KitchenService"
         ]
@@ -217,6 +256,13 @@
             "required": false,
             "type": "string",
             "format": "date-time"
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -261,6 +307,15 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
         "tags": [
           "KitchenService"
         ]
@@ -292,6 +347,13 @@
             "required": false,
             "type": "string",
             "format": "date-time"
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -336,6 +398,15 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
         "tags": [
           "KitchenService"
         ]
@@ -358,6 +429,13 @@
             "name": "user_id",
             "in": "path",
             "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
             "type": "string",
             "format": "int64"
           }
@@ -386,6 +464,13 @@
             "required": true,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -410,6 +495,13 @@
             "name": "recipe_id",
             "in": "path",
             "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
             "type": "string",
             "format": "int64"
           }
@@ -437,56 +529,12 @@
     "apiCreateDefrostLogRequest": {
       "type": "object",
       "properties": {
-        "ingredientId": {
+        "defrostLogItem": {
+          "$ref": "#/definitions/apiDefrostLogItem"
+        },
+        "organizationId": {
           "type": "string",
           "format": "int64"
-        },
-        "startTemperature": {
-          "type": "number",
-          "format": "float"
-        },
-        "expireDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "coldWater": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "coldRoom": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "waterTemperature": {
-          "type": "number",
-          "format": "float"
-        },
-        "waterTime": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "finishDateTime": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "endTemperature": {
-          "type": "number",
-          "format": "float"
-        },
-        "quantity": {
-          "type": "number",
-          "format": "float"
-        },
-        "userId": {
-          "type": "string",
-          "format": "int64"
-        },
-        "startDateTime": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "batchNo": {
-          "type": "string"
         }
       },
       "description": "CreateDefrostLogRequest is the request message for CreateDefrostLog RPC."
@@ -494,41 +542,12 @@
     "apiCreateFrostLogRequest": {
       "type": "object",
       "properties": {
-        "ingredientId": {
+        "frostLogItem": {
+          "$ref": "#/definitions/apiFrostLogItem"
+        },
+        "organizationId": {
           "type": "string",
           "format": "int64"
-        },
-        "productionDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "expirationDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "vacuum": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "vacuumDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "vacuumP30Test": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "userId": {
-          "type": "string",
-          "format": "int64"
-        },
-        "submissionDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "quantity": {
-          "type": "number",
-          "format": "float"
         }
       },
       "description": "CreateFrostLogRequest is the request message for CreateFrostLog RPC."
@@ -536,53 +555,12 @@
     "apiCreateRecipeLogRequest": {
       "type": "object",
       "properties": {
-        "recipeId": {
+        "recipeLogItem": {
+          "$ref": "#/definitions/apiRecipeLogItem"
+        },
+        "organizationId": {
           "type": "string",
           "format": "int64"
-        },
-        "prepStartTime": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "prepEndTime": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "cookHeat": {
-          "type": "number",
-          "format": "float"
-        },
-        "coolStartTime": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "coolEndTime": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "coolHeat": {
-          "type": "number",
-          "format": "float"
-        },
-        "userId": {
-          "type": "string",
-          "format": "int64"
-        },
-        "recycledIngredients": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiRecipeIngredientItem"
-          }
-        },
-        "submissionDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "recipeIngredients": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiRecipeIngredientItem"
-          }
         }
       },
       "description": "CreateRecipeLogRequest is the request message for CreateRecipeLog RPC."
@@ -590,49 +568,12 @@
     "apiCreateSanitizeLogRequest": {
       "type": "object",
       "properties": {
-        "ingredientId": {
+        "sanitizeLogItem": {
+          "$ref": "#/definitions/apiSanitizeLogItem"
+        },
+        "organizationId": {
           "type": "string",
           "format": "int64"
-        },
-        "date": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "preWashTime": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "chlorinePpm": {
-          "type": "string",
-          "format": "int64"
-        },
-        "sanitizeTime": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "washTime": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "endTime": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "ozoneWash": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "userId": {
-          "type": "string",
-          "format": "int64"
-        },
-        "submissionDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "quantity": {
-          "type": "number",
-          "format": "float"
         }
       },
       "description": "CreateSanitizeLogRequest is the request message for CreateSanitizeLog RPC."

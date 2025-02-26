@@ -231,6 +231,7 @@ message SanitizeLogItem {
 
 // GetKitchenUserRequest is the request message for GetKitchenUser RPC.
 message GetKitchenUserRequest {
+    int64 organization_id = 1;
 }
 
 // GetKitchenUserResponse is the response message for GetKitchenUser RPC.
@@ -242,6 +243,7 @@ message GetKitchenUserResponse {
 // GetActivityListForDepartmentRequest is the request message for GetActivityListForDepartment RPC.
 message GetActivityListForDepartmentRequest {
     int64 department_id = 1;
+    int64 organization_id = 2;
 }
 
 // GetActivityListForDepartmentResponse is the response message for GetActivityListForDepartment RPC.
@@ -253,6 +255,7 @@ message GetActivityListForDepartmentResponse {
 // GetDepartmentListForUserRequest is the request message for GetDepartmentListForUser RPC.
 message GetDepartmentListForUserRequest {
     int64 user_id = 1;
+    int64 organization_id = 2;
 }
 
 // GetDepartmentListForUserResponse is the response message for GetDepartmentListForUser RPC.
@@ -264,6 +267,7 @@ message GetDepartmentListForUserResponse {
 // GetActivitiesForUserRequest is the request message for GetActivitiesForUser RPC.
 message GetActivitiesForUserRequest {
     int64 user_id = 1;  // The ID of the user whose activities are being requested
+    int64 organization_id = 2;
 }
 
 // GetActivitiesForUserResponse is the response message for GetActivitiesForUser RPC.
@@ -274,6 +278,7 @@ message GetActivitiesForUserResponse {
 
 // GetDepartmentListRequest is the request message for GetDepartmentList RPC.
 message GetDepartmentListRequest {
+    int64 organization_id = 1;
 }
 
 // GetDepartmentListResponse is the response message for GetDepartmentList RPC.
@@ -283,7 +288,9 @@ message GetDepartmentListResponse {
 }
 
 // GetRecipeListRequest is the request message for GetRecipeList RPC.
-message GetRecipeListRequest {}
+message GetRecipeListRequest {
+    int64 organization_id = 1;
+}
 
 // GetRecipeListResponse is the response message for GetRecipeList RPC.
 message GetRecipeListResponse {
@@ -294,6 +301,7 @@ message GetRecipeListResponse {
 // GetRecipeIngredientsRequest is the request message for GetRecipeIngredients RPC.
 message GetRecipeIngredientsRequest {
     int64 recipe_id = 1;
+    int64 organization_id = 2;
 }
 
 // GetRecipeIngredientsResponse is the response message for GetRecipeIngredients RPC.
@@ -303,23 +311,15 @@ message GetRecipeIngredientsResponse {
 
 // CreateRecipeLogRequest is the request message for CreateRecipeLog RPC.
 message CreateRecipeLogRequest {
-    int64 recipe_id = 1;
-    google.protobuf.Timestamp prep_start_time = 2;
-    google.protobuf.Timestamp prep_end_time = 3;
-    float cook_heat = 4;
-    google.protobuf.Timestamp cool_start_time = 5;
-    google.protobuf.Timestamp cool_end_time = 6;
-    float cool_heat = 7;
-    int64 user_id = 8;
-    repeated RecipeIngredientItem recycled_ingredients = 9;
-    google.protobuf.Timestamp submission_date = 10;
-    repeated RecipeIngredientItem recipe_ingredients = 11;
+    RecipeLogItem recipe_log_item = 1;
+    int64 organization_id = 2;
 }
 
 // GetRecipeLogListRequest is the request message for GetRecipeLogList RPC.
 message GetRecipeLogListRequest {
     google.protobuf.Timestamp start_date = 1;
     google.protobuf.Timestamp end_date = 2;
+    int64 organization_id = 3;
 }
 
 // GetRecipeLogListResponse is the response message for GetRecipeLogList RPC.
@@ -330,25 +330,15 @@ message GetRecipeLogListResponse {
 
 // CreateDefrostLogRequest is the request message for CreateDefrostLog RPC.
 message CreateDefrostLogRequest {
-    int64 ingredient_id = 1;
-    float start_temperature = 2;
-    google.protobuf.Timestamp expire_date = 3;
-    bool cold_water = 4;
-    bool cold_room = 5;
-    float water_temperature = 6;
-    google.protobuf.Timestamp water_time = 7;
-    google.protobuf.Timestamp finish_date_time = 8;
-    float end_temperature = 9;
-    float quantity = 10;
-    int64 user_id = 11;
-    google.protobuf.Timestamp start_date_time = 12;
-    string batch_no = 13;
+    DefrostLogItem defrost_log_item = 1;
+    int64 organization_id = 2;
 }
 
 // GetDefrostLogListRequest is the request message for GetDefrostLogList RPC.
 message GetDefrostLogListRequest {
     google.protobuf.Timestamp start_date = 1;
     google.protobuf.Timestamp end_date = 2;
+    int64 organization_id = 3;
 }
 
 // GetDefrostLogListResponse is the response message for GetDefrostLogList RPC.
@@ -359,21 +349,15 @@ message GetDefrostLogListResponse {
 
 // CreateFrostLogRequest is the request message for CreateFrostLog RPC.
 message CreateFrostLogRequest {
-    int64 ingredient_id = 1;
-    google.protobuf.Timestamp production_date = 2;
-    google.protobuf.Timestamp expiration_date = 3;
-    bool vacuum = 4;
-    google.protobuf.Timestamp vacuum_date = 5;
-    bool vacuum_p30_test = 6;
-    int64 user_id = 7;
-    google.protobuf.Timestamp submission_date = 8;
-    float quantity = 9;
+    FrostLogItem frost_log_item = 1;
+    int64 organization_id = 2;
 }
 
 // GetFrostLogListRequest is the request message for GetFrostLogList RPC.
 message GetFrostLogListRequest {
     google.protobuf.Timestamp start_date = 1;
     google.protobuf.Timestamp end_date = 2;
+    int64 organization_id = 3;
 }
 
 // GetFrostLogListResponse is the response message for GetFrostLogList RPC.
@@ -384,23 +368,15 @@ message GetFrostLogListResponse {
 
 // CreateSanitizeLogRequest is the request message for CreateSanitizeLog RPC.
 message CreateSanitizeLogRequest {
-    int64 ingredient_id = 1;
-    google.protobuf.Timestamp date = 2;
-    google.protobuf.Timestamp pre_wash_time = 3;
-    int64 chlorine_ppm = 4;
-    google.protobuf.Timestamp sanitize_time = 5;
-    google.protobuf.Timestamp wash_time = 7;
-    google.protobuf.Timestamp end_time = 8;
-    bool ozone_wash = 9;
-    int64 user_id = 10;
-    google.protobuf.Timestamp submission_date = 11;
-    float quantity = 12;
+    SanitizeLogItem sanitize_log_item = 1;
+    int64 organization_id = 2;
 }
 
 // GetSanitizeLogListRequest is the request message for GetSanitizeLogList RPC.
 message GetSanitizeLogListRequest {
     google.protobuf.Timestamp start_date = 1;
     google.protobuf.Timestamp end_date = 2;
+    int64 organization_id = 3;
 }
 
 // GetSanitizeLogListResponse is the response message for GetSanitizeLogList RPC.
@@ -410,7 +386,9 @@ message GetSanitizeLogListResponse {
 }
 
 // GetIngredientListRequest is the request message for GetIngredientList RPC.
-message GetIngredientListRequest {}
+message GetIngredientListRequest {
+    int64 organization_id = 1;
+}
 
 // GetIngredientListResponse is the response message for GetIngredientList RPC.
 message GetIngredientListResponse {
