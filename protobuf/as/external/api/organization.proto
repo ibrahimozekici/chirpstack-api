@@ -111,7 +111,10 @@ message Organization {
 	uint32 max_device_count = 6;
 
 	bool license_payment = 7;
+
 	bool pro_license = 8;
+
+	bool kitchen_management_license = 9;
 }
 
 message OrganizationListItem {
