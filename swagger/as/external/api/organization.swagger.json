@@ -497,6 +497,10 @@
         "proLicense": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "kitchenManagementLicense": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },

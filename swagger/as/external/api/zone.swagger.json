@@ -420,164 +420,7 @@
           "type": "string",
           "description": "The last time the application-server received any data from the device,\r\nor an empty string when the device never sent any data."
         },
-        "water_leak_status": {
-          "type": "string",
-          "format": "int64"
-        },
-        "water_leak_times": {
-          "type": "string",
-          "format": "int64"
-        },
-        "last_water_leak_duration": {
-          "type": "string",
-          "format": "int64"
-        },
-        "door_open_status": {
-          "type": "string",
-          "format": "int64"
-        },
-        "door_open_times": {
-          "type": "string",
-          "format": "int64"
-        },
-        "last_door_open_duration": {
-          "type": "string",
-          "format": "int64"
-        },
         "batv": {
-          "type": "number",
-          "format": "float"
-        },
-        "ro1_status": {
-          "type": "string",
-          "format": "int64"
-        },
-        "ro2_status": {
-          "type": "string",
-          "format": "int64"
-        },
-        "ph_soil": {
-          "type": "number",
-          "format": "float",
-          "description": "temp_SOIL of the device."
-        },
-        "co2_ppm": {
-          "type": "number",
-          "format": "float",
-          "description": "conduct_SOIL of the device."
-        },
-        "tvoc_ppm": {
-          "type": "number",
-          "format": "float",
-          "description": "temp_SOIL of the device."
-        },
-        "sensecap_light": {
-          "type": "number",
-          "format": "float"
-        },
-        "barometric_pressure": {
-          "type": "number",
-          "format": "float"
-        },
-        "power": {
-          "type": "number",
-          "format": "float"
-        },
-        "current": {
-          "type": "number",
-          "format": "float"
-        },
-        "voltage": {
-          "type": "number",
-          "format": "float"
-        },
-        "factor": {
-          "type": "number",
-          "format": "float"
-        },
-        "powerSum": {
-          "type": "number",
-          "format": "float"
-        },
-        "status": {
-          "type": "string",
-          "format": "int64"
-        },
-        "power_consumption": {
-          "type": "string",
-          "format": "int64"
-        },
-        "switch1": {
-          "type": "string",
-          "format": "int64"
-        },
-        "switch2": {
-          "type": "string",
-          "format": "int64"
-        },
-        "switch3": {
-          "type": "string",
-          "format": "int64"
-        },
-        "switch4": {
-          "type": "string",
-          "format": "int64"
-        },
-        "switch5": {
-          "type": "string",
-          "format": "int64"
-        },
-        "switch6": {
-          "type": "string",
-          "format": "int64"
-        },
-        "switch7": {
-          "type": "string",
-          "format": "int64"
-        },
-        "switch8": {
-          "type": "string",
-          "format": "int64"
-        },
-        "adc_1": {
-          "type": "string"
-        },
-        "adc_2": {
-          "type": "string"
-        },
-        "adv_1": {
-          "type": "string"
-        },
-        "gpio_in_1": {
-          "type": "string"
-        },
-        "gpio_in_2": {
-          "type": "string"
-        },
-        "gpio_in_3": {
-          "type": "string"
-        },
-        "gpio_in_4": {
-          "type": "string"
-        },
-        "gpio_out_1": {
-          "type": "string"
-        },
-        "gpio_out_2": {
-          "type": "string"
-        },
-        "distance": {
-          "type": "string",
-          "format": "int64"
-        },
-        "position": {
-          "type": "string"
-        },
-        "temperature1": {
-          "type": "number",
-          "format": "float"
-        },
-        "temperature2": {
           "type": "number",
           "format": "float"
         }
@@ -589,14 +432,6 @@
         "device_dev_eui": {
           "type": "string",
           "description": "Device EUI (HEX encoded)."
-        },
-        "device_created_at": {
-          "type": "string",
-          "title": "device_created_at"
-        },
-        "device_updated_at": {
-          "type": "string",
-          "title": "device_updated_at"
         },
         "device_profile_id": {
           "type": "string",
@@ -613,25 +448,6 @@
         "device_last_seen_at": {
           "type": "string",
           "title": "device_last_seen_at"
-        },
-        "device_data_time": {
-          "type": "string",
-          "format": "int64",
-          "title": "data time"
-        },
-        "latitude": {
-          "type": "number",
-          "format": "double",
-          "title": "device lat value"
-        },
-        "longitude": {
-          "type": "number",
-          "format": "double",
-          "title": "device lng value"
-        },
-        "device_application_id": {
-          "type": "string",
-          "format": "int64"
         },
         "data": {
           "type": "array",
