@@ -206,6 +206,23 @@
         ]
       }
     },
+    "/api/internal/logout": {
+      "post": {
+        "summary": "Logout the user",
+        "operationId": "Logout",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "tags": [
+          "InternalService"
+        ]
+      }
+    },
     "/api/internal/oidc/login": {
       "get": {
         "summary": "OpenID Connect login.",

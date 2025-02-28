@@ -23,6 +23,13 @@ service InternalService {
 		};
 	}
 
+    // Logout the user
+    rpc Logout(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option(google.api.http) = {
+            post: "/api/internal/logout"
+        };
+    }
+
 	// Get the current user's profile
 	rpc Profile(google.protobuf.Empty) returns (ProfileResponse) {
 		option(google.api.http) = {
