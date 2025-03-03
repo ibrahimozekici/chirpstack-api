@@ -662,6 +662,10 @@
         "ingredient": {
           "$ref": "#/definitions/apiIngredientItem"
         },
+        "frostDate": {
+          "type": "string",
+          "format": "date-time"
+        },
         "productionDate": {
           "type": "string",
           "format": "date-time"
@@ -669,18 +673,6 @@
         "expirationDate": {
           "type": "string",
           "format": "date-time"
-        },
-        "vacuum": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "vacuumDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "vacuumP30Test": {
-          "type": "boolean",
-          "format": "boolean"
         },
         "user": {
           "$ref": "#/definitions/apiKitchenUserItem"
@@ -897,7 +889,11 @@
         "unit": {
           "type": "string"
         },
-        "recycle": {
+        "freezable": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "sanitizable": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -983,12 +979,6 @@
           "$ref": "#/definitions/apiKitchenUserItem"
         },
         "recipeIngredients": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiRecipeIngredientItem"
-          }
-        },
-        "recycleIngredients": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/apiRecipeIngredientItem"

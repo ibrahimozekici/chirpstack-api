@@ -153,7 +153,8 @@ message IngredientItem {
     int64 id = 1;
     string name = 2 [json_name = "name"];
     string unit = 3 [json_name = "unit"];
-    bool recycle = 4 [json_name = "recycle"];
+    bool freezable = 4 [json_name = "freezable"];
+    bool sanitizable = 5 [json_name = "sanitizable"];
 }
 
 // RecipeItem represents a recipe.
@@ -179,8 +180,7 @@ message RecipeLogItem {
     float cool_heat = 7 [json_name = "coolHeat"];
     KitchenUserItem kitchen_user = 8 [json_name = "kitchenUser"];
     repeated RecipeIngredientItem recipe_ingredients = 9 [json_name = "recipeIngredients"];
-    repeated RecipeIngredientItem recycle_ingredients = 10 [json_name = "recycleIngredients"];
-    google.protobuf.Timestamp submission_date = 11 [json_name = "submissionDate"];
+    google.protobuf.Timestamp submission_date = 10 [json_name = "submissionDate"];
 }
 
 // DefrostLogItem represents a log entry for defrosting an ingredient.
@@ -204,14 +204,12 @@ message DefrostLogItem {
 // FrostLogItem represents a log entry for freezing an ingredient.
 message FrostLogItem {
     IngredientItem ingredient = 1 [json_name = "ingredient"];
-    google.protobuf.Timestamp production_date = 2 [json_name = "productionDate"];
-    google.protobuf.Timestamp expiration_date = 3 [json_name = "expirationDate"];
-    bool vacuum = 4 [json_name = "vacuum"];
-    google.protobuf.Timestamp vacuum_date = 5 [json_name = "vacuumDate"];
-    bool vacuum_p30_test = 6 [json_name = "vacuumP30Test"];
-    KitchenUserItem user = 7 [json_name = "user"];
-    google.protobuf.Timestamp submission_date = 8 [json_name = "submissionDate"];
-    float quantity = 9 [json_name = "quantity"];
+    google.protobuf.Timestamp frost_date = 2 [json_name = "frostDate"];
+    google.protobuf.Timestamp production_date = 3 [json_name = "productionDate"];
+    google.protobuf.Timestamp expiration_date = 4 [json_name = "expirationDate"];
+    KitchenUserItem user = 5 [json_name = "user"];
+    google.protobuf.Timestamp submission_date = 6 [json_name = "submissionDate"];
+    float quantity = 7 [json_name = "quantity"];
 }
 
 // SanitizeLogItem represents a log entry for sanitizing an ingredient.
