@@ -193,14 +193,17 @@ message DeleteAlarmRequest{
 
 message DeleteUserAlarmRequest{
 	repeated int64 userIds = 1;
+	int64 user_sent_id = 2;
 }
 
 message DeleteSensorAlarmRequest{
 	repeated string devEuis = 1;
+	int64 user_id = 2;
 }
 
 message DeleteZoneAlarmRequest{
 	repeated int64 zones = 1;
+	int64 user_id = 2;
 }
 
 message DeleteAlarmDevEuiRequest{
