@@ -162,8 +162,9 @@ message GetAlarmResponse{
 }
 
 message UpdateAlarmRequest{
-	Alarm alarm = 1;
-	int64 user_id = 2;
+	string alarmID = 1;
+	Alarm alarm = 2;
+	int64 user_id = 3;
 }
 
 message GetAlarmLogsRequest{
