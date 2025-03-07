@@ -864,10 +864,6 @@
           "items": {
             "$ref": "#/definitions/apiAlarm"
           }
-        },
-        "userId": {
-          "type": "string",
-          "format": "int64"
         }
       }
     },
@@ -994,10 +990,6 @@
           "items": {
             "$ref": "#/definitions/apiAlarm"
           }
-        },
-        "userId": {
-          "type": "string",
-          "format": "int64"
         }
       }
     },
@@ -1024,10 +1016,6 @@
         },
         "ipAddress": {
           "type": "string"
-        },
-        "userId": {
-          "type": "string",
-          "format": "int64"
         }
       }
     },
@@ -1053,10 +1041,6 @@
             "format": "int64"
           },
           "description": "Alarm Id (HEX encoded)."
-        },
-        "sentUserId": {
-          "type": "string",
-          "format": "int64"
         }
       }
     },
@@ -1069,10 +1053,6 @@
             "type": "string"
           },
           "description": "Alarm Id (HEX encoded)."
-        },
-        "userId": {
-          "type": "string",
-          "format": "int64"
         }
       }
     },
@@ -1086,10 +1066,6 @@
             "format": "int64"
           },
           "description": "Alarm Id (HEX encoded)."
-        },
-        "userId": {
-          "type": "string",
-          "format": "int64"
         }
       }
     },
@@ -1316,10 +1292,6 @@
         },
         "alarmID": {
           "type": "string"
-        },
-        "userId": {
-          "type": "string",
-          "format": "int64"
         }
       }
     }

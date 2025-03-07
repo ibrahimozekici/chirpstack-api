@@ -297,12 +297,10 @@ message CreateDoorTimeResponse {
 }
 message CreateAlarmRequest {
     repeated Alarm create_alarm = 1;
-    int64 user_id = 2;
 }
 
 message CreateMultipleAlarmRequest {
     repeated Alarm create_alarm = 1;
-    int64 user_id = 2;
 }
 message CreateMultipleDoorAlarmRequest {
     repeated CreateDoorTimeRequest create_alarm = 1;
@@ -310,7 +308,6 @@ message CreateMultipleDoorAlarmRequest {
 message CreateAlarmMultipleResponse {
     repeated Alarm alarm = 1;
     repeated int64 userIds = 2;
-
 }
 message GetAlarmRequest {
     // Device EUI (HEX encoded).
@@ -327,7 +324,6 @@ message DeleteAlarmRequest {
     // Alarm Id (HEX encoded).
     repeated string alarm_id = 1 [json_name = "alarmID"];
     string ip_address = 2;
-    int64 user_id = 3;
 }
 
 message DeleteDoorAlarmRequest {
@@ -335,26 +331,23 @@ message DeleteDoorAlarmRequest {
     repeated string alarm_id = 1 [json_name = "alarmID"];
 }
 message ListOrganizationAlarmRequest2 {
-
 	int64 organization_id = 1 [json_name = "organizationID"];
 }
 
 message DeleteMultipleAlarmRequest {
     // Alarm Id (HEX encoded).
     repeated int64 user_id = 1 [json_name = "userIDs"];
-    int64 sent_user_id = 2;
 }
 message DeleteMultipleZoneAlarmRequest {
     // Alarm Id (HEX encoded).
     repeated int64 zone_id = 1 [json_name = "zoneIds"];
-    int64 user_id = 2;
 }
 
 message DeleteMultipleDevAlarmRequest {
     // Alarm Id (HEX encoded).
     repeated string dev_euis = 1 [json_name = "devEui"];
-    int64 user_id = 2;
 }
+
 message ListOrganizationAlarmResponse {
      // Alarm id.
      int64 id = 1;
@@ -408,9 +401,7 @@ message ListOrganizationAlarmResponse {
 message UpdateAlarmRequest {
     // Alarm object to update.
     Alarm alarm = 1;
-
     string alarm_id = 2 [json_name = "alarmID"]; 
-    int64 user_id = 3;
 }
 
 message ListDoorAlarmRequest {
