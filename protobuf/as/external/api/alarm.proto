@@ -141,7 +141,7 @@ service AlarmService {
 
     rpc GetAuditLogs(GetAuditLogsRequest) returns (GetAuditLogsResponse) {
         option (google.api.http) = {
-            get: "/api/alarm/auditLogs/{device_id}"
+            get: "/api/alarm/auditLogs/{dev_eui}"
         };
     }
 }
@@ -511,7 +511,7 @@ message AlarmLogs {
 
 message GetAuditLogsRequest {
     // Device ID
-    string device_id = 1 [json_name = "device_id"];
+    string dev_eui = 1 [json_name = "dev_eui"];
 }
 
 message GetAuditLogsResponse {

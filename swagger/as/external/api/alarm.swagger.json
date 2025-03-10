@@ -199,7 +199,7 @@
         ]
       }
     },
-    "/api/alarm/auditLogs/{device_id}": {
+    "/api/alarm/auditLogs/{dev_eui}": {
       "get": {
         "operationId": "GetAuditLogs",
         "responses": {
@@ -212,7 +212,7 @@
         },
         "parameters": [
           {
-            "name": "device_id",
+            "name": "dev_eui",
             "description": "Device ID",
             "in": "path",
             "required": true,
