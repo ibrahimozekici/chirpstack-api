@@ -199,6 +199,31 @@
         ]
       }
     },
+    "/api/alarm/auditLogs/{alarm_id}": {
+      "get": {
+        "operationId": "GetAuditLogs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetAuditLogsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "alarm_id",
+            "description": "Alarm ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AlarmService"
+        ]
+      }
+    },
     "/api/alarm/createDoorTime": {
       "post": {
         "summary": "CreateDoorTime CreateDoorTime",
@@ -847,6 +872,47 @@
         }
       }
     },
+    "apiAuditLog": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "devEui": {
+          "type": "string"
+        },
+        "minTreshold": {
+          "type": "number",
+          "format": "float"
+        },
+        "maxTreshold": {
+          "type": "number",
+          "format": "float"
+        },
+        "action": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        },
+        "section": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "submissionDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "userId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "apiCreateAlarmAutomationRequest": {
       "type": "object",
       "properties": {
@@ -1087,6 +1153,17 @@
         "alarm": {
           "$ref": "#/definitions/apiAlarm",
           "title": "Alarm object"
+        }
+      }
+    },
+    "apiGetAuditLogsResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAuditLog"
+          }
         }
       }
     },
