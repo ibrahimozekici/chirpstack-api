@@ -199,7 +199,7 @@
         ]
       }
     },
-    "/api/alarm/auditLogs/{alarm_id}": {
+    "/api/alarm/auditLogs/{device_id}": {
       "get": {
         "operationId": "GetAuditLogs",
         "responses": {
@@ -212,8 +212,8 @@
         },
         "parameters": [
           {
-            "name": "alarm_id",
-            "description": "Alarm ID",
+            "name": "device_id",
+            "description": "Device ID",
             "in": "path",
             "required": true,
             "type": "string"
@@ -875,41 +875,36 @@
     "apiAuditLog": {
       "type": "object",
       "properties": {
-        "id": {
+        "logId": {
           "type": "string",
           "format": "int64"
         },
-        "devEui": {
+        "alarmId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "changeType": {
           "type": "string"
         },
-        "minTreshold": {
-          "type": "number",
-          "format": "float"
-        },
-        "maxTreshold": {
-          "type": "number",
-          "format": "float"
-        },
-        "action": {
-          "type": "string"
-        },
-        "target": {
-          "type": "string"
-        },
-        "section": {
-          "type": "string"
-        },
-        "active": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "submissionDate": {
+        "changedAt": {
           "type": "string",
           "format": "date-time"
         },
-        "userId": {
+        "changedBy": {
           "type": "string",
           "format": "int64"
+        },
+        "oldValues": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "newValues": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     },

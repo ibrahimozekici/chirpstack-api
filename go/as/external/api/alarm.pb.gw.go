@@ -858,15 +858,15 @@ func request_AlarmService_GetAuditLogs_0(ctx context.Context, marshaler runtime.
 		_   = err
 	)
 
-	val, ok = pathParams["alarm_id"]
+	val, ok = pathParams["device_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "alarm_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "device_id")
 	}
 
-	protoReq.AlarmId, err = runtime.String(val)
+	protoReq.DeviceId, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "alarm_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "device_id", err)
 	}
 
 	msg, err := client.GetAuditLogs(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -885,15 +885,15 @@ func local_request_AlarmService_GetAuditLogs_0(ctx context.Context, marshaler ru
 		_   = err
 	)
 
-	val, ok = pathParams["alarm_id"]
+	val, ok = pathParams["device_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "alarm_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "device_id")
 	}
 
-	protoReq.AlarmId, err = runtime.String(val)
+	protoReq.DeviceId, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "alarm_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "device_id", err)
 	}
 
 	msg, err := server.GetAuditLogs(ctx, &protoReq)
@@ -1789,7 +1789,7 @@ var (
 
 	pattern_AlarmService_UpdateAlarmAutomation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "alarm", "alarmAutomation", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_AlarmService_GetAuditLogs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "alarm", "auditLogs", "alarm_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_AlarmService_GetAuditLogs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "alarm", "auditLogs", "device_id"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (

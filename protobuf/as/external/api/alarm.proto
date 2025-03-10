@@ -141,21 +141,18 @@ service AlarmService {
 
     rpc GetAuditLogs(GetAuditLogsRequest) returns (GetAuditLogsResponse) {
         option (google.api.http) = {
-            get: "/api/alarm/auditLogs/{alarm_id}"
+            get: "/api/alarm/auditLogs/{device_id}"
         };
     }
 }
 message AuditLog {
-    int64 id = 1;
-    string dev_eui = 2;
-    float min_treshold = 3;
-    float max_treshold = 4;
-    string action = 5;
-    string target = 6;
-    string section = 7;
-    bool active = 8;
-    google.protobuf.Timestamp submission_date = 9;
-    int64 user_id = 10;
+    int64 log_id = 1;
+    int64 alarm_id = 2;
+    string change_type = 3;
+    google.protobuf.Timestamp changed_at = 4;
+    int64 changed_by = 5;
+    map<string, string> old_values = 6;
+    map<string, string> new_values = 7;
 }
 message AlarmAutomation {
     int64 id = 1 [json_name = "id"];
@@ -513,8 +510,8 @@ message AlarmLogs {
 }
 
 message GetAuditLogsRequest {
-    // Alarm ID
-    string alarm_id = 1 [json_name = "alarmID"];
+    // Device ID
+    string device_id = 1 [json_name = "device_id"];
 }
 
 message GetAuditLogsResponse {
