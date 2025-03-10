@@ -883,6 +883,9 @@
           "type": "string",
           "format": "int64"
         },
+        "devEui": {
+          "type": "string"
+        },
         "changeType": {
           "type": "string"
         },
