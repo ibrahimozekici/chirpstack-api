@@ -898,16 +898,10 @@
           "format": "int64"
         },
         "oldValues": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
+          "type": "string"
         },
         "newValues": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
+          "type": "string"
         }
       }
     },

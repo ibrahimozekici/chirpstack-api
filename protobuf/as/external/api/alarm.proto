@@ -152,8 +152,8 @@ message AuditLog {
     string change_type = 4;
     google.protobuf.Timestamp changed_at = 5;
     int64 changed_by = 6;
-    map<string, string> old_values = 7;
-    map<string, string> new_values = 8;
+    string old_values = 7;
+    string new_values = 8;
 }
 message AlarmAutomation {
     int64 id = 1 [json_name = "id"];
