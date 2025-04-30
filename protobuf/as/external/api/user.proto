@@ -154,6 +154,8 @@ message UserListItem {
 	string user_name = 16 [json_name = "userName"];
 
 	string expo_key = 17 [json_name = "expo_key"];
+
+	bool has_accepted_kvkk = 18 [json_name = "has_accepted_kvkk"];
 }
 
 message UserOrganization {

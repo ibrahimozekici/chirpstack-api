@@ -435,6 +435,10 @@
         },
         "expo_key": {
           "type": "string"
+        },
+        "has_accepted_kvkk": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
