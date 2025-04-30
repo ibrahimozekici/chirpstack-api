@@ -105,6 +105,8 @@ message User {
 	bool training = 17 [json_name = "training"];
 
 	string expo_key = 18 [json_name = "expo_key"];
+
+	bool has_accepted_kvkk = 19 [json_name = "has_accepted_kvkk"];
 }
 
 message UserListItem {

@@ -418,7 +418,7 @@
         },
         "submission_date": {
           "type": "string",
-          "description": "The last time the application-server received any data from the device,\nor an empty string when the device never sent any data."
+          "description": "The last time the application-server received any data from the device,\r\nor an empty string when the device never sent any data."
         },
         "water_leak_status": {
           "type": "string",
@@ -636,7 +636,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "New field for custom attributes\nVariables (user defined).\nThese variables can be used together with integrations to store tokens /\nsecrets that must be configured per device. These variables are not\nexposed in the event payloads."
+          "description": "New field for custom attributes\r\nVariables (user defined).\r\nThese variables can be used together with integrations to store tokens /\r\nsecrets that must be configured per device. These variables are not\r\nexposed in the event payloads."
         },
         "tags": {
           "type": "object",
