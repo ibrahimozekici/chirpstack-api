@@ -261,7 +261,7 @@ message EnergySensorResponse {
     float voltage = 5 [json_name = "Voltage"];
     float factor = 6 [json_name = "Factor"];
     float power_sum = 7 [json_name = "PowerSum"];
-    int64 status = 8 [json_name = "status"];
+    string status = 8 [json_name = "status"];
     
     google.protobuf.Timestamp submission_date = 9 [json_name = "submission_date"];
 }
