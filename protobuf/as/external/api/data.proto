@@ -81,6 +81,8 @@ message Uc300Response {
 	string gpio_in_4 = 10;
 	string gpio_out_1 = 11;
 	string gpio_out_2 = 12;
+    string status = 13 [json_name = "status"];
+
 }
 message TemHumDateResponse {
      // Device EUI (HEX encoded).
@@ -94,6 +96,8 @@ message TemHumDateResponse {
  
      // hum_SHT.
      float air_humadity = 4 [json_name = "Air_Humadity"];
+
+     string status = 5 [json_name = "status"];
 
      google.protobuf.Timestamp submission_date = 8 [json_name = "submission_date"];
 }
@@ -111,6 +115,8 @@ message LTC2LBResponse {
     // hum_SHT.
     float temperature2 = 4 [json_name = "temperature2"];
 
+    string status = 5 [json_name = "status"];
+
     google.protobuf.Timestamp submission_date = 8 [json_name = "submission_date"];
 }
 
@@ -125,6 +131,9 @@ message T68DLResponse {
     float temperature = 3 [json_name = "temperature"];
 
     google.protobuf.Timestamp submission_date = 4 [json_name = "submission_date"];
+
+    string status = 5 [json_name = "status"];
+ 
 }
 message SoilSensorResponse {
     // Device EUI (HEX encoded).
@@ -142,7 +151,10 @@ message SoilSensorResponse {
     // conduct_SOIL of the device.
     float sol_conduct_soil = 7 [json_name = "Sol_conduct_soil"];
 
-    google.protobuf.Timestamp submission_date = 8 [json_name = "submission_date"];
+    string status = 8 [json_name = "status"];
+
+
+    google.protobuf.Timestamp submission_date = 9 [json_name = "submission_date"];
 }
 
 message EM400MUDSensorResponse {
@@ -152,6 +164,8 @@ message EM400MUDSensorResponse {
     // name
     string name = 2 [json_name = "name"];
     
+    string status = 3 [json_name = "status"];
+
     // water_SOIL of the device.
     int64 distance = 5 [json_name = "distance"];
 
@@ -167,6 +181,9 @@ message WaterLeekSensorResponse {
 
     // name
     string name = 2 [json_name = "name"];
+
+    string status = 3 [json_name = "status"];
+
     
     int64 water_status = 10 [json_name = "WaterStatus"];
 
@@ -189,6 +206,9 @@ message AirQualitySensorResponse {
 
     // hum_SHT.
     float air_humadity = 4 [json_name = "Air_Humadity"];
+
+    string status = 5 [json_name = "status"];
+
     
     // temp_SOIL of the device.
     float tvoc_ppb = 18 [json_name = "Tvoc_ppb"];
@@ -207,6 +227,8 @@ message DoorSensorResponse {
     // name
     string name = 2 [json_name = "name"];
     
+    string status = 3 [json_name = "status"];
+
     int64 door_status = 13 [json_name = "DoorStatus"];
     int64 door_open_times = 14 [json_name = "DoorOpenTimes"];
     int64 door_open_duration = 15 [json_name = "DoorOpenDuration"];
@@ -221,6 +243,8 @@ message LightSensorResponse {
     // name
     string name = 2 [json_name = "name"];
     
+    string status = 3 [json_name = "status"];
+
     float sensecap_light = 22 [json_name = "SensecapLight"];
     
     google.protobuf.Timestamp submission_date = 8 [json_name = "submission_date"];
@@ -263,6 +287,8 @@ message WS558Response {
     int64 switch7 = 14 [json_name = "Switch7"];
     int64 switch8 = 15 [json_name = "Switch8"];
     google.protobuf.Timestamp submission_date = 16 [json_name = "submission_date"];
+    string status = 17 [json_name = "status"];
+
 }
 message DataResponse {
 
@@ -321,7 +347,7 @@ message DataResponse {
     float voltage = 26 [json_name = "Voltage"];
     float factor = 27 [json_name = "Factor"];
     float power_sum = 28 [json_name = "PowerSum"];
-    int64 status = 29 [json_name = "status"];
+    string status = 29 [json_name = "status"];
     int64 switch1 = 30 [json_name = "Switch1"];
     int64 switch2 = 31 [json_name = "Switch2"];
     int64 switch3 = 32 [json_name = "Switch3"];
