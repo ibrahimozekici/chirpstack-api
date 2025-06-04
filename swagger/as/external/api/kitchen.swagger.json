@@ -987,6 +987,10 @@
         "submissionDate": {
           "type": "string",
           "format": "date-time"
+        },
+        "recipePortion": {
+          "type": "number",
+          "format": "double"
         }
       },
       "description": "RecipeLogItem represents a log entry for a recipe."
@@ -994,8 +998,11 @@
     "apiSanitizeLogItem": {
       "type": "object",
       "properties": {
-        "ingredient": {
-          "$ref": "#/definitions/apiIngredientItem"
+        "ingredientNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "date": {
           "type": "string",

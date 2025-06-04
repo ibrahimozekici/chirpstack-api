@@ -181,6 +181,7 @@ message RecipeLogItem {
     KitchenUserItem kitchen_user = 8 [json_name = "kitchenUser"];
     repeated RecipeIngredientItem recipe_ingredients = 9 [json_name = "recipeIngredients"];
     google.protobuf.Timestamp submission_date = 10 [json_name = "submissionDate"];
+    double recipe_portion = 11 [json_name = "recipePortion"];
 }
 
 // DefrostLogItem represents a log entry for defrosting an ingredient.
@@ -214,7 +215,7 @@ message FrostLogItem {
 
 // SanitizeLogItem represents a log entry for sanitizing an ingredient.
 message SanitizeLogItem {
-    IngredientItem ingredient = 1 [json_name = "ingredient"];
+    repeated string ingredient_names = 1 [json_name = "ingredientNames"];
     google.protobuf.Timestamp date = 2 [json_name = "date"];
     google.protobuf.Timestamp pre_wash_time = 3 [json_name = "preWashTime"];
     int64 chlorine_ppm = 4 [json_name = "chlorinePpm"];
