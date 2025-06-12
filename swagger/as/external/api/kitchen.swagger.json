@@ -998,6 +998,13 @@
     "apiSanitizeLogItem": {
       "type": "object",
       "properties": {
+        "ingredientIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
         "ingredientNames": {
           "type": "array",
           "items": {
