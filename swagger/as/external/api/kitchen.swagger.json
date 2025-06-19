@@ -508,6 +508,30 @@
         "tags": [
           "KitchenService"
         ]
+      },
+      "post": {
+        "operationId": "CreateWasteLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateWasteLogRequest"
+            }
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
       }
     },
     "/api/kitchen/{recipe_id}/recipe_ingredients": {
@@ -609,6 +633,14 @@
         }
       },
       "description": "CreateSanitizeLogRequest is the request message for CreateSanitizeLog RPC."
+    },
+    "apiCreateWasteLogRequest": {
+      "type": "object",
+      "properties": {
+        "wasteLogItem": {
+          "$ref": "#/definitions/apiWasteLogItem"
+        }
+      }
     },
     "apiDefrostLogItem": {
       "type": "object",
@@ -914,14 +946,15 @@
         "wasteLogItemList": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/apiWasteLogItem"
+            "$ref": "#/definitions/apiWasteSummary"
           }
         },
         "count": {
           "type": "string",
           "format": "int64"
         }
-      }
+      },
+      "description": "GetWasteLogListResponse is the response message for GetWasteLogList RPC."
     },
     "apiIngredientItem": {
       "type": "object",
@@ -1101,6 +1134,35 @@
       "description": "SanitizeLogItem represents a log entry for sanitizing an ingredient."
     },
     "apiWasteLogItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "userId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "morningWaste": {
+          "type": "number",
+          "format": "double"
+        },
+        "lunchWaste": {
+          "type": "number",
+          "format": "double"
+        },
+        "eveningWaste": {
+          "type": "number",
+          "format": "double"
+        },
+        "submissionDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "apiWasteSummary": {
       "type": "object",
       "properties": {
         "department": {
