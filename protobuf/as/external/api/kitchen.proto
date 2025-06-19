@@ -126,6 +126,12 @@ service KitchenService {
             get: "/api/kitchen/sanitize_log"
         };
     }
+
+    rpc GetWasteLogList(GetWasteLogListRequest) returns (GetWasteLogListResponse) {
+        option (google.api.http) = {
+            get: "/api/kitchen/waste_log"
+        };
+    }
 }
 
 // KitchenUserItem represents a kitchen user with associated departments.
@@ -227,6 +233,14 @@ message SanitizeLogItem {
     KitchenUserItem user = 10 [json_name = "user"];
     google.protobuf.Timestamp submission_date = 11 [json_name = "submissionDate"];
     float quantity = 12 [json_name = "quantity"];
+}
+
+message WasteLogItem {
+  DepartmentItem department = 1;
+  double morning_total = 2;
+  double lunch_total = 3;
+  double evening_total = 4;
+  google.protobuf.Timestamp day = 5;
 }
 
 // GetKitchenUserRequest is the request message for GetKitchenUser RPC.
@@ -393,5 +407,15 @@ message GetIngredientListRequest {
 // GetIngredientListResponse is the response message for GetIngredientList RPC.
 message GetIngredientListResponse {
     repeated IngredientItem ingredient_item_list = 1;
+    int64 count = 2;
+}
+
+message GetWasteLogListRequest {
+    google.protobuf.Timestamp start_date = 1;
+    google.protobuf.Timestamp end_date = 2;
+}
+
+message GetWasteLogListResponse {
+    repeated WasteLogItem waste_log_item_list = 1;
     int64 count = 2;
 }

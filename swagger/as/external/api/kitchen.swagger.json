@@ -478,6 +478,38 @@
         ]
       }
     },
+    "/api/kitchen/waste_log": {
+      "get": {
+        "operationId": "GetWasteLogList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetWasteLogListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
     "/api/kitchen/{recipe_id}/recipe_ingredients": {
       "get": {
         "summary": "GetRecipeIngredients retrieves a list of ingredients for a specific recipe.",
@@ -876,6 +908,21 @@
       },
       "description": "GetSanitizeLogListResponse is the response message for GetSanitizeLogList RPC."
     },
+    "apiGetWasteLogListResponse": {
+      "type": "object",
+      "properties": {
+        "wasteLogItemList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiWasteLogItem"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "apiIngredientItem": {
       "type": "object",
       "properties": {
@@ -1052,6 +1099,30 @@
         }
       },
       "description": "SanitizeLogItem represents a log entry for sanitizing an ingredient."
+    },
+    "apiWasteLogItem": {
+      "type": "object",
+      "properties": {
+        "department": {
+          "$ref": "#/definitions/apiDepartmentItem"
+        },
+        "morningTotal": {
+          "type": "number",
+          "format": "double"
+        },
+        "lunchTotal": {
+          "type": "number",
+          "format": "double"
+        },
+        "eveningTotal": {
+          "type": "number",
+          "format": "double"
+        },
+        "day": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
     }
   }
 }
