@@ -195,6 +195,8 @@ message RecipeLogItem {
     repeated RecipeIngredientItem recipe_ingredients = 9 [json_name = "recipeIngredients"];
     google.protobuf.Timestamp submission_date = 10 [json_name = "submissionDate"];
     double recipe_portion = 11 [json_name = "recipePortion"];
+    bool recycle = 12 [json_name = "recycle"];
+    string recycleDescription = 13 [json_name = "recycleDescription"];
 }
 
 // DefrostLogItem represents a log entry for defrosting an ingredient.

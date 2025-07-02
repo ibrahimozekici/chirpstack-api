@@ -1071,6 +1071,13 @@
         "recipePortion": {
           "type": "number",
           "format": "double"
+        },
+        "recycle": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "recycleDescription": {
+          "type": "string"
         }
       },
       "description": "RecipeLogItem represents a log entry for a recipe."
