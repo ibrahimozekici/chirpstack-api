@@ -230,6 +230,38 @@
         ]
       }
     },
+    "/api/kitchen/recipe/{recipe_id}/ingredients": {
+      "put": {
+        "operationId": "UpdateRecipeIngredients",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "recipe_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiUpdateRecipeIngredientsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
     "/api/kitchen/recipe_log": {
       "get": {
         "summary": "GetRecipeLogList retrieves a list of recipe logs within a specified date range.",
@@ -387,6 +419,33 @@
       }
     },
     "/api/kitchen/user": {
+      "post": {
+        "summary": "CreateKitchenUser creates a new kitchen user.",
+        "operationId": "CreateKitchenUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateKitchenUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
+    "/api/kitchen/user/{organization_id}": {
       "get": {
         "summary": "GetKitchenUser retrieves a list of kitchen users.",
         "operationId": "GetKitchenUser",
@@ -400,9 +459,9 @@
         },
         "parameters": [
           {
-            "name": "organizationId",
-            "in": "query",
-            "required": false,
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
             "type": "string",
             "format": "int64"
           }
@@ -503,6 +562,13 @@
             "required": false,
             "type": "string",
             "format": "date-time"
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -608,6 +674,18 @@
       },
       "description": "CreateFrostLogRequest is the request message for CreateFrostLog RPC."
     },
+    "apiCreateKitchenUserRequest": {
+      "type": "object",
+      "properties": {
+        "kitchenUserItem": {
+          "$ref": "#/definitions/apiKitchenUserItem"
+        },
+        "organizationId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "apiCreateRecipeLogRequest": {
       "type": "object",
       "properties": {
@@ -639,6 +717,10 @@
       "properties": {
         "wasteLogItem": {
           "$ref": "#/definitions/apiWasteLogItem"
+        },
+        "organizationId": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -1139,6 +1221,20 @@
         }
       },
       "description": "SanitizeLogItem represents a log entry for sanitizing an ingredient."
+    },
+    "apiUpdateRecipeIngredientsRequest": {
+      "type": "object",
+      "properties": {
+        "recipeId": {
+          "type": "string"
+        },
+        "ingredients": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiRecipeIngredientItem"
+          }
+        }
+      }
     },
     "apiWasteLogItem": {
       "type": "object",

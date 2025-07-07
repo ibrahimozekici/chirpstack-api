@@ -11,10 +11,18 @@ import "google/protobuf/empty.proto";
 
 // KitchenService defines a set of RPC methods for managing kitchen-related data and logs.
 service KitchenService {
+    // CreateKitchenUser creates a new kitchen user.
+    rpc CreateKitchenUser(CreateKitchenUserRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/kitchen/user"
+            body: "*"
+        };
+    }
+
     // GetKitchenUser retrieves a list of kitchen users.
     rpc GetKitchenUser(GetKitchenUserRequest) returns (GetKitchenUserResponse) {
         option (google.api.http) = {
-            get: "/api/kitchen/user"
+            get: "/api/kitchen/user/{organization_id}"
         };
     }
 
@@ -139,6 +147,13 @@ service KitchenService {
             get: "/api/kitchen/waste_log"
         };
     }
+
+    rpc UpdateRecipeIngredients(UpdateRecipeIngredientsRequest) returns (google.protobuf.Empty) {
+  option (google.api.http) = {
+    put: "/api/kitchen/recipe/{recipe_id}/ingredients"
+    body: "*"
+  };
+}
 }
 
 // KitchenUserItem represents a kitchen user with associated departments.
@@ -260,6 +275,12 @@ message WasteLogItem {
     double evening_waste = 5 [json_name = "eveningWaste"];
     google.protobuf.Timestamp submission_date = 6 [json_name = "submissionDate"];
 }
+
+message CreateKitchenUserRequest {
+    KitchenUserItem kitchen_user_item = 1;
+    int64 organization_id = 2;
+}
+
 // GetKitchenUserRequest is the request message for GetKitchenUser RPC.
 message GetKitchenUserRequest {
     int64 organization_id = 1;
@@ -431,6 +452,7 @@ message GetIngredientListResponse {
 message GetWasteLogListRequest {
     google.protobuf.Timestamp start_date = 1;
     google.protobuf.Timestamp end_date = 2;
+    int64 organization_id = 3;
 }
 
 // GetWasteLogListResponse is the response message for GetWasteLogList RPC.
@@ -441,4 +463,10 @@ message GetWasteLogListResponse {
 
 message CreateWasteLogRequest {
     WasteLogItem waste_log_item = 1;
+    int64 organization_id = 2;
+}
+
+message UpdateRecipeIngredientsRequest {
+  string recipe_id = 1;
+  repeated RecipeIngredientItem ingredients = 2;
 }
