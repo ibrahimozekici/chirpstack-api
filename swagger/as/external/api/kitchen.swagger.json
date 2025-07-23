@@ -443,6 +443,62 @@
         "tags": [
           "KitchenService"
         ]
+      },
+      "put": {
+        "operationId": "UpdateKitchenUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiUpdateKitchenUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
+    "/api/kitchen/user/{id}": {
+      "delete": {
+        "operationId": "DeleteKitchenUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
       }
     },
     "/api/kitchen/user/{organization_id}": {
@@ -1222,6 +1278,18 @@
       },
       "description": "SanitizeLogItem represents a log entry for sanitizing an ingredient."
     },
+    "apiUpdateKitchenUserRequest": {
+      "type": "object",
+      "properties": {
+        "kitchenUserItem": {
+          "$ref": "#/definitions/apiKitchenUserItem"
+        },
+        "organizationId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "apiUpdateRecipeIngredientsRequest": {
       "type": "object",
       "properties": {
@@ -1236,6 +1304,24 @@
         }
       }
     },
+    "apiWasteBreakdown": {
+      "type": "object",
+      "properties": {
+        "destruction": {
+          "type": "number",
+          "format": "double"
+        },
+        "returnedFromBuffet": {
+          "type": "number",
+          "format": "double"
+        },
+        "expired": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "title": "Reusable breakdown structure for a time period"
+    },
     "apiWasteLogItem": {
       "type": "object",
       "properties": {
@@ -1248,22 +1334,20 @@
           "format": "int64"
         },
         "morningWaste": {
-          "type": "number",
-          "format": "double"
+          "$ref": "#/definitions/apiWasteBreakdown"
         },
         "lunchWaste": {
-          "type": "number",
-          "format": "double"
+          "$ref": "#/definitions/apiWasteBreakdown"
         },
         "eveningWaste": {
-          "type": "number",
-          "format": "double"
+          "$ref": "#/definitions/apiWasteBreakdown"
         },
         "submissionDate": {
           "type": "string",
           "format": "date-time"
         }
-      }
+      },
+      "title": "Waste log for a single department for one day"
     },
     "apiWasteSummary": {
       "type": "object",
@@ -1271,23 +1355,21 @@
         "department": {
           "$ref": "#/definitions/apiDepartmentItem"
         },
-        "morningTotal": {
-          "type": "number",
-          "format": "double"
+        "morningWaste": {
+          "$ref": "#/definitions/apiWasteBreakdown"
         },
-        "lunchTotal": {
-          "type": "number",
-          "format": "double"
+        "lunchWaste": {
+          "$ref": "#/definitions/apiWasteBreakdown"
         },
-        "eveningTotal": {
-          "type": "number",
-          "format": "double"
+        "eveningWaste": {
+          "$ref": "#/definitions/apiWasteBreakdown"
         },
         "day": {
           "type": "string",
           "format": "date-time"
         }
-      }
+      },
+      "title": "Summarized waste data per department for a day"
     }
   }
 }

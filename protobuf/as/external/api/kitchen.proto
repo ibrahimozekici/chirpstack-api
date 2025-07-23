@@ -26,6 +26,19 @@ service KitchenService {
         };
     }
 
+    rpc UpdateKitchenUser(UpdateKitchenUserRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            put: "/api/kitchen/user"
+            body: "*"
+        };
+    }
+
+    rpc DeleteKitchenUser(DeleteKitchenUserRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/kitchen/user/{id}"
+        };
+    }
+
     // GetDepartmentListForUser retrieves a list of departments for a specific user.
     rpc GetDepartmentListForUser(GetDepartmentListForUserRequest) returns (GetDepartmentListForUserResponse) {
         option (google.api.http) = {
@@ -259,21 +272,30 @@ message SanitizeLogItem {
     float quantity = 12 [json_name = "quantity"];
 }
 
+// Reusable breakdown structure for a time period
+message WasteBreakdown {
+  double destruction = 1;
+  double returned_from_buffet = 2;
+  double expired = 3;
+}
+
+// Summarized waste data per department for a day
 message WasteSummary {
   DepartmentItem department = 1;
-  double morning_total = 2;
-  double lunch_total = 3;
-  double evening_total = 4;
+  WasteBreakdown morning_waste = 2;
+  WasteBreakdown lunch_waste = 3;
+  WasteBreakdown evening_waste = 4;
   google.protobuf.Timestamp day = 5;
 }
 
+// Waste log for a single department for one day
 message WasteLogItem {
-    int64 id = 1 [json_name = "id"];
-    int64 user_id = 2 [json_name = "userId"];
-    double morning_waste = 3 [json_name = "morningWaste"];
-    double lunch_waste = 4 [json_name = "lunchWaste"];
-    double evening_waste = 5 [json_name = "eveningWaste"];
-    google.protobuf.Timestamp submission_date = 6 [json_name = "submissionDate"];
+  int64 id = 1 [json_name = "id"];
+  int64 user_id = 2 [json_name = "userId"];
+  WasteBreakdown morning_waste = 3 [json_name = "morningWaste"];
+  WasteBreakdown lunch_waste = 4 [json_name = "lunchWaste"];
+  WasteBreakdown evening_waste = 5 [json_name = "eveningWaste"];
+  google.protobuf.Timestamp submission_date = 6 [json_name = "submissionDate"];
 }
 
 message CreateKitchenUserRequest {
@@ -284,6 +306,16 @@ message CreateKitchenUserRequest {
 // GetKitchenUserRequest is the request message for GetKitchenUser RPC.
 message GetKitchenUserRequest {
     int64 organization_id = 1;
+}
+
+message UpdateKitchenUserRequest {
+    KitchenUserItem kitchen_user_item = 1;
+    int64 organization_id = 2;
+}
+
+message DeleteKitchenUserRequest {
+    int64 id = 1;  // The ID of the kitchen user to be deleted
+    int64 organization_id = 2;  // The ID of the organization to which the user belongs
 }
 
 // GetKitchenUserResponse is the response message for GetKitchenUser RPC.
