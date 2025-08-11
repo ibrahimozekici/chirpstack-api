@@ -7,11 +7,16 @@ all: requirements as-external-api
 
 requirements:
 	@go mod download
-	@go install github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
+	@go install github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
+	@go install github.com/golang/protobuf/protoc-gen-go
 
 as-external-api:
-	@for file in internal.proto user.proto kitchen.proto; do \
-		protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api \
-			--swagger_out=json_names_for_fields=true:. \
-			as/external/api/$$file ; \
-	done
+	# gRPC
+	protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api --go_out=plugins=grpc,paths=source_relative:. as/external/api/kitchen.proto
+	protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api --go_out=plugins=grpc,paths=source_relative:. as/external/api/user.proto
+	protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api --go_out=plugins=grpc,paths=source_relative:. as/external/api/internal.proto
+
+	# gRPC gateway
+	protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api --grpc-gateway_out=paths=source_relative,logtostderr=true:. as/external/api/kitchen.proto
+	protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api --grpc-gateway_out=paths=source_relative,logtostderr=true:. as/external/api/user.proto
+	protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api --grpc-gateway_out=paths=source_relative,logtostderr=true:. as/external/api/internal.proto
