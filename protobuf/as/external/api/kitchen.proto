@@ -39,13 +39,6 @@ service KitchenService {
         };
     }
 
-    // GetDepartmentListForUser retrieves a list of departments for a specific user.
-    rpc GetDepartmentListForUser(GetDepartmentListForUserRequest) returns (GetDepartmentListForUserResponse) {
-        option (google.api.http) = {
-            get: "/api/kitchen/user/{user_id}/departments"
-        };
-    }
-
     // GetDepartmentList retrieves a list of all departments.
     rpc GetDepartmentList(GetDepartmentListRequest) returns (GetDepartmentListResponse) {
         option (google.api.http) = {
@@ -169,11 +162,11 @@ service KitchenService {
 }
 }
 
-// KitchenUserItem represents a kitchen user with associated departments.
+// KitchenUserItem represents a kitchen user with associated department.
 message KitchenUserItem {
     int64 id = 1;
     string name = 2 [json_name = "name"];
-    repeated DepartmentItem user_departments = 3 [json_name = "userDepartments"];
+    DepartmentItem user_department = 3 [json_name = "userDepartment"];  // One-to-one relationship
 }
 
 // DepartmentItem represents a department with associated activities.
@@ -202,6 +195,7 @@ message IngredientItem {
 message RecipeItem {
     int64 id = 1;
     string name = 2 [json_name = "name"];
+    bool freezable = 3 [json_name = "freezable"];
 }
 
 // RecipeIngredientItem represents an ingredient used in a recipe with its quantity.
@@ -230,30 +224,32 @@ message RecipeLogItem {
 // DefrostLogItem represents a log entry for defrosting an ingredient.
 message DefrostLogItem {
     IngredientItem ingredient = 1 [json_name = "ingredient"];
-    float start_temperature = 2 [json_name = "startTemperature"];
-    google.protobuf.Timestamp expire_date = 3 [json_name = "expireDate"];
-    bool cold_water = 4 [json_name = "coldWater"];
-    bool cold_room = 5 [json_name = "coldRoom"];
-    float water_temperature = 6 [json_name = "waterTemperature"];
-    google.protobuf.Timestamp water_time = 7 [json_name = "waterTime"];
-    google.protobuf.Timestamp finish_date_time = 8 [json_name = "finishDateTime"];
-    float end_temperature = 9 [json_name = "endTemperature"];
-    google.protobuf.Timestamp submission_date = 10 [json_name = "submissionDate"];
-    float quantity = 11 [json_name = "quantity"];
-    KitchenUserItem user = 12 [json_name = "user"];
-    string batch_no = 13 [json_name = "batchNo"];
-    google.protobuf.Timestamp start_date_time = 14 [json_name = "startDateTime"];
+    RecipeItem recipe = 2 [json_name = "recipe"];  // Optional: recipe being defrosted (alternative to ingredient)
+    float start_temperature = 3 [json_name = "startTemperature"];
+    google.protobuf.Timestamp expire_date = 4 [json_name = "expireDate"];
+    bool cold_water = 5 [json_name = "coldWater"];
+    bool cold_room = 6 [json_name = "coldRoom"];
+    float water_temperature = 7 [json_name = "waterTemperature"];
+    google.protobuf.Timestamp water_time = 8 [json_name = "waterTime"];
+    google.protobuf.Timestamp finish_date_time = 9 [json_name = "finishDateTime"];
+    float end_temperature = 10 [json_name = "endTemperature"];
+    google.protobuf.Timestamp submission_date = 11 [json_name = "submissionDate"];
+    float quantity = 12 [json_name = "quantity"];
+    KitchenUserItem user = 13 [json_name = "user"];
+    string batch_no = 14 [json_name = "batchNo"];
+    google.protobuf.Timestamp start_date_time = 15 [json_name = "startDateTime"];
 }
 
 // FrostLogItem represents a log entry for freezing an ingredient.
 message FrostLogItem {
     IngredientItem ingredient = 1 [json_name = "ingredient"];
-    google.protobuf.Timestamp frost_date = 2 [json_name = "frostDate"];
-    google.protobuf.Timestamp production_date = 3 [json_name = "productionDate"];
-    google.protobuf.Timestamp expiration_date = 4 [json_name = "expirationDate"];
-    KitchenUserItem user = 5 [json_name = "user"];
-    google.protobuf.Timestamp submission_date = 6 [json_name = "submissionDate"];
-    float quantity = 7 [json_name = "quantity"];
+    RecipeItem recipe = 2 [json_name = "recipe"];  // Optional: recipe being frozen (alternative to ingredient)
+    google.protobuf.Timestamp frost_date = 3 [json_name = "frostDate"];
+    google.protobuf.Timestamp production_date = 4 [json_name = "productionDate"];
+    google.protobuf.Timestamp expiration_date = 5 [json_name = "expirationDate"];
+    KitchenUserItem user = 6 [json_name = "user"];
+    google.protobuf.Timestamp submission_date = 7 [json_name = "submissionDate"];
+    float quantity = 8 [json_name = "quantity"];
 }
 
 // SanitizeLogItem represents a log entry for sanitizing an ingredient.
@@ -292,30 +288,35 @@ message WasteSummary {
 message WasteLogItem {
   int64 id = 1 [json_name = "id"];
   int64 user_id = 2 [json_name = "userId"];
-  WasteBreakdown morning_waste = 3 [json_name = "morningWaste"];
-  WasteBreakdown lunch_waste = 4 [json_name = "lunchWaste"];
-  WasteBreakdown evening_waste = 5 [json_name = "eveningWaste"];
-  google.protobuf.Timestamp submission_date = 6 [json_name = "submissionDate"];
+  int64 department_id = 3 [json_name = "departmentId"];
+  WasteBreakdown morning_waste = 4 [json_name = "morningWaste"];
+  WasteBreakdown lunch_waste = 5 [json_name = "lunchWaste"];
+  WasteBreakdown evening_waste = 6 [json_name = "eveningWaste"];
+  google.protobuf.Timestamp submission_date = 7 [json_name = "submissionDate"];
 }
 
 message CreateKitchenUserRequest {
     KitchenUserItem kitchen_user_item = 1;
     int64 organization_id = 2;
+    int64 department_id = 3;
 }
 
 // GetKitchenUserRequest is the request message for GetKitchenUser RPC.
 message GetKitchenUserRequest {
     int64 organization_id = 1;
+    int64 department_id = 2;
 }
 
 message UpdateKitchenUserRequest {
     KitchenUserItem kitchen_user_item = 1;
     int64 organization_id = 2;
+    int64 department_id = 3;
 }
 
 message DeleteKitchenUserRequest {
     int64 id = 1;  // The ID of the kitchen user to be deleted
     int64 organization_id = 2;  // The ID of the organization to which the user belongs
+    int64 department_id = 3;  // The ID of the department to which the user belongs
 }
 
 // GetKitchenUserResponse is the response message for GetKitchenUser RPC.
@@ -336,18 +337,6 @@ message GetActivityListForDepartmentResponse {
     int64 count = 2;
 }
 
-// GetDepartmentListForUserRequest is the request message for GetDepartmentListForUser RPC.
-message GetDepartmentListForUserRequest {
-    int64 user_id = 1;
-    int64 organization_id = 2;
-}
-
-// GetDepartmentListForUserResponse is the response message for GetDepartmentListForUser RPC.
-message GetDepartmentListForUserResponse {
-    repeated DepartmentItem department_item = 1;
-    int64 count = 2;
-}
-
 // GetActivitiesForUserRequest is the request message for GetActivitiesForUser RPC.
 message GetActivitiesForUserRequest {
     int64 user_id = 1;  // The ID of the user whose activities are being requested
@@ -363,6 +352,7 @@ message GetActivitiesForUserResponse {
 // GetDepartmentListRequest is the request message for GetDepartmentList RPC.
 message GetDepartmentListRequest {
     int64 organization_id = 1;
+    int64 department_id = 2;  // Optional: filter by specific department
 }
 
 // GetDepartmentListResponse is the response message for GetDepartmentList RPC.
@@ -374,6 +364,7 @@ message GetDepartmentListResponse {
 // GetRecipeListRequest is the request message for GetRecipeList RPC.
 message GetRecipeListRequest {
     int64 organization_id = 1;
+    int64 department_id = 2;  // Optional: filter by specific department
 }
 
 // GetRecipeListResponse is the response message for GetRecipeList RPC.
@@ -386,6 +377,7 @@ message GetRecipeListResponse {
 message GetRecipeIngredientsRequest {
     int64 recipe_id = 1;
     int64 organization_id = 2;
+    int64 department_id = 3;
 }
 
 // GetRecipeIngredientsResponse is the response message for GetRecipeIngredients RPC.
@@ -397,6 +389,7 @@ message GetRecipeIngredientsResponse {
 message CreateRecipeLogRequest {
     RecipeLogItem recipe_log_item = 1;
     int64 organization_id = 2;
+    int64 department_id = 3;
 }
 
 // GetRecipeLogListRequest is the request message for GetRecipeLogList RPC.
@@ -404,6 +397,7 @@ message GetRecipeLogListRequest {
     google.protobuf.Timestamp start_date = 1;
     google.protobuf.Timestamp end_date = 2;
     int64 organization_id = 3;
+    int64 department_id = 4;
 }
 
 // GetRecipeLogListResponse is the response message for GetRecipeLogList RPC.
@@ -416,6 +410,7 @@ message GetRecipeLogListResponse {
 message CreateDefrostLogRequest {
     DefrostLogItem defrost_log_item = 1;
     int64 organization_id = 2;
+    int64 department_id = 3;
 }
 
 // GetDefrostLogListRequest is the request message for GetDefrostLogList RPC.
@@ -423,6 +418,7 @@ message GetDefrostLogListRequest {
     google.protobuf.Timestamp start_date = 1;
     google.protobuf.Timestamp end_date = 2;
     int64 organization_id = 3;
+    int64 department_id = 4;
 }
 
 // GetDefrostLogListResponse is the response message for GetDefrostLogList RPC.
@@ -435,6 +431,7 @@ message GetDefrostLogListResponse {
 message CreateFrostLogRequest {
     FrostLogItem frost_log_item = 1;
     int64 organization_id = 2;
+    int64 department_id = 3;
 }
 
 // GetFrostLogListRequest is the request message for GetFrostLogList RPC.
@@ -442,6 +439,7 @@ message GetFrostLogListRequest {
     google.protobuf.Timestamp start_date = 1;
     google.protobuf.Timestamp end_date = 2;
     int64 organization_id = 3;
+    int64 department_id = 4;
 }
 
 // GetFrostLogListResponse is the response message for GetFrostLogList RPC.
@@ -454,6 +452,7 @@ message GetFrostLogListResponse {
 message CreateSanitizeLogRequest {
     SanitizeLogItem sanitize_log_item = 1;
     int64 organization_id = 2;
+    int64 department_id = 3;
 }
 
 // GetSanitizeLogListRequest is the request message for GetSanitizeLogList RPC.
@@ -461,6 +460,7 @@ message GetSanitizeLogListRequest {
     google.protobuf.Timestamp start_date = 1;
     google.protobuf.Timestamp end_date = 2;
     int64 organization_id = 3;
+    int64 department_id = 4;
 }
 
 // GetSanitizeLogListResponse is the response message for GetSanitizeLogList RPC.
@@ -472,6 +472,7 @@ message GetSanitizeLogListResponse {
 // GetIngredientListRequest is the request message for GetIngredientList RPC.
 message GetIngredientListRequest {
     int64 organization_id = 1;
+    int64 department_id = 2;
 }
 
 // GetIngredientListResponse is the response message for GetIngredientList RPC.
@@ -485,6 +486,7 @@ message GetWasteLogListRequest {
     google.protobuf.Timestamp start_date = 1;
     google.protobuf.Timestamp end_date = 2;
     int64 organization_id = 3;
+    int64 department_id = 4;
 }
 
 // GetWasteLogListResponse is the response message for GetWasteLogList RPC.
@@ -496,9 +498,12 @@ message GetWasteLogListResponse {
 message CreateWasteLogRequest {
     WasteLogItem waste_log_item = 1;
     int64 organization_id = 2;
+    int64 department_id = 3;
 }
 
 message UpdateRecipeIngredientsRequest {
   string recipe_id = 1;
   repeated RecipeIngredientItem ingredients = 2;
+  int64 organization_id = 3;
+  int64 department_id = 4;
 }

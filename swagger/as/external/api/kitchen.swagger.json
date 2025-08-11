@@ -48,6 +48,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "departmentId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -132,6 +139,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "departmentId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -168,6 +182,13 @@
           },
           {
             "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "departmentId",
             "in": "query",
             "required": false,
             "type": "string",
@@ -219,6 +240,13 @@
         "parameters": [
           {
             "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "departmentId",
             "in": "query",
             "required": false,
             "type": "string",
@@ -295,6 +323,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "departmentId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -346,6 +381,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "departmentId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -382,6 +424,13 @@
           },
           {
             "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "departmentId",
             "in": "query",
             "required": false,
             "type": "string",
@@ -494,6 +543,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "departmentId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -520,6 +576,13 @@
             "required": true,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "departmentId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -536,39 +599,6 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetActivitiesForUserResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "user_id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "organizationId",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "KitchenService"
-        ]
-      }
-    },
-    "/api/kitchen/user/{user_id}/departments": {
-      "get": {
-        "summary": "GetDepartmentListForUser retrieves a list of departments for a specific user.",
-        "operationId": "GetDepartmentListForUser",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiGetDepartmentListForUserResponse"
             }
           }
         },
@@ -621,6 +651,13 @@
           },
           {
             "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "departmentId",
             "in": "query",
             "required": false,
             "type": "string",
@@ -682,6 +719,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "departmentId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -713,6 +757,10 @@
         "organizationId": {
           "type": "string",
           "format": "int64"
+        },
+        "departmentId": {
+          "type": "string",
+          "format": "int64"
         }
       },
       "description": "CreateDefrostLogRequest is the request message for CreateDefrostLog RPC."
@@ -724,6 +772,10 @@
           "$ref": "#/definitions/apiFrostLogItem"
         },
         "organizationId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "departmentId": {
           "type": "string",
           "format": "int64"
         }
@@ -739,6 +791,10 @@
         "organizationId": {
           "type": "string",
           "format": "int64"
+        },
+        "departmentId": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -749,6 +805,10 @@
           "$ref": "#/definitions/apiRecipeLogItem"
         },
         "organizationId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "departmentId": {
           "type": "string",
           "format": "int64"
         }
@@ -764,6 +824,10 @@
         "organizationId": {
           "type": "string",
           "format": "int64"
+        },
+        "departmentId": {
+          "type": "string",
+          "format": "int64"
         }
       },
       "description": "CreateSanitizeLogRequest is the request message for CreateSanitizeLog RPC."
@@ -777,6 +841,10 @@
         "organizationId": {
           "type": "string",
           "format": "int64"
+        },
+        "departmentId": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -785,6 +853,9 @@
       "properties": {
         "ingredient": {
           "$ref": "#/definitions/apiIngredientItem"
+        },
+        "recipe": {
+          "$ref": "#/definitions/apiRecipeItem"
         },
         "startTemperature": {
           "type": "number",
@@ -864,6 +935,9 @@
         "ingredient": {
           "$ref": "#/definitions/apiIngredientItem"
         },
+        "recipe": {
+          "$ref": "#/definitions/apiRecipeItem"
+        },
         "frostDate": {
           "type": "string",
           "format": "date-time"
@@ -937,22 +1011,6 @@
         }
       },
       "description": "GetDefrostLogListResponse is the response message for GetDefrostLogList RPC."
-    },
-    "apiGetDepartmentListForUserResponse": {
-      "type": "object",
-      "properties": {
-        "departmentItem": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiDepartmentItem"
-          }
-        },
-        "count": {
-          "type": "string",
-          "format": "int64"
-        }
-      },
-      "description": "GetDepartmentListForUserResponse is the response message for GetDepartmentListForUser RPC."
     },
     "apiGetDepartmentListResponse": {
       "type": "object",
@@ -1128,14 +1186,11 @@
         "name": {
           "type": "string"
         },
-        "userDepartments": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiDepartmentItem"
-          }
+        "userDepartment": {
+          "$ref": "#/definitions/apiDepartmentItem"
         }
       },
-      "description": "KitchenUserItem represents a kitchen user with associated departments."
+      "description": "KitchenUserItem represents a kitchen user with associated department."
     },
     "apiRecipeIngredientItem": {
       "type": "object",
@@ -1159,6 +1214,10 @@
         },
         "name": {
           "type": "string"
+        },
+        "freezable": {
+          "type": "boolean",
+          "format": "boolean"
         }
       },
       "description": "RecipeItem represents a recipe."
@@ -1287,6 +1346,10 @@
         "organizationId": {
           "type": "string",
           "format": "int64"
+        },
+        "departmentId": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -1301,6 +1364,14 @@
           "items": {
             "$ref": "#/definitions/apiRecipeIngredientItem"
           }
+        },
+        "organizationId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "departmentId": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -1330,6 +1401,10 @@
           "format": "int64"
         },
         "userId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "departmentId": {
           "type": "string",
           "format": "int64"
         },
