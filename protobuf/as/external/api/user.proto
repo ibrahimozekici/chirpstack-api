@@ -12,6 +12,54 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 
 
+// UserService is the service managing the user access.
+service UserService {
+	// Get user list.
+	rpc List(ListUserRequest) returns (ListUserResponse) {
+		option(google.api.http) = {
+			get: "/api/users"
+		};
+	}
+
+	// Get data for a particular user.
+	rpc Get(GetUserRequest) returns (GetUserResponse) {
+		option(google.api.http) = {
+			get: "/api/users/{id}"
+		};
+	}
+
+	// Create a new user.
+	rpc Create(CreateUserRequest) returns (CreateUserResponse) {
+		option(google.api.http) = {
+			post: "/api/users"
+			body: "*"
+		};
+	}
+
+	// Update an existing user.
+	rpc Update(UpdateUserRequest) returns (google.protobuf.Empty) {
+		option(google.api.http) = {
+			put: "/api/users/{user.id}"
+			body: "*"
+		};
+	}
+
+	// Delete a user.
+	rpc Delete(DeleteUserRequest) returns (google.protobuf.Empty) {
+		option(google.api.http) = {
+			delete: "/api/users/{id}"
+		};
+	}
+
+	// UpdatePassword updates a password.
+	rpc UpdatePassword(UpdateUserPasswordRequest) returns (google.protobuf.Empty) {
+		option(google.api.http) = {
+			put: "/api/users/{user_id}/password"
+			body: "*"
+		};
+	}
+	
+}
 
 message User {
 	// User ID.
