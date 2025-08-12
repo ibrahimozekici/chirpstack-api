@@ -87,6 +87,38 @@
         ]
       }
     },
+    "/api/kitchen/defrostable": {
+      "get": {
+        "operationId": "GetDefrostableList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetDefrostableListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "departmentId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
     "/api/kitchen/department/{department_id}/activities": {
       "get": {
         "summary": "GetActivityListForDepartment retrieves a list of activities for a specific department.",
@@ -129,6 +161,38 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetDepartmentListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "departmentId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
+    "/api/kitchen/freezable": {
+      "get": {
+        "operationId": "GetFreezableList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetFreezableListResponse"
             }
           }
         },
@@ -1012,6 +1076,27 @@
       },
       "description": "GetDefrostLogListResponse is the response message for GetDefrostLogList RPC."
     },
+    "apiGetDefrostableListResponse": {
+      "type": "object",
+      "properties": {
+        "defrostableIngredient": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiIngredientItem"
+          }
+        },
+        "defrostableRecipe": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiRecipeItem"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "apiGetDepartmentListResponse": {
       "type": "object",
       "properties": {
@@ -1027,6 +1112,27 @@
         }
       },
       "description": "GetDepartmentListResponse is the response message for GetDepartmentList RPC."
+    },
+    "apiGetFreezableListResponse": {
+      "type": "object",
+      "properties": {
+        "freezableIngredient": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiIngredientItem"
+          }
+        },
+        "freezableRecipe": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiRecipeItem"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
     },
     "apiGetFrostLogListResponse": {
       "type": "object",

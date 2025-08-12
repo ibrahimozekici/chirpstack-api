@@ -81,6 +81,18 @@ service KitchenService {
         };
     }
 
+    rpc GetDefrostableList(GetDefrostableListRequest) returns (GetDefrostableListResponse) {
+        option (google.api.http) = {
+            get: "/api/kitchen/defrostable"
+        };
+    }
+
+    rpc GetFreezableList(GetFreezableListRequest) returns (GetFreezableListResponse) {
+        option (google.api.http) = {
+            get: "/api/kitchen/freezable"
+        };
+    }
+
     // CreateRecipeLog creates a new recipe log entry.
     rpc CreateRecipeLog(CreateRecipeLogRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
@@ -506,4 +518,26 @@ message UpdateRecipeIngredientsRequest {
   repeated RecipeIngredientItem ingredients = 2;
   int64 organization_id = 3;
   int64 department_id = 4;
+}
+
+message GetDefrostableListRequest {
+    int64 organization_id = 1;
+    int64 department_id = 2;
+}
+
+message GetDefrostableListResponse {
+    repeated IngredientItem defrostable_ingredient = 1;
+    repeated RecipeItem defrostable_recipe = 2;
+    int64 count = 3;
+}
+
+message GetFreezableListRequest {
+    int64 organization_id = 1;
+    int64 department_id = 2;
+}
+
+message GetFreezableListResponse {
+    repeated IngredientItem freezable_ingredient = 1;
+    repeated RecipeItem freezable_recipe = 2;
+    int64 count = 3;
 }
