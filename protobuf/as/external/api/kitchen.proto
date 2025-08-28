@@ -208,6 +208,8 @@ message RecipeItem {
     int64 id = 1;
     string name = 2 [json_name = "name"];
     bool freezable = 3 [json_name = "freezable"];
+    bool defrostable = 4 [json_name = "defrostable"];
+    bool cookable = 5 [json_name = "cookable"];
 }
 
 // RecipeIngredientItem represents an ingredient used in a recipe with its quantity.

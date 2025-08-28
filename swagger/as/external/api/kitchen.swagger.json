@@ -1324,6 +1324,14 @@
         "freezable": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "defrostable": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "cookable": {
+          "type": "boolean",
+          "format": "boolean"
         }
       },
       "description": "RecipeItem represents a recipe."
