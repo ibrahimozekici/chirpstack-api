@@ -67,12 +67,12 @@ service KitchenService {
         };
     }
 
-    // GetRecipeIngredients retrieves a list of ingredients for a specific recipe.
-    rpc GetRecipeIngredients(GetRecipeIngredientsRequest) returns (GetRecipeIngredientsResponse) {
-        option (google.api.http) = {
-            get: "/api/kitchen/{recipe_id}/recipe_ingredients"
-        };
-    }
+    // // GetRecipeIngredients retrieves a list of ingredients for a specific recipe.
+    // rpc GetRecipeIngredients(GetRecipeIngredientsRequest) returns (GetRecipeIngredientsResponse) {
+    //     option (google.api.http) = {
+    //         get: "/api/kitchen/{recipe_id}/recipe_ingredients"
+    //     };
+    // }
 
     // GetIngredientList retrieves a list of all ingredients.
     rpc GetIngredientList(GetIngredientListRequest) returns (GetIngredientListResponse) {
@@ -166,12 +166,12 @@ service KitchenService {
         };
     }
 
-    rpc UpdateRecipeIngredients(UpdateRecipeIngredientsRequest) returns (google.protobuf.Empty) {
-  option (google.api.http) = {
-    put: "/api/kitchen/recipe/{recipe_id}/ingredients"
-    body: "*"
-  };
-}
+//     rpc UpdateRecipeIngredients(UpdateRecipeIngredientsRequest) returns (google.protobuf.Empty) {
+//   option (google.api.http) = {
+//     put: "/api/kitchen/recipe/{recipe_id}/ingredients"
+//     body: "*"
+//   };
+// }
 }
 
 // KitchenUserItem represents a kitchen user with associated department.
@@ -228,7 +228,7 @@ message RecipeLogItem {
     google.protobuf.Timestamp cool_end_time = 6 [json_name = "coolEndTime"];
     float cool_heat = 7 [json_name = "coolHeat"];
     KitchenUserItem kitchen_user = 8 [json_name = "kitchenUser"];
-    repeated RecipeIngredientItem recipe_ingredients = 9 [json_name = "recipeIngredients"];
+    // repeated RecipeIngredientItem recipe_ingredients = 9 [json_name = "recipeIngredients"];
     google.protobuf.Timestamp submission_date = 10 [json_name = "submissionDate"];
     double recipe_portion = 11 [json_name = "recipePortion"];
     bool recycle = 12 [json_name = "recycle"];
@@ -387,17 +387,17 @@ message GetRecipeListResponse {
     int64 count = 2;
 }
 
-// GetRecipeIngredientsRequest is the request message for GetRecipeIngredients RPC.
-message GetRecipeIngredientsRequest {
-    int64 recipe_id = 1;
-    int64 organization_id = 2;
-    int64 department_id = 3;
-}
+// // GetRecipeIngredientsRequest is the request message for GetRecipeIngredients RPC.
+// message GetRecipeIngredientsRequest {
+//     int64 recipe_id = 1;
+//     int64 organization_id = 2;
+//     int64 department_id = 3;
+// }
 
-// GetRecipeIngredientsResponse is the response message for GetRecipeIngredients RPC.
-message GetRecipeIngredientsResponse {
-    repeated RecipeIngredientItem recipe_ingredients = 1;
-}
+// // GetRecipeIngredientsResponse is the response message for GetRecipeIngredients RPC.
+// message GetRecipeIngredientsResponse {
+//     repeated RecipeIngredientItem recipe_ingredients = 1;
+// }
 
 // CreateRecipeLogRequest is the request message for CreateRecipeLog RPC.
 message CreateRecipeLogRequest {

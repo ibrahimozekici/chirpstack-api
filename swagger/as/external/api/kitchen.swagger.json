@@ -322,38 +322,6 @@
         ]
       }
     },
-    "/api/kitchen/recipe/{recipe_id}/ingredients": {
-      "put": {
-        "operationId": "UpdateRecipeIngredients",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "recipe_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/apiUpdateRecipeIngredientsRequest"
-            }
-          }
-        ],
-        "tags": [
-          "KitchenService"
-        ]
-      }
-    },
     "/api/kitchen/recipe_log": {
       "get": {
         "summary": "GetRecipeLogList retrieves a list of recipe logs within a specified date range.",
@@ -756,46 +724,6 @@
           "KitchenService"
         ]
       }
-    },
-    "/api/kitchen/{recipe_id}/recipe_ingredients": {
-      "get": {
-        "summary": "GetRecipeIngredients retrieves a list of ingredients for a specific recipe.",
-        "operationId": "GetRecipeIngredients",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiGetRecipeIngredientsResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "recipe_id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "organizationId",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "departmentId",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "KitchenService"
-        ]
-      }
     }
   },
   "definitions": {
@@ -1182,18 +1110,6 @@
       },
       "description": "GetKitchenUserResponse is the response message for GetKitchenUser RPC."
     },
-    "apiGetRecipeIngredientsResponse": {
-      "type": "object",
-      "properties": {
-        "recipeIngredients": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiRecipeIngredientItem"
-          }
-        }
-      },
-      "description": "GetRecipeIngredientsResponse is the response message for GetRecipeIngredients RPC."
-    },
     "apiGetRecipeListResponse": {
       "type": "object",
       "properties": {
@@ -1298,19 +1214,6 @@
       },
       "description": "KitchenUserItem represents a kitchen user with associated department."
     },
-    "apiRecipeIngredientItem": {
-      "type": "object",
-      "properties": {
-        "ingredient": {
-          "$ref": "#/definitions/apiIngredientItem"
-        },
-        "quantity": {
-          "type": "number",
-          "format": "float"
-        }
-      },
-      "description": "RecipeIngredientItem represents an ingredient used in a recipe with its quantity."
-    },
     "apiRecipeItem": {
       "type": "object",
       "properties": {
@@ -1369,15 +1272,10 @@
         "kitchenUser": {
           "$ref": "#/definitions/apiKitchenUserItem"
         },
-        "recipeIngredients": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiRecipeIngredientItem"
-          }
-        },
         "submissionDate": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "title": "repeated RecipeIngredientItem recipe_ingredients = 9 [json_name = \"recipeIngredients\"];"
         },
         "recipePortion": {
           "type": "number",
@@ -1456,28 +1354,6 @@
       "properties": {
         "kitchenUserItem": {
           "$ref": "#/definitions/apiKitchenUserItem"
-        },
-        "organizationId": {
-          "type": "string",
-          "format": "int64"
-        },
-        "departmentId": {
-          "type": "string",
-          "format": "int64"
-        }
-      }
-    },
-    "apiUpdateRecipeIngredientsRequest": {
-      "type": "object",
-      "properties": {
-        "recipeId": {
-          "type": "string"
-        },
-        "ingredients": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiRecipeIngredientItem"
-          }
         },
         "organizationId": {
           "type": "string",
