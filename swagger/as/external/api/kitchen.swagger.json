@@ -1379,6 +1379,13 @@
         "expired": {
           "type": "number",
           "format": "double"
+        },
+        "recipeQuantities": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "double"
+          }
         }
       },
       "title": "Reusable breakdown structure for a time period"

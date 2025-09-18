@@ -287,6 +287,7 @@ message WasteBreakdown {
   double destruction = 1;
   double returned_from_buffet = 2;
   double expired = 3;
+  map<string, double> recipe_quantities = 4 [json_name = "recipeQuantities"];  // Recipe name -> quantity map
 }
 
 // Summarized waste data per department for a day
