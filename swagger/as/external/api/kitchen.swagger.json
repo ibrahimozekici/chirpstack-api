@@ -1370,7 +1370,8 @@
       "properties": {
         "destruction": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "title": "Toplam değerler (mevcut kolonlar)"
         },
         "returnedFromBuffet": {
           "type": "number",
@@ -1380,15 +1381,27 @@
           "type": "number",
           "format": "double"
         },
-        "recipeQuantities": {
+        "destructionProducts": {
           "type": "object",
           "additionalProperties": {
-            "type": "number",
-            "format": "double"
+            "type": "string"
+          },
+          "title": "Ürün → miktar map'leri (hstore kolonları ile eşleşir)"
+        },
+        "returnProducts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "expiredProducts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
           }
         }
       },
-      "title": "Reusable breakdown structure for a time period"
+      "title": "Detaylı kırılım: hem toplam hem ürün bazlı map"
     },
     "apiWasteLogItem": {
       "type": "object",
@@ -1419,7 +1432,7 @@
           "format": "date-time"
         }
       },
-      "title": "Waste log for a single department for one day"
+      "title": "Günlük detay kayıt"
     },
     "apiWasteSummary": {
       "type": "object",
@@ -1441,7 +1454,7 @@
           "format": "date-time"
         }
       },
-      "title": "Summarized waste data per department for a day"
+      "title": "Günlük departman özeti"
     }
   }
 }

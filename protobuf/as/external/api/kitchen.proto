@@ -282,15 +282,20 @@ message SanitizeLogItem {
     float quantity = 12 [json_name = "quantity"];
 }
 
-// Reusable breakdown structure for a time period
+// Detaylı kırılım: hem toplam hem ürün bazlı map
 message WasteBreakdown {
+  // Toplam değerler (mevcut kolonlar)
   double destruction = 1;
   double returned_from_buffet = 2;
   double expired = 3;
-  map<string, double> recipe_quantities = 4 [json_name = "recipeQuantities"];  // Recipe name -> quantity map
+
+  // Ürün → miktar map'leri (hstore kolonları ile eşleşir)
+  map<string, string> destruction_products = 5 [json_name = "destructionProducts"];
+  map<string, string> return_products      = 6 [json_name = "returnProducts"];
+  map<string, string> expired_products     = 7 [json_name = "expiredProducts"];
 }
 
-// Summarized waste data per department for a day
+// Günlük departman özeti
 message WasteSummary {
   DepartmentItem department = 1;
   WasteBreakdown morning_waste = 2;
@@ -299,7 +304,7 @@ message WasteSummary {
   google.protobuf.Timestamp day = 5;
 }
 
-// Waste log for a single department for one day
+// Günlük detay kayıt
 message WasteLogItem {
   int64 id = 1 [json_name = "id"];
   int64 user_id = 2 [json_name = "userId"];
