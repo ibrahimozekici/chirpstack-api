@@ -531,6 +531,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "departmentId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -594,30 +601,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
-          }
-        ],
-        "tags": [
-          "KitchenService"
-        ]
-      },
-      "post": {
-        "operationId": "CreateTemperatureControlLog",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          }
-        },
-        "parameters": [
+          },
           {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/apiCreateTemperatureControlLogRequest"
-            }
+            "name": "departmentId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -959,20 +949,13 @@
         "organizationId": {
           "type": "string",
           "format": "int64"
-        }
-      }
-    },
-    "apiCreateTemperatureControlLogRequest": {
-      "type": "object",
-      "properties": {
-        "temperatureControlLogItem": {
-          "$ref": "#/definitions/apiTemperatureControlLogItem"
         },
-        "organizationId": {
+        "departmentId": {
           "type": "string",
           "format": "int64"
         }
-      }
+      },
+      "title": "Storage control request/response messages"
     },
     "apiCreateWasteLogRequest": {
       "type": "object",
@@ -987,28 +970,6 @@
         "departmentId": {
           "type": "string",
           "format": "int64"
-        }
-      }
-    },
-    "apiDailyStorageControl": {
-      "type": "object",
-      "properties": {
-        "morning": {
-          "$ref": "#/definitions/apiSessionStorageControl"
-        },
-        "evening": {
-          "$ref": "#/definitions/apiSessionStorageControl"
-        }
-      }
-    },
-    "apiDailyTemperatureControl": {
-      "type": "object",
-      "properties": {
-        "morning": {
-          "$ref": "#/definitions/apiSessionTemperatureControl"
-        },
-        "evening": {
-          "$ref": "#/definitions/apiSessionTemperatureControl"
         }
       }
     },
@@ -1551,54 +1512,6 @@
       },
       "description": "SanitizeLogItem represents a log entry for sanitizing an ingredient."
     },
-    "apiSessionStorageControl": {
-      "type": "object",
-      "properties": {
-        "temperature": {
-          "type": "number",
-          "format": "float"
-        },
-        "humidity": {
-          "type": "number",
-          "format": "float"
-        },
-        "sktControl": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "etiketControl": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "storageArrangement": {
-          "type": "string"
-        },
-        "controllerName": {
-          "type": "string"
-        }
-      },
-      "title": "Storage control messages"
-    },
-    "apiSessionTemperatureControl": {
-      "type": "object",
-      "properties": {
-        "temperature": {
-          "type": "number",
-          "format": "float"
-        },
-        "humidity": {
-          "type": "number",
-          "format": "float"
-        },
-        "controllerName": {
-          "type": "string"
-        },
-        "notes": {
-          "type": "string"
-        }
-      },
-      "title": "Temperature control messages"
-    },
     "apiStorageControlLogItem": {
       "type": "object",
       "properties": {
@@ -1610,24 +1523,71 @@
           "type": "string",
           "format": "int64"
         },
-        "storageLocation": {
-          "type": "string"
-        },
         "organizationId": {
           "type": "string",
           "format": "int64"
         },
-        "date": {
+        "submissionDate": {
           "type": "string",
           "format": "date-time"
+        },
+        "storageName": {
+          "type": "string",
+          "title": "General information"
+        },
+        "controlMonth": {
+          "type": "string"
         },
         "dailyControls": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/apiDailyStorageControl"
-          }
+            "$ref": "#/definitions/apiStorageDailyControl"
+          },
+          "title": "Daily controls (1-31 days) - using map for day number to daily control"
         }
       }
+    },
+    "apiStorageDailyControl": {
+      "type": "object",
+      "properties": {
+        "morningControl": {
+          "$ref": "#/definitions/apiStorageSessionControl"
+        },
+        "eveningControl": {
+          "$ref": "#/definitions/apiStorageSessionControl"
+        }
+      }
+    },
+    "apiStorageSessionControl": {
+      "type": "object",
+      "properties": {
+        "dryFoodTemperature": {
+          "type": "number",
+          "format": "float"
+        },
+        "dryFoodHumidity": {
+          "type": "number",
+          "format": "float"
+        },
+        "expirationCheck": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "labelCheck": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "storageArrangement": {
+          "type": "string"
+        },
+        "controllerName": {
+          "type": "string"
+        },
+        "controlTime": {
+          "type": "string"
+        }
+      },
+      "title": "Storage control messages"
     },
     "apiTemperatureControlLogItem": {
       "type": "object",
@@ -1644,14 +1604,52 @@
           "type": "string",
           "format": "int64"
         },
-        "date": {
+        "submissionDate": {
           "type": "string",
           "format": "date-time"
         },
-        "dailyControl": {
-          "$ref": "#/definitions/apiDailyTemperatureControl"
+        "storageRoomName": {
+          "type": "string",
+          "title": "Basic information"
+        },
+        "controlDate": {
+          "type": "string"
+        },
+        "targetTemperature": {
+          "type": "number",
+          "format": "float"
+        },
+        "measurement09": {
+          "$ref": "#/definitions/apiTemperatureMeasurement",
+          "title": "4 different time measurements"
+        },
+        "measurement15": {
+          "$ref": "#/definitions/apiTemperatureMeasurement"
+        },
+        "measurement21": {
+          "$ref": "#/definitions/apiTemperatureMeasurement"
+        },
+        "measurement03": {
+          "$ref": "#/definitions/apiTemperatureMeasurement"
+        },
+        "notes": {
+          "type": "string",
+          "title": "Notes"
         }
       }
+    },
+    "apiTemperatureMeasurement": {
+      "type": "object",
+      "properties": {
+        "temperature": {
+          "type": "number",
+          "format": "float"
+        },
+        "controllerName": {
+          "type": "string"
+        }
+      },
+      "title": "Temperature measurement at specific time"
     },
     "apiUpdateKitchenUserRequest": {
       "type": "object",
