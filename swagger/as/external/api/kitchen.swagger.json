@@ -613,6 +613,30 @@
         "tags": [
           "KitchenService"
         ]
+      },
+      "post": {
+        "operationId": "CreateTemperatureControlLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateTemperatureControlLogRequest"
+            }
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
       }
     },
     "/api/kitchen/user": {
@@ -956,6 +980,22 @@
         }
       },
       "title": "Storage control request/response messages"
+    },
+    "apiCreateTemperatureControlLogRequest": {
+      "type": "object",
+      "properties": {
+        "temperatureControlLogItem": {
+          "$ref": "#/definitions/apiTemperatureControlLogItem"
+        },
+        "organizationId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "departmentId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
     },
     "apiCreateWasteLogRequest": {
       "type": "object",

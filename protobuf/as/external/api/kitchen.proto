@@ -166,7 +166,12 @@ service KitchenService {
         };
     }
 
-
+rpc CreateTemperatureControlLog(CreateTemperatureControlLogRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+        post: "/api/kitchen/temperature-control"
+        body: "*"
+    };
+}
 
 rpc GetTemperatureControlLogList(GetTemperatureControlLogListRequest) returns (GetTemperatureControlLogListResponse) {
     option (google.api.http) = {
