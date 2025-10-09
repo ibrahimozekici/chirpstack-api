@@ -499,6 +499,132 @@
         ]
       }
     },
+    "/api/kitchen/storage-control": {
+      "get": {
+        "operationId": "GetStorageControlLogList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetStorageControlLogListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      },
+      "post": {
+        "operationId": "CreateStorageControlLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateStorageControlLogRequest"
+            }
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
+    "/api/kitchen/temperature-control": {
+      "get": {
+        "operationId": "GetTemperatureControlLogList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetTemperatureControlLogListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      },
+      "post": {
+        "operationId": "CreateTemperatureControlLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateTemperatureControlLogRequest"
+            }
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
     "/api/kitchen/user": {
       "post": {
         "summary": "CreateKitchenUser creates a new kitchen user.",
@@ -824,6 +950,30 @@
       },
       "description": "CreateSanitizeLogRequest is the request message for CreateSanitizeLog RPC."
     },
+    "apiCreateStorageControlLogRequest": {
+      "type": "object",
+      "properties": {
+        "storageControlLogItem": {
+          "$ref": "#/definitions/apiStorageControlLogItem"
+        },
+        "organizationId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiCreateTemperatureControlLogRequest": {
+      "type": "object",
+      "properties": {
+        "temperatureControlLogItem": {
+          "$ref": "#/definitions/apiTemperatureControlLogItem"
+        },
+        "organizationId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "apiCreateWasteLogRequest": {
       "type": "object",
       "properties": {
@@ -837,6 +987,28 @@
         "departmentId": {
           "type": "string",
           "format": "int64"
+        }
+      }
+    },
+    "apiDailyStorageControl": {
+      "type": "object",
+      "properties": {
+        "morning": {
+          "$ref": "#/definitions/apiSessionStorageControl"
+        },
+        "evening": {
+          "$ref": "#/definitions/apiSessionStorageControl"
+        }
+      }
+    },
+    "apiDailyTemperatureControl": {
+      "type": "object",
+      "properties": {
+        "morning": {
+          "$ref": "#/definitions/apiSessionTemperatureControl"
+        },
+        "evening": {
+          "$ref": "#/definitions/apiSessionTemperatureControl"
         }
       }
     },
@@ -1158,6 +1330,36 @@
       },
       "description": "GetSanitizeLogListResponse is the response message for GetSanitizeLogList RPC."
     },
+    "apiGetStorageControlLogListResponse": {
+      "type": "object",
+      "properties": {
+        "storageControlLogItemList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiStorageControlLogItem"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiGetTemperatureControlLogListResponse": {
+      "type": "object",
+      "properties": {
+        "temperatureControlLogItemList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiTemperatureControlLogItem"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "apiGetWasteLogListResponse": {
       "type": "object",
       "properties": {
@@ -1348,6 +1550,108 @@
         }
       },
       "description": "SanitizeLogItem represents a log entry for sanitizing an ingredient."
+    },
+    "apiSessionStorageControl": {
+      "type": "object",
+      "properties": {
+        "temperature": {
+          "type": "number",
+          "format": "float"
+        },
+        "humidity": {
+          "type": "number",
+          "format": "float"
+        },
+        "sktControl": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "etiketControl": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "storageArrangement": {
+          "type": "string"
+        },
+        "controllerName": {
+          "type": "string"
+        }
+      },
+      "title": "Storage control messages"
+    },
+    "apiSessionTemperatureControl": {
+      "type": "object",
+      "properties": {
+        "temperature": {
+          "type": "number",
+          "format": "float"
+        },
+        "humidity": {
+          "type": "number",
+          "format": "float"
+        },
+        "controllerName": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "title": "Temperature control messages"
+    },
+    "apiStorageControlLogItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "userId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "storageLocation": {
+          "type": "string"
+        },
+        "organizationId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "dailyControls": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/apiDailyStorageControl"
+          }
+        }
+      }
+    },
+    "apiTemperatureControlLogItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "userId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "organizationId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "dailyControl": {
+          "$ref": "#/definitions/apiDailyTemperatureControl"
+        }
+      }
     },
     "apiUpdateKitchenUserRequest": {
       "type": "object",
