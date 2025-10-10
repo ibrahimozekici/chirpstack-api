@@ -101,6 +101,19 @@ service KitchenService {
         };
     }
 
+    rpc CreateRecipeHotLog(CreateRecipeHotLogRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/kitchen/recipe_hot_log"
+            body: "*"
+        };
+    }
+
+    rpc GetRecipeHotLogList(GetRecipeHotLogListRequest) returns (GetRecipeHotLogListResponse) {
+        option (google.api.http) = {
+            get: "/api/kitchen/recipe_hot_log"
+        };
+    }
+
     // CreateDefrostLog creates a new defrost log entry.
     rpc CreateDefrostLog(CreateDefrostLogRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
@@ -674,4 +687,64 @@ message GetFreezableListResponse {
     repeated IngredientItem freezable_ingredient = 1;
     repeated RecipeItem freezable_recipe = 2;
     int64 count = 3;
+}
+
+// Recipe Hot Log Messages
+message RecipeHotLogItem {
+    int64 id = 1 [json_name = "id"];
+    int64 recipe_id = 2 [json_name = "recipeId"];
+    int64 user_id = 3 [json_name = "userId"];
+    int32 recipe_portion = 4 [json_name = "recipePortion"];
+    
+    // Preparation phase
+    google.protobuf.Timestamp prep_start_time = 5 [json_name = "prepStartTime"];
+    google.protobuf.Timestamp prep_end_time = 6 [json_name = "prepEndTime"];
+    
+    // First cooking phase
+    google.protobuf.Timestamp cook1_start_time = 7 [json_name = "cook1StartTime"];
+    google.protobuf.Timestamp cook1_end_time = 8 [json_name = "cook1EndTime"];
+    int32 cook1_duration = 9 [json_name = "cook1Duration"]; // minutes
+    double cook1_temperature = 10 [json_name = "cook1Temperature"]; // °C
+    
+    // Cooling phase
+    google.protobuf.Timestamp cool_start_time = 11 [json_name = "coolStartTime"];
+    google.protobuf.Timestamp cool_end_time = 12 [json_name = "coolEndTime"];
+    
+    // Second cooking phase (optional)
+    google.protobuf.Timestamp cook2_start_time = 13 [json_name = "cook2StartTime"];
+    google.protobuf.Timestamp cook2_end_time = 14 [json_name = "cook2EndTime"];
+    int32 cook2_duration = 15 [json_name = "cook2Duration"];
+    double cook2_temperature = 16 [json_name = "cook2Temperature"];
+    
+    // Storage phase
+    google.protobuf.Timestamp storage_start_time = 17 [json_name = "storageStartTime"];
+    google.protobuf.Timestamp storage_end_time = 18 [json_name = "storageEndTime"];
+    
+    // Temperature measurements
+    double banket_car_temperature = 19 [json_name = "banketCarTemperature"];
+    double center_temperature = 20 [json_name = "centerTemperature"];
+    double prep_final_temperature = 21 [json_name = "prepFinalTemperature"];
+    double cool_final_temperature = 22 [json_name = "coolFinalTemperature"];
+    
+    // Metadata
+    google.protobuf.Timestamp created_at = 23 [json_name = "createdAt"];
+    google.protobuf.Timestamp updated_at = 24 [json_name = "updatedAt"];
+}
+
+message CreateRecipeHotLogRequest {
+    RecipeHotLogItem recipe_hot_log_item = 1;
+    string organization_id = 2;
+    int64 department_id = 3;
+}
+
+message GetRecipeHotLogListRequest {
+    google.protobuf.Timestamp start_date = 1;
+    google.protobuf.Timestamp end_date = 2;
+    string organization_id = 3;
+    int64 department_id = 4;
+}
+
+message GetRecipeHotLogListResponse {
+    repeated RecipeHotLogItem recipe_hot_log_item_list = 1;
+    int64 count = 2;
 }

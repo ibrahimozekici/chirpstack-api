@@ -322,6 +322,75 @@
         ]
       }
     },
+    "/api/kitchen/recipe_hot_log": {
+      "get": {
+        "operationId": "GetRecipeHotLogList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetRecipeHotLogListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "departmentId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      },
+      "post": {
+        "operationId": "CreateRecipeHotLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateRecipeHotLogRequest"
+            }
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
     "/api/kitchen/recipe_log": {
       "get": {
         "summary": "GetRecipeLogList retrieves a list of recipe logs within a specified date range.",
@@ -930,6 +999,21 @@
         }
       }
     },
+    "apiCreateRecipeHotLogRequest": {
+      "type": "object",
+      "properties": {
+        "recipeHotLogItem": {
+          "$ref": "#/definitions/apiRecipeHotLogItem"
+        },
+        "organizationId": {
+          "type": "string"
+        },
+        "departmentId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "apiCreateRecipeLogRequest": {
       "type": "object",
       "properties": {
@@ -1283,6 +1367,21 @@
       },
       "description": "GetKitchenUserResponse is the response message for GetKitchenUser RPC."
     },
+    "apiGetRecipeHotLogListResponse": {
+      "type": "object",
+      "properties": {
+        "recipeHotLogItemList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiRecipeHotLogItem"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "apiGetRecipeListResponse": {
       "type": "object",
       "properties": {
@@ -1416,6 +1515,115 @@
         }
       },
       "description": "KitchenUserItem represents a kitchen user with associated department."
+    },
+    "apiRecipeHotLogItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "recipeId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "userId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "recipePortion": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "prepStartTime": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Preparation phase"
+        },
+        "prepEndTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "cook1StartTime": {
+          "type": "string",
+          "format": "date-time",
+          "title": "First cooking phase"
+        },
+        "cook1EndTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "cook1Duration": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cook1Temperature": {
+          "type": "number",
+          "format": "double"
+        },
+        "coolStartTime": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Cooling phase"
+        },
+        "coolEndTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "cook2StartTime": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Second cooking phase (optional)"
+        },
+        "cook2EndTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "cook2Duration": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cook2Temperature": {
+          "type": "number",
+          "format": "double"
+        },
+        "storageStartTime": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Storage phase"
+        },
+        "storageEndTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "banketCarTemperature": {
+          "type": "number",
+          "format": "double",
+          "title": "Temperature measurements"
+        },
+        "centerTemperature": {
+          "type": "number",
+          "format": "double"
+        },
+        "prepFinalTemperature": {
+          "type": "number",
+          "format": "double"
+        },
+        "coolFinalTemperature": {
+          "type": "number",
+          "format": "double"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Metadata"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "title": "Recipe Hot Log Messages"
     },
     "apiRecipeItem": {
       "type": "object",
