@@ -354,7 +354,7 @@ message WasteLogItem {
 }
 
 message CreateKitchenUserRequest {
-    KitchenUserItem kitchen_user_item = 1;
+    string name = 1;
     int64 organization_id = 2;
     int64 department_id = 3;
 }

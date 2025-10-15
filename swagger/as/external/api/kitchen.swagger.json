@@ -986,8 +986,8 @@
     "apiCreateKitchenUserRequest": {
       "type": "object",
       "properties": {
-        "kitchenUserItem": {
-          "$ref": "#/definitions/apiKitchenUserItem"
+        "name": {
+          "type": "string"
         },
         "organizationId": {
           "type": "string",
