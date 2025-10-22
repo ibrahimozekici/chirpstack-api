@@ -692,8 +692,8 @@ message GetFreezableListResponse {
 // Recipe Hot Log Messages
 message RecipeHotLogItem {
     int64 id = 1 [json_name = "id"];
-    int64 recipe_id = 2 [json_name = "recipeId"];
-    int64 user_id = 3 [json_name = "userId"];
+    string recipe_name = 2 [json_name = "recipeName"];
+    string user_name = 3 [json_name = "userName"];
     int32 recipe_portion = 4 [json_name = "recipePortion"];
     
     // Preparation phase
@@ -711,14 +711,8 @@ message RecipeHotLogItem {
     google.protobuf.Timestamp cool_end_time = 12 [json_name = "coolEndTime"];
     
     // Second cooking phase (optional)
-    google.protobuf.Timestamp cook2_start_time = 13 [json_name = "cook2StartTime"];
-    google.protobuf.Timestamp cook2_end_time = 14 [json_name = "cook2EndTime"];
     int32 cook2_duration = 15 [json_name = "cook2Duration"];
     double cook2_temperature = 16 [json_name = "cook2Temperature"];
-    
-    // Storage phase
-    google.protobuf.Timestamp storage_start_time = 17 [json_name = "storageStartTime"];
-    google.protobuf.Timestamp storage_end_time = 18 [json_name = "storageEndTime"];
     
     // Temperature measurements
     double banket_car_temperature = 19 [json_name = "banketCarTemperature"];

@@ -1523,13 +1523,11 @@
           "type": "string",
           "format": "int64"
         },
-        "recipeId": {
-          "type": "string",
-          "format": "int64"
+        "recipeName": {
+          "type": "string"
         },
-        "userId": {
-          "type": "string",
-          "format": "int64"
+        "userName": {
+          "type": "string"
         },
         "recipePortion": {
           "type": "integer",
@@ -1570,31 +1568,14 @@
           "type": "string",
           "format": "date-time"
         },
-        "cook2StartTime": {
-          "type": "string",
-          "format": "date-time",
-          "title": "Second cooking phase (optional)"
-        },
-        "cook2EndTime": {
-          "type": "string",
-          "format": "date-time"
-        },
         "cook2Duration": {
           "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "title": "Second cooking phase (optional)"
         },
         "cook2Temperature": {
           "type": "number",
           "format": "double"
-        },
-        "storageStartTime": {
-          "type": "string",
-          "format": "date-time",
-          "title": "Storage phase"
-        },
-        "storageEndTime": {
-          "type": "string",
-          "format": "date-time"
         },
         "banketCarTemperature": {
           "type": "number",
