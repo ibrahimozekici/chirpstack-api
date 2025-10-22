@@ -699,16 +699,16 @@ message RecipeHotLogItem {
     // Preparation phase
     google.protobuf.Timestamp prep_start_time = 5 [json_name = "prepStartTime"];
     google.protobuf.Timestamp prep_end_time = 6 [json_name = "prepEndTime"];
+    double prep_final_temperature = 7 [json_name = "prepFinalTemperature"];
     
     // First cooking phase
-    google.protobuf.Timestamp cook1_start_time = 7 [json_name = "cook1StartTime"];
-    google.protobuf.Timestamp cook1_end_time = 8 [json_name = "cook1EndTime"];
-    int32 cook1_duration = 9 [json_name = "cook1Duration"]; // minutes
-    double cook1_temperature = 10 [json_name = "cook1Temperature"]; // °C
+    int32 cook1_duration = 10 [json_name = "cook1Duration"]; // minutes
+    double cook1_temperature = 11 [json_name = "cook1Temperature"]; // °C
     
     // Cooling phase
-    google.protobuf.Timestamp cool_start_time = 11 [json_name = "coolStartTime"];
-    google.protobuf.Timestamp cool_end_time = 12 [json_name = "coolEndTime"];
+    google.protobuf.Timestamp cool_start_time = 12 [json_name = "coolStartTime"];
+    google.protobuf.Timestamp cool_end_time = 13 [json_name = "coolEndTime"];
+    double cool_final_temperature = 14 [json_name = "coolFinalTemperature"];
     
     // Second cooking phase (optional)
     int32 cook2_duration = 15 [json_name = "cook2Duration"];
@@ -717,8 +717,10 @@ message RecipeHotLogItem {
     // Temperature measurements
     double banket_car_temperature = 19 [json_name = "banketCarTemperature"];
     double center_temperature = 20 [json_name = "centerTemperature"];
-    double prep_final_temperature = 21 [json_name = "prepFinalTemperature"];
-    double cool_final_temperature = 22 [json_name = "coolFinalTemperature"];
+    
+    // Recycle information
+    bool recycle = 21 [json_name = "recycle"];
+    string recycle_description = 22 [json_name = "recycleDescription"];
     
     // Metadata
     google.protobuf.Timestamp created_at = 23 [json_name = "createdAt"];
