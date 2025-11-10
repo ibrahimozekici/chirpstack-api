@@ -1530,8 +1530,8 @@
           "type": "string"
         },
         "recipePortion": {
-          "type": "integer",
-          "format": "int32"
+          "type": "number",
+          "format": "double"
         },
         "prepStartTime": {
           "type": "string",
