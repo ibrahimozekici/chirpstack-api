@@ -322,6 +322,78 @@
         ]
       }
     },
+    "/api/kitchen/recipe_alacarte_log": {
+      "get": {
+        "summary": "GetRecipeAlacarteLogList retrieves a list of alacarte logs.",
+        "operationId": "GetRecipeAlacarteLogList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetRecipeAlacarteLogListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "departmentId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      },
+      "post": {
+        "summary": "CreateRecipeAlacarteLog creates a new alacarte log entry.",
+        "operationId": "CreateRecipeAlacarteLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateRecipeAlacarteLogRequest"
+            }
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
     "/api/kitchen/recipe_hot_log": {
       "get": {
         "operationId": "GetRecipeHotLogList",
@@ -455,6 +527,78 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/apiCreateRecipeLogRequest"
+            }
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      }
+    },
+    "/api/kitchen/recipe_pastry_log": {
+      "get": {
+        "summary": "GetRecipePastryLogList retrieves a list of pastry logs.",
+        "operationId": "GetRecipePastryLogList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetRecipePastryLogListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "departmentId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "KitchenService"
+        ]
+      },
+      "post": {
+        "summary": "CreateRecipePastryLog creates a new pastry log entry.",
+        "operationId": "CreateRecipePastryLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateRecipePastryLogRequest"
             }
           }
         ],
@@ -999,6 +1143,22 @@
         }
       }
     },
+    "apiCreateRecipeAlacarteLogRequest": {
+      "type": "object",
+      "properties": {
+        "recipeAlacarteLogItem": {
+          "$ref": "#/definitions/apiRecipeAlacarteLogItem"
+        },
+        "organizationId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "departmentId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "apiCreateRecipeHotLogRequest": {
       "type": "object",
       "properties": {
@@ -1030,6 +1190,22 @@
         }
       },
       "description": "CreateRecipeLogRequest is the request message for CreateRecipeLog RPC."
+    },
+    "apiCreateRecipePastryLogRequest": {
+      "type": "object",
+      "properties": {
+        "recipePastryLogItem": {
+          "$ref": "#/definitions/apiRecipePastryLogItem"
+        },
+        "organizationId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "departmentId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
     },
     "apiCreateSanitizeLogRequest": {
       "type": "object",
@@ -1367,6 +1543,21 @@
       },
       "description": "GetKitchenUserResponse is the response message for GetKitchenUser RPC."
     },
+    "apiGetRecipeAlacarteLogListResponse": {
+      "type": "object",
+      "properties": {
+        "recipeAlacarteLogItemList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiRecipeAlacarteLogItem"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "apiGetRecipeHotLogListResponse": {
       "type": "object",
       "properties": {
@@ -1413,6 +1604,21 @@
         }
       },
       "description": "GetRecipeLogListResponse is the response message for GetRecipeLogList RPC."
+    },
+    "apiGetRecipePastryLogListResponse": {
+      "type": "object",
+      "properties": {
+        "recipePastryLogItemList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiRecipePastryLogItem"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
     },
     "apiGetSanitizeLogListResponse": {
       "type": "object",
@@ -1515,6 +1721,57 @@
         }
       },
       "description": "KitchenUserItem represents a kitchen user with associated department."
+    },
+    "apiRecipeAlacarteLogItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "recipe": {
+          "$ref": "#/definitions/apiRecipeItem"
+        },
+        "prepStartTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "prepEndTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "cookHeat": {
+          "type": "number",
+          "format": "double"
+        },
+        "coolStartTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "coolEndTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "coolHeat": {
+          "type": "number",
+          "format": "double"
+        },
+        "kitchenUser": {
+          "$ref": "#/definitions/apiKitchenUserItem"
+        },
+        "submissionDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "recipePortion": {
+          "type": "number",
+          "format": "double"
+        },
+        "departmentName": {
+          "type": "string"
+        }
+      },
+      "description": "RecipeAlacarteLogItem represents a log entry for alacarte recipes."
     },
     "apiRecipeHotLogItem": {
       "type": "object",
@@ -1682,6 +1939,61 @@
         }
       },
       "description": "RecipeLogItem represents a log entry for a recipe."
+    },
+    "apiRecipePastryLogItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "recipe": {
+          "$ref": "#/definitions/apiRecipeItem"
+        },
+        "prepStartTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "prepEndTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "cookHeat": {
+          "type": "number",
+          "format": "double"
+        },
+        "coolStartTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "coolEndTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "coolHeat": {
+          "type": "number",
+          "format": "double"
+        },
+        "kitchenUser": {
+          "$ref": "#/definitions/apiKitchenUserItem"
+        },
+        "submissionDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "recipePortion": {
+          "type": "number",
+          "format": "double"
+        },
+        "recycle": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "recycleDescription": {
+          "type": "string"
+        }
+      },
+      "description": "RecipePastryLogItem represents a log entry for a pastry recipe."
     },
     "apiSanitizeLogItem": {
       "type": "object",

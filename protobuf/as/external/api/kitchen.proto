@@ -152,6 +152,36 @@ service KitchenService {
         };
     }
 
+    // CreateRecipePastryLog creates a new pastry log entry.
+    rpc CreateRecipePastryLog(CreateRecipePastryLogRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/kitchen/recipe_pastry_log"
+            body: "*"
+        };
+    }
+
+    // GetRecipePastryLogList retrieves a list of pastry logs.
+    rpc GetRecipePastryLogList(GetRecipePastryLogListRequest) returns (GetRecipePastryLogListResponse) {
+        option (google.api.http) = {
+            get: "/api/kitchen/recipe_pastry_log"
+        };
+    }
+
+    // CreateRecipeAlacarteLog creates a new alacarte log entry.
+    rpc CreateRecipeAlacarteLog(CreateRecipeAlacarteLogRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/kitchen/recipe_alacarte_log"
+            body: "*"
+        };
+    }
+
+    // GetRecipeAlacarteLogList retrieves a list of alacarte logs.
+    rpc GetRecipeAlacarteLogList(GetRecipeAlacarteLogListRequest) returns (GetRecipeAlacarteLogListResponse) {
+        option (google.api.http) = {
+            get: "/api/kitchen/recipe_alacarte_log"
+        };
+    }
+
     // GetDefrostLogList retrieves a list of defrost logs within a specified date range.
     rpc GetDefrostLogList(GetDefrostLogListRequest) returns (GetDefrostLogListResponse) {
         option (google.api.http) = {
@@ -743,5 +773,74 @@ message GetRecipeHotLogListRequest {
 
 message GetRecipeHotLogListResponse {
     repeated RecipeHotLogItem recipe_hot_log_item_list = 1;
+    int64 count = 2;
+}
+
+// RecipePastryLogItem represents a log entry for a pastry recipe.
+message RecipePastryLogItem {
+    int64 id = 1 [json_name = "id"];
+    RecipeItem recipe = 2 [json_name = "recipe"];
+    google.protobuf.Timestamp prep_start_time = 3 [json_name = "prepStartTime"];
+    google.protobuf.Timestamp prep_end_time = 4 [json_name = "prepEndTime"];
+    double cook_heat = 5 [json_name = "cookHeat"];
+    google.protobuf.Timestamp cool_start_time = 6 [json_name = "coolStartTime"];
+    google.protobuf.Timestamp cool_end_time = 7 [json_name = "coolEndTime"];
+    double cool_heat = 8 [json_name = "coolHeat"];
+    KitchenUserItem kitchen_user = 9 [json_name = "kitchenUser"];
+    google.protobuf.Timestamp submission_date = 10 [json_name = "submissionDate"];
+    double recipe_portion = 11 [json_name = "recipePortion"];
+    bool recycle = 12 [json_name = "recycle"];
+    string recycle_description = 13 [json_name = "recycleDescription"];
+}
+
+message CreateRecipePastryLogRequest {
+    RecipePastryLogItem recipe_pastry_log_item = 1;
+    int64 organization_id = 2;
+    int64 department_id = 3;
+}
+
+message GetRecipePastryLogListRequest {
+    google.protobuf.Timestamp start_date = 1;
+    google.protobuf.Timestamp end_date = 2;
+    int64 organization_id = 3;
+    int64 department_id = 4;
+}
+
+message GetRecipePastryLogListResponse {
+    repeated RecipePastryLogItem recipe_pastry_log_item_list = 1;
+    int64 count = 2;
+}
+
+// RecipeAlacarteLogItem represents a log entry for alacarte recipes.
+message RecipeAlacarteLogItem {
+    int64 id = 1 [json_name = "id"];
+    RecipeItem recipe = 2 [json_name = "recipe"];
+    google.protobuf.Timestamp prep_start_time = 3 [json_name = "prepStartTime"];
+    google.protobuf.Timestamp prep_end_time = 4 [json_name = "prepEndTime"];
+    double cook_heat = 5 [json_name = "cookHeat"];
+    google.protobuf.Timestamp cool_start_time = 6 [json_name = "coolStartTime"];
+    google.protobuf.Timestamp cool_end_time = 7 [json_name = "coolEndTime"];
+    double cool_heat = 8 [json_name = "coolHeat"];
+    KitchenUserItem kitchen_user = 9 [json_name = "kitchenUser"];
+    google.protobuf.Timestamp submission_date = 10 [json_name = "submissionDate"];
+    double recipe_portion = 11 [json_name = "recipePortion"];
+    string department_name = 12 [json_name = "departmentName"];
+}
+
+message CreateRecipeAlacarteLogRequest {
+    RecipeAlacarteLogItem recipe_alacarte_log_item = 1;
+    int64 organization_id = 2;
+    int64 department_id = 3;
+}
+
+message GetRecipeAlacarteLogListRequest {
+    google.protobuf.Timestamp start_date = 1;
+    google.protobuf.Timestamp end_date = 2;
+    int64 organization_id = 3;
+    int64 department_id = 4;
+}
+
+message GetRecipeAlacarteLogListResponse {
+    repeated RecipeAlacarteLogItem recipe_alacarte_log_item_list = 1;
     int64 count = 2;
 }
