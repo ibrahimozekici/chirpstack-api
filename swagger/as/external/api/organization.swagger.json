@@ -589,6 +589,10 @@
         },
         "phoneNumber": {
           "type": "string"
+        },
+        "has_accepted_kvkk": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -642,6 +646,10 @@
         },
         "phoneNumber": {
           "type": "string"
+        },
+        "has_accepted_kvkk": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
